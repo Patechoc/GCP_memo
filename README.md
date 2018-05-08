@@ -2,7 +2,21 @@
 
 Useful commands when using Google Cloud Platform
 
+## Check your CloudSQL instance from CloudShell
 
+```shell
+$ mysql --host=35.234.239.132 --user=root --password
+MySQL [(none)]> show databases;
+MySQL [(none)]> use recommendation_spark;
+MySQL [recommendation_spark]> show tables;
+MySQL [recommendation_spark]> DESCRIBE Accommodation;
+MySQL [recommendation_spark]> SELECT id, count(*) FROM Accommodation GROUP BY id;
+MySQL [recommendation_spark]> SELECT DISTINCT userId, count(*) FROM Rating GROUP BY userId;
+MySQL [recommendation_spark]> SELECT count(*) FROM Rating;
+MySQL [recommendation_spark]> SELECT * FROM Recommendation LIMIT 5;
+MySQL [recommendation_spark]> SELECT count(*) FROM Recommendation;
+MySQL [recommendation_spark]> select r.userid, r.accoid, r.prediction, a.title, a.location, a.price, a.rooms, a.rating, a.type from Recommendation as r, Accommodation as a where r.accoid = a.id and r.userid = 10;
+```
 
 ## Authorizing CloudShell to access a CloudSQL instance
 
