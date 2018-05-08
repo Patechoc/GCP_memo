@@ -1,4 +1,4 @@
-# GCP_memo
+# Memo for Google Cloud Platform (GCP)
 
 Useful commands when using Google Cloud Platform
 
