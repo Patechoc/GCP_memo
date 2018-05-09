@@ -1,13 +1,18 @@
 # Memo for Google Cloud Platform (GCP)
 
-Useful commands when using Google Cloud Platform
+Useful commands/scripts for use on Google Cloud Platform.
 
 
 ## Create a Virtual Machine from CloudShell
 
 ```shell
 #!/bin/bash
-. ../instance_details.sh
+
+# Remove "_" from USER because "_" can not be used for instance name
+export INSTANCE_NAME=datalabvm-${USER//_/}
+export ZONE=us-central1-a
+export MACHINE_TYPE=n1-standard-1
+
 echo "Creating instance name=$INSTANCE_NAME in zone=$ZONE of type=$MACHINE_TYPE"
 gcloud compute instances create $INSTANCE_NAME \
    --image-family=container-vm --image-project=google-containers \
