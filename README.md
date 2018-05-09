@@ -2,7 +2,6 @@
 
 Useful commands/scripts for use on Google Cloud Platform.
 
-
 ## Create a Virtual Machine from CloudShell
 
 ```shell
@@ -89,4 +88,76 @@ for machine in $machines; do
 done
 
 echo "Authorizing [$ips] to access cloudsql=$CLOUDSQL"
+```
+
+
+## ML with BigQuery + TensorFlow
+
+```shell
+$ gcloud auth list
+```
+
+```shell
+$ gcloud config list project
+[core]
+project = api-project-56998XXXXXX
+
+Your active configuration is: [cloudshell-XXXXX]
+```
+
+```shell
+$ gcloud compute zones list
+NAME                       REGION                   STATUS  NEXT_MAINTENANCE  TURNDOWN_DATE
+us-east1-b                 us-east1                 UP
+us-east1-c                 us-east1                 UP
+us-east1-d                 us-east1                 UP
+...
+```
+
+
+```shell
+$ datalab create bdmlvm --zone europe-west2-b
+...
+Creating the network datalab-network
+Creating the firewall rule datalab-network-allow-ssh
+Creating the disk bdmlvm-pd
+Creating the repository datalab-notebooks
+...
+```
+
+
+```shell
+
+```
+
+```shell
+
+```
+
+```shell
+
+```
+
+```shell
+
+```
+
+```shell
+
+```
+
+```shell
+
+```
+
+```shell
+
+```
+
+```shell
+
+```
+
+```shell
+
 ```
