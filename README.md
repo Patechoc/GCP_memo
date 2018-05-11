@@ -91,7 +91,11 @@ echo "Authorizing [$ips] to access cloudsql=$CLOUDSQL"
 ```
 
 
-## ML with BigQuery + TensorFlow
+## Big Data and ML Fundamentals using Datalab
+
+### Work from a given project (billing credentials)
+
+Check that you are already authenticated and that the project is already set to your PROJECT_ID:
 
 ```shell
 $ gcloud auth list
@@ -105,6 +109,17 @@ project = api-project-56998XXXXXX
 Your active configuration is: [cloudshell-XXXXX]
 ```
 
+If it is not, you can set it with this command:
+
+
+```shell
+$ gcloud config set project <PROJECT_ID>
+```
+
+### Start an instance of Cloud Datalab
+
+Pick a zone in a geographically closeby region.
+
 ```shell
 $ gcloud compute zones list
 NAME                       REGION                   STATUS  NEXT_MAINTENANCE  TURNDOWN_DATE
@@ -112,10 +127,7 @@ us-east1-b                 us-east1                 UP
 us-east1-c                 us-east1                 UP
 us-east1-d                 us-east1                 UP
 ...
-```
 
-
-```shell
 $ datalab create bdmlvm --zone europe-west2-b
 ...
 Creating the network datalab-network
@@ -125,39 +137,41 @@ Creating the repository datalab-notebooks
 ...
 ```
 
+Datalab will take about 5 minutes to start :sleeping:
 
-```shell
+### Open your "Jupyter" notebooks from Cloud Datalab
 
-```
+From CloudShell, click on the Web Preview icon on the top-left corner of the Cloud Shell ribbon. Switch to port 8081.
 
-```shell
+![Web Preview](https://run-qwiklab-website-prod.s3.amazonaws.com/instructions/documents/42935/original/img/7eb159ad9b4d3d2d.png)
 
-```
+> Note: The connection to your Datalab instance remains open for as long as the datalab command is active. If the cloud shell used for running the datalab command is closed or interrupted, the connection to your Cloud Datalab VM will terminate.
 
-```shell
+### Checkout any git repository into Cloud Datalab
 
-```
+In Datalab, click on the icon for "Open ungit" in the top-right ribbon. ![Open ungit](https://run-qwiklab-website-prod.s3.amazonaws.com/instructions/documents/42935/original/img/fc5c4f63c40f83f.png)
 
-```shell
+In the Ungit window, select the text that reads `/content/datalab/notebooks` and remove the notebooks so that it reads `/content/datalab`, then hit enter. ![Datalab ungit](https://run-qwiklab-website-prod.s3.amazonaws.com/instructions/documents/42935/original/img/18f8d226fe047e84.png)
 
-```
+In the panel that comes up, type the following as the GitHub repository to **Clone from** (e.g. `https://github.com/GoogleCloudPlatform/training-data-analyst`).
 
-```shell
+Then, click on **Clone repository**.
 
-```
+### Get API key(s) to enable Services [optional] 
 
-```shell
+Depending on what you develop, you will need to enable Services or APIs. 
 
-```
+From the GCP console menu, select **APIs and services** and select **Library** as submenu.
 
-```shell
+E.g. In the search box, type **vision** to find the Google **Cloud Vision API** and click on the hyperlink and **Enable** if necessary
 
-```
 
-```shell
+If you do not already have an API key, from the GCP console menu, select **APIs and services** and select **Credentials**.
 
-```
+Click the **Create credentials** button and select **API key**. Once created, click close. You will need this API key in the notebook later.
 
-```shell
 
-```
+### Invoking ML APIs from Datalab
+
+You can find a demo notebook under [ML APIs](./labs/lab04_BigQuery_ML_APIs).
+
