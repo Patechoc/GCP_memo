@@ -2,6 +2,19 @@
 
 Useful commands/scripts for use on Google Cloud Platform.
 
+## Clean your Cloud resources
+
+Whatever you build on GCP, it might cost a lot if you forget to delete some compute resources.
+
+Here is a way to do it from the shell:
+
+```shell
+gcloud config list
+gcloud config set project <your_project_name>
+gcloud projects delete <your_project_name>
+```
+
+
 ## Create a Virtual Machine from CloudShell
 
 ```shell
@@ -46,7 +59,9 @@ gcloud sql instances patch rentals \
     --authorized-networks `wget -qO - http://ipecho.net/plain`/32
 ```
 
-## Managing Dataproc clusters with the CLI/CloudShell
+## Dataproc
+
+### Managing Dataproc clusters with the CLI/CloudShell
 
 This command creates a Dataproc cluster named **my-second-cluster** in the **us-central1-a** zone. It creates a master node with 1 CPU and a 50 GB disk and 2 worker nodes with the same resources:
 
@@ -57,7 +72,7 @@ gcloud dataproc clusters create my-second-cluster --zone us-central1-a \
         --worker-boot-disk-size 50 
 ```
 
-## Authorizing Dataproc cluster to access a CloudSQL instance
+### Authorizing Dataproc cluster to access a CloudSQL instance
 
 Assuming that:
 
@@ -99,6 +114,13 @@ for machine in $machines; do
 done
 
 echo "Authorizing [$ips] to access cloudsql=$CLOUDSQL"
+```
+
+
+### Delete your Dataproc cluster at once
+
+```shell
+gcloud dataproc clusters delete <my-cluster-name>
 ```
 
 
