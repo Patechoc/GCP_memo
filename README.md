@@ -46,6 +46,17 @@ gcloud sql instances patch rentals \
     --authorized-networks `wget -qO - http://ipecho.net/plain`/32
 ```
 
+## Managing Dataproc clusters with the CLI/CloudShell
+
+This command creates a Dataproc cluster named **my-second-cluster** in the **us-central1-a** zone. It creates a master node with 1 CPU and a 50 GB disk and 2 worker nodes with the same resources:
+
+```shell
+gcloud dataproc clusters create my-second-cluster --zone us-central1-a \
+        --master-machine-type n1-standard-1 --master-boot-disk-size 50 \
+        --num-workers 2 --worker-machine-type n1-standard-1 \
+        --worker-boot-disk-size 50 
+```
+
 ## Authorizing Dataproc cluster to access a CloudSQL instance
 
 Assuming that:
