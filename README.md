@@ -114,7 +114,9 @@ cd training-data-analyst/courses/unstructured
 ./replace_and_upload.sh <YOUR-BUCKET-NAME>
 ```
 
-### Run a simple PySpark job
+### Run jobs on your cluster
+
+#### Run a simple PySpark job
 
 Type `pyspark` at the command prompt to open the PySpark shell.
 
@@ -157,6 +159,105 @@ SparkSession available as 'spark'.
 >>> quit()
 patrick_merlot@my-cluster-m:~$ 
 ```
+#### Pig Job that reads from HDFS
+
+Enter the following command to copy a data file and a pig script into the folder you just created. Make sure to plug in your actual bucket name.
+
+```shell
+gsutil -m cp gs://<YOUR-BUCKET-NAME>/unstructured/pet-details.* .
+```
+
+```shell
+patrick_merlot@my-cluster-m:~$ mkdir lab2
+patrick_merlot@my-cluster-m:~$ cd lab2
+patrick_merlot@my-cluster-m:~/lab2$ gsutil -m cp gs://coursera-gcp-course02/unstructured/pet-details.* .
+Copying gs://coursera-gcp-course02/unstructured/pet-details.pig...
+Copying gs://coursera-gcp-course02/unstructured/pet-details.txt...              
+/ [2/2 files][  687.0 B/  687.0 B] 100% Done                                    
+Operation completed over 2 objects/687.0 B.                                      
+patrick_merlot@my-cluster-m:~/lab2$ cat pet-details.txt 
+Dog,Noir,Schnoodle,Black,21
+Dog,Bree,MaltePoo,White,10
+Dog,Pickles,Golden Retriever,Yellow,30
+Dog,Sparky,Mutt,Gray,13
+Cat,Tom,Alley,Yellow,11
+Cat,Cleo,Siamese,Gray,22
+Frog,Kermit,Bull,Green,1
+Pig,Bacon,Pot Belly,Pink,30
+Pig,Babe,Domestic,White,150
+Dog,Rusty,Poodle,White,20
+Cat,Joe,Mix,Black,15patrick_merlot@my-cluster-m:~/lab2$ 
+```
+
+```shell
+patrick_merlot@my-cluster-m:~/lab2$ cat pet-details.pig 
+rmf /GroupedByType
+x1 = load '/pet-details' using PigStorage(',') as (Type:chararray,Name:chararray,Breed:chararray,Color:chararray,We
+ight:int);
+x2 = filter x1 by Type != 'Type';
+x3 = foreach x2 generate Type, Name, Breed, Color, Weight, Weight / 2.24 as Kilos:float;
+x4 = filter x3 by LOWER(Color) == 'black' or LOWER(Color) == 'white';
+x5 = group x4 by Type;
+store x5 into '/GroupedByType';
+patrick_merlot@my-cluster-m:~/lab2$
+```
+
+let's copy the text file into HDFS:
+
+```shell
+patrick_merlot@my-cluster-m:~/lab2$ hadoop fs -mkdir /pet-details
+18/05/14 13:01:04 INFO gcs.GoogleHadoopFileSystemBase: GHFS version: 1.6.5-hadoop2
+patrick_merlot@my-cluster-m:~/lab2$ hadoop fs -put pet-details.txt /pet-details
+18/05/14 13:01:09 INFO gcs.GoogleHadoopFileSystemBase: GHFS version: 1.6.5-hadoop2
+patrick_merlot@my-cluster-m:~/lab2$
+```
+
+Go back to the Web console and the details of your master node. Find the master node's external IP address and copy it to the clipboard. Then, open a new tab in your browser, paste in the ip address and then add **:9870**. This will open the Hadoop management site. From the **Utilities** menu on the right select **Browse the file system**.
+
+Verify that you have a folder called **pet-details** and inside it you should have a file called **pet-details.txt**.
+
+
+Run the following command to run Pig:
+
+```shell
+pig < pet-details.pig
+```
+Click **Submit** to start the job. It will take about a minute to run. Wait until it completes.
+
+You will get something like:
+
+```shell
+...
+HadoopVersion   PigVersion      UserId  StartedAt       FinishedAt      Features
+2.8.3   0.16.0  patrick_merlot  2018-05-14 13:10:17     2018-05-14 13:10:51     GROUP_BY,FILTER
+Success!
+Job Stats (time in seconds):
+JobId   Maps    Reduces MaxMapTime      MinMapTime      AvgMapTime      MedianMapTime   MaxReduceTime   MinReduceTime   AvgReduceTime   MedianReducetime        Alias   Feature Outputs
+job_1526300672789_0004  1       1       5       5       5       5       5       5       5       5       x1,x2,x3,x5     GROUP_BY        /GroupedByType,
+Input(s):
+Successfully read 11 records (668 bytes) from: "/pet-details"
+Output(s):
+Successfully stored 3 records (249 bytes) in: "/GroupedByType"
+Counters:
+Total records written : 3
+Total bytes written : 249
+Spillable Memory Manager spill count : 0
+Total bags proactively spilled: 0
+Total records proactively spilled: 0
+Job DAG:
+job_1526300672789_0004
+2018-05-14 13:10:51,911 [main] INFO  org.apache.hadoop.yarn.client.RMProxy - Connecting to ResourceManager at my-cluster-m/10.128.0.3:8032
+2018-05-14 13:10:51,920 [main] INFO  org.apache.hadoop.mapred.ClientServiceDelegate - Application state is completed. FinalApplicationStatus=SUCCEEDED. Redirecting to job history server
+2018-05-14 13:10:51,999 [main] INFO  org.apache.hadoop.yarn.client.RMProxy - Connecting to ResourceManager at my-cluster-m/10.128.0.3:8032
+2018-05-14 13:10:52,010 [main] INFO  org.apache.hadoop.mapred.ClientServiceDelegate - Application state is completed. FinalApplicationStatus=SUCCEEDED. Redirecting to job history server
+2018-05-14 13:10:52,101 [main] INFO  org.apache.hadoop.yarn.client.RMProxy - Connecting to ResourceManager at my-cluster-m/10.128.0.3:8032
+2018-05-14 13:10:52,113 [main] INFO  org.apache.hadoop.mapred.ClientServiceDelegate - Application state is completed. FinalApplicationStatus=SUCCEEDED. Redirecting to job history server
+2018-05-14 13:10:52,206 [main] INFO  org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.MapReduceLauncher - Success!
+grunt> 2018-05-14 13:10:52,254 [main] INFO  org.apache.pig.Main - Pig script completed in 40 seconds and 957 milliseconds (40957 ms)
+```
+
+
+
 
 ### Authorizing Dataproc cluster to access a CloudSQL instance
 
