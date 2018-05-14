@@ -256,8 +256,31 @@ job_1526300672789_0004
 grunt> 2018-05-14 13:10:52,254 [main] INFO  org.apache.pig.Main - Pig script completed in 40 seconds and 957 milliseconds (40957 ms)
 ```
 
+Go back to the tab with the Hadoop management site and again browse the file system. The output from this Pig job should be in a folder called **GroupedByType**. If you look in that folder you should see a file named **part-r-00000**.
 
+Let's look at the output file.
 
+First you have to get the file off the HDFS file system. Go back to your SSH session where you are connected to the master node. You should currently be in the folder **lab2**.
+
+Make a directory below it and move into by entering the following commands, and enter the following command to get the output file from HDFS and copy it into this folder.
+
+```shell
+patrick_merlot@my-cluster-m:~/lab2$ mkdir ~/lab2/output
+patrick_merlot@my-cluster-m:~/lab2$ cd ~/lab2/output
+patrick_merlot@my-cluster-m:~/lab2/output$ hadoop fs -get /GroupedByType/part* .
+18/05/14 13:15:35 INFO gcs.GoogleHadoopFileSystemBase: GHFS version: 1.6.5-hadoop2
+patrick_merlot@my-cluster-m:~/lab2/output$ 
+```
+
+Finally, enter the following command to view the results.
+
+```shell
+patrick_merlot@my-cluster-m:~/lab2/output$ cat *
+Cat     {(Cat,Joe,Mix,Black,15,6.696428571428571)}
+Dog     {(Dog,Rusty,Poodle,White,20,8.928571428571427),(Dog,Bree,MaltePoo,White,10,4.4642857142857135),(Dog,Noir,Schnoodle,Black,21,9.374999999999998)}
+Pig     {(Pig,Babe,Domestic,White,150,66.96428571428571)}
+patrick_merlot@my-cluster-m:~/lab2/output$
+```
 
 ### Authorizing Dataproc cluster to access a CloudSQL instance
 
