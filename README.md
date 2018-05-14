@@ -61,18 +61,9 @@ gcloud sql instances patch rentals \
 
 ## Dataproc
 
-### Managing Dataproc clusters with the CLI/CloudShell
-
-This command creates a Dataproc cluster named **my-second-cluster** in the **us-central1-a** zone. It creates a master node with 1 CPU and a 50 GB disk and 2 worker nodes with the same resources:
-
-```shell
-gcloud dataproc clusters create my-second-cluster --zone us-central1-a \
-        --master-machine-type n1-standard-1 --master-boot-disk-size 50 \
-        --num-workers 2 --worker-machine-type n1-standard-1 \
-        --worker-boot-disk-size 50 
-```
-
 ### Create a firewall rule to access Dataproc tools (HDFS, Datalab, Hadoop) from your browser
+
+This can be done before you create the cluster.
 
 * find you IP with [http://ip4.me/](http://ip4.me/) and use it followed by `/32` in the `--source-ranges` option.
 * allow TCP port on 8088 (**Hadoop**), 9870 (**HDFS**), 8080 (**Datalab**) 
@@ -84,6 +75,35 @@ gcloud compute --project=coursera-gcp-course02 firewall-rules create <name-your-
 --direction=INGRESS --priority=1000 --network=default --action=ALLOW \
 --rules=tcp:8088,tcp:9870,tcp:8080 \
 --source-ranges=95.130.218.4/32
+```
+
+### Managing Dataproc clusters with the CLI/CloudShell
+
+This command creates a Dataproc cluster named **my-second-cluster** in the **us-central1-a** zone. It creates a master node with 1 CPU and a 50 GB disk and 2 worker nodes with the same resources:
+
+```shell
+gcloud dataproc clusters create my-second-cluster --zone us-central1-a \
+        --master-machine-type n1-standard-1 --master-boot-disk-size 50 \
+        --num-workers 2 --worker-machine-type n1-standard-1 \
+        --worker-boot-disk-size 50 
+```
+
+or 
+
+```shell
+gcloud dataproc clusters create my-cluster --zone us-central1-a \
+        --master-machine-type n1-standard-1 --master-boot-disk-size 50 \
+        --num-workers 2 --worker-machine-type n1-standard-1 \
+        --worker-boot-disk-size 50 --network=default
+```
+
+
+### Create a Cloud Storage bucket for your Dataproc cluster
+
+In **Google Cloud Shell**, enter the following command to create a Cloud Storage bucket **with the same name** as your project ID **in the same region as your cluster**. Both Cloud Storage buckets and Project ID's have to be unique, so unless you are very unlucky your project ID would not have been previously used for a bucket name.
+
+```shell
+gsutil mb -c regional -l us-central1 gs://$DEVSHELL_PROJECT_ID
 ```
 
 ### Authorizing Dataproc cluster to access a CloudSQL instance
