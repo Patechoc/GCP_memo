@@ -77,7 +77,7 @@ gcloud compute --project=coursera-gcp-course02 firewall-rules create <name-your-
 --source-ranges=95.130.218.4/32
 ```
 
-### Managing Dataproc clusters with the CLI/CloudShell
+### Creating Dataproc clusters with the CLI/CloudShell
 
 This command creates a Dataproc cluster named **my-second-cluster** in the **us-central1-a** zone. It creates a master node with 1 CPU and a 50 GB disk and 2 worker nodes with the same resources:
 
@@ -104,6 +104,14 @@ In **Google Cloud Shell**, enter the following command to create a Cloud Storage
 
 ```shell
 gsutil mb -c regional -l us-central1 gs://$DEVSHELL_PROJECT_ID
+```
+
+### Copying source code and input files to your bucket
+
+```shell
+git clone https://github.com/GoogleCloudPlatform/training-data-analyst
+cd training-data-analyst/courses/unstructured
+./replace_and_upload.sh <YOUR-BUCKET-NAME>
 ```
 
 ### Authorizing Dataproc cluster to access a CloudSQL instance
