@@ -114,6 +114,50 @@ cd training-data-analyst/courses/unstructured
 ./replace_and_upload.sh <YOUR-BUCKET-NAME>
 ```
 
+### Run a simple PySpark job
+
+Type `pyspark` at the command prompt to open the PySpark shell.
+
+```shell
+patrick_merlot@my-cluster-m:~$ pyspark
+Python 2.7.9 (default, Jun 29 2016, 13:08:31) 
+[GCC 4.9.2] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+ivysettings.xml file not found in HIVE_HOME or HIVE_CONF_DIR,/etc/hive/conf.dist/ivysettings.xml will be used
+Welcome to
+      ____              __
+     / __/__  ___ _____/ /__
+    _\ \/ _ \/ _ `/ __/  '_/
+   /__ / .__/\_,_/_/ /_/\_\   version 2.2.1
+      /_/
+Using Python version 2.7.9 (default, Jun 29 2016 13:08:31)
+SparkSession available as 'spark'.
+>>> 
+>>> 
+>>> data = [0, 1, 2, 3, 4, 5]  # range(6)
+>>> distData = sc.parallelize(data)
+>>> squares = distData.map(lambda x : x*x)
+>>> res = squares.reduce(lambda a, b : a + b)
+>>> print res                                                
+>>> 55
+>>>
+>>> # Write a PySpark program to compute the square root of the sum of the first 1000 terms of this series starting
+ at k=0: 8.0/((2k+1)(2k+1))
+... 
+>>> import numpy as np
+>>> data = range(1000)
+>>> distData = sc.parallelize(data)
+>>> terms = distData.map(lambda k : 8.0/((2*k+1)*(2*k+1)))
+>>> res = np.sqrt(terms.sum())
+>>> print res
+3.1412743276
+>>> 
+>>> quit()
+patrick_merlot@my-cluster-m:~$ 
+```
+
 ### Authorizing Dataproc cluster to access a CloudSQL instance
 
 Assuming that:
