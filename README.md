@@ -72,6 +72,20 @@ gcloud dataproc clusters create my-second-cluster --zone us-central1-a \
         --worker-boot-disk-size 50 
 ```
 
+### Create a firewall rule to access Dataproc tools (HDFS, Datalab, Hadoop) from your browser
+
+* find you IP with [http://ip4.me/](http://ip4.me/) and use it followed by `/32` in the `--source-ranges` option.
+* allow TCP port on 8088 (**Hadoop**), 9870 (**HDFS**), 8080 (**Datalab**) 
+
+
+```shell
+gcloud compute --project=coursera-gcp-course02 firewall-rules create <name-your-default-allow-dataproc-access> \
+--description="description here" \
+--direction=INGRESS --priority=1000 --network=default --action=ALLOW \
+--rules=tcp:8088,tcp:9870,tcp:8080 \
+--source-ranges=95.130.218.4/32
+```
+
 ### Authorizing Dataproc cluster to access a CloudSQL instance
 
 Assuming that:
