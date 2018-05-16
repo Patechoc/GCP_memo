@@ -108,10 +108,14 @@ gsutil mb -c regional -l us-central1 gs://$DEVSHELL_PROJECT_ID
 
 ### Copying source code and input files to your bucket
 
+In Google Cloud Shell, enter the commands below to copy some pre-created files into your bucket (make sure to plug in your bucket name).
+
 ```shell
 git clone https://github.com/GoogleCloudPlatform/training-data-analyst
 cd training-data-analyst/courses/unstructured
 ./replace_and_upload.sh <YOUR-BUCKET-NAME>
+# or
+# ./replace_and_upload.sh $DEVSHELL_PROJECT_ID
 ```
 
 ### Run jobs on your cluster
