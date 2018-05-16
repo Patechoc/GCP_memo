@@ -120,7 +120,17 @@ cd training-data-analyst/courses/unstructured
 
 ### Run jobs on your cluster
 
-#### Run a simple PySpark job
+
+#### Run a simple PySpark job from CloudShell
+
+To run the job using the CLI, go back to the Google Cloud Shell and paste in the following command. Don't forget to replace `<YOUR-BUCKET-NAME>` with the name of your bucket.
+
+```shell
+gcloud dataproc jobs submit pyspark \
+      --cluster my-cluster gs://<YOUR-BUCKET-NAME>/unstructured/lab2.py
+```
+
+#### Run a simple PySpark job from PySpark shell
 
 Type `pyspark` at the command prompt to open the PySpark shell.
 
@@ -163,6 +173,46 @@ SparkSession available as 'spark'.
 >>> quit()
 patrick_merlot@my-cluster-m:~$ 
 ```
+
+#### Run a simple PySpark job from GCloud Console GUI
+
+##### Step 1
+
+In the [Cloud Console](https://console.cloud.google.com/), navigate to Storage and click on your bucket. It should have some files in the unstructured folder. Click on the file, `lab2-input.txt` and view its contents. This file contains a comma separated list of keys and values.
+
+Also view the contents of the file, `lab2.py`. This is a PySpark job that organizes the input file by key and the total number for each type of pet. Notice that both the code and data are on Cloud Storage. We have not copied either of these to the cluster.
+
+##### Step 2
+
+Navigate to the **Dataproc** service in the Web Console.
+
+##### Step 3
+
+In the left-hand navigation pane select **Jobs**. Then click the **Submit job** button.
+
+##### Step 4
+
+At this point you should have one cluster called **my-cluster**. Make sure it is selected in the Cluster dropdown.
+
+In the **Job type** dropdown, select **PySpark**.
+
+In the **Main python file** text box enter the path to the PySpark file lab2.py that is in your bucket. It should be in the form shown below, but replace `<YOUR-BUCKET-NAME>` with the name of your bucket:
+
+`gs://<YOUR-BUCKET-NAME>/unstructured/lab2.py`
+
+##### Step 5
+
+No other options are required, so click **Submit** button at the bottom of the form.
+
+##### Step 6
+
+Wait for the job to succeed and then click on the Job ID to see its details. Take a look at the job output to see the results.
+
+##### Step 7
+
+To run the job again click the **Clone** button and the top, then **Submit** the job a second time.
+
+
 #### Pig Job that reads from HDFS
 
 Enter the following command to copy a data file and a pig script into the folder you just created. Make sure to plug in your actual bucket name.
