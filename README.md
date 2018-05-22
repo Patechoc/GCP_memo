@@ -493,6 +493,18 @@ Scroll down and find the master node's external IP address and copy it to your c
 
 Open a new browser tab, paste in this IP address and then add `:8080` after the address. This opens Datalab. You will be redirected to the Datalab main screen 
 
+You can interact with BigQuery in a [notebook]().
+
+Now **Using PySpark in a Datalab Notebook** (https://codelabs.developers.google.com/codelabs/cpb102-dataproc-with-gcp/#6)
+
+The last notebook didn't run anything in parallel on your Dataproc cluster. This time, let's get a notebook from the GitHub repository and execute it. This notebook uses PySpark and makes use of your Spark cluster.
+
+Use `ungit` to clone this repository https://github.com/GoogleCloudPlatform/training-data-analyst into your Datalab instance (Follow [these steps](https://codelabs.developers.google.com/codelabs/cpb102-dataproc-with-gcp/#6)). 
+
+Back on the Datalab home page click the `Home` icon and navigate to `datalab/notebooks/training-data-analyst/courses/unstructured` [here](https://github.com/GoogleCloudPlatform/training-data-analyst/tree/master/courses/unstructured) online. Click on [`PySpark-Test-Solution.ipynb`](https://github.com/GoogleCloudPlatform/training-data-analyst/blob/master/courses/unstructured/PySpark-Test-Solution.ipynb) to open that notebook.
+
+
+
 ### Delete your Dataproc cluster at once
 
 ```shell
