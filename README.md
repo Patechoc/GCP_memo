@@ -4,7 +4,6 @@ Useful commands/scripts for use on Google Cloud Platform.
 
 ## Table of Content
 
-* [Table of Content](#table-of-content)
 * [Clean your Cloud resources](#clean-your-cloud-resources)
 * [Create a Virtual Machine from CloudShell](#create-a-virtual-machine-from-cloudshell)
 * [Check your CloudSQL instance from CloudShell](#check-your-cloudsql-instance-from-cloudshell)
@@ -32,6 +31,7 @@ Useful commands/scripts for use on Google Cloud Platform.
  * [Get API key(s) to enable Services [optional]](#get-api-keys-to-enable-services-optional)
  * [Invoking ML APIs from Datalab](#invoking-ml-apis-from-datalab)
 * [More links](#more-links)
+
 
 
 ## Clean your Cloud resources
@@ -588,6 +588,5 @@ You can find a demo notebook under [ML APIs](./labs/lab04_BigQuery_ML_APIs).
 ## More links
 
 * https://github.com/GoogleCloudPlatform/python-docs-samples
-
 
 
