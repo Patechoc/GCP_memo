@@ -4,36 +4,34 @@ Useful commands/scripts for use on Google Cloud Platform.
 
 ## Table of Content
 
+* [Table of Content](#table-of-content)
 * [Clean your Cloud resources](#clean-your-cloud-resources)
 * [Create a Virtual Machine from CloudShell](#create-a-virtual-machine-from-cloudshell)
 * [Check your CloudSQL instance from CloudShell](#check-your-cloudsql-instance-from-cloudshell)
 * [Authorizing CloudShell to access a CloudSQL instance](#authorizing-cloudshell-to-access-a-cloudsql-instance)
 * [Dataproc](#dataproc)
-   * [Create a firewall rule to access Dataproc tools (HDFS, Datalab, Hadoop) from your browser](#create-a-firewall-rule-to-access-dataproc-tools-hdfs-datalab-hadoop-from-your-browser)
-   * [Creating Dataproc clusters with the CLI/CloudShell](#creating-dataproc-clusters-with-the-clicloudshell)
-   * [Create a Cloud Storage bucket for your Dataproc cluster](#create-a-cloud-storage-bucket-for-your-dataproc-cluster)
-   * [Copying source code and input files to your bucket](#copying-source-code-and-input-files-to-your-bucket)
-   * [Run jobs on your cluster](#run-jobs-on-your-cluster)
-      * [Run a simple PySpark job from CloudShell](#run-a-simple-pyspark-job-from-cloudshell)
-      * [Run a simple PySpark job from PySpark shell](#run-a-simple-pyspark-job-from-pyspark-shell)
-      * [Run a simple PySpark job from GCloud Console GUI](#run-a-simple-pyspark-job-from-gcloud-console-gui)
-	 * [Step 1](#step-1)
-	 * [Step 2](#step-2)
-	 * [Step 3](#step-3)
-	 * [Step 4](#step-4)
-	 * [Step 5](#step-5)
-	 * [Step 6](#step-6)
-	 * [Step 7](#step-7)
-      * [Pig Job that reads from HDFS](#pig-job-that-reads-from-hdfs)
-   * [Authorizing Dataproc cluster to access a CloudSQL instance](#authorizing-dataproc-cluster-to-access-a-cloudsql-instance)
-   * [Delete your Dataproc cluster at once](#delete-your-dataproc-cluster-at-once)
+ * [Create a firewall rule to access Dataproc tools (HDFS, Datalab, Hadoop) from your browser](#create-a-firewall-rule-to-access-dataproc-tools-hdfs-datalab-hadoop-from-your-browser)
+ * [Creating Dataproc clusters with the CLI/CloudShell](#creating-dataproc-clusters-with-the-clicloudshell)
+ * [Create a Cloud Storage bucket for your Dataproc cluster](#create-a-cloud-storage-bucket-for-your-dataproc-cluster)
+ * [Copying source code and input files to your bucket](#copying-source-code-and-input-files-to-your-bucket)
+ * [Run jobs on your cluster](#run-jobs-on-your-cluster)
+    * [Run a simple PySpark job from CloudShell](#run-a-simple-pyspark-job-from-cloudshell)
+    * [Run a simple PySpark job from PySpark shell](#run-a-simple-pyspark-job-from-pyspark-shell)
+    * [Run a simple PySpark job from GCloud Console GUI](#run-a-simple-pyspark-job-from-gcloud-console-gui)
+    * [Pig Job that reads from HDFS](#pig-job-that-reads-from-hdfs)
+ * [Authorizing Dataproc cluster to access a CloudSQL instance](#authorizing-dataproc-cluster-to-access-a-cloudsql-instance)
+ * [Programmatically install a customized software on your Dataproc cluster](#programmatically-install-a-customized-software-on-your-dataproc-cluster)
+    * [Example: Create a custom initialization action to install a Python package](#example-create-a-custom-initialization-action-to-install-a-python-package)
+    * [Example: Creating a Dataproc Cluster with an Initialization Action... from the GUI](#example-creating-a-dataproc-cluster-with-an-initialization-action-from-the-gui)
+ * [Delete your Dataproc cluster at once](#delete-your-dataproc-cluster-at-once)
 * [Big Data and ML Fundamentals using Datalab](#big-data-and-ml-fundamentals-using-datalab)
-   * [Work from a given project (billing credentials)](#work-from-a-given-project-billing-credentials)
-   * [Start an instance of Cloud Datalab](#start-an-instance-of-cloud-datalab)
-   * [Open your "Jupyter" notebooks from Cloud Datalab](#open-your-jupyter-notebooks-from-cloud-datalab)
-   * [Checkout any git repository into Cloud Datalab](#checkout-any-git-repository-into-cloud-datalab)
-   * [Get API key(s) to enable Services [optional]](#get-api-keys-to-enable-services-optional)
-   * [Invoking ML APIs from Datalab](#invoking-ml-apis-from-datalab)
+ * [Work from a given project (billing credentials)](#work-from-a-given-project-billing-credentials)
+ * [Start an instance of Cloud Datalab](#start-an-instance-of-cloud-datalab)
+ * [Open your "Jupyter" notebooks from Cloud Datalab](#open-your-jupyter-notebooks-from-cloud-datalab)
+ * [Checkout any git repository into Cloud Datalab](#checkout-any-git-repository-into-cloud-datalab)
+ * [Get API key(s) to enable Services [optional]](#get-api-keys-to-enable-services-optional)
+ * [Invoking ML APIs from Datalab](#invoking-ml-apis-from-datalab)
+* [More links](#more-links)
 
 
 ## Clean your Cloud resources
@@ -590,4 +588,6 @@ You can find a demo notebook under [ML APIs](./labs/lab04_BigQuery_ML_APIs).
 ## More links
 
 * https://github.com/GoogleCloudPlatform/python-docs-samples
+
+
 
