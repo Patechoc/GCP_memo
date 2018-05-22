@@ -210,21 +210,21 @@ patrick_merlot@my-cluster-m:~$
 
 #### Run a simple PySpark job from GCloud Console GUI
 
-##### Step 1
+**Step 1**
 
 In the [Cloud Console](https://console.cloud.google.com/), navigate to Storage and click on your bucket. It should have some files in the unstructured folder. Click on the file, `lab2-input.txt` and view its contents. This file contains a comma separated list of keys and values.
 
 Also view the contents of the file, `lab2.py`. This is a PySpark job that organizes the input file by key and the total number for each type of pet. Notice that both the code and data are on Cloud Storage. We have not copied either of these to the cluster.
 
-##### Step 2
+**Step 2**
 
 Navigate to the **Dataproc** service in the Web Console.
 
-##### Step 3
+**Step 3**
 
 In the left-hand navigation pane select **Jobs**. Then click the **Submit job** button.
 
-##### Step 4
+**Step 4**
 
 At this point you should have one cluster called **my-cluster**. Make sure it is selected in the Cluster dropdown.
 
@@ -234,15 +234,15 @@ In the **Main python file** text box enter the path to the PySpark file lab2.py 
 
 `gs://<YOUR-BUCKET-NAME>/unstructured/lab2.py`
 
-##### Step 5
+**Step 5**
 
 No other options are required, so click **Submit** button at the bottom of the form.
 
-##### Step 6
+**Step 6**
 
 Wait for the job to succeed and then click on the Job ID to see its details. Take a look at the job output to see the results.
 
-##### Step 7
+**Step 7**
 
 To run the job again click the **Clone** button and the top, then **Submit** the job a second time.
 
@@ -414,6 +414,86 @@ done
 echo "Authorizing [$ips] to access cloudsql=$CLOUDSQL"
 ```
 
+### Programmatically install a customized software on your Dataproc cluster
+
+* Library of **Initialization Actions** (="installation scripts"): https://github.com/GoogleCloudPlatform/dataproc-initialization-actions
+
+> Note: Initialization actions are really just executables that run when a cluster is being creating. They are used to install additional software or customize your cluster as required by your programs. You can include one or more initialization actions when creating Dataproc clusters.
+
+
+#### Example: Create a custom initialization action to install a Python package
+
+**Step 1**
+
+In your Cloud Console, open a Google Cloud Shell and enter the following command to create a Cloud Storage bucket with the same name as your project ID
+
+```shell
+gsutil mb -c regional -l us-central1 gs://$DEVSHELL_PROJECT_ID
+```
+
+**Step 2**
+
+In your Cloud Shell, git clone the course repository, and upload the custom initialization script to GCS. Change the bucket name as necessary.
+
+```shell
+git clone https://github.com/GoogleCloudPlatform/training-data-analyst
+cd training-data-analyst/courses/unstructured/
+```
+
+Use [this script](./labs/replace_and_upload.sh) to rename the bucket name with yours in the lab's scripts:
+
+```shell
+bash replace_and_upload.sh <YOUR-BUCKET-NAME>
+```
+
+**Step 3**
+
+View the custom initialization script. Change the bucket name as necessary.
+
+```shell
+gsutil cat gs://<YOUR-BUCKET-NAME>/unstructured/init-script.sh
+```
+
+What does this initialization action do on all nodes? What does it do only on the master node?
+
+
+
+#### Example: Creating a Dataproc Cluster with an Initialization Action... from the GUI
+
+Create a cluster that will include two initialization actions:
+
+1. a pre-built action from Google to install Datalab, and
+2. a custom initialization action to install a Python package.
+
+
+https://codelabs.developers.google.com/codelabs/cpb102-dataproc-with-gcp/#3
+
+Follow the steps. To create the cluster, either click the Create button or click on the Command line link and copy the command onto your clipboard and then run it from Google Cloud Shell:
+
+```shell
+gcloud dataproc clusters create mycluster --subnet default --zone us-central1-a \
+--master-machine-type n1-standard-1 --master-boot-disk-size 500 --num-workers 2 \
+--worker-machine-type n1-standard-1 --worker-boot-disk-size 500 \
+--scopes 'https://www.googleapis.com/auth/cloud-platform' \
+--project coursera-gcp-course02 \
+--initialization-actions 'gs://dataproc-initialization-actions/datalab/datalab.sh','gs://coursera-gcp-course02/unstructured/init-script.sh'
+```
+
+Then you are going to allow access to your Dataproc cluster, but only to your machine. To do this, you will need to know your IP Address. Go to the following URL to find out what it is: http://ip4.me/
+
+In the Cloud Console, click the menu on the left and select **Networking** from the Compute section. Click **Firewall rules** in the left-hand navigation pane. Click on the **Create Firewall Rule** button. Then, Enter the following:
+
+* Name the rule default-allow-dataproc-access.
+* Select IP ranges from the Source filter dropdown.
+* In the source IP ranges text box enter your ip address followed by `/32`. So if your IP address is `1.2.3.4` then the text box would read `1.2.3.4/32`.
+* For Targets, select "All instances in the network"
+* For Protocols and ports, select "Specified Protocols and ports", and enter the following in the text box: `tcp:8088;tcp:9870;tcp:8080`
+
+When your cluster is finished initializing, click on its name to go to its details page, then click on the VM Instances tab, and finally click on the master node to view its details.
+
+Scroll down and find the master node's external IP address and copy it to your clipboard.
+
+Open a new browser tab, paste in this IP address and then add `:8080` after the address. This opens Datalab. You will be redirected to the Datalab main screen 
 
 ### Delete your Dataproc cluster at once
 
@@ -505,3 +585,9 @@ Click the **Create credentials** button and select **API key**. Once created, cl
 ### Invoking ML APIs from Datalab
 
 You can find a demo notebook under [ML APIs](./labs/lab04_BigQuery_ML_APIs).
+
+
+## More links
+
+* https://github.com/GoogleCloudPlatform/python-docs-samples
+
