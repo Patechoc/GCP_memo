@@ -297,7 +297,18 @@ ORDER BY rainy_days DESC;
 * `EXTRACT` to extract a date from a timestamp.
 
 ```sql
-
+SELECT
+  author.email,
+  diff.new_path AS path,
+  author.date
+FROM
+  `bigquery-public-data.github_repos.commits`,
+  UNNEST(difference) diff
+WHERE
+  EXTRACT(YEAR
+  FROM
+    author.date)=2016
+LIMIT 10
 ```
 
 * using `ARRAY` and `STRUCT` to build for exmaple a table with several entries for a given date.
