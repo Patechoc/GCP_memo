@@ -2,6 +2,21 @@
 
 Useful commands/scripts for use on Google Cloud Platform.
 
+* [Definition](#definition)
+* [Start web console for BigQuery](#start-web-console-for-bigquery)
+* [Query large datasets in seconds (Examples)](#query-large-datasets-in-seconds-examples)
+   * [Simple Query](#simple-query)
+   * [Aggregate and Boolean functions](#aggregate-and-boolean-functions)
+   * [String operations](#string-operations)
+   * [Join on Date](#join-on-date)
+   * [Subquery](#subquery)
+* [Load and Export Data](#load-and-export-data)
+   * [Load data from a CSV file](#load-data-from-a-csv-file)
+   * [Load data from a JSON file](#load-data-from-a-json-file)
+   * [Export BigQuery table in a bucket using the web UI (to .csv, .json or .avro format)](#export-bigquery-table-in-a-bucket-using-the-web-ui-to-csv-json-or-avro-format)
+* [Architecting a BigQuery project](#architecting-a-bigquery-project)
+* [More links](#more-links)
+
 
 
 ## Definition
