@@ -271,7 +271,12 @@ pme@cloudshell:~ (southern-flash-208711)$ bq ls $DEVSHELL_PROJECT_ID:cpb101_flig
 3. Select the `AIRPORTS` table that you created recently, and using the "down" button to its right, select the option for **Export Table**.
 4. In the dialog, specify `gs://<your-bucket-name>/bq/airports.csv` and click OK. (for me gs://demo-export-table-bigquery/bq/airports.csv)
 5. Browse to your bucket and ensure that the .csv file has been created.
+6. Test using a query:
 
+```sql
+SELECT *
+FROM `southern-flash-208711.cpb101_flight_data.AIRPORTS`
+```
 
 
 
