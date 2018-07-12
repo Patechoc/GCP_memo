@@ -389,9 +389,9 @@ written in **SQL** or **Javascript**, they are temporary. But user-defined funct
 ```
 
 
-
 ## More links
 
 * https://github.com/GoogleCloudPlatform/python-docs-samples
+* [How to query public data sets using BigQuery (e.g. Github data)](https://cloud.google.com/bigquery/public-data/github)
 
 
