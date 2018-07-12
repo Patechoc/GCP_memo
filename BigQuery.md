@@ -249,6 +249,15 @@ pme@cloudshell:~ (southern-flash-208711)$ bq ls $DEVSHELL_PROJECT_ID:cpb101_flig
   flights_2014   TABLE
 ```
 
+### Export BigQuery table in a bucket using the web UI (to .csv, .json or .avro format)
+
+1. If you don't already have a bucket on Cloud Storage, create one from the [Storage section of the GCP console](http://console.cloud.google.com/storage). Bucket names have to be globally unique. (e.g. `demo-export-table-bigquery`)
+2. Back to the [Google Cloud Console](http://console.cloud.google.com/) (in the incognito window) and using the menu, navigate into BigQuery web UI
+3. Select the `AIRPORTS` table that you created recently, and using the "down" button to its right, select the option for **Export Table**.
+4. In the dialog, specify `gs://<your-bucket-name>/bq/airports.csv` and click OK. (for me gs://demo-export-table-bigquery/bq/airports.csv)
+5. Browse to your bucket and ensure that the .csv file has been created.
+
+
 
 
 
