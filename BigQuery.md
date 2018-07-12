@@ -155,12 +155,99 @@ ORDER BY
   frac_delayed ASC
 ```
 
+## Load and Export Data
 
 
+### Load data from a CSV file
+
+1. From the web GUI
+
+* Go to https://bigquery.cloud.google.com
+* You will need to use/create a dataset (within a given project) where the data will be stored.
+* click on the `+` aside your dataset and follow the instructions (Table name in CAPITAL by convention)
+
+2. From the command line tool: `bq`
+
+* open `Cloud Shell` from the [Google Cloud Console](https://console.cloud.google.com) which already has `bq` installed
+* download or Create a schema for your table
+
+You can check that file online: https://storage.googleapis.com/cloud-training/CBP200/BQ/lab4/schema_flight_performance.json
+
+```shell
+ cat schema_flight_performance.json 
+[
+    {
+        "name": "YEAR",
+        "type": "INTEGER",
+        "mode": "REQUIRED"
+    },
+    {
+        "name": "QUARTER",
+        "type": "INTEGER",
+        "mode": "REQUIRED"
+    },
+    {
+        "name": "MONTH",
+        "type": "INTEGER",
+        "mode": "REQUIRED"
+    },
+    {
+        "name": "DAY_OF_MONTH",
+        "type": "INTEGER"
+    },
+    {
+        "name": "FULL_DATE",
+        "type": "STRING"
+    },
+...
+    {
+        "name": "SECURITY_DELAY",
+        "type": "INTEGER"
+    },
+    {
+        "name": "LATE_AIRCRAFT_DELAY",
+        "type": "INTEGER"
+    }
+]%                                                
+```
+
+Type the following command to download schema_flight_performance.json (the schema file for the table in this example) to your working directory.
+
+```shell
+curl https://storage.googleapis.com/cloud-training/CPB200/BQ/lab4/schema_flight_performance.json -o schema_flight_performance.json
+```
+The JSON files containing the data for your table are now stored in a Google Cloud Storage bucket.  They have URIs like the following: `gs://cloud-training/CPB200/BQ/lab4/domestic_2014_flights_*.json`
 
 
+* use `bq` and type the following command to create a table named **flights_2014** in the **cpb101_flight_data** dataset, using data from files in Google Cloud Storage and the schema file stored on your virtual machine.
 
+Note that your Project ID is stored as a variable in Cloud Shell (`$DEVSHELL_PROJECT_ID`) so there's no need for you to remember it. If you require it, you can view your Project ID in the command line to the right of your username (after the @ symbol).
 
+```shell
+bq load --source_format=NEWLINE_DELIMITED_JSON $DEVSHELL_PROJECT_ID:cpb101_flight_data.flights_2014 gs://cloud-training/CPB200/BQ/lab4/domestic_2014_flights_*.json ./schema_flight_performance.json
+```
+
+> Note
+> 
+> There are multiple JSON files in the bucket named according to the convention: domestic_2014_flights_*.json. The wildcard (*) character is used to include all of the .json files in the bucket.
+
+Once the table is created, type the following command to verify table **flights_2014** exists in dataset **cpb101_flight_data**.
+
+```shell
+bq ls $DEVSHELL_PROJECT_ID:cpb101_flight_data
+```
+
+### Load data from a JSON file
+
+The output should look like the following:
+
+```shell
+pme@cloudshell:~ (southern-flash-208711)$ bq ls $DEVSHELL_PROJECT_ID:cpb101_flight_data
+    tableId      Type    Labels   Time Partitioning
+ -------------- ------- -------- -------------------
+  AIRPORTS       TABLE
+  flights_2014   TABLE
+```
 
 
 
@@ -186,6 +273,7 @@ ORDER BY
 
 
 [Building a Mobile Gaming Analytics Platform - a Reference Architecture](https://cloud.google.com/solutions/mobile/mobile-gaming-analysis-telemetry)
+
 
 
 ```shell
