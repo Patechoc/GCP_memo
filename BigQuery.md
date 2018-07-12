@@ -252,8 +252,6 @@ Once the table is created, type the following command to verify table **flights_
 bq ls $DEVSHELL_PROJECT_ID:cpb101_flight_data
 ```
 
-### Load data from a JSON file
-
 The output should look like the following:
 
 ```shell
@@ -279,10 +277,80 @@ FROM `southern-flash-208711.cpb101_flight_data.AIRPORTS`
 ```
 
 
+## Advanced Capabilities in BigQuery
+
+### WITH, COUNT(DISTINCT)
+
+```sql
+WITH WashinghtonStations AS (
+SELECT ...
+...
+)
+SELECT washinghton_stations.name, ...
+FROM WashinghtonStations AS washinghton_stations
+ORDER BY rainy_days DESC;
+```
 
 
+### Processing BigQuery Data Types (ARRAY/STRUCT, JOIN condition, ...)
+
+* `EXTRACT` to extract a date from a timestamp.
+
+```sql
+
+```
+
+* using `ARRAY` and `STRUCT` to build for exmaple a table with several entries for a given date.
+
+```sql
+
+```
+
+* `STARTS_WITH` to find words that start with a prefix
+
+```sql
+
+```
 
 
+* `JOIN` condition example
+
+```sql
+
+```
+
+### Standard SQL functions
+
+https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators
+
+* Aggregate functions
+* String functions (e.g. `REGEXP_CONTAINS`)
+* Analytic (window) functions
+  * Standard aggregations (SUM, AVG, MIN, MAX, COUNT, ...)
+  * Navigation functions (LEAD, LAG, NTH_VALUE, ...)
+  * Ranking and numbering functions (CUME_DIST, DENSE_RANK, ROW_NUMBER, RANK, PERCENT_RANK, ...)
+* Datetime functions
+* Array functions
+* Other functions and operators
+
+### Date and time functions
+
+Multiple ways to create a date:
+
+* `DATE(year, month, day)`
+* `DATE(timestamp)` and supports time zone
+* `DATETIME(date, time)` using DATE and TIME objects
+
+### User-defined functions (`CREATE TEMPORARY FUNCTION`)
+
+written in **SQL** or **Javascript**, they are temporary. But user-defined functions have constraints.
+
+* programming logic
+* loops, complex conditions non-trivial string parsing (not supported by standard SQL)
+
+```sql
+
+```
 
 
 
