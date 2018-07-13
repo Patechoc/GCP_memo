@@ -344,6 +344,46 @@ https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-oper
 * Array functions
 * Other functions and operators
 
+```sql
+WITH
+  commits AS (
+  SELECT
+    author.email,
+    EXTRACT(DAYOFWEEK
+    FROM
+      author.date) BETWEEN 2
+    AND 6 is_weekday,
+    LOWER(REGEXP_EXTRACT(diff.new_path, r'\.([^\./\(~_ \- #]*)$')) lang,
+    diff.new_path AS path,
+    author.date
+  FROM
+    `bigquery-public-data.github_repos.commits`,
+    UNNEST(difference) diff
+  WHERE
+    EXTRACT(YEAR
+    FROM
+      author.date)=2016)
+SELECT
+  lang,
+  is_weekday,
+  COUNT(path) AS numcommits
+FROM
+  commits
+WHERE
+  LENGTH(lang) < 8
+  AND lang IS NOT NULL
+  AND REGEXP_CONTAINS(lang, '[a-zA-Z]')
+GROUP BY
+  lang,
+  is_weekday
+HAVING
+  numcommits > 100
+ORDER BY
+  numcommits DESC
+```
+
+ref. [The top weekend programming languages — based on GitHub’s activity](https://medium.com/@hoffa/the-top-weekend-languages-according-to-githubs-code-6022ea2e33e8)
+
 ### Date and time functions
 
 Multiple ways to create a date:
