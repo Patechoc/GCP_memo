@@ -187,6 +187,8 @@ ORDER BY
   frac_delayed ASC
 ```
 
+> Acknowledgment: This lab is based on an article by Felipe Hoffa: https://medium.com/@hoffa/the-top-weekend-languages-according-to-githubs-code-6022ea2e33e8#.8oj2rp804
+
 ## Load and Export Data
 
 
