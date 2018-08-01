@@ -189,7 +189,7 @@ ORDER BY
 
 > Acknowledgment: This lab is based on an article by Felipe Hoffa: https://medium.com/@hoffa/the-top-weekend-languages-according-to-githubs-code-6022ea2e33e8#.8oj2rp804
 
-## Load and Export Data
+## Upload and Export Data
 
 
 ### Load data from a CSV file
@@ -280,6 +280,9 @@ pme@cloudshell:~ (southern-flash-208711)$ bq ls $DEVSHELL_PROJECT_ID:cpb101_flig
   AIRPORTS       TABLE
   flights_2014   TABLE
 ```
+
+> Acknowledgment: This lab is based on an article by Felipe Hoffa: https://medium.com/@hoffa/the-top-weekend-languages-according-to-githubs-code-6022ea2e33e8#.8oj2rp804
+
 
 ### Export BigQuery table in a bucket using the web UI (to .csv, .json or .avro format)
 
