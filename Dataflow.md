@@ -59,7 +59,7 @@ For this lab you will need the [training-data-analyst files](https://github.com/
 
 #### Clone data in Cloud Shell
 
-* Verify that the repository files are in Cloud Shell and if not, clone it. Return to the browser tab containing the Cloud Shell code edito.rsl Click on File > Refresh in the left navigator panel. You should see the training-data-analyst directory.
+* Verify that the repository files are in Cloud Shell and if not, clone it. Return to the browser tab containing the Cloud Shell code editor (![](https://run-qwiklab-website-prod.s3.amazonaws.com/instructions/documents/51276/original/img/20a5c832dd0ecde9.png)). Click on File > Refresh in the left navigator panel. You should see the training-data-analyst directory.
 
 ```shell
 cd ~
@@ -363,12 +363,117 @@ collection
 
 ## MapReduce in Dataflow (lab 2 in Python)
 
+* Identify Map and Reduce operations
+* Execute the pipeline
+* Use command line parameters
+
+
+Use the Google Cloud Shell Code Editor to easily create and edit directories and files in the Cloud Shell instance.
+
+* After you open the Google Cloud Shell, click **Launch the code editor** (![](https://run-qwiklab-website-prod.s3.amazonaws.com/instructions/documents/51276/original/img/20a5c832dd0ecde9.png)) to open the Cloud Shell Code Editor.
+
+
+
+
+### Task 1. Review Preparations
+
+These preparations should already be have been done:
+
+* [Create Cloud Storage bucket](#create-a-bucket)
+* [Clone github repository to Cloud Shell](#clone-data-in-cloud-shell)
+* [Upgrade packages and install Apache Beam](#open-dataflow-project)
+
+### Task 2. Identify Map and Reduce operations
+
+In the Cloud Shell code editor navigate to the directory `/training-data-analyst/courses/data_analysis/lab2/javahelp/src/main/java/com/google/cloud/training/dataanalyst/javahelp/` and view the file [`IsPopular.java`](https://github.com/GoogleCloudPlatform/training-data-analyst/blob/master/courses/data_analysis/lab2/javahelp/src/main/java/com/google/cloud/training/dataanalyst/javahelp/IsPopular.java) in the Cloud Shell editor. **Do not make any changes to the code.**
+
+
+```shell
+git clone https://github.com/GoogleCloudPlatform/training-data-analyst
+sudo ./install_packages.sh
+
+cd ~/training-data-analyst/courses/data_analysis/lab2/javahelp/src/main/java/com/google/cloud/training/dataanalyst/javahelp/
+nano IsPopular.java
 ```
 
+
+
+
+### Task 3. Execute the pipeline
+
+#### Run the pipeline locally
+
+Check and run the script: [`is_popular.py`](https://github.com/GoogleCloudPlatform/training-data-analyst/blob/master/courses/data_analysis/lab2/python/is_popular.py)
+
+
+```shell
+cd ~/training-data-analyst/courses/data_analysis/lab2/python
+./is_popular.py
 ```
 
 
+That's we are mostly processing:
+
+```python
+   # find most used packages
+   (p
+      | 'GetJava' >> beam.io.ReadFromText(input)
+      | 'GetImports' >> beam.FlatMap(lambda line: startsWith(line, keyword))
+      | 'PackageUse' >> beam.FlatMap(lambda line: packageUse(line, keyword))
+      | 'TotalUse' >> beam.CombinePerKey(sum)
+      | 'Top_5' >> beam.transforms.combiners.Top.Of(5, by_value)
+      | 'write' >> beam.io.WriteToText(output_prefix)
+   )
 ```
 
+
+Identify the output file. It should be output<suffix> and could be a sharded file.
+
+
+```shell
+ls -al /tmp
+total 92
+drwxrwxrwt 1 root                 root                  4096 Aug  2 13:36 .
+drwxr-xr-x 1 root                 root                  4096 Aug  2 13:24 ..
+-rw-r--r-- 1 root                 root                   751 Jul 31 20:47 b63773568.patch
+drwxr-xr-x 3 root                 root                  4096 Jul 31 20:51 dotnet-installer
+drwxr-xr-x 2 root                 root                  4096 Jul 31 20:50 hsperfdata_root
+-rw-r--r-- 1 root                 root                 15895 Jul 31 21:02 metadata.go
+drwxr-xr-x 2 root                 root                  4096 Jul 31 20:55 npm-427-a5ef501b
+-rw-r--r-- 1 google769005_student google769005_student   133 Aug  2 13:36 output-00000-of-00001
+-rw------- 1 root                 root                  4502 Jul 31 21:00 tmpBGXKUk
+-rw------- 1 root                 root                 31618 Jul 31 21:01 tmpgvbjXc
+-rw------- 1 root                 root                     0 Aug  2 13:24 tmp.mdGla6AurF
+drwx------ 3 google769005_student google769005_student  4096 Aug  2 13:24 tmp.YFr6lS45xf
+drwx------ 2 google769005_student google769005_student  4096 Aug  2 13:24 tmux-1000
 ```
 
+Examine the output file, replacing '-*' with the appropriate suffix.
+
+Here is the top 5 of the JAVA packages used:
+
+```shell
+$ cat /tmp/output-00000-of-00001
+[(u'org', 45), (u'org.apache.beam', 44), (u'org.apache', 44), (u'org.apache.beam.sdk', 43), (u'org.apache.beam.sdk.transforms', 16)]
+```
+
+
+
+### Task 4. Use command line parameters
+
+
+Change the output prefix from the default value:
+
+
+```shell
+./is_popular.py --output_prefix=/tmp/myoutput
+
+ls -al /tmp
+total 96
+drwxrwxrwt 1 root                 root                  4096 Aug  2 13:42 .
+drwxr-xr-x 1 root                 root                  4096 Aug  2 13:24 ..
+-rw-r--r-- 1 root                 root                   751 Jul 31 20:47 b63773568.patch
+...
+-rw-r--r-- 1 google769005_student google769005_student   133 Aug  2 13:42 myoutput-00000-of-00001
+...
+```
