@@ -11,6 +11,20 @@
    * [Pipeline filtering](#pipeline-filtering)
    * [Execute the pipeline locally](#execute-the-pipeline-locally)
    * [Execute the pipeline on the cloud](#execute-the-pipeline-on-the-cloud)
+* [GroupBy and Combine](#groupby-and-combine)
+* [MapReduce in Dataflow (lab 2 in Python)](#mapreduce-in-dataflow-lab-2-in-python)
+   * [Task 1. Review Preparations](#task-1-review-preparations)
+   * [Task 2. Identify Map and Reduce operations](#task-2-identify-map-and-reduce-operations)
+   * [Task 3. Execute the pipeline](#task-3-execute-the-pipeline)
+      * [Run the pipeline locally](#run-the-pipeline-locally)
+   * [Task 4. Use command line parameters](#task-4-use-command-line-parameters)
+* [Side Inputs (lab 3  in Python)](#side-inputs-lab-3--in-python)
+   * [Task 1. Preparation](#task-1-preparation)
+   * [Task 2. Try using BigQuery query](#task-2-try-using-bigquery-query)
+   * [Task 3. Explore the pipeline code](#task-3-explore-the-pipeline-code)
+   * [Task 4. Execute the pipeline](#task-4-execute-the-pipeline)
+      * [Execute the pipeline locally](#execute-the-pipeline-locally-1)
+      * [Execute the pipeline on the cloud](#execute-the-pipeline-on-the-cloud-1)
 
 
 
@@ -477,3 +491,180 @@ drwxr-xr-x 1 root                 root                  4096 Aug  2 13:24 ..
 -rw-r--r-- 1 google769005_student google769005_student   133 Aug  2 13:42 myoutput-00000-of-00001
 ...
 ```
+
+## Side Inputs (lab 3  in Python)
+
+idea: As a programmer, which opensource project shoud you contribute to?
+
+In this lab series, you learn how to load data into BigQuery and run complex queries. Next, you will execute a Dataflow pipeline that can carry out Map and Reduce operations, use side inputs and stream into BigQuery.
+
+* Get data from BigQuery (how popular packages in Github data, and look for "fix me" and "todo") into Dataflow
+* Use the output of a pipeline as a side-input to another pipeline (in a `apply()` )
+
+
+
+### Task 1. Preparation
+
+* clone the code
+
+```shell
+cd ~
+git clone https://github.com/GoogleCloudPlatform/training-data-analyst
+```
+
+* Verify that you have a Cloud Storage bucket or create one
+* Verify environment variable for your Project ID (`echo $DEVSHELL_PROJECT_ID`)
+* Verify that Google Cloud Dataflow API is enabled for this project or enable the API
+* Verify that Apache Beam is installed on Cloud Shell
+
+```shell
+cd ~/training-data-analyst/courses/data_analysis/lab2/python
+sudo ./install_packages.sh
+```
+
+
+
+### Task 2. Try using BigQuery query
+
+Open the BigQuery web UI from the [Console](http://console.cloud.google.com/).
+
+Compose a new query:
+
+> Before running the query, click on **Options**. Verify that Use **Legacy SQL** is checked.
+
+```sql
+SELECT
+  content
+FROM
+  [fh-bigquery:github_extracts.contents_java_2016]
+LIMIT
+  10
+```
+
+**What is being returned?**
+
+The BigQuery table fh-bigquery:github_extracts.contents_java_2016 contains the content (and some metadata) of all the Java files present in github in 2016.
+
+To find out how many Java files this table has, type the following query and click Run Query:
+
+```sql
+SELECT
+  COUNT(*)
+FROM
+  [fh-bigquery:github_extracts.contents_java_2016]
+```
+
+you get 2196247!
+
+2196247 files better processed in the cloud than locally :)
+
+
+
+### Task 3. Explore the pipeline code
+
+Get the pipeline code from Cloud Storage if it's still unavailable from github:
+
+```shell
+cd ~/training-data-analyst/courses/data_analysis/lab2/python
+gsutil cp gs://cloud-training/gcpdei/JavaProjectsThatNeedHelp.py .
+```
+
+Refer to this diagram as you read the code. The pipeline looks like this:
+
+![pipeline](https://run-qwiklab-website-prod.s3.amazonaws.com/instructions/documents/51253/original/img/510672e8b03602d.png)
+
+> The Java version of this program is slightly different from the Python version. The Java SDK supports `AsMap` and the Python SDK doesn't. It supports `AsDict` instead. In Java, the `PCollection` is converted into a **View** as a preparatory step before it is used. In Python the `PCollection` conversion occurs in the step where it is used.
+
+Answer the following questions:
+
+* **Looking at the class documentation at the very top, what is the purpose of this pipeline?**
+  "This is a dataflow pipeline that demonstrates Python use of side inputs. The pipeline finds Java packages
+on Github that are (a) popular and (b) need help. Popularity is use of the package in a lot of other
+projects, and is determined by counting the number of times the package appears in import statements.
+Needing help is determined by counting the number of times the package contains the words FIXME or TODO
+in its source."
+
+
+* **Where does the content come from?**
+  content comes from Github JAVA files from 2016 (fh-bigquery:github_extracts.contents_java_2016)
+
+* **What does the left side of the pipeline do?**
+  Looking for "todo" and "fix me" in the code.
+
+* **What does the right side of the pipeline do?**
+  Looking for most popular packages imported
+
+* **What does ToLines do? (Hint: look at the content field of the BigQuery result)**
+  It splits the content of a JAVA file into lines
+
+
+* **Why is the result of ReadFromBQ stored in a named PCollection instead of being directly passed to another step?**
+  Maybe to check how much time this step takes!?
+
+* **What are the two actions carried out on the PCollection generated from ReadFromBQ?**
+  It performs a query to BigQuery and converts it to a `PCollection` in Dataflow using Apache Beam
+
+* **If a file has 3 FIXMEs and 2 TODOs in its content (on different lines), how many calls for help are associated with it?**
+  5 
+
+* **If a file is in the package com.google.devtools.build, what are the packages that it is associated with?**
+  packages: 'com', 'com.google', 'com.google.devtools','com. google.devtools.build'
+
+* **popular_packages and help_packages are both named PCollections and both used in the Scores (side inputs) step of the pipeline. Which one is the main input and which is the side input?**
+  `results = popular_packages | 'SideInputs' >> beam.Map(lambda element, the_dict: compositeScore(element,the_dict), beam.pvalue.AsDict(help_packages))`
+
+  `help_packages` is a side-input to `popular_packages` 
+  
+
+* **What is the method used in the Scores step?**
+  `compositeScore()` computes the score as the product of the logarithm of its popularity and demand of help.
+
+* **What Python data type is the side input converted into in the Scores step?**
+  It is converted as a dictionary (`beam.pvalue.AsDict(help_packages)`)
+
+
+
+
+### Task 4. Execute the pipeline
+
+
+Change into the directory. The program requires BUCKET and PROJECT values and choosing whether to run the pipeline locally using `--DirectRunner` or on the cloud using `--DataFlowRunner`.
+
+```shell
+cd ~/training-data-analyst/courses/data_analysis/lab2/python
+echo $BUCKET
+echo $DEVSHELL_PROJECT_ID
+```
+
+Make sure these variables are not empty!
+
+
+#### Execute the pipeline locally
+
+By typing the following into Cloud Shell:
+
+```shell
+python JavaProjectsThatNeedHelp.py --bucket $BUCKET --project $DEVSHELL_PROJECT_ID --DirectRunner
+```
+
+Once the pipeline has finished executing, On the **Products & services** menu (![menu](https://lh3.googleusercontent.com/aM9cftz4R80-cn1YoOzXUEL57hhkHsV2Dd-nGBdt_qjfOsFqXz0MNUDOkD99UQaYTefEbJldtJEjgSryvQcxtqQv39bQNGIUUOhUDp5XEDydbmbb27O5giNs7nYjavcIwL6Fi6-i)) click **Storage > Browser** and click on your bucket. You will find the results in the **javahelp** folder. Click on the **Result** object to examine the output.
+
+
+Here is what you see while opening `Results.csv`:
+
+
+```csv
+[(u'org', 28.068221258521774), (u'com', 32.07294420077314), (u'net', 8.50255292188352), (u'edu', 11.836868328431866), (u'org.apache', 9.074090434545194), (u'fr', 9.52941938400277), (u'com.google', 6.318389861893019), (u'io', 9.906351880740292), (u'fr.lip6', 7.545241083952861), (u'fr.lip6.move.pnml', 7.545241083952861), (u'fr.lip6.move', 7.545241083952861), (u'br', 3.6993525784040227), (u'edu.toronto.cs', 4.346717950866613), (u'edu.toronto', 4.346717950866613), (u'edu.toronto.cs.se', 4.346717950866613), (u'com.github', 4.358438662428687), (u'edu.toronto.cs.se.modelepedia', 2.8993008128149693), (u'com.google.common', 2.6343572136354596), (u'fr.lip6.move.pnml.pthlpng', 2.13780080239616), (u'ru', 1.3488021334406732), (u'me', 2.13780080239616), (u'com.example', 2.8837256197384322), (u'com.google.common.collect', 1.7681482684484517), (u'fr.lip6.move.pnml.hlpn', 2.8837256197384322), (u'com.sina', 4.5598809699382725), (u'edu.rpi.tw', 1.523000020837618), (u'io.tilt', 3.046000041675236), (u'io.tilt.minka', 3.046000041675236), (u'se', 2.6976042668813465), (u'edu.rpi.tw.linkipedia.search', 1.523000020837618), (u'edu.rpi.tw.linkipedia', 1.523000020837618), (u'edu.rpi', 1.523000020837618), (u'fr.lip6.move.pnml.pthlpng.terms', 1.523000020837618), (u'ru.agentlab', 0.761500010418809), (u'alexclin', 2.7299489816502), (u'net.sharkfw.knowledgeBase', 1.206948960812582), (u'com.fuav.android', 0.761500010418809), (u'com.facebook', 0.761500010418809), (u'com.fuav', 0.761500010418809), (u'ru.agentlab.maia', 0.761500010418809), (u'net.sharkfw', 1.206948960812582), (u'alexclin.httplite', 2.7299489816502), (u'org.apache.logging', 0.761500010418809), (u'org.apache.logging.log4j', 0.761500010418809), (u'localsearch.domainspecific', 2.8379833895451925), (u'localsearch.domainspecific.vehiclerouting', 2.8379833895451925), (u'localsearch', 2.8379833895451925), (u'localsearch.domainspecific.vehiclerouting.vrp', 2.8379833895451925), (u'utils', 0.4804530139182014), (u'context', 1.7224060382552118), (u'org.fortiss.smg', 1.2419530243370103), (u'org.chromium', 1.7778874154035074), (u'com.fuav.android.core', 0.4804530139182014), (u'org.usfirst', 0.761500010418809), (u'context.arch', 1.7224060382552118), (u'org.fortiss', 1.2419530243370103)]
+```
+
+#### Execute the pipeline on the cloud
+
+By typing the following into Cloud Shell:
+
+```shell
+python JavaProjectsThatNeedHelp.py --bucket $BUCKET --project $DEVSHELL_PROJECT_ID --DataFlowRunner
+```
+
+Return to the browser tab for Console. On the **Products & services** menu (![menu](https://lh3.googleusercontent.com/aM9cftz4R80-cn1YoOzXUEL57hhkHsV2Dd-nGBdt_qjfOsFqXz0MNUDOkD99UQaYTefEbJldtJEjgSryvQcxtqQv39bQNGIUUOhUDp5XEDydbmbb27O5giNs7nYjavcIwL6Fi6-i)) click **Dataflow** and click on your job to monitor progress.
+
+Once the pipeline has finished executing, On the **Products & services** menu (![menu](https://lh3.googleusercontent.com/aM9cftz4R80-cn1YoOzXUEL57hhkHsV2Dd-nGBdt_qjfOsFqXz0MNUDOkD99UQaYTefEbJldtJEjgSryvQcxtqQv39bQNGIUUOhUDp5XEDydbmbb27O5giNs7nYjavcIwL6Fi6-i)) click **Storage > Browser** and click on your bucket. You will find the results in the **javahelp** folder. Click on the **Result** object to examine the output.
