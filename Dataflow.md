@@ -59,7 +59,7 @@ For this lab you will need the [training-data-analyst files](https://github.com/
 
 #### Clone data in Cloud Shell
 
-* Verify that the repository files are in Cloud Shell and if not, clone it. Return to the browser tab containing the Cloud Shell code editor. Click on File > Refresh in the left navigator panel. You should see the training-data-analyst directory.
+* Verify that the repository files are in Cloud Shell and if not, clone it. Return to the browser tab containing the Cloud Shell code edito.rsl Click on File > Refresh in the left navigator panel. You should see the training-data-analyst directory.
 
 ```shell
 cd ~
@@ -186,7 +186,7 @@ google764616_student@cloudshell:~/training-data-analyst/courses/data_analysis/la
 gsutil cp ../javahelp/src/main/java/com/google/cloud/training/dataanalyst/javahelp/*.java gs://$BUCKET/javahelp
 ```
 
-* Edit the Dataflow pipeline in `grepc.py`. In the Cloud Shell code editor navigate to the directory `/training-data-analyst/courses/data_analysis/lab2/python` and edit the file `grepc.py`. Replace PROJECT and BUCKET with your Project ID and Bucket name. Here are easy ways to retrieve the values:
+* Edit the Dataflow pipeline in `grepc.py`. In the Cloud Shell code editor (![](https://run-qwiklab-website-prod.s3.amazonaws.com/instructions/documents/51276/original/img/20a5c832dd0ecde9.png)) navigate to the directory `/training-data-analyst/courses/data_analysis/lab2/python` and edit the file `grepc.py`. Replace PROJECT and BUCKET with your Project ID and Bucket name. Here are easy ways to retrieve the values:
 
 ```shell
 echo $DEVSHELL_PROJECT_ID
@@ -309,3 +309,66 @@ import org.apache.beam.sdk.values.KV;
 import org.apache.beam.sdk.values.PCollection;
 import org.apache.beam.sdk.values.PCollectionView;
 ```
+
+
+
+
+## GroupBy and Combine
+
+In JAVA: `Combine.globally()` and `Combine.perKey()`. You can use 
+
+In Python: `beam.GroupByKey()`,  `Combine.globally(sum)` and `Combine.perKey(sum)`
+
+
+```python
+cityAndZipcodes = p | beam.Map(lambda fields : (fields[0], fields[3]))
+
+grouped = cityAndZipcodes | beam.GroupByKey()
+```
+
+
+```python
+totalAmount = SalesAmounts | Combine.globally(sum)
+```
+
+```python
+totalSalesPerPerson = salesRecords | Combine.perKey(sum)
+```
+
+
+> NB1: Compared to JAVA, remember the different types of your PCollections in Python (doubles, tuples, ...).
+
+> NB2: Prefer `Combine` over `GroupByKey`  (if the function applied already exists, e.g. `sum`, `count`, `min`, `mean`, ...). Only use `GroupByKey` if you process a specific homemade function.
+
+```java
+collection.apply(Count.perKey())
+```
+
+is faster than
+
+
+```java
+collection
+	.apply(GroupByKey.create())
+	.apply(ParDo.of(new DoFn() {
+	  void processElement(ProcessContext c) {
+	     c.output(KV.of(c.element().getKey(), c.element().getValue().size() ));
+	     }
+	  }
+	 )
+	)
+```
+
+
+
+## MapReduce in Dataflow (lab 2 in Python)
+
+```
+
+```
+
+
+```
+
+```
+
