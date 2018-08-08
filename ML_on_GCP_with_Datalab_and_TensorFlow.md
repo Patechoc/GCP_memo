@@ -1,5 +1,23 @@
 # Memo for TensorFlow on Google Cloud Platform
 
+* [Recommended extra courses](#recommended-extra-courses)
+* [Definition](#definition)
+* [Playing with ML](#playing-with-ml)
+* [Effective ML model](#effective-ml-model)
+* [What makes a good dataset](#what-makes-a-good-dataset)
+   * [Error metrics](#error-metrics)
+   * [Accuracy](#accuracy)
+   * [Precision and Recall](#precision-and-recall)
+   * [Creating ML datasets](#creating-ml-datasets)
+* [Lab 1: Explore dataset, create ML datasets, create benchmark with taxi fares in NYC](#lab-1-explore-dataset-create-ml-datasets-create-benchmark-with-taxi-fares-in-nyc)
+   * [Task 1. Launch Cloud Datalab](#task-1-launch-cloud-datalab)
+   * [Task 2. Clone repo into Cloud Datalab](#task-2-clone-repo-into-cloud-datalab)
+   * [Task 3: Run the lab in the notebook](#task-3-run-the-lab-in-the-notebook)
+      * [Explore the data](#explore-the-data)
+      * [Quality control and other preprocessing](#quality-control-and-other-preprocessing)
+      * [Creating the ML datasets](#creating-the-ml-datasets)
+      * [Benchmark](#benchmark)
+* [Other references](#other-references)
 
 ## Recommended extra courses
 
