@@ -1,6 +1,5 @@
 # Memo for TensorFlow on Google Cloud Platform
 
-* [Recommended extra courses](#recommended-extra-courses)
 * [Definition](#definition)
 * [Playing with ML](#playing-with-ml)
 * [Effective ML model](#effective-ml-model)
@@ -18,13 +17,9 @@
       * [Creating the ML datasets](#creating-the-ml-datasets)
       * [Benchmark](#benchmark)
 * [Other references](#other-references)
+* [Recommended extra courses](#recommended-extra-courses)
 
-## Recommended extra courses
 
-* [Machine learning with TensorFlow on GCP](https://www.coursera.org/specializations/machine-learning-tensorflow-gcp) (5 courses, 7+ weeks)
-* Advanced machine learning with TensorFlow on GCP: ??
-* https://ai.google/education/
-* https://developers.google.com/machine-learning/crash-course/
 
 ## Definition
 
@@ -244,6 +239,471 @@ Let's be ambitious, though, and make our goal to build ML models that have a RMS
 
 
 
+## TensorFlow
+
+TensorFlow name: scalar (number), vector (1D array of vector), matrix (2D array), tensor (array of rank 3 or more). A tensor is an N-dimensional array of data.
+
+Your data in TF are tensors. The tensors flow through the graph, i.e. TensorFlow, an open-source high-perfmance library for numerical computaiton that uses directed graphs.
+
+TF can be called at different level of abstractions (working on different hardwares, core in C++, many APIs like the Python API, components for building custom NN models, high-level out-of-the-box API).
+
+**Cloud ML Engine** is the execution environment to free you from managing any infrastructure.
+
+### Core TensorFlow
+
+First step, build a graph:
+
+```python
+...
+c = tf.add(a,b )
+```
+
+Second step, run the graph:
+
+Only evaluated when run through a session (lazy evaluation)
+
+```python
+session = tf.Session()
+numpy_c = session.run(c, feed_dict=...)
+```
+
+TF returns Numpy arrays (C-based efficient numerical library), only when the session evaluate the graph.
+
+
+
+## Lab 2: Getting Started with TensorFlow
+
+In this lab you will perform the following tasks:
+
+* Explore the TensorFlow Python API
+* Building a graph
+* Running a graph
+* Feeding values into a graph
+* Find area of a triangle using TensorFlow
+
+
+### Task 1. Launch Cloud Datalab
+
+* Launch [Google Cloud Shell Code Editor](https://console.cloud.google.com/cloudshell/editor)
+
+```shell
+datalab create dataengvm --zone europe-north1-a
+```
+
+more details here [Task 1. Launch Cloud Datalab](#task-1-launch-cloud-datalab)
+
+
+### Task 2. Clone repo into Cloud Datalab
+
+```python
+%bash
+git clone https://github.com/GoogleCloudPlatform/training-data-analyst
+cd training-data-analyst
+```
+
+### Task 3: Run the lab in the notebook
+
+
+In Cloud Datalab, click on the Home icon, and then navigate to **datalab/training-data-analyst/courses/machine_learning/tensorflow**
+or check [Github to see its content](https://github.com/GoogleCloudPlatform/training-data-analyst/tree/master/courses/machine_learning/tensorflow).
+
+Open [**a_tfstart.ipynb**](https://github.com/GoogleCloudPlatform/training-data-analyst/blob/master/courses/machine_learning/tensorflow/a_tfstart.ipynb). Read the narrative and execute each cell in turn.
+
+#### Getting started with TensorFlow 
+
+```python
+import tensorflow as tf
+import numpy as np
+
+print tf.__version__
+# 1.8.0
+
+# Adding 2 tensors using numpy, the Python numeric package
+a = np.array([5, 3, 8])
+b = np.array([3, -1, 2])
+c = np.add(a, b)
+print c
+# [ 8  2 10]
+
+
+# Step 1: Build the equivalent graph in TensorFlow
+a = tf.constant([5, 3, 8])
+b = tf.constant([3, -1, 2])
+c = tf.add(a, b)
+print c
+# Tensor("Add:0", shape=(3,), dtype=int32)
+
+# Step 2: Run the graph
+with tf.Session() as sess:
+  result = sess.run(c)
+  print result
+# [ 8  2 10]
+
+# Using a feed_dict
+a = tf.placeholder(dtype=tf.int32, shape=(None,))  # batchsize x scalar
+b = tf.placeholder(dtype=tf.int32, shape=(None,))
+c = tf.add(a, b)
+with tf.Session() as sess:
+  result = sess.run(c, feed_dict={
+      a: [3, 4, 5],
+      b: [-1, 2, 3]
+    })
+  print result
+# [2 6 8]
+```
+
+Look up the available operations at https://www.tensorflow.org/api_docs/python/tf
+
+#### Placeholder and feed_dict
+
+More common is to define **the input to a program** as **a placeholder** and then to feed in the inputs.
+
+The difference between the code below and the code without placeholder is whether the "area" graph is coded up with the input values or whether the "area" graph is coded up with a placeholder through which inputs will be passed in at run-time.
+
+```python
+with tf.Session() as sess:
+  sides = tf.placeholder(tf.float32, shape=(None, 3))  # batchsize number of triangles, 3 sides
+  area = compute_area(sides)
+  result = sess.run(area, feed_dict = {
+      sides: [
+        [5.0, 3.0, 7.1],
+        [2.3, 4.1, 4.8]
+      ]
+    })
+  print result
+# [6.278497 4.709139]  
+```
+
+#### tf.eager
+
+tf.eager allows you to avoid the build-then-run stages. However, most production code will follow the lazy evaluation paradigm because the lazy evaluation paradigm is what allows for multi-device support and distribution.
+
+One thing you could do is to develop using tf.eager and then comment out the eager execution and add in the session management code.
+
+> To run this block, you must first reset the notebook using Reset on the menu bar, then run this block only.
+
+```python
+import tensorflow as tf
+from tensorflow.contrib.eager.python import tfe
+
+tfe.enable_eager_execution()
+
+def compute_area(sides):
+  # slice the input to get the sides
+  a = sides[:,0]  # 5.0, 2.3
+  b = sides[:,1]  # 3.0, 4.1
+  c = sides[:,2]  # 7.1, 4.8
+  
+  # Heron's formula
+  s = (a + b + c) * 0.5   # (a + b) is a short-cut to tf.add(a, b)
+  areasq = s * (s - a) * (s - b) * (s - c) # (a * b) is a short-cut to tf.multiply(a, b), not tf.matmul(a, b)
+  return tf.sqrt(areasq)
+
+area = compute_area(tf.constant([
+      [5.0, 3.0, 7.1],
+      [2.3, 4.1, 4.8]
+    ]))
+
+
+print area
+```
+
+
+## TensorFlow for ML
+
+[video](https://www.coursera.org/learn/serverless-machine-learning-gcp/lecture/L9E5T/estimator-api)
+
+
+```python
+import tensorflow as tf
+
+# Define input feature columns
+deatcols = [
+	 tf.feature_column.numeric_column("sq_footage") ]
+
+# instantiate Linear Regression Model
+model = tf.estimator.LinearRegressor(featcols, './model_trained')
+
+# Train
+def train_input_fn():
+    features = {
+    "sq_footage": tf.constant([1000, 2000]) }
+    labels =tf.constant([50, 100]) # in thousands
+    return features, labels
+model.train(train_input_fn, steps=100)
+
+# Predict
+def pred_input_fn():
+    features = {
+    	     "sq_footage": tf.constant([1500, 1800]) }
+
+    return features
+out = trained.predict(pred_input_fn)    
+
+```
+
+Other types of Regressors:
+
+* Deep neural network
+
+
+```python
+model = DNNRegressor(feature_columns=[...],
+                     hidden_units=[128, 64, 32])
+```
+
+
+* Classification
+
+```python
+model = LinearClassifier(feature_columns=[...])
+model = DNNClassifier(feature_columns=[...], hidden_units=[...])
+```
+
+
+## Lab 3: Machine Learning using tf.estimator
+
+In this lab, you will
+
+* Read from Pandas Dataframe into tf.constant
+* Create feature columns for estimator
+* Linear Regression with tf.Estimator framework
+* Deep Neural Network regression
+* Benchmark dataset
+
+### Task 1. Launch Cloud Datalab
+
+* Launch [Google Cloud Shell Code Editor](https://console.cloud.google.com/cloudshell/editor)
+
+```shell
+datalab create dataengvm --zone europe-north1-a
+```
+
+more details here [Task 1. Launch Cloud Datalab](#task-1-launch-cloud-datalab)
+
+
+### Task 2. Clone repo into Cloud Datalab
+
+```python
+%bash
+git clone https://github.com/GoogleCloudPlatform/training-data-analyst
+cd training-data-analyst
+```
+
+### Task 3: Run the lab in the notebook
+
+
+In Cloud Datalab, click on the Home icon, and then navigate to **datalab/training-data-analyst/courses/machine_learning/tensorflow**
+or check [Github to see its content](https://github.com/GoogleCloudPlatform/training-data-analyst/tree/master/courses/machine_learning/tensorflow).
+
+Open [**b_estimator.ipynb**](https://github.com/GoogleCloudPlatform/training-data-analyst/blob/master/courses/machine_learning/tensorflow/b_estimator.ipynb).
+Read the narrative and execute each cell in turn.
+
+
+> Tried to run with Colab by replacing the Github link like with:
+> 
+> * "https://colab.research.google.com/" + replace "github.com" with "github" + "/GoogleCloudPlatform/training-data-analyst/blob/master/courses/machine_learning/tensorflow/b_estimator.ipynb"
+> * Make a copy to your drive that you can run and modify. ([Here is mine!](https://colab.research.google.com/drive/1XqYk0QpTj6iHtyathmhZCzN3ADR1BAjK#scrollTo=ZEEQaTTIpBof))
+> * You will need to enable billing and APIs in order to import Google packages and run them
+
+
+
+#### Read data created in the previous chapter.
+
+```python
+# In CSV, label is the first column, after the features, followed by the key
+CSV_COLUMNS = ['fare_amount', 'pickuplon','pickuplat','dropofflon','dropofflat','passengers', 'key']
+FEATURES = CSV_COLUMNS[1:len(CSV_COLUMNS) - 1]
+LABEL = CSV_COLUMNS[0]
+
+df_train = pd.read_csv('./taxi-train.csv', header = None, names = CSV_COLUMNS)
+df_valid = pd.read_csv('./taxi-valid.csv', header = None, names = CSV_COLUMNS)
+```
+
+#### Input function to read from Pandas Dataframe into tf.constant
+
+```python
+def make_input_fn(df, num_epochs):
+  return tf.estimator.inputs.pandas_input_fn(
+    x = df,
+    y = df[LABEL],
+    batch_size = 128,
+    num_epochs = num_epochs,
+    shuffle = True,
+    queue_capacity = 1000,
+    num_threads = 1
+  )
+```
+
+#### Create feature columns for estimator
+
+```python
+input_columns = [tf.feature_column.numeric_column(k) for k in FEATURES]
+```
+
+
+#### Linear Regression with tf.Estimator framework
+
+```python
+OUTDIR = 'taxi_trained'
+
+model = tf.estimator.LinearRegressor(
+      feature_columns = make_feature_cols(), model_dir = OUTDIR)
+
+model.train(input_fn = make_input_fn(df_train, num_epochs = 10))
+```
+
+#### Evaluate on the validation data
+
+(we should defer using the test data to after we have selected a final model).
+
+
+```python
+def print_rmse(model, name, df):
+  metrics = model.evaluate(input_fn = make_input_fn(df, 1))
+  print 'RMSE on {} dataset = {}'.format(name, np.sqrt(metrics['average_loss']))
+print_rmse(model, 'validation', df_valid)
+# RMSE on validation dataset = 10.6943283081
+```
+
+This is nowhere near our benchmark (RMSE of $6 or so on this data), but it serves to demonstrate what TensorFlow code looks like.
+
+Let's use this model for prediction.
+
+```python
+import itertools
+# Read saved model and use it for prediction
+model = tf.estimator.LinearRegressor(
+      feature_columns = make_feature_cols(), model_dir = OUTDIR)
+preds_iter = model.predict(input_fn = make_input_fn(df_valid, 1))
+print [pred['predictions'][0] for pred in list(itertools.islice(preds_iter, 5))]
+# [9.272911, 9.276136, 9.370888, 9.46672, 9.370997]
+```
+
+This explains why the RMSE was so high -- the model essentially predicts the same amount for every trip.
+
+Would a more complex model help? Let's try using a deep neural network. The code to do this is quite straightforward as well.
+
+#### Deep Neural Network regression
+
+
+```python
+tf.logging.set_verbosity(tf.logging.INFO)
+shutil.rmtree(OUTDIR, ignore_errors = True) # start fresh each time
+model = tf.estimator.DNNRegressor(hidden_units = [32, 8, 2],
+      feature_columns = make_feature_cols(), model_dir = OUTDIR)
+model.train(input_fn = make_input_fn(df_train, num_epochs = 100));
+print_rmse(model, 'validation', df_valid)
+# RMSE on validation dataset = 11.6112670898
+```
+
+We are not beating our benchmark with either model ... what's up? Well, we may be using TensorFlow for Machine Learning, but we are not yet using it well. That's what the rest of this course is about!
+
+But, for the record, let's say we had to choose between the two models. We'd choose the one with the lower validation error. Finally, we'd measure the RMSE on the test data with this chosen model.
+
+#### Benchmark dataset
+
+
+```python
+import datalab.bigquery as bq
+import numpy as np
+import pandas as pd
+
+
+def create_query(phase, EVERY_N):
+  """
+  phase: 1 = train 2 = valid
+  """
+  base_query = """
+SELECT
+  (tolls_amount + fare_amount) AS fare_amount,
+  CONCAT(STRING(pickup_datetime), STRING(pickup_longitude), STRING(pickup_latitude), STRING(dropoff_latitude), STRING(dropoff_longitude)) AS key,
+  DAYOFWEEK(pickup_datetime)*1.0 AS dayofweek,
+  HOUR(pickup_datetime)*1.0 AS hourofday,
+  pickup_longitude AS pickuplon,
+  pickup_latitude AS pickuplat,
+  dropoff_longitude AS dropofflon,
+  dropoff_latitude AS dropofflat,
+  passenger_count*1.0 AS passengers,
+FROM
+  [nyc-tlc:yellow.trips]
+WHERE
+  trip_distance > 0
+  AND fare_amount >= 2.5
+  AND pickup_longitude > -78
+  AND pickup_longitude < -70
+  AND dropoff_longitude > -78
+  AND dropoff_longitude < -70
+  AND pickup_latitude > 37
+  AND pickup_latitude < 45
+  AND dropoff_latitude > 37
+  AND dropoff_latitude < 45
+  AND passenger_count > 0
+  """
+
+  if EVERY_N == None:
+    if phase < 2:
+      # Training
+      query = "{0} AND ABS(HASH(pickup_datetime)) % 4 < 2".format(base_query)
+    else:
+      # Validation
+      query = "{0} AND ABS(HASH(pickup_datetime)) % 4 == {1}".format(base_query, phase)
+  else:
+    query = "{0} AND ABS(HASH(pickup_datetime)) % {1} == {2}".format(base_query, EVERY_N, phase)
+    
+  return query
+
+query = create_query(2, 100000)
+df = bq.Query(query).to_dataframe()
+```
+
+
+
+```python
+
+```
+
+
+
+```python
+
+```
+
+
+
+
+
+
+
+## Distributed TensorFlow models
+
+
+### Write TensorFlow graphs and Training an evaluation loop
+
+### Monitor ML training with TensorBoard
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ## Other references
@@ -252,3 +712,11 @@ Let's be ambitious, though, and make our goal to build ML models that have a RMS
 * [Angeliqa's notes](https://docs.google.com/document/d/1_G6F5qmjcklNOK8KBkUBD5gDHMLXrNjCX6yIBuR8iEA/edit?pli=1)
 * [GCP Labs and demos for the course](https://github.com/GoogleCloudPlatform/training-data-analyst)
 * [Cloud Datalab resources on Github](https://github.com/googledatalab/notebooks)
+
+
+## Recommended extra courses
+
+* [Machine learning with TensorFlow on GCP](https://www.coursera.org/specializations/machine-learning-tensorflow-gcp) (5 courses, 7+ weeks)
+* Advanced machine learning with TensorFlow on GCP: ??
+* https://ai.google/education/
+* https://developers.google.com/machine-learning/crash-course/
