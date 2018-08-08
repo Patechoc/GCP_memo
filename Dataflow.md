@@ -668,3 +668,47 @@ python JavaProjectsThatNeedHelp.py --bucket $BUCKET --project $DEVSHELL_PROJECT_
 Return to the browser tab for Console. On the **Products & services** menu (![menu](https://lh3.googleusercontent.com/aM9cftz4R80-cn1YoOzXUEL57hhkHsV2Dd-nGBdt_qjfOsFqXz0MNUDOkD99UQaYTefEbJldtJEjgSryvQcxtqQv39bQNGIUUOhUDp5XEDydbmbb27O5giNs7nYjavcIwL6Fi6-i)) click **Dataflow** and click on your job to monitor progress.
 
 Once the pipeline has finished executing, On the **Products & services** menu (![menu](https://lh3.googleusercontent.com/aM9cftz4R80-cn1YoOzXUEL57hhkHsV2Dd-nGBdt_qjfOsFqXz0MNUDOkD99UQaYTefEbJldtJEjgSryvQcxtqQv39bQNGIUUOhUDp5XEDydbmbb27O5giNs7nYjavcIwL6Fi6-i)) click **Storage > Browser** and click on your bucket. You will find the results in the **javahelp** folder. Click on the **Result** object to examine the output.
+
+
+
+## Dataflow Template
+
+[video](https://www.coursera.org/learn/serverless-data-analysis-bigquery-cloud-dataflow-gcp/lecture/llw3M/dataflow-templates-and-dataprep)
+
+Dataflow template workflow supports non-developer users (separate dev. environment from production environment).
+
+* Developers executes pipeline on Dataflow
+* Dataflow stores templates in Cloud Storage
+* Users submit templates to run jobs
+
+Templates require modifying parameters for runtime ("Value providerResnet34_multiclasse").
+
+You specify:
+
+* the location of the template in Cloud Storage
+* an output location in Cloud Storage
+* name: value parameters (that map to the ValueProvider interface)
+
+There exists already examples of templates for basic tasks:
+
+* WordCount
+* Cloud Pub/Sub to BigQuery
+* Cloud Storage Text to Cloud Pub/Sub
+* [...](https://www.awesomescreenshot.com/image/3528045/7970a7abca7c6d9dadc3aee1dad81405)
+
+## Dataprep
+
+[video](https://www.coursera.org/learn/serverless-data-analysis-bigquery-cloud-dataflow-gcp/lecture/llw3M/dataflow-templates-and-dataprep)
+
+Dataprep offers **a graphical user interface for interactively designing a pipeline**.
+Dataprep is an interactive graphical system for preparing structured or unstructured data for use in analytics such as BigQuery, visualization like, Data Studio and to train machine learning models.
+Input integration is provided for Cloud Storage BigQuery and files. 
+
+
+
+
+More on Dataflow and Dataprep with this example:
+
+* https://cloud.google.com/solutions/processing-logs-at-scale-using-dataflow
+* https://github.com/GoogleCloudPlatform/processing-logs-using-dataflow
+
