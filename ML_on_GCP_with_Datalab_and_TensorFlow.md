@@ -527,11 +527,15 @@ Open [**b_estimator.ipynb**](https://github.com/GoogleCloudPlatform/training-dat
 Read the narrative and execute each cell in turn.
 
 
+#### Working with Google Colaboratory instead of Google Cloud Datalab
+
 > Tried to run with Colab by replacing the Github link like with:
 > 
 > * "https://colab.research.google.com/" + replace "github.com" with "github" + "/GoogleCloudPlatform/training-data-analyst/blob/master/courses/machine_learning/tensorflow/b_estimator.ipynb"
 > * Make a copy to your drive that you can run and modify. ([Here is mine!](https://colab.research.google.com/drive/1XqYk0QpTj6iHtyathmhZCzN3ADR1BAjK#scrollTo=ZEEQaTTIpBof))
 > * You will need to enable billing and APIs in order to import Google packages and run them
+>
+> **I haven't tried it yet. Need to investigate how the billing part works here!** :unamused:
 
 
 
@@ -598,6 +602,9 @@ print_rmse(model, 'validation', df_valid)
 
 This is nowhere near our benchmark (RMSE of $6 or so on this data), but it serves to demonstrate what TensorFlow code looks like.
 
+You can hope to get a better RMSE by training longer, i.e. increase the number of epoch: `num_epoch`.
+
+
 Let's use this model for prediction.
 
 ```python
@@ -626,9 +633,6 @@ model.train(input_fn = make_input_fn(df_train, num_epochs = 100));
 print_rmse(model, 'validation', df_valid)
 # RMSE on validation dataset = 11.6112670898
 ```
-
-You can hope to get a better RMSE by training longer, i.e. increase the number of epoch: `num_epoch`.
-
 
 We are not beating our benchmark with either model ... what's up? Well, we may be using TensorFlow for Machine Learning, but we are not yet using it well. That's what the rest of this course is about!
 
@@ -693,32 +697,320 @@ print_rmse(model, 'benchmark', df)
 ```
 
 
+## Lab 4: Refactoring to add batching and feature-creation
+
+In this lab, you will perform the following tasks:
+
+* Refactor the input
+* Refactor the way the features are created
+* Create and train the model
+* Evaluate model
+
+### Task 1. Launch Cloud Datalab
+
+* Launch [Google Cloud Shell Code Editor](https://console.cloud.google.com/cloudshell/editor)
+
+```shell
+datalab create dataengvm --zone europe-north1-a
+```
+
+more details here [Task 1. Launch Cloud Datalab](#task-1-launch-cloud-datalab)
 
 
-
+### Task 2. Clone repo into Cloud Datalab
 
 ```python
+%bash
+git clone https://github.com/GoogleCloudPlatform/training-data-analyst
+cd training-data-analyst
+```
 
+### Task 3: Run the lab in the notebook
+
+
+In Cloud Datalab, click on the Home icon, and then navigate to **datalab/training-data-analyst/courses/machine_learning/tensorflow**
+or check [Github to see its content](https://github.com/GoogleCloudPlatform/training-data-analyst/tree/master/courses/machine_learning/tensorflow).
+
+Open [**c_batched.ipynb**](https://github.com/GoogleCloudPlatform/training-data-analyst/blob/master/courses/machine_learning/tensorflow/c_batched.ipynb).
+Read the narrative and execute each cell in turn.
+
+#### Refactor (#1) the input to read  data in batches (Big Data soon :100:)
+
+We continue reading the same small dataset, but refactor our ML pipeline in two small, but significant, ways
+
+Read data created in Lab-1a, but this time make it more general and performant. Instead of using Pandas, we will use TensorFlow's Dataset API (`tf.data.TextLineDataset(file_list).map(decode_csv)`).
+
+`read_dataset()` now reads the data in chuncks, it reads CSV files directly rather than using Pandas.
+
+* we take the path to the file `filename`
+* we glob it (`tf.gfile.Glob`), like a wildcard match. So `./taxi-train.*` works as well as `./taxi-train.csv`.
+* out of this file list, create a `tf.data.TextLineDataset(file_list).map(decode_csv)` out of this list, and for every line, call the `decode_csv()` function.
+* This `decode_csv` function calls the `tf.decode_csv()` function that takes care of applying the right type (integer, float, ...) to the column values and apply the respective default values in case of missing ones in the CSV file. It returns (features, labels)
+* We repeat it and shuffle it as necessary (as before) and that becomes the way we read our data.
+ 
+```python
+CSV_COLUMNS = ['fare_amount', 'pickuplon','pickuplat','dropofflon','dropofflat','passengers', 'key']
+LABEL_COLUMN = 'fare_amount'
+DEFAULTS = [[0.0], [-74.0], [40.0], [-74.0], [40.7], [1.0], ['nokey']]
+
+def read_dataset(filename, mode, batch_size = 512):
+  def _input_fn():
+    def decode_csv(value_column):
+      columns = tf.decode_csv(value_column, record_defaults = DEFAULTS)
+      features = dict(zip(CSV_COLUMNS, columns))
+      label = features.pop(LABEL_COLUMN)
+      return features, label
+
+    # Create list of files that match pattern
+    file_list = tf.gfile.Glob(filename)
+
+    # Create dataset from file list
+    dataset = tf.data.TextLineDataset(file_list).map(decode_csv)
+    if mode == tf.estimator.ModeKeys.TRAIN:
+        num_epochs = None # indefinitely
+        dataset = dataset.shuffle(buffer_size = 10 * batch_size)
+    else:
+        num_epochs = 1 # end-of-input after this
+
+    dataset = dataset.repeat(num_epochs).batch(batch_size)
+    return dataset.make_one_shot_iterator().get_next()
+  return _input_fn
+    
+
+def get_train():
+  return read_dataset('./taxi-train.csv', mode = tf.estimator.ModeKeys.TRAIN)
+
+def get_valid():
+  return read_dataset('./taxi-valid.csv', mode = tf.estimator.ModeKeys.EVAL)
+
+def get_test():
+  return read_dataset('./taxi-test.csv', mode = tf.estimator.ModeKeys.EVAL)
+```
+
+
+#### Refactor (#2) the way features are created
+
+For now, pass these through (same as previous lab). However, refactoring this way will enable us to break the one-to-one relationship between inputs and features.
+
+We haven't added any new features yet, but we now have the mechanism in palce to add more features in the future.
+
+```python
+INPUT_COLUMNS = [
+    tf.feature_column.numeric_column('pickuplon'),
+    tf.feature_column.numeric_column('pickuplat'),
+    tf.feature_column.numeric_column('dropofflat'),
+    tf.feature_column.numeric_column('dropofflon'),
+    tf.feature_column.numeric_column('passengers'),
+]
+
+def add_more_features(feats):
+  # Nothing to add (yet!)
+  return feats
+
+feature_cols = add_more_features(INPUT_COLUMNS)
+```
+
+
+#### Create and train the model
+
+Note that we train for num_steps * batch_size examples.
+
+```python
+tf.logging.set_verbosity(tf.logging.INFO)
+OUTDIR = 'taxi_trained'
+shutil.rmtree(OUTDIR, ignore_errors = True) # start fresh each time
+model = tf.estimator.LinearRegressor(
+      feature_columns = feature_cols, model_dir = OUTDIR)
+model.train(input_fn = get_train(), steps = 1000);  # TODO: change the name of input_fn as needed
 ```
 
 
 
-```python
+#### Evaluate the model
 
+As before, evaluate on the validation data. We'll do the third refactoring (to move the evaluation into the training loop) in the next lab.
+
+
+```python
+def print_rmse(model, name, input_fn):
+  metrics = model.evaluate(input_fn = input_fn, steps = 1)
+  print 'RMSE on {} dataset = {}'.format(name, np.sqrt(metrics['average_loss']))
+print_rmse(model, 'validation', get_valid())
+...
+INFO:tensorflow:Saving dict for global step 1000: average_loss = 129.05605, global_step = 1000, loss = 66076.695
+RMSE on validation dataset = 11.3602838516
 ```
 
+RMSE as bad as before. refactoring worked :)
 
 
-
-
-
-
-## Distributed TensorFlow models
-
+## Train and Evaluate Distributed TensorFlow models
 
 ### Write TensorFlow graphs and Training an evaluation loop
 
+We have seen how to distribute reading of data with TensorFlow.
+
+For distributing training and evaluation, we need to **refactor distribution and monitoring**:
+
+- what happends if a machine crashes during training? you would like to resume training instead of starting from scratch.
+- you want to monitor the training job to stop it when it has converged
+- you want the possiblity to retrain a model with fresh data, but not starting from scratch
+
+What TensorFlow does for you:
+
+* **shuffle the data between workers during training**: so that different workers converge differently with gradient descent seeing the same data in a different order.
+* Estimators come with a cool **`train_and_evaluate()` method** which handles all the hardwork of writing fault-tolerant code.
+    * distribute the graphs
+    * share variables
+    * evaluate once in a while
+    * ...
+    and to do this, it creates **checkpoint files** whic allow to recover from failures and to save output summary to **TensorBoard**.
+
+```python
+tf.estimator.train_and_evaluate(estimator,
+				train_spec,
+				eval_spec)
+```
+
+**Train Spec** takes:
+
+* the same input function (`input_fn`) as before spitting a tuple `(features, labels)`,
+* but also a parameter that is **measured in steps** (`max_steps`).
+
+> With distributed models in production, think `steps` not `epoch`
+>
+> when training with fresh data, we want to resume from a checkpoint corresponding to an earlier number of steps, a not epochs for efficient recovery!
+
+**Eval Spec** controls the **evaluation** and the **checkpointing** of the model since they haååen at the same time.
+
+* the training loop saves the model into a checkpoint
+* the eval loop restores a model from a checkpoint and uses it to evaluate the model.
+* `throttle_secs = 600`: evaluation made every 600 seconds.
+* `start_delay_secs = 60`: starting evaluation 60 sec after begining of the training job.
+
 ### Monitor ML training with TensorBoard
+
+**Monitor your training** by changing the logging level from `WARN` to `INFO`/`DEBUG`.
+
+```python
+tf.logging.set_verbosity(tf.logging.INFO)
+```
+
+
+Use **TensorBoard** to monitor training from a GUI: it helps visualize TF models evaluation.
+
+
+## Lab 5: Distributed training and monitoring (evaluation)
+
+In this lab, you will perform the following tasks:
+
+* Create features out of input data
+* Train and evaluate
+* Monitor with Tensorboard
+
+### Task 1. Launch Cloud Datalab
+
+* Launch [Google Cloud Shell Code Editor](https://console.cloud.google.com/cloudshell/editor)
+
+```shell
+datalab create dataengvm --zone europe-north1-a
+```
+
+more details here [Task 1. Launch Cloud Datalab](#task-1-launch-cloud-datalab)
+
+
+### Task 2. Clone repo into Cloud Datalab
+
+```python
+%bash
+git clone https://github.com/GoogleCloudPlatform/training-data-analyst
+cd training-data-analyst
+```
+
+### Task 3: Run the lab in the notebook
+
+In Cloud Datalab, click on the Home icon, and then navigate to **datalab/training-data-analyst/courses/machine_learning/tensorflow**
+or check [Github to see its content](https://github.com/GoogleCloudPlatform/training-data-analyst/tree/master/courses/machine_learning/tensorflow).
+
+Open [**d_traineval.ipynb**](https://github.com/GoogleCloudPlatform/training-data-analyst/blob/master/courses/machine_learning/tensorflow/d_traineval.ipynb).
+Read the narrative and execute each cell in turn.
+
+In this notebook, we refactor to call `train_and_evaluate()` instead of hand-coding our ML pipeline. This allows us to carry out evaluation as part of our training loop instead of as a separate step. It also adds in failure-handling that is necessary for distributed training capabilities.
+
+We also use **TensorBoard** to monitor the training.
+
+####  `train_and_evaluate`
+
+
+```python
+def serving_input_fn():
+  feature_placeholders = {
+    'pickuplon' : tf.placeholder(tf.float32, [None]),
+    'pickuplat' : tf.placeholder(tf.float32, [None]),
+    'dropofflat' : tf.placeholder(tf.float32, [None]),
+    'dropofflon' : tf.placeholder(tf.float32, [None]),
+    'passengers' : tf.placeholder(tf.float32, [None]),
+  }
+  features = {
+      key: tf.expand_dims(tensor, -1)
+      for key, tensor in feature_placeholders.items()
+  }
+  return tf.estimator.export.ServingInputReceiver(features, feature_placeholders)
+```
+
+
+Below we define:
+
+* an estimator: `tf.estimator.LinearRegressor()
+* a `train_spec`: reading `taxi-train.csv` and saying wit hhow many steps we want to train
+* an `eval_spec`: to evaluate on `taxi-valid.csv` and how often should you evaluate: here once every 10 seconds and start evaluating about a second in.
+* the `eval_spec` also include an `exporter`, crucial for deploying our model (because we're going to basically export this model with a serving input function that looks for JSON data.)
+
+```python
+def train_and_evaluate(output_dir, num_train_steps):
+  estimator = tf.estimator.LinearRegressor(
+                       model_dir = output_dir,
+                       feature_columns = feature_cols)
+  train_spec=tf.estimator.TrainSpec(
+                       input_fn = read_dataset('./taxi-train.csv', mode = tf.estimator.ModeKeys.TRAIN),
+                       max_steps = num_train_steps)
+  exporter = tf.estimator.LatestExporter('exporter', serving_input_fn)
+  eval_spec=tf.estimator.EvalSpec(
+                       input_fn = read_dataset('./taxi-valid.csv', mode = tf.estimator.ModeKeys.EVAL),
+                       steps = None,
+                       start_delay_secs = 1, # start evaluating after N seconds
+                       throttle_secs = 10,  # evaluate every N seconds
+                       exporters = exporter)
+  tf.estimator.train_and_evaluate(estimator, train_spec, eval_spec)
+```
+
+
+```python 
+# Run training    
+OUTDIR = 'taxi_trained'
+shutil.rmtree(OUTDIR, ignore_errors = True) # start fresh each time
+train_and_evaluate(OUTDIR, num_train_steps = 5000)
+```
+
+We haven't changed the RMSE yet as we haven't change the amount  of input data yet.
+
+
+#### Monitoring with TensorBoard
+
+```python
+from google.datalab.ml import TensorBoard
+TensorBoard().start('./taxi_trained')
+TensorBoard().list()
+```
+
+
+```python
+# to stop TensorBoard
+for pid in TensorBoard.list()['pid']:
+    TensorBoard().stop(pid)
+    print 'Stopped TensorBoard with pid {}'.format(pid)
+```
+
 
 
 
