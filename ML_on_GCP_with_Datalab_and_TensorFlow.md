@@ -1,5 +1,7 @@
 # Memo for TensorFlow on Google Cloud Platform
 
+## Content
+
 * [Definition](#definition)
 * [Playing with ML](#playing-with-ml)
 * [Effective ML model](#effective-ml-model)
@@ -16,10 +18,35 @@
       * [Quality control and other preprocessing](#quality-control-and-other-preprocessing)
       * [Creating the ML datasets](#creating-the-ml-datasets)
       * [Benchmark](#benchmark)
+* [TensorFlow](#tensorflow)
+   * [Core TensorFlow](#core-tensorflow)
+* [Lab 2: Getting Started with TensorFlow](#lab-2-getting-started-with-tensorflow)
+   * [Task 1. Launch Cloud Datalab](#task-1-launch-cloud-datalab-1)
+   * [Task 2. Clone repo into Cloud Datalab](#task-2-clone-repo-into-cloud-datalab-1)
+   * [Task 3: Run the lab in the notebook](#task-3-run-the-lab-in-the-notebook-1)
+      * [Getting started with TensorFlow](#getting-started-with-tensorflow)
+      * [Placeholder and feed_dict](#placeholder-and-feed_dict)
+      * [tf.eager](#tfeager)
+* [TensorFlow for ML](#tensorflow-for-ml)
+* [Lab 3: Machine Learning using tf.estimator](#lab-3-machine-learning-using-tfestimator)
+   * [Task 1. Launch Cloud Datalab](#task-1-launch-cloud-datalab-2)
+   * [Task 2. Clone repo into Cloud Datalab](#task-2-clone-repo-into-cloud-datalab-2)
+   * [Task 3: Run the lab in the notebook](#task-3-run-the-lab-in-the-notebook-2)
+      * [Read data created in the previous lab](#read-data-created-in-the-previous-lab)
+      * [Input function to read from Pandas Dataframe into tf.constant](#input-function-to-read-from-pandas-dataframe-into-tfconstant)
+      * [Create feature columns for estimator](#create-feature-columns-for-estimator)
+      * [Linear Regression with tf.Estimator framework](#linear-regression-with-tfestimator-framework)
+      * [Evaluate on the validation data](#evaluate-on-the-validation-data)
+      * [Deep Neural Network regression](#deep-neural-network-regression)
+      * [Benchmark dataset](#benchmark-dataset)
+* [Distributed TensorFlow models](#distributed-tensorflow-models)
+   * [Write TensorFlow graphs and Training an evaluation loop](#write-tensorflow-graphs-and-training-an-evaluation-loop)
+   * [Monitor ML training with TensorBoard](#monitor-ml-training-with-tensorboard)
 * [Other references](#other-references)
 * [Recommended extra courses](#recommended-extra-courses)
 
 
+---
 
 ## Definition
 
@@ -508,7 +535,7 @@ Read the narrative and execute each cell in turn.
 
 
 
-#### Read data created in the previous chapter.
+#### Read data created in the previous lab
 
 ```python
 # In CSV, label is the first column, after the features, followed by the key
@@ -536,6 +563,9 @@ def make_input_fn(df, num_epochs):
 ```
 
 #### Create feature columns for estimator
+
+
+Here we create a numeric column for every feature.
 
 ```python
 input_columns = [tf.feature_column.numeric_column(k) for k in FEATURES]
@@ -597,6 +627,9 @@ print_rmse(model, 'validation', df_valid)
 # RMSE on validation dataset = 11.6112670898
 ```
 
+You can hope to get a better RMSE by training longer, i.e. increase the number of epoch: `num_epoch`.
+
+
 We are not beating our benchmark with either model ... what's up? Well, we may be using TensorFlow for Machine Learning, but we are not yet using it well. That's what the rest of this course is about!
 
 But, for the record, let's say we had to choose between the two models. We'd choose the one with the lower validation error. Finally, we'd measure the RMSE on the test data with this chosen model.
@@ -655,7 +688,12 @@ WHERE
 
 query = create_query(2, 100000)
 df = bq.Query(query).to_dataframe()
+print_rmse(model, 'benchmark', df)
+# RMSE on benchmark dataset is 9.41
 ```
+
+
+
 
 
 
