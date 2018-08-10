@@ -32,6 +32,7 @@
    * [Task 1. Launch Cloud Datalab](#task-1-launch-cloud-datalab-2)
    * [Task 2. Clone repo into Cloud Datalab](#task-2-clone-repo-into-cloud-datalab-2)
    * [Task 3: Run the lab in the notebook](#task-3-run-the-lab-in-the-notebook-2)
+      * [Working with Google Colaboratory instead of Google Cloud Datalab](#working-with-google-colaboratory-instead-of-google-cloud-datalab)
       * [Read data created in the previous lab](#read-data-created-in-the-previous-lab)
       * [Input function to read from Pandas Dataframe into tf.constant](#input-function-to-read-from-pandas-dataframe-into-tfconstant)
       * [Create feature columns for estimator](#create-feature-columns-for-estimator)
@@ -39,9 +40,23 @@
       * [Evaluate on the validation data](#evaluate-on-the-validation-data)
       * [Deep Neural Network regression](#deep-neural-network-regression)
       * [Benchmark dataset](#benchmark-dataset)
-* [Distributed TensorFlow models](#distributed-tensorflow-models)
+* [Lab 4: Refactoring to add batching and feature-creation](#lab-4-refactoring-to-add-batching-and-feature-creation)
+   * [Task 1. Launch Cloud Datalab](#task-1-launch-cloud-datalab-3)
+   * [Task 2. Clone repo into Cloud Datalab](#task-2-clone-repo-into-cloud-datalab-3)
+   * [Task 3: Run the lab in the notebook](#task-3-run-the-lab-in-the-notebook-3)
+      * [Refactor (#1) the input to read  data in batches (Big Data soon <g-emoji class="g-emoji" alias="100" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4af.png">💯</g-emoji>)](#refactor-1-the-input-to-read--data-in-batches-big-data-soon-100)
+      * [Refactor (#2) the way features are created](#refactor-2-the-way-features-are-created)
+      * [Create and train the model](#create-and-train-the-model)
+      * [Evaluate the model](#evaluate-the-model)
+* [Train and Evaluate Distributed TensorFlow models](#train-and-evaluate-distributed-tensorflow-models)
    * [Write TensorFlow graphs and Training an evaluation loop](#write-tensorflow-graphs-and-training-an-evaluation-loop)
    * [Monitor ML training with TensorBoard](#monitor-ml-training-with-tensorboard)
+* [Lab 5: Distributed training and monitoring (evaluation)](#lab-5-distributed-training-and-monitoring-evaluation)
+   * [Task 1. Launch Cloud Datalab](#task-1-launch-cloud-datalab-4)
+   * [Task 2. Clone repo into Cloud Datalab](#task-2-clone-repo-into-cloud-datalab-4)
+   * [Task 3: Run the lab in the notebook](#task-3-run-the-lab-in-the-notebook-4)
+      * [train_and_evaluate](#train_and_evaluate)
+      * [Monitoring with TensorBoard](#monitoring-with-tensorboard)
 * [Other references](#other-references)
 * [Recommended extra courses](#recommended-extra-courses)
 
@@ -50,19 +65,40 @@
 
 ## Definition
 
+__Check paper notebook__
+
 ## Playing with ML
+
+__Check paper notebook__
 
 ## Effective ML model
 
+__Check paper notebook__
+
 ## What makes a good dataset
+
+__Check paper notebook__
 
 ### Error metrics
 
+__Check paper notebook__
+
 ### Accuracy
+
+__Check paper notebook__
 
 ### Precision and Recall
 
+__Check paper notebook__
+
 ### Creating ML datasets
+
+__Check paper notebook__
+
+
+
+
+----------------------------------------------------------------------------------
 
 ## Lab 1: Explore dataset, create ML datasets, create benchmark with taxi fares in NYC
 
@@ -264,7 +300,7 @@ Let's be ambitious, though, and make our goal to build ML models that have a RMS
 `Lab 1a completed`
 
 
-
+----------------------------------------------------------------------------------
 
 ## TensorFlow
 
@@ -297,6 +333,7 @@ numpy_c = session.run(c, feed_dict=...)
 TF returns Numpy arrays (C-based efficient numerical library), only when the session evaluate the graph.
 
 
+----------------------------------------------------------------------------------
 
 ## Lab 2: Getting Started with TensorFlow
 
@@ -435,6 +472,7 @@ area = compute_area(tf.constant([
 print area
 ```
 
+----------------------------------------------------------------------------------
 
 ## TensorFlow for ML
 
@@ -487,6 +525,7 @@ model = LinearClassifier(feature_columns=[...])
 model = DNNClassifier(feature_columns=[...], hidden_units=[...])
 ```
 
+----------------------------------------------------------------------------------
 
 ## Lab 3: Machine Learning using tf.estimator
 
@@ -696,6 +735,7 @@ print_rmse(model, 'benchmark', df)
 # RMSE on benchmark dataset is 9.41
 ```
 
+----------------------------------------------------------------------------------
 
 ## Lab 4: Refactoring to add batching and feature-creation
 
@@ -843,6 +883,7 @@ RMSE on validation dataset = 11.3602838516
 
 RMSE as bad as before. refactoring worked :)
 
+----------------------------------------------------------------------------------
 
 ## Train and Evaluate Distributed TensorFlow models
 
@@ -1011,6 +1052,665 @@ for pid in TensorBoard.list()['pid']:
     print 'Stopped TensorBoard with pid {}'.format(pid)
 ```
 
+----------------------------------------------------------------------------------
+
+## Deploying TF models to GCP & Scaling with CloudML Engine
+
+
+**CloudML Engine** is a serverless engine for training and deploying TensorFlow models.
+
+* Fetch inputs
+* Data Pre-processing
+* Feature creation
+* Train model (hyper-parameter tuning)
+* Move to TensorFlow models
+* Deploy model to a Web Application (as REST API) to make predictions
+
+
+**"Training Service Queue"**: your prediction inputs will often differ from the data you use for training. (e.g. maybe the average of some column has shifted, or the variance has grown over time). Detecting it requires continuous data collection and re-examination.
+
+### Why CloudML Engine
+
+CloudML is:
+
+* **repeatable**: it takes care of bookkeeping (scaling of parameters, order of pipeline, ...). It helps handle Training Service Queue.
+* **scalable**: it helps distribute your training, hyper-parameter tuning, ...
+
+CloudML will scale automatically to reach the required number of queries-per-seconds.
+
+Notebooks from Datalab or Kaggle's kernels helps get started quickly and iterate smoothly when developing your model: explore, training and evaluate your jobs.
+
+
+### Development workflow
+
+1. Clean, split and prepare your engineered features on your training data
+1. Put your data on an online source that CloudML can access (e.g. Cloud Storage)
+1. Use TensorFlow to create computation graph and training application
+1. Package your trainer application
+1. Configure and start a Cloud ML Engine job
+
+When sending jobs to CloudML, split most of the logic in `task.py` and `model.py`:
+
+* `task.py`: entry point to your code that CloudML will start and knows job-level's argument
+* `model.py`: during the core machine learning, `task.py` will call `moddel.py`. It contains the ML model in TensorFlow
+    * training and evaluation input functions (`read_dataset()`)
+    * Feature columns (`INPUT_COLUMNS`)
+    * feature engineering (`def add_more_features(feats)`)
+    * Serving input function (`def serving _input_fn`)
+    * train and evaluation loop (`def train_and_evaluate()`)
+
+
+Package up TensorFlow model **as Python package**. So verify that the model works as a Python package
+
+```shell
+export PYTHONPATH=${PYTHONPATH}:/somedir/taxifare
+python -m trainer.task \
+  --train_data_path="/somedir/datasets/*train*" \
+  --eval_data_paths="/somedir/datasets/*valid*" \
+  --output_dir="/somedir/output" \
+  --train_steps=100 --job-dir=/tmp
+```
+
+Then use `gcloud` command to locally test your code for quick sanity checks: 
+
+```shell
+gcloud ml-engine local train \
+  --module-name=trainer.task \
+  --package-path=/somedir/taxifare/trainer \
+  ...
+  --train_data_path ...
+```
+
+then use `gcloud` to submit your training job on the cloud. 
+
+```shell
+gcloud ml-engine jobs submit training $JOBNAME \
+  --region=$REGION \
+  --module-name=trainer.task \
+  --job-dir=$OUTPUT --staging-bucket=gs://$BUCKET \
+  -- scale-tier=BASIC \
+  ...
+```
+
+Cloud ML Engine scale tier can be: `BASIC`, `STANDARD_1`, `BASIC_GPU`, `BASIC_TPU` (beta),  or [others](https://cloud.google.com/ml-engine/docs/tensorflow/machine-typeshttps://cloud.google.com/ml-engine/docs/tensorflow/machine-types).
+
+With CloudML, our prediction model is available as a microservice through a REST API.
+
+When you deploy the model, you export it with a **"serving input function"**. Can't you use the same input function as for training.
+
+While your training input function was taking in CSV files, your Serving inpout function, as a REST API, will have to ingest JSON traffic. So we need a specific Serving input function to be able to read in JSON data (and of course, since it's prediction, this function doesn't need labels: y).
+
+Once you have the exported model with this Serving input function, you can construct a microservice, either from the GCP web console or scripted out with `gcloud`:
+
+```shell
+MODEL_NAME="taxifare"
+MODEL_VERSION="v1"
+MODEL_LOCATION="gs://${BUCKET}/taxifare/export/exporter/983748293"
+
+gcloud ml-engine models create ${MODEL_NAME} --regions $REGION
+gcloud ml-engine versions create ${MODEL_VERSION} --model ${MODEL_NAME} --origin ${MODEL_LOCATION}
+```
+
+The Client code can make REST calls to your prediction model:
+
+```python
+token = GoogleCredentials.get_application_default().get_access_token().access_token
+api = 'https://ml.googleapis.com/v1/projects/{}/models/{}/versions/{}:predict'.format(PROJECT, MODEL_NAME, MODEL_VERSION)
+
+headers = {'Authorization': 'Bearer ' + token }
+data = {
+   'instances' : [
+     {
+     'pickuplon': -73.321432,
+     'pickuplat': 40.21932,
+     }
+
+    ]
+}
+response = requests.post(api, json=data, headers=headers)
+print(response.content)
+```
+
+
+----------------------------------------------------------------------------------
+
+
+## Lab 6: Deploying & Scaling up your ML model using Cloud ML Engine
+
+In this lab, you will perform the following tasks:
+
+* Package up the code
+* Find absolute paths to data
+* Run the Python module from the command line
+* Run locally using gcloud
+* Submit training job using gcloud
+* Deploy model
+* Prediction
+* Train on a 1-million row dataset
+
+### Task 1. Launch Cloud Datalab
+
+* Launch [Google Cloud Shell Code Editor](https://console.cloud.google.com/cloudshell/editor)
+
+```shell
+datalab create dataengvm --zone europe-north1-a
+```
+
+more details here [Task 1. Launch Cloud Datalab](#task-1-launch-cloud-datalab)
+
+
+### Task 2. Clone repo into Cloud Datalab
+
+```python
+%bash
+git clone https://github.com/GoogleCloudPlatform/training-data-analyst
+cd training-data-analyst
+```
+
+### Task 3: Verify that you have a Cloud Storage bucket
+
+This lab notebook requires you to provide a Project ID, Bucket Name, and Bucket Region. If not create them.
+
+```shell
+$ echo $DEVSHELL_PROJECT_ID
+qwiklabs-gcp-7693c01b6cf22dd2
+$
+$ echo $BUCKET
+$ BUCKET="qwiklabs-gcp-7693c01b6cf22dd2"
+$ echo $BUCKET
+qwiklabs-gcp-7693c01b6cf22dd2
+$
+```
+
+
+### Task 4: Run the lab in the notebook
+
+In Cloud Datalab, click on the Home icon, and then navigate to **datalab/training-data-analyst/courses/machine_learning/cloudmle**
+or check [Github to see its content](https://github.com/GoogleCloudPlatform/training-data-analyst/tree/master/courses/machine_learning/cloudmle).
+
+Open [**cloudmle.ipynb**](https://github.com/GoogleCloudPlatform/training-data-analyst/blob/master/courses/machine_learning/cloudmle/cloudmle.ipynb).
+
+Read the narrative and execute each cell in turn.
+
+In this notebook, we take a previously developed TensorFlow model to predict taxifare rides and package it up so that it can be run in Cloud ML Engine (Cloud MLE).
+
+For now, we'll run this on a small dataset. The model that was developed is rather simplistic, and therefore, the accuracy of the model is not great either. However, this notebook illustrates how to package up a TensorFlow model to run it within Cloud ML.
+
+Later in the course, we will look at ways to make a more effective machine learning model.
+
+#### Environment variables for project and bucket
+
+Note that:
+
+1. Your project id is the __unique__ string that identifies your project (not the project name). You can find this from the GCP Console dashboard's Home page. 
+2. Cloud training often involves saving and restoring model files. If you don't have a bucket already, I suggest that you create one from the GCP console (because it will dynamically check whether the bucket name you want is available). A common pattern is to prefix the bucket name by the project id, so that it is unique. Also, for cost reasons, you might want to use a single region bucket.
+
+```python
+import os
+PROJECT = 'qwiklabs-gcp-7693c01b6cf22dd2' # REPLACE WITH YOUR PROJECT ID
+REGION = 'us-central1' # Choose an available region for Cloud MLE from https://cloud.google.com/ml-engine/docs/regions.
+BUCKET = PROJECT # REPLACE WITH YOUR BUCKET NAME. Use a regional bucket in the region you selected.
+```
+
+```python
+# for bash
+os.environ['PROJECT'] = PROJECT
+os.environ['BUCKET'] = BUCKET
+os.environ['REGION'] = REGION
+os.environ['TFVERSION'] = '1.4'  # Tensorflow version
+```
+
+```python
+%bash
+gcloud config set project $PROJECT
+gcloud config set compute/region $REGION
+```
+
+Allow the Cloud ML Engine service account to read/write to the bucket containing training data.
+
+```python
+%bash
+PROJECT_ID=$PROJECT
+AUTH_TOKEN=$(gcloud auth print-access-token)
+SVC_ACCOUNT=$(curl -X GET -H "Content-Type: application/json" \
+    -H "Authorization: Bearer $AUTH_TOKEN" \
+    https://ml.googleapis.com/v1/projects/${PROJECT_ID}:getConfig \
+    | python -c "import json; import sys; response = json.load(sys.stdin); \
+    print response['serviceAccount']")
+
+echo "Authorizing the Cloud ML Service account $SVC_ACCOUNT to access files in $BUCKET"
+gsutil -m defacl ch -u $SVC_ACCOUNT:R gs://$BUCKET
+gsutil -m acl ch -u $SVC_ACCOUNT:R -r gs://$BUCKET  # error message (if bucket is empty) can be ignored
+gsutil -m acl ch -u $SVC_ACCOUNT:W gs://$BUCKET
+## Authorizing the Cloud ML Service account service-55609621383@cloud-ml.google.com.iam.gserviceaccount.com to access files in qwiklabs-gcp-7693c01b6cf22dd2
+```
+
+
+#### Packaging up the code
+
+Take your code and put into a standard Python package structure.
+
+`model.py` and `task.py` contain the Tensorflow code from earlier (explore the directory structure).
+
+```python
+!find taxifare
+taxifare
+taxifare/PKG-INFO
+taxifare/setup.cfg
+taxifare/setup.py
+taxifare/trainer
+taxifare/trainer/.gitignore
+taxifare/trainer/.model.py.swp
+taxifare/trainer/__init__.py
+taxifare/trainer/__init__.pyc
+taxifare/trainer/model.py
+taxifare/trainer/model.pyc
+taxifare/trainer/task.py
+taxifare/trainer.egg-info
+taxifare/trainer.egg-info/dependency_links.txt
+taxifare/trainer.egg-info/PKG-INFO
+taxifare/trainer.egg-info/SOURCES.txt
+taxifare/trainer.egg-info/top_level.txt
+```
+
+```python
+!cat taxifare/trainer/model.py
+#!/usr/bin/env python
+
+# Copyright 2017 Google Inc. All Rights Reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+
+import tensorflow as tf
+import numpy as np
+import shutil
+
+tf.logging.set_verbosity(tf.logging.INFO)
+
+# List the CSV columns
+CSV_COLUMNS = ['fare_amount', 'pickuplon','pickuplat','dropofflon','dropofflat','passengers', 'key']
+
+#Choose which column is your label
+LABEL_COLUMN = 'fare_amount'
+
+# Set the default values for each CSV column in case there is a missing value
+DEFAULTS = [[0.0], [-74.0], [40.0], [-74.0], [40.7], [1.0], ['nokey']]
+
+# Create an input function that stores your data into a dataset
+def read_dataset(filename, mode, batch_size = 512):
+    def _input_fn():
+        def decode_csv(value_column):
+            columns = tf.decode_csv(value_column, record_defaults = DEFAULTS)
+            features = dict(zip(CSV_COLUMNS, columns))
+            label = features.pop(LABEL_COLUMN)
+            return features, label
+    
+        # Create list of files that match pattern
+        file_list = tf.gfile.Glob(filename)
+
+        # Create dataset from file list
+        dataset = tf.data.TextLineDataset(file_list).map(decode_csv)
+        
+        if mode == tf.estimator.ModeKeys.TRAIN:
+            num_epochs = None # indefinitely
+            dataset = dataset.shuffle(buffer_size = 10 * batch_size)
+        else:
+            num_epochs = 1 # end-of-input after this
+
+        dataset = dataset.repeat(num_epochs).batch(batch_size)
+        return dataset.make_one_shot_iterator().get_next()
+    return _input_fn
+
+# Define your feature columns
+INPUT_COLUMNS = [
+    tf.feature_column.numeric_column('pickuplon'),
+    tf.feature_column.numeric_column('pickuplat'),
+    tf.feature_column.numeric_column('dropofflat'),
+    tf.feature_column.numeric_column('dropofflon'),
+    tf.feature_column.numeric_column('passengers'),
+]
+
+# Create a function that will augment your feature set
+def add_more_features(feats):
+    # Nothing to add (yet!)
+    return feats
+
+feature_cols = add_more_features(INPUT_COLUMNS)
+
+# Create your serving input function so that your trained model will be able to serve predictions
+def serving_input_fn():
+    feature_placeholders = {
+        column.name: tf.placeholder(tf.float32, [None]) for column in INPUT_COLUMNS
+    }
+    features = {
+        key: tf.expand_dims(tensor, -1)
+        for key, tensor in feature_placeholders.items()
+    }
+    return tf.estimator.export.ServingInputReceiver(features, feature_placeholders)
+
+# Create an estimator that we are going to train and evaluate
+def train_and_evaluate(args):
+    estimator = tf.estimator.DNNRegressor(
+        model_dir = args['output_dir'],
+        feature_columns = feature_cols,
+        hidden_units = args['hidden_units'])
+    train_spec = tf.estimator.TrainSpec(
+        input_fn = read_dataset(args['train_data_paths'],
+                                batch_size = args['train_batch_size'],
+                                mode = tf.estimator.ModeKeys.TRAIN),
+        max_steps = args['train_steps'])
+    exporter = tf.estimator.LatestExporter('exporter', serving_input_fn)
+    eval_spec = tf.estimator.EvalSpec(
+        input_fn = read_dataset(args['eval_data_paths'],
+                                batch_size = 10000,
+                                mode = tf.estimator.ModeKeys.EVAL),
+        steps = None,
+        start_delay_secs = args['eval_delay_secs'],
+        throttle_secs = args['min_eval_frequency'],
+        exporters = exporter)
+    tf.estimator.train_and_evaluate(estimator, train_spec, eval_spec)
+```
+#### Find absolute paths to your data
+
+Note the absolute paths below. /content is mapped in Datalab to where the home icon takes you
+
+```python
+%bash
+echo $PWD
+rm -rf $PWD/taxi_trained
+cp $PWD/../tensorflow/taxi-train.csv .
+cp $PWD/../tensorflow/taxi-valid.csv .
+head -1 $PWD/taxi-train.csv
+head -1 $PWD/taxi-valid.csv
+/content/datalab/notebooks/ASL/training-data-analyst/courses/machine_learning/deepdive/03_tensorflow
+12.0,-73.987625,40.750617,-73.971163,40.78518,1,0
+6.0,-74.013667,40.713935,-74.007627,40.702992,2,0
+```
+
+
+#### Running the Python module from the command-line
+
+```python
+%bash
+rm -rf taxifare.tar.gz taxi_trained
+export PYTHONPATH=${PYTHONPATH}:${PWD}/taxifare
+python -m trainer.task \
+   --train_data_paths="${PWD}/taxi-train*" \
+   --eval_data_paths=${PWD}/taxi-valid.csv  \
+   --output_dir=${PWD}/taxi_trained \
+   --train_steps=1000 --job-dir=./tmp
+```
+
+```python
+%bash
+ls $PWD/taxi_trained/export/exporter/
+```
+
+There is a timestamp, so something has been exported.
+
+In fact we can write out an example input:
+
+```python
+%writefile ./test.json
+{"pickuplon": -73.885262,"pickuplat": 40.773008,"dropofflon": -73.987232,"dropofflat": 40.732403,"passengers": 2}
+```
+
+Even though we have quite deployed it, we can use ml-engine local predict method to make sure that things will actually work, passing the `test.json` file we just manually made: 
+
+```python
+%bash
+model_dir=$(ls ${PWD}/taxi_trained/export/exporter)
+gcloud ml-engine local predict \
+    --model-dir=${PWD}/taxi_trained/export/exporter/${model_dir} \
+    --json-instances=./test.json
+```
+
+we get back that it is about 13 dollars: `PREDICTIONS [13.385661125183105]`
+
+
+#### Training locally using gcloud
+
+```python
+%bash
+rm -rf taxifare.tar.gz taxi_trained
+gcloud ml-engine local train \
+   --module-name=trainer.task \
+   --package-path=${PWD}/taxifare/trainer \
+   -- \
+   --train_data_paths=${PWD}/taxi-train.csv \
+   --eval_data_paths=${PWD}/taxi-valid.csv  \
+   --train_steps=1000 \
+   --output_dir=${PWD}/taxi_trained 
+```
+
+When I ran it (due to random seeds, your results will be different), the average_loss (Mean Squared Error) on the evaluation dataset was 187, meaning that the RMSE was around 13.
+
+```python
+from google.datalab.ml import TensorBoard
+TensorBoard().start('{}/taxi_trained'.format(os.environ['PWD']))
+```
+
+```python
+for pid in TensorBoard.list()['pid']:
+  TensorBoard().stop(pid)
+  print 'Stopped TensorBoard with pid {}'.format(pid)
+```
+
+If the above step (to stop TensorBoard) appears stalled, just move on to the next step. You don't need to wait for it to return.
+
+```python
+!ls $PWD/taxi_trained
+```
+
+#### Training in the cloud by submit a training job using gcloud
+
+
+First copy the training data to the cloud. Then, launch a training job.
+
+After you submit the job, go to the cloud console (http://console.cloud.google.com) and select **Machine Learning | Jobs** to monitor progress.
+
+**Note:** Don't be concerned if the notebook stalls (with a blue progress bar) or returns with an error about being unable to refresh auth tokens. This is a long-lived Cloud job and work is going on in the cloud. Use the Cloud Console link (above) to monitor the job.
+
+
+```python
+%bash
+echo $BUCKET
+gsutil -m rm -rf gs://${BUCKET}/taxifare/smallinput/
+gsutil -m cp ${PWD}/*.csv gs://${BUCKET}/taxifare/smallinput/
+```
+
+```python
+%%bash
+OUTDIR=gs://${BUCKET}/taxifare/smallinput/taxi_trained
+JOBNAME=lab3a_$(date -u +%y%m%d_%H%M%S)
+echo $OUTDIR $REGION $JOBNAME
+gsutil -m rm -rf $OUTDIR
+gcloud ml-engine jobs submit training $JOBNAME \
+   --region=$REGION \
+   --module-name=trainer.task \
+   --package-path=${PWD}/taxifare/trainer \
+   --job-dir=$OUTDIR \
+   --staging-bucket=gs://$BUCKET \
+   --scale-tier=BASIC \
+   --runtime-version=$TFVERSION \
+   -- \
+   --train_data_paths="gs://${BUCKET}/taxifare/smallinput/taxi-train*" \
+   --eval_data_paths="gs://${BUCKET}/taxifare/smallinput/taxi-valid*"  \
+   --output_dir=$OUTDIR \
+   --train_steps=10000
+```
+
+
+Don't be concerned if the notebook appears stalled (with a blue progress bar) or returns with an error about being unable to refresh auth tokens. This is a long-lived Cloud job and work is going on in the cloud.
+
+**Use the Cloud Console link to monitor the job and do NOT proceed until the job is done.**
+
+
+#### Deploy model
+
+Find out the actual name of the subdirectory where the model is stored and use it to deploy the model. Deploying model will take up to 5 minutes.
+
+```python
+%bash
+gsutil ls gs://${BUCKET}/taxifare/smallinput/taxi_trained/export/exporter
+```
+
+```python
+%bash
+MODEL_NAME="taxifare"
+MODEL_VERSION="v1"
+MODEL_LOCATION=$(gsutil ls gs://${BUCKET}/taxifare/smallinput/taxi_trained/export/exporter | tail -1)
+echo "Run these commands one-by-one (the very first time, you'll create a model and then create a version)"
+#gcloud ml-engine versions delete ${MODEL_VERSION} --model ${MODEL_NAME}
+#gcloud ml-engine models delete ${MODEL_NAME}
+gcloud ml-engine models create ${MODEL_NAME} --regions $REGION
+gcloud ml-engine versions create ${MODEL_VERSION} --model ${MODEL_NAME} --origin ${MODEL_LOCATION} --runtime-version $TFVERSION
+```
+
+Run these commands one-by-one (the very first time, you'll create a model and then create a version)
+
+#### Prediction
+
+
+```python
+%bash
+gcloud ml-engine predict --model=taxifare --version=v1 --json-instances=./test.json
+```
+
+```python
+from googleapiclient import discovery
+from oauth2client.client import GoogleCredentials
+import json
+
+credentials = GoogleCredentials.get_application_default()
+api = discovery.build('ml', 'v1', credentials=credentials,
+            discoveryServiceUrl='https://storage.googleapis.com/cloud-ml/discovery/ml_v1_discovery.json')
+
+request_data = {'instances':
+  [
+      {
+        'pickuplon': -73.885262,
+        'pickuplat': 40.773008,
+        'dropofflon': -73.987232,
+        'dropofflat': 40.732403,
+        'passengers': 2,
+      }
+  ]
+}
+
+parent = 'projects/%s/models/%s/versions/%s' % (PROJECT, 'taxifare', 'v1')
+response = api.projects().predict(body=request_data, name=parent).execute()
+print "response={0}".format(response)
+```
+
+
+#### Train on larger dataset
+
+In the next chapter (on feature engineering), we will avoid all this manual processing by using Cloud Dataflow.
+
+Go to http://bigquery.cloud.google.com/ and type the query in `LEGACY` mode (This query will process 74.35 GB when run.):
+
+```sql
+SELECT
+  (tolls_amount + fare_amount) AS fare_amount,
+  pickup_longitude AS pickuplon,
+  pickup_latitude AS pickuplat,
+  dropoff_longitude AS dropofflon,
+  dropoff_latitude AS dropofflat,
+  passenger_count*1.0 AS passengers,
+  'nokeyindata' AS key
+FROM
+  [nyc-tlc:yellow.trips]
+WHERE
+  trip_distance > 0
+  AND fare_amount >= 2.5
+  AND pickup_longitude > -78
+  AND pickup_longitude < -70
+  AND dropoff_longitude > -78
+  AND dropoff_longitude < -70
+  AND pickup_latitude > 37
+  AND pickup_latitude < 45
+  AND dropoff_latitude > 37
+  AND dropoff_latitude < 45
+  AND passenger_count > 0
+  AND ABS(HASH(pickup_datetime)) % 1000 == 1
+```
+
+Query complete (12.024 sec elapsed, 74.35 GB processed).
+
+Note that this is now **1,000,000 rows** (i.e. **100x the original dataset**).
+
+Export this to CSV using the following steps (Note that I have already done this and made the resulting GCS data publicly available, so you don't need to do it.):
+
+1. Click on the **"Save As Table"** button and note down the name of the dataset and table (`patrick_taxiFare` dataset, `taxifare_1millions_rows`).
+1. On the BigQuery console, find the newly exported table in the left-hand-side menu, and click on the name.
+1. Click on **"Export Table"**
+1. Supply your bucket name and give it the name **train.csv** (for example: gs://cloud-training-demos-ml/taxifare/ch3/train.csv). Note down what this is. Wait for the job to finish (look at the "Job History" on the left-hand-side menu)
+1. In the query above, change the final "== 1" to "== 2" and export this to Cloud Storage as valid.csv (e.g. gs://cloud-training-demos-ml/taxifare/ch3/valid.csv)
+1. Download the two files, remove the header line and upload it back to GCS.
+
+
+#### Run Cloud training on 1-million row dataset
+
+This took 60 minutes and uses as input 1-million rows.
+
+The model is exactly the same as above. The only changes are to the input (to use the larger dataset) and to the Cloud MLE tier (to use STANDARD_1 instead of BASIC -- STANDARD_1 is approximately 10x more powerful than BASIC).
+
+At the end of the training the loss was 32, but the RMSE (calculated on the validation dataset) was stubbornly at 9.03. So, simply adding more data doesn't help. We are not beating the benchmark!!
+
+Check the next part to see how to beat it using feature engineering.
+
+```python
+%%bash
+
+XXXXX  this takes 60 minutes. if you are sure you want to run it, then remove this line.
+
+OUTDIR=gs://${BUCKET}/taxifare/ch3/taxi_trained
+JOBNAME=lab3a_$(date -u +%y%m%d_%H%M%S)
+CRS_BUCKET=cloud-training-demos # use the already exported data
+echo $OUTDIR $REGION $JOBNAME
+gsutil -m rm -rf $OUTDIR
+gcloud ml-engine jobs submit training $JOBNAME \
+   --region=$REGION \
+   --module-name=trainer.task \
+   --package-path=${PWD}/taxifare/trainer \
+   --job-dir=$OUTDIR \
+   --staging-bucket=gs://$BUCKET \
+   --scale-tier=STANDARD_1 \
+   --runtime-version=$TFVERSION \
+   -- \
+   --train_data_paths="gs://${CRS_BUCKET}/taxifare/ch3/train.csv" \
+   --eval_data_paths="gs://${CRS_BUCKET}/taxifare/ch3/valid.csv"  \
+   --output_dir=$OUTDIR \
+   --train_steps=100000
+```
+
+
+----------------------------------------------------------------------------------
+
+## Improve ML through Feature Engineering, Hyperparameter tuning%%bash
+
+How to create good features?
+
+### What makes a good feature?
+
+
+
+ 
 
 
 
@@ -1018,23 +1718,7 @@ for pid in TensorBoard.list()['pid']:
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+----------------------------------------------------------------------------------
 
 ## Other references
 
@@ -1043,6 +1727,7 @@ for pid in TensorBoard.list()['pid']:
 * [GCP Labs and demos for the course](https://github.com/GoogleCloudPlatform/training-data-analyst)
 * [Cloud Datalab resources on Github](https://github.com/googledatalab/notebooks)
 
+----------------------------------------------------------------------------------
 
 ## Recommended extra courses
 
