@@ -1708,10 +1708,171 @@ How to create good features?
 
 ### What makes a good feature?
 
+- relate you feature to the objective (remove any spurious correlations)
+- should be known at prediction time, since you won't predict from data you can not have later.
+- has to be numeric, with meaningful magnitude
+- has enough samples (Lak's rule of thumb: at least 5 samples of each value)
+- brings human insight to the problem
+
+#### Causality
+
+feature value should be known at the time of prediction.
+
+#### Numeric
+
+All features must be numeric and have meaningful magnitude
+
+#### Raw data to features
+
+Don't forget to remove columns like "Transaction ID" if not useful. They will mislead the model.
+
+#### Categorical features (One-hot encoding)
+
+`tf.feature_column.categorical_column_with_vocabulary_list(...)`
+
+Should be part of preprocessing.
+
+e.g. for taxi fare, "HOURS-OF-DAY" is not numeric, it is categorical!
+
+> Remove one column to keep (N-1) of the features in total to avoid correlation.
+
+#### Feature crosses
+
+How to bring human insight into a problem.
+
+Adding more (sometimes artificial) columns.
+
+e.g. a third column which is the concatenation of 2 others (without necessarily removing the first 2)
+
+It allows to have an extra column with a "AND" type feature for example..
+
+`tf.feature_column.crossed_column([dayfOfWeek, hourOfDay], 24*7)`
+
+It allows the model to realize that journey takes longer and fees are higher at certain DAYxTIME of the week.
+
+#### Bucketizing
+
+How to do feature crosses with "real value column"?
+
+You discretize floats = you "bucketize it! !
+
+It allows to build "groups" of values rather than having continuous all unique values for a feature.
+
+```python
+latbuckets = np.linspace(32, 42, lat_nbuckets).tolist()
+discrete_lat = tf.feature_column.bucketized_column(lat, latbuckets)
+```
+
+#### Model Architecture (Wide and Deep)
+
+Deep learning model (multiple layers) will work well on dense data. e.g. pixel values of an image.
+But they will give bad performance on sparse data (when data has many zeros).
+
+On the contrary linear models (1 layer) will be good with sparse data.
+
+```python
+tf.estimator.DNNLinearCombinedClassifier(
+linear_feature_columns = wide_columns,
+dnn_feature_columns = deep_columns,
+...
+)
+```
+
+#### Where to do feature engineering?
+
+3 possible ways:
+
+* on-the-fly, reading the inputs
+* as a separate step before training in Dataflow (at scale, in parallel)
+* in TensorFlow, only if this processing has to be part of the serving/prediction pipeline. (`tf.transform()` in TensorFlow)
 
 
  
+----------------------------------------------------------------------------------
 
+
+## Lab 7: Feature Engineering
+
+
+In this lab ([overview **video**  of the lab](https://www.coursera.org/learn/serverless-machine-learning-gcp/lecture/nN0uG/feature-engineering-lab-review)), you will perform the following tasks:
+
+* Working with feature columns
+* Adding feature crosses in TensorFlow
+* Reading data from BigQuery
+* Creating datasets using Dataflow
+* Using a wide-and-deep model
+
+
+### Task 1. Launch Cloud Datalab
+
+* Launch [Google Cloud Shell Code Editor](https://console.cloud.google.com/cloudshell/editor)
+
+```shell
+datalab create dataengvm --zone europe-north1-a
+```
+
+more details here [Task 1. Launch Cloud Datalab](#task-1-launch-cloud-datalab)
+
+
+### Task 2. Clone repo into Cloud Datalab
+
+```python
+%bash
+git clone https://github.com/GoogleCloudPlatform/training-data-analyst
+cd training-data-analyst
+```
+
+### Task 3: Verify that you have a Cloud Storage bucket
+
+This lab notebook requires you to provide a Project ID, Bucket Name, and Bucket Region. If not create them.
+
+```shell
+$ echo $DEVSHELL_PROJECT_ID
+qwiklabs-gcp-7693c01b6cf22dd2
+$
+$ echo $BUCKET
+$ BUCKET="qwiklabs-gcp-7693c01b6cf22dd2"
+$ echo $BUCKET
+qwiklabs-gcp-7693c01b6cf22dd2
+$
+```
+
+
+### Task 4: Run the lab in the notebook
+
+In Cloud Datalab, click on the Home icon, and then navigate to **datalab/training-data-analyst/courses/machine_learning/feateng**
+or check [Github to see its content](https://github.com/GoogleCloudPlatform/training-data-analyst/tree/master/courses/machine_learning/feateng).
+
+Open [**cloudmle.ipynb**](https://github.com/GoogleCloudPlatform/training-data-analyst/blob/master/courses/machine_learning/feateng/feateng.ipynb).
+
+Read the narrative and execute each cell in turn.
+
+
+Among the possible improvement other than increasing the amount of training data, we can wonder how feature engineering would impact our inputs:
+
+* Can we use them?
+* if No, why?
+* if Yes, shall we transform them?
+
+1. Trip distance/duration: NO, not knowable at prediction time
+1. Timestamp: NO, not directly. we have to pull out DAY-OF-WEEK and HOUR-OF-DAY. At prediction time we only know the pick-up time, but not the drop-off time
+1. HOURS-OF-DAY: YES. Maybe better to quantize it into bins: 'morning rush hours', 'mid-day', evening rush hours', 'night', then one-hot encoding.
+1. DAY-OF-WEEK: YES, with one-hot encoding + add weekend versus weekday info + New York holidays if you can find it.
+1. lat/long: Yes. we need to for precise distances, but not useful in isolation. we can build new features from it: 
+    * binning by neighborhood
+    * polygon boundaries
+    * proximity to specific bridges/highways
+    * sid eof the street for "one way", ...
+    * and far simpler... bucketize it by lat/long + feature_cross which is putting lat/long points into grids cells
+
+again, check the resulting [notebook](https://github.com/GoogleCloudPlatform/training-data-analyst/blob/master/courses/machine_learning/feateng/feateng.ipynb).
+
+
+
+Other notebooks allows to explore:
+
+* [Hyper-parameter tuning](https://github.com/GoogleCloudPlatform/training-data-analyst/blob/master/courses/machine_learning/feateng/hyperparam.ipynb)
+* [Exploring `tf.transform`](https://github.com/GoogleCloudPlatform/training-data-analyst/blob/master/courses/machine_learning/feateng/tftransform.ipynb) for data processing of input data in prediction.
 
 
 
