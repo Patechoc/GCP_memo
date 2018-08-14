@@ -2,70 +2,111 @@
 
 ## Content
 
-* [Definition](#definition)
-* [Playing with ML](#playing-with-ml)
-* [Effective ML model](#effective-ml-model)
-* [What makes a good dataset](#what-makes-a-good-dataset)
-   * [Error metrics](#error-metrics)
-   * [Accuracy](#accuracy)
-   * [Precision and Recall](#precision-and-recall)
-   * [Creating ML datasets](#creating-ml-datasets)
-* [Lab 1: Explore dataset, create ML datasets, create benchmark with taxi fares in NYC](#lab-1-explore-dataset-create-ml-datasets-create-benchmark-with-taxi-fares-in-nyc)
-   * [Task 1. Launch Cloud Datalab](#task-1-launch-cloud-datalab)
-   * [Task 2. Clone repo into Cloud Datalab](#task-2-clone-repo-into-cloud-datalab)
-   * [Task 3: Run the lab in the notebook](#task-3-run-the-lab-in-the-notebook)
-      * [Explore the data](#explore-the-data)
-      * [Quality control and other preprocessing](#quality-control-and-other-preprocessing)
-      * [Creating the ML datasets](#creating-the-ml-datasets)
-      * [Benchmark](#benchmark)
-* [TensorFlow](#tensorflow)
-   * [Core TensorFlow](#core-tensorflow)
-* [Lab 2: Getting Started with TensorFlow](#lab-2-getting-started-with-tensorflow)
-   * [Task 1. Launch Cloud Datalab](#task-1-launch-cloud-datalab-1)
-   * [Task 2. Clone repo into Cloud Datalab](#task-2-clone-repo-into-cloud-datalab-1)
-   * [Task 3: Run the lab in the notebook](#task-3-run-the-lab-in-the-notebook-1)
-      * [Getting started with TensorFlow](#getting-started-with-tensorflow)
-      * [Placeholder and feed_dict](#placeholder-and-feed_dict)
-      * [tf.eager](#tfeager)
-* [TensorFlow for ML](#tensorflow-for-ml)
-* [Lab 3: Machine Learning using tf.estimator](#lab-3-machine-learning-using-tfestimator)
-   * [Task 1. Launch Cloud Datalab](#task-1-launch-cloud-datalab-2)
-   * [Task 2. Clone repo into Cloud Datalab](#task-2-clone-repo-into-cloud-datalab-2)
-   * [Task 3: Run the lab in the notebook](#task-3-run-the-lab-in-the-notebook-2)
-      * [Working with Google Colaboratory instead of Google Cloud Datalab](#working-with-google-colaboratory-instead-of-google-cloud-datalab)
-      * [Read data created in the previous lab](#read-data-created-in-the-previous-lab)
-      * [Input function to read from Pandas Dataframe into tf.constant](#input-function-to-read-from-pandas-dataframe-into-tfconstant)
-      * [Create feature columns for estimator](#create-feature-columns-for-estimator)
-      * [Linear Regression with tf.Estimator framework](#linear-regression-with-tfestimator-framework)
-      * [Evaluate on the validation data](#evaluate-on-the-validation-data)
-      * [Deep Neural Network regression](#deep-neural-network-regression)
-      * [Benchmark dataset](#benchmark-dataset)
-* [Lab 4: Refactoring to add batching and feature-creation](#lab-4-refactoring-to-add-batching-and-feature-creation)
-   * [Task 1. Launch Cloud Datalab](#task-1-launch-cloud-datalab-3)
-   * [Task 2. Clone repo into Cloud Datalab](#task-2-clone-repo-into-cloud-datalab-3)
-   * [Task 3: Run the lab in the notebook](#task-3-run-the-lab-in-the-notebook-3)
-      * [Refactor (#1) the input to read  data in batches (Big Data soon <g-emoji class="g-emoji" alias="100" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4af.png">💯</g-emoji>)](#refactor-1-the-input-to-read--data-in-batches-big-data-soon-100)
-      * [Refactor (#2) the way features are created](#refactor-2-the-way-features-are-created)
-      * [Create and train the model](#create-and-train-the-model)
-      * [Evaluate the model](#evaluate-the-model)
-* [Train and Evaluate Distributed TensorFlow models](#train-and-evaluate-distributed-tensorflow-models)
-   * [Write TensorFlow graphs and Training an evaluation loop](#write-tensorflow-graphs-and-training-an-evaluation-loop)
-   * [Monitor ML training with TensorBoard](#monitor-ml-training-with-tensorboard)
-* [Lab 5: Distributed training and monitoring (evaluation)](#lab-5-distributed-training-and-monitoring-evaluation)
-   * [Task 1. Launch Cloud Datalab](#task-1-launch-cloud-datalab-4)
-   * [Task 2. Clone repo into Cloud Datalab](#task-2-clone-repo-into-cloud-datalab-4)
-   * [Task 3: Run the lab in the notebook](#task-3-run-the-lab-in-the-notebook-4)
-      * [train_and_evaluate](#train_and_evaluate)
-      * [Monitoring with TensorBoard](#monitoring-with-tensorboard)
-* [Other references](#other-references)
-* [Recommended extra courses](#recommended-extra-courses)
+      * [Content](#content)
+      * [Definition](#definition)
+      * [Playing with ML](#playing-with-ml)
+      * [Effective ML model](#effective-ml-model)
+      * [What makes a good dataset](#what-makes-a-good-dataset)
+         * [Error metrics](#error-metrics)
+         * [Accuracy](#accuracy)
+         * [Precision and Recall](#precision-and-recall)
+         * [Creating ML datasets](#creating-ml-datasets)
+      * [Lab 1: Explore dataset, create ML datasets, create benchmark with taxi fares in NYC](#lab-1-explore-dataset-create-ml-datasets-create-benchmark-with-taxi-fares-in-nyc)
+         * [Task 1. Launch Cloud Datalab](#task-1-launch-cloud-datalab)
+         * [Task 2. Clone repo into Cloud Datalab](#task-2-clone-repo-into-cloud-datalab)
+         * [Task 3: Run the lab in the notebook](#task-3-run-the-lab-in-the-notebook)
+            * [Explore the data](#explore-the-data)
+            * [Quality control and other preprocessing](#quality-control-and-other-preprocessing)
+            * [Creating the ML datasets](#creating-the-ml-datasets)
+            * [Benchmark](#benchmark)
+      * [TensorFlow](#tensorflow)
+         * [Core TensorFlow](#core-tensorflow)
+      * [Lab 2: Getting Started with TensorFlow](#lab-2-getting-started-with-tensorflow)
+         * [Task 1. Launch Cloud Datalab](#task-1-launch-cloud-datalab-1)
+         * [Task 2. Clone repo into Cloud Datalab](#task-2-clone-repo-into-cloud-datalab-1)
+         * [Task 3: Run the lab in the notebook](#task-3-run-the-lab-in-the-notebook-1)
+            * [Getting started with TensorFlow](#getting-started-with-tensorflow)
+            * [Placeholder and feed_dict](#placeholder-and-feed_dict)
+            * [tf.eager](#tfeager)
+      * [TensorFlow for ML](#tensorflow-for-ml)
+      * [Lab 3: Machine Learning using tf.estimator](#lab-3-machine-learning-using-tfestimator)
+         * [Task 1. Launch Cloud Datalab](#task-1-launch-cloud-datalab-2)
+         * [Task 2. Clone repo into Cloud Datalab](#task-2-clone-repo-into-cloud-datalab-2)
+         * [Task 3: Run the lab in the notebook](#task-3-run-the-lab-in-the-notebook-2)
+            * [Working with Google Colaboratory instead of Google Cloud Datalab](#working-with-google-colaboratory-instead-of-google-cloud-datalab)
+            * [Read data created in the previous lab](#read-data-created-in-the-previous-lab)
+            * [Input function to read from Pandas Dataframe into tf.constant](#input-function-to-read-from-pandas-dataframe-into-tfconstant)
+            * [Create feature columns for estimator](#create-feature-columns-for-estimator)
+            * [Linear Regression with tf.Estimator framework](#linear-regression-with-tfestimator-framework)
+            * [Evaluate on the validation data](#evaluate-on-the-validation-data)
+            * [Deep Neural Network regression](#deep-neural-network-regression)
+            * [Benchmark dataset](#benchmark-dataset)
+      * [Lab 4: Refactoring to add batching and feature-creation](#lab-4-refactoring-to-add-batching-and-feature-creation)
+         * [Task 1. Launch Cloud Datalab](#task-1-launch-cloud-datalab-3)
+         * [Task 2. Clone repo into Cloud Datalab](#task-2-clone-repo-into-cloud-datalab-3)
+         * [Task 3: Run the lab in the notebook](#task-3-run-the-lab-in-the-notebook-3)
+            * [Refactor (#1) the input to read  data in batches (Big Data soon <g-emoji class="g-emoji" alias="100" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4af.png">💯</g-emoji>)](#refactor-1-the-input-to-read--data-in-batches-big-data-soon-100)
+            * [Refactor (#2) the way features are created](#refactor-2-the-way-features-are-created)
+            * [Create and train the model](#create-and-train-the-model)
+            * [Evaluate the model](#evaluate-the-model)
+      * [Train and Evaluate Distributed TensorFlow models](#train-and-evaluate-distributed-tensorflow-models)
+         * [Write TensorFlow graphs and Training an evaluation loop](#write-tensorflow-graphs-and-training-an-evaluation-loop)
+         * [Monitor ML training with TensorBoard](#monitor-ml-training-with-tensorboard)
+      * [Lab 5: Distributed training and monitoring (evaluation)](#lab-5-distributed-training-and-monitoring-evaluation)
+         * [Task 1. Launch Cloud Datalab](#task-1-launch-cloud-datalab-4)
+         * [Task 2. Clone repo into Cloud Datalab](#task-2-clone-repo-into-cloud-datalab-4)
+         * [Task 3: Run the lab in the notebook](#task-3-run-the-lab-in-the-notebook-4)
+            * [train_and_evaluate](#train_and_evaluate)
+            * [Monitoring with TensorBoard](#monitoring-with-tensorboard)
+      * [Deploying TF models to GCP &amp; Scaling with CloudML Engine](#deploying-tf-models-to-gcp--scaling-with-cloudml-engine)
+         * [Why CloudML Engine](#why-cloudml-engine)
+         * [Development workflow](#development-workflow)
+      * [Lab 6: Deploying &amp; Scaling up your ML model using Cloud ML Engine](#lab-6-deploying--scaling-up-your-ml-model-using-cloud-ml-engine)
+         * [Task 1. Launch Cloud Datalab](#task-1-launch-cloud-datalab-5)
+         * [Task 2. Clone repo into Cloud Datalab](#task-2-clone-repo-into-cloud-datalab-5)
+         * [Task 3: Verify that you have a Cloud Storage bucket](#task-3-verify-that-you-have-a-cloud-storage-bucket)
+         * [Task 4: Run the lab in the notebook](#task-4-run-the-lab-in-the-notebook)
+            * [Environment variables for project and bucket](#environment-variables-for-project-and-bucket)
+            * [Packaging up the code](#packaging-up-the-code)
+            * [Find absolute paths to your data](#find-absolute-paths-to-your-data)
+            * [Running the Python module from the command-line](#running-the-python-module-from-the-command-line)
+            * [Training locally using gcloud](#training-locally-using-gcloud)
+            * [Training in the cloud by submit a training job using gcloud](#training-in-the-cloud-by-submit-a-training-job-using-gcloud)
+            * [Deploy model](#deploy-model)
+            * [Prediction](#prediction)
+            * [Train on larger dataset](#train-on-larger-dataset)
+            * [Run Cloud training on 1-million row dataset](#run-cloud-training-on-1-million-row-dataset)
+      * [Improve ML through Feature Engineering, Hyperparameter tuning\x�sh](#improve-ml-through-feature-engineering-hyperparameter-tuningbash)
+         * [What makes a good feature?](#what-makes-a-good-feature)
+            * [Causality](#causality)
+            * [Numeric](#numeric)
+            * [Raw data to features](#raw-data-to-features)
+            * [Categorical features (One-hot encoding)](#categorical-features-one-hot-encoding)
+            * [Feature crosses](#feature-crosses)
+            * [Bucketizing](#bucketizing)
+            * [Model Architecture (Wide and Deep)](#model-architecture-wide-and-deep)
+            * [Where to do feature engineering?](#where-to-do-feature-engineering)
+      * [Lab 7: Feature Engineering](#lab-7-feature-engineering)
+         * [Task 1. Launch Cloud Datalab](#task-1-launch-cloud-datalab-6)
+         * [Task 2. Clone repo into Cloud Datalab](#task-2-clone-repo-into-cloud-datalab-6)
+         * [Task 3: Verify that you have a Cloud Storage bucket](#task-3-verify-that-you-have-a-cloud-storage-bucket-1)
+         * [Task 4: Run the lab in the notebook](#task-4-run-the-lab-in-the-notebook-1)
+      * [Hyperparameter Tuning](#hyperparameter-tuning)
+      * [Moral of the taxi fare use case](#moral-of-the-taxi-fare-use-case)
+      * [ML abstraction](#ml-abstraction)
+      * [Other references](#other-references)
+      * [Recommended extra courses](#recommended-extra-courses)
 
 
 ---
 
 ## Definition
 
-__Check paper notebook__
+* **MSE** : the loss measure for regression models.
+* **Cross Entropy**: the loss measure for a classification problem.
+* **Accuracy**: a more intuitive measure of skill for classifiers with a balanced dataset.
+* **Precision**: the accuracy when the classifier says "YES".
+* **Recall**: the accuracy when the truth is "YES".
 
 ## Playing with ML
 
@@ -77,26 +118,103 @@ __Check paper notebook__
 
 ## What makes a good dataset
 
-__Check paper notebook__
+The dataset should cover all cases. Be purposeful: take to human expert to get right amount/type of data.
+
+Make sure you have Negative examples and near-misses.: You have to know what kind of data will confuse a ML model. So ensure you have negative examples and ones that are so close that they will near misses.
+
+
+Explore the data you have: fix problems. Find outliers and sometimes take them away while it is usually best to collect enough of those outliers to let your model learn from them as well.
 
 ### Error metrics
 
-__Check paper notebook__
+you need an error measure:
+
+* square the error
+* calculate the mean
+
+You get the mean-square error!
+
+* in regression problems: you sum over the difference squared between the true value and your estimate.
+* in classification problems: the estimate is a real value between 0 and 1, while the true value is either 0 or 1. There the error measure is called the **cross-entropy** or [**log loss**](http://scikit-learn.org/stable/modules/generated/sklearn.metrics.log_loss.html).
 
 ### Accuracy
 
-__Check paper notebook__
+The cross-entropy is not very intuitive. A **confusion matrix** for a classification problem usually helps more to describe the performance of its model.
+
+Gather the outcomes into a table:
+
+| Truth \ Estimation | Cat               | No Cat            |
+|--------------------|-------------------|-------------------|
+| Cat                | **True Positive** | False Negative    |
+| No Cat             | False Positive    | **True Negative** |
+
+From the confusion matrix, you can calculate a measure of skill:
+
+<a href="https://latex.codecogs.com/gif.latex?accuracy%20%3D%20%5Cfrac%7B%5Csum%20TP%20&plus;%20TN%7D%7B%5Csum%20all%20%5C%20images%7D" target="_blank"><img src="https://latex.codecogs.com/gif.latex?accuracy%20%3D%20%5Cfrac%7B%5Csum%20TP%20&plus;%20TN%7D%7B%5Csum%20all%20%5C%20images%7D" title="Accuracy" /></a>
+
+
+If the dataset is not balanced, then accuracy starts to have a problem.
+
+e.g. 1000 parking spaces, 990 are occupied and only 10 free. If your ML model identify only 1 free space, its accuracy is still really high: accuracy = (990+1)/1000 = 0.991 = 99.1%
+
+If you have an unbalanced dataset, you want to look at **precision** and **recall**.
 
 ### Precision and Recall
 
-__Check paper notebook__
+precision = positive predictive value
+
+<a href="https://latex.codecogs.com/gif.latex?precision%20%3D%20%5Cfrac%7B%5Csum%20TP%7D%7B%5Csum%20TP&plus;%20FP%7D" target="_blank"><img src="https://latex.codecogs.com/gif.latex?precision%20%3D%20%5Cfrac%7B%5Csum%20TP%7D%7B%5Csum%20TP&plus;%20FP%7D" title="Precision" /></a>
+
+e.g. 1000 parking spaces, 990 are occupied and only 10 free. If your ML model identify only 1 free space, its precision = 1/(1+0) = 1 = 100%
+
+Precision is one aspect for judging the performance of your model, but still not enough.
+
+On an unbalanced dataset, you need to look at recall:
+
+https://latex.codecogs.com/gif.latex?recall%20%3D%20%5Cfrac%7B%5Csum%20TP%7D%7B%5Csum%20TP%20&plus;%20FN%7D
+
+e.g. 1000 parking spaces, 990 are occupied and only 10 free. If your ML model identify only 1 free space, recall = 1/ (10 + 0)  = 0.1 = 10%
+
+> **Accuracy** is what you will use wit ha balanced dataset
+> with an unbalanced dataset, you will need **Precision and Recall**.
+>
+> * You tend to use **Recall** when the things you are trying to find are _*very rare*_ (e.g. very few cats in your set of images).
+>
+> * You tend to use **Precision** when the things you are trying to find are _*very common*_ (e.g. very many cats in your set of images).
+
+
 
 ### Creating ML datasets
 
-__Check paper notebook__
+In the regression problem we solve below in the lab, the error measure is the mean-square error (MSE).
+
+Ww try to predict the amount of taxi fare given the distance travelled.
+
+The RMSE (root MSE) would provide intuitive value measured in dollars!
+
+While a simple linear model might give a bad RMSE of 22. A fine tuned polynomial may give 0. But the latter won't generalize well (and **overfit** to the training data).
+
+with new data, the linear model will provide similar "bad" RMSE, while the polynomial model a much worse RMSE.
+
+The error on training data is too different from the error on the testing data.
+
+We definitely need to split our dataset to be able to assess the complexity of our model. We improve the model as an **iterative process**:
+
+* start with one set of algo/hyper-parameters
+* check for overfitting?
+    * NO: increase model complexity (and reduce your RMSE)
+    * YES: you are done! (your previous RMSE was optinal, use that previous model).
 
 
+To evaluate the performance of your model, we will split the original dataset in 3:
 
+* **training data**: the training set is used to train a given model.
+* **validation data**: the validation set is used to choose between models (for instance, does a random forest or a neural net work better for your problem? do you want a random forest with 40 trees or 50 trees?).
+* **test data**: the test set tells you how you’ve done. If you’ve tried out a lot of different models, you may get one that does well on your validation set just by chance, and having a test set helps make sure that is not the case.
+
+You could eventually use cross-validation if your data is scarce (not enough data), which will split 10 times your full dataset into training/test sets.
+
+A [good article on **How (and Why) to Create a Good Validation Set**](https://www.kdnuggets.com/2017/11/create-good-validation-set.html).
 
 ----------------------------------------------------------------------------------
 
@@ -1796,9 +1914,10 @@ dnn_feature_columns = deep_columns,
 
 In this lab ([overview **video**  of the lab](https://www.coursera.org/learn/serverless-machine-learning-gcp/lecture/nN0uG/feature-engineering-lab-review)), you will perform the following tasks:
 
+
 * Working with feature columns
 * Adding feature crosses in TensorFlow
-* Reading data from BigQuery
+* Reading much more data from BigQuery
 * Creating datasets using Dataflow
 * Using a wide-and-deep model
 
@@ -1867,13 +1986,138 @@ Among the possible improvement other than increasing the amount of training data
 
 again, check the resulting [notebook](https://github.com/GoogleCloudPlatform/training-data-analyst/blob/master/courses/machine_learning/feateng/feateng.ipynb).
 
+Since we do more now on the features using much more data from BigQuery:
+
+* we have our own function `create_query` to pull 'dayofweek', 'hourofday', 'pickuplat', 'pickuplon', the true value which is the 'fare_amount',
+* then finally use different modulo to generate the training/validation/testing sets.
+* then convert the data from BigQuery into csv using Dataflow (`preprocess()`: convert day of week into strings, convert into csv line and write it down.) You could read from BigQuery and avoid converting it to CSV, but it will be cheaper as you might use the data multiple times, so reading from BigQuery only once.
 
 
-Other notebooks allows to explore:
+The python module is now different (in `feaateng/taxifare/trainer`): 
 
-* [Hyper-parameter tuning](https://github.com/GoogleCloudPlatform/training-data-analyst/blob/master/courses/machine_learning/feateng/hyperparam.ipynb)
+* `task.py` is the same as before, with a single addition: the number of buckets, for hyper-parameter tuning of the number of buckets (grid of NYC).
+* in `model.py`:
+    * `CSV_COLUMNS` now includes many more feature names with defaults values `DEFAULTS` (even if not used like `sun` for the 'dayofweek', this tells TF t is a string).
+    * `SCALE_COLUMNS` are the columns we want to scale
+    * `INPUT_COLUMNS` builds the inputs for the neural network in TF.
+    * bucketizing lat/long
+
+```python
+    # Bucketize the lats & lons
+    latbuckets = np.linspace(38.0, 42.0, nbuckets).tolist()
+    lonbuckets = np.linspace(-76.0, -72.0, nbuckets).tolist()
+    b_plat = tf.feature_column.bucketized_column(plat, latbuckets)
+    b_dlat = tf.feature_column.bucketized_column(dlat, latbuckets)
+    b_plon = tf.feature_column.bucketized_column(plon, lonbuckets)
+    b_dlon = tf.feature_column.bucketized_column(dlon, lonbuckets)
+```
+
+    * feature-cross of the pickup-lat and picukup-lon into pickup-location and dropoff-location, make a kind of 'trip' pair out of these (this builds a grid out of the map of new york):
+
+```python
+    # Feature cross
+    ploc = tf.feature_column.crossed_column([b_plat, b_plon], nbuckets * nbuckets)
+    dloc = tf.feature_column.crossed_column([b_dlat, b_dlon], nbuckets * nbuckets)
+    pd_pair = tf.feature_column.crossed_column([ploc, dloc], nbuckets ** 4 )
+```
+
+    * feature-cross of the hourOfDay and DayOfWeek:
+
+```python
+    day_hr =  tf.feature_column.crossed_column([dayofweek, hourofday], 24 * 7)
+```
+
+    * wide columns and deep columns: dee columns for all values that are real-valued numbers. And also "embed" some of those features into a group of 10 numbers out of it, and use it as my input to the neural network.
+
+
+```python
+   # Wide columns and deep columns.
+    wide_columns = [
+        # Feature crosses
+        dloc, ploc, pd_pair,
+        day_hr,
+
+        # Sparse columns
+        dayofweek, hourofday,
+
+        # Anything with a linear relationship
+        pcount 
+    ]
+
+    deep_columns = [
+        # Embedding_column to "group" together ...
+        tf.feature_column.embedding_column(pd_pair, 10),
+        tf.feature_column.embedding_column(day_hr, 10),
+
+        # Numeric columns
+        plat, plon, dlat, dlon,
+        latdiff, londiff, euclidean
+    ]
+```
+
+
+
+## Hyperparameter Tuning
+
+[demo notebook](https://github.com/GoogleCloudPlatform/training-data-analyst/blob/master/courses/machine_learning/feateng/hyperparam.ipynb)
+
+**Learning rate** and **batch size** matter.
+
+* at low learning rate, the improvement is linear, but not best possible performance
+* at high learning rate, the improvement is faster, but you tend to never converge
+
+Often there is "just right learning rate" but good luck finding it.
+
+Same for batch size and other parameters (size of model, number of hask buckets, embedding size, ...)
+
+Cloud MLE hyperparameter tuning optimizes those for you. For that you need to:
+
+1. make the parameter a command-line argument (in `task.py`)
+2. make sure outputs don't clobber each other (with the `trial` variable in `task.py`)
+3. supply hyperparameters to your training job (with `hyperparam.yaml`)
+
+Cloud MLE will search for promising hyperparameters if you pass the config file with `--config=hyperparam.yaml` when you submit your training job using the command line (`gcloud ml-engine jobs submit training $JOBNAME .... --config=hyperparam.yaml ...`).
+
+
+We tell it that our goal is to minimize the RMSE (`eval_metrics` in `modle.py`), and give the tuner ranges for each of the command line parameters we want to use. It is not Grid Search, but a Bayseian search.
+ 
+
+
+
+
+
+
+
 * [Exploring `tf.transform`](https://github.com/GoogleCloudPlatform/training-data-analyst/blob/master/courses/machine_learning/feateng/tftransform.ipynb) for data processing of input data in prediction.
 
+
+## Moral of the taxi fare use case
+
+**Accuracy** improves with:
+
+* **feature engineering**,
+* **hyperparameter tuning**,
+* and **using lots of data**.
+
+
+## ML abstraction
+
+You could use already made professional ML API to solve your problem. Among them:
+
+* NLP API
+* Vision API
+* Dialogflow
+
+**Cloud autoML** automatically create ML models:
+
+* it provides a GUI that streamline the process of working with data
+* after training you can create your own label on top of the labels already recognized by autoML.
+
+It works by steps, e.g.:
+
+1. step 1: upload the images
+1. step 2: train (the models)
+1. step 3: evaluate and serve the model in an application.
 
 
 
@@ -1887,12 +2131,17 @@ Other notebooks allows to explore:
 * [Angeliqa's notes](https://docs.google.com/document/d/1_G6F5qmjcklNOK8KBkUBD5gDHMLXrNjCX6yIBuR8iEA/edit?pli=1)
 * [GCP Labs and demos for the course](https://github.com/GoogleCloudPlatform/training-data-analyst)
 * [Cloud Datalab resources on Github](https://github.com/googledatalab/notebooks)
+* [Blog on Big Data + ML](https://cloud.google.com/blog/products/data-analytics) (e.g. [Empowering nonprofits through large-scale analytics](https://blog.google/products/google-cloud/data-solutions-for-change-empowering-nonprofits-through-large-scale-analytics/))
 
 ----------------------------------------------------------------------------------
 
 ## Recommended extra courses
 
-* [Machine learning with TensorFlow on GCP](https://www.coursera.org/specializations/machine-learning-tensorflow-gcp) (5 courses, 7+ weeks)
-* Advanced machine learning with TensorFlow on GCP: ??
+* [Machine Learning with TensorFlow on GCP **Specialization**](https://www.coursera.org/specializations/machine-learning-tensorflow-gcp) (5 courses, 7+ weeks)
+    * [course 1: How Google does Machine Learning](https://www.coursera.org/learn/google-machine-learning)
+    * [course 2: Launching into Machine Learning](https://www.coursera.org/learn/launching-machine-learning)
+    * [course 3: Intro to TensorFlow](https://www.coursera.org/learn/intro-tensorflow)
+    * [course 4: Feature Engineering](https://www.coursera.org/learn/feature-engineering)
+    * [course 5: Art and Science of Machine Learning](https://www.coursera.org/learn/art-science-ml)
 * https://ai.google/education/
 * https://developers.google.com/machine-learning/crash-course/
