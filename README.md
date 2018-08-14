@@ -27,5 +27,5 @@ The courses are:
 1. course 2: [Leveraging Unstructured Data with Cloud **Dataproc** on Google Cloud Platform](./Dataflow.md)
 1. course 3: [Serverless Data Analysis with Google **BigQuery** and Cloud **Dataflow**](./BigQuery.md)
 1. course 4: [Serverless Machine Learning with **Tensorflow on Google Cloud Platform**](./ML_on_GCP_with_Datalab_and_TensorFlow.md)
-1. course 5: [Building Resilient **Streaming Systems** on Google Cloud Platform]()
+1. course 5: [Building Resilient **Streaming Systems** on Google Cloud Platform](./streaming_pipelines_on_GCP.md)
 
