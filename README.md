@@ -5,31 +5,23 @@
 
 This course teaches participants the following skills:
 
-• Design and build data processing systems on Google Cloud Platform
+* Design and build data processing systems on Google Cloud Platform
+* Leverage unstructured data using Spark and ML APIs on Cloud Dataproc
+* Process batch and streaming data by implementing autoscaling data pipelines on Cloud Dataflow
+* Derive business insights from extremely large datasets using Google BigQuery
+* Train, evaluate and predict using machine learning models using Tensorflow and Cloud ML
+* Enable instant insights from streaming data
 
-• Leverage unstructured data using Spark and ML APIs on Cloud Dataproc
 
-• Process batch and streaming data by implementing autoscaling data pipelines on Cloud Dataflow
-
-• Derive business insights from extremely large datasets using Google BigQuery
-
-• Train, evaluate and predict using machine learning models using Tensorflow and Cloud ML
-
-• Enable instant insights from streaming data
 
 This class is intended for experienced developers who are responsible for managing big data transformations including:
 
-• Extracting, Loading, Transforming, cleaning, and validating data
+* Extracting, Loading, Transforming, cleaning, and validating data
+* Designing pipelines and architectures for data processing
+* Creating and maintaining machine learning and statistical models
+* Querying datasets, visualizing query results and creating reports
 
-• Designing pipelines and architectures for data processing
-
-• Creating and maintaining machine learning and statistical models
-
-• Querying datasets, visualizing query results and creating reports
-
-
-
-Courses:
+The courses are:
 
 1. [course 1: Google Cloud Platform Big Data and Machine Learning Fundamentals]()
 1. [course 2: Leveraging Unstructured Data with Cloud Dataproc on Google Cloud Platform](./Dataflow.md)
