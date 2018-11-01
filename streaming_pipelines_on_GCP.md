@@ -23,12 +23,38 @@ Modules:
 1. Module 4: Streaming analytics and dashboards
 1. Module 5: Handling Throughput and Latency Requirements
 
+
+## Table of Content
+
+* [Content](#content)
+   * [GCP Beam/Dataflow](#gcp-beamdataflow)
+* [Lab 1 : Publish streaming data into Pub/Sub](#lab-1--publish-streaming-data-into-pubsub)
+   * [Task 1: Preparation](#task-1-preparation)
+   * [Task 2: Create Pub/Sub topic and subscription](#task-2-create-pubsub-topic-and-subscription)
+   * [Task 3: Simulate traffic sensor data into Pub/Sub](#task-3-simulate-traffic-sensor-data-into-pubsub)
+   * [Task 4: Verify that messages are received](#task-4-verify-that-messages-are-received)
+* [Lab 2 : Streaming Data Pipelines](#lab-2--streaming-data-pipelines)
+   * [Task 1: Preparation](#task-1-preparation-1)
+   * [Task 2: Create a BigQuery Dataset and Cloud Storage Bucket](#task-2-create-a-bigquery-dataset-and-cloud-storage-bucket)
+   * [Task 3: Simulate traffic sensor data into Pub/Sub](#task-3-simulate-traffic-sensor-data-into-pubsub-1)
+   * [Task 4: Launch Dataflow Pipeline](#task-4-launch-dataflow-pipeline)
+   * [Task 5: Explore the pipeline](#task-5-explore-the-pipeline)
+   * [Task 6: Determine throughput rates](#task-6-determine-throughput-rates)
+   * [Task 7: Review BigQuery output](#task-7-review-bigquery-output)
+   * [Task 8: Observe and understand autoscaling](#task-8-observe-and-understand-autoscaling)
+   * [Task 9: Refresh the sensor data simulation script](#task-9-refresh-the-sensor-data-simulation-script)
+   * [Task 10: Stackdriver integration](#task-10-stackdriver-integration)
+   * [Task 11: Explore metrics](#task-11-explore-metrics)
+   * [Task 12: Create alerts](#task-12-create-alerts)
+   * [Task 13: Set up dashboards](#task-13-set-up-dashboards)
+   * [Task 14: Launch another streaming pipeline](#task-14-launch-another-streaming-pipeline)
+* [references](#references)
+
+
+
+
+
 ## Content
-
-
-
-
-
 
 * "So if you want to look for fraud transactions historically, well that's **batch**,"
 * "but if you want to look at it as it happens, that **streaming**."
