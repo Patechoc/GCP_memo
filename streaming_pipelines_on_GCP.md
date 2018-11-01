@@ -63,10 +63,10 @@ Modules:
 
 ### GCP Beam/Dataflow
 
-* what
-* where
-* when
-* how ...
+* **what** results are you calculating? (e.g. max() > P-transform in Dataflow) 
+* **where** in "event time" are results calculated? (cf. via event-time windowing)
+* **when** in processing time are results materialized? (cf. watermarks, triggers and allowed lateness)
+* **how** do you refine when a message comes late? (cf. accumulation modes)
 
 https://cloud.google.com/blog/products/gcp/after-lambda-exactly-once-processing-in-google-cloud-dataflow-part-1
 
@@ -246,7 +246,7 @@ less send_sensor_data.py
 
 Look at the simulate function. This one lets the script behave as if traffic sensors were sending in data in real time to Pub/Sub. The speedFactor parameter determines how fast the simulation will go.
 
-* Download the traffic simulation dataset ([download_data.sh](https://github.com/GoogleCloudPlatform/training-data-analyst/blob/master/courses/streaming/publish/download_data.sh)).
+* Download the traffic simulation dataset ([download_data.sh](https://github.com/Patechoc/training-data-analyst/blob/master/courses/streaming/publish/download_data.sh)).
 
 ```shell
 ./download_data.sh
@@ -280,7 +280,7 @@ Requirement already up-to-date: pyasn1<0.5.0,>=0.4.1 in /usr/local/lib/python2.7
 
 Simulate streaming sensor data
 
-* Run the [send_sensor_data.py](https://github.com/GoogleCloudPlatform/training-data-analyst/blob/master/courses/streaming/publish/send_sensor_data.py)
+* Run the [send_sensor_data.py](https://github.com/Patechoc/training-data-analyst/blob/master/courses/streaming/publish/send_sensor_data.py)
 
 ```shell
 ./send_sensor_data.py --speedFactor=60 --project $DEVSHELL_PROJECT_ID
@@ -356,6 +356,25 @@ Stop the sensor simulator
 ```shell
 exit
 ```
+
+
+----------------------------------------------------------------------------------
+## Dataflow Streaming: Implementing streaming pipelines (module #3)
+
+### Definitions
+
+[video](https://www.coursera.org/learn/building-resilient-streaming-systems-gcp/lecture/a3LsQ/handle-late-data-watermarks-triggers-accumulation)
+
+**Event time**: time at which the event occured.
+
+**Processing time**: time at which we get to process this event.
+
+* **what** are you computing? (**Transformations**)
+* **where** in "event time"  (**Windowing**)
+* **when** in "processing time" (**Watermarks + Triggers**)
+* **how** do you refine when a message comes late? (**Accumulation**)
+
+**Watermark**: is the tracker measuring how far the processing time is from the event time.
 
 
 ----------------------------------------------------------------------------------
@@ -525,7 +544,7 @@ Verify that Google Cloud **Dataflow API** is enabled for this project
 cd ~/training-data-analyst/courses/streaming/process/sandiego
 ```
 
-* Identify the script that creates and runs the Dataflow pipeline ([`run_oncloud.sh`](https://github.com/GoogleCloudPlatform/training-data-analyst/blob/master/courses/streaming/process/sandiego/run_oncloud.sh)).
+* Identify the script that creates and runs the Dataflow pipeline ([`run_oncloud.sh`](https://github.com/Patechoc/training-data-analyst/blob/master/courses/streaming/process/sandiego/run_oncloud.sh)).
 
 ```shell
 cat run_oncloud.sh
@@ -533,7 +552,7 @@ cat run_oncloud.sh
 
 * Copy-and-paste the following URL into a new browser tab to view the source code on Github.
 
-`https://github.com/GoogleCloudPlatform/training-data-analyst/blob/master/courses/streaming/process/sandiego/run_oncloud.sh`
+  [https://github.com/Patechoc/training-data-analyst/blob/master/courses/streaming/process/sandiego/run_oncloud.sh](https://github.com/Patechoc/training-data-analyst/blob/master/courses/streaming/process/sandiego/run_oncloud.sh)
 
 * The script requires three arguments: **project id**, **bucket name**, **classname**
 
@@ -546,7 +565,7 @@ A 4th optional argument is **options**. The **options** argument in discussed la
 
 There are 4 java files that you can choose from for **classname**. Each reads the traffic data from Pub/Sub and runs different aggregations/computations.
 
-* Go into the java directory. Identify the source file [**AverageSpeeds.java**](https://github.com/GoogleCloudPlatform/training-data-analyst/blob/master/courses/streaming/process/sandiego/src/main/java/com/google/cloud/training/dataanalyst/sandiego/AverageSpeeds.java).
+* Go into the java directory. Identify the source file [**AverageSpeeds.java**](https://github.com/Patechoc/training-data-analyst/blob/master/courses/streaming/process/sandiego/src/main/java/com/google/cloud/training/dataanalyst/sandiego/AverageSpeeds.java). **This is THE program building the Dataflow pipeline!!!!**
 
 ```shell
 cd ~/training-data-analyst/courses/streaming/process/sandiego/src/main/java/com/google/cloud/training/dataanalyst/sandiego 
@@ -560,7 +579,7 @@ Close the file to continue. You will want to refer to this source code while run
 
 * Copy-and-paste the following URL into a browser tab to view the source code on Github.
 
-`https://github.com/GoogleCloudPlatform/training-data-analyst/blob/master/courses/streaming/process/sandiego/src/main/java/com/google/cloud/training/dataanalyst/sandiego/AverageSpeeds.java`
+`https://github.com/Patechoc/training-data-analyst/blob/master/courses/streaming/process/sandiego/src/main/java/com/google/cloud/training/dataanalyst/sandiego/AverageSpeeds.java`
 
 Leave this browser tab open. You will be referring back to the source code in a later step in this lab.
 
@@ -744,7 +763,7 @@ Some common Dataflow metrics.
 
 
 
-### Task 11: Explore metrics
+### Task 11: Explore metrics with StackDriver
 
 Stackdriver monitoring is a separate service in Google Cloud Platform. So you will need to go through some setup steps to initialize the service for your lab account.
 
@@ -784,7 +803,7 @@ Explore Stackdriver Metrics
 > 
 > **System lag**: The current maximum duration that an item of data has been awaiting processing, in seconds.
 
-### Task 12: Create alerts
+### Task 12: Create alerts with StackDriver
 
 If you want to be notified when a certain metric crosses a specified threshold (for example, when System Lag of our lab streaming pipeline increases above a predefined value), you could use the Alerting mechanisms of Stackdriver to accomplish that.
 
@@ -815,7 +834,7 @@ View events
 * Every time an alert is triggered by a Metric Threshold condition, an Incident and a corresponding Event are created in Stackdriver. If you specified a notification mechanism in the alert (email, SMS, pager, etc), you will also receive a notification.
 
 
-### Task 13: Set up dashboards
+### Task 13: Set up dashboards with StackDriver
 
 You can easily build dashboards with the most relevant Dataflow-related charts with Stackdriver Monitoring Dashboards.
 
@@ -849,7 +868,7 @@ cat CurrentConditions.java
 
 * Copy-and-paste the following URL into a browser tab to view the source code on Github.
 
-`https://github.com/GoogleCloudPlatform/training-data-analyst/blob/master/courses/streaming/process/sandiego/src/main/java/com/google/cloud/training/dataanalyst/sandiego/CurrentConditions.java`
+`https://github.com/Patechoc/training-data-analyst/blob/master/courses/streaming/process/sandiego/src/main/java/com/google/cloud/training/dataanalyst/sandiego/CurrentConditions.java`
 
 What does the script do?
 
@@ -870,4 +889,10 @@ cd ~/training-data-analyst/courses/streaming/process/sandiego
 
 ## references
 
-[lab demo review in video](https://www.coursera.org/learn/building-resilient-streaming-systems-gcp/lecture/kPEBt/lab-demo-and-review)
+* [lab demo review in video](https://www.coursera.org/learn/building-resilient-streaming-systems-gcp/lecture/kPEBt/lab-demo-and-review)
+* [GCP Dataflow examples in Python (and JAVA)](https://github.com/GoogleCloudPlatform/DataflowSDK-examples)
+* [Codes Samples & Walkthoughs of applied use cases](https://cloud.google.com/dataflow/docs/samples)
+  * [Machine Learning with Apache Beam and TensorFlow](https://cloud.google.com/dataflow/examples/molecules-walkthrough
+  * [Examples for the Apache Beam SDKs](https://cloud.google.com/dataflow/examples/examples-beam)
+    * [Wordcount Walkthrough](https://beam.apache.org/get-started/wordcount-example/): a series of four successively more detailed examples that build on each other and present various SDK concepts
+    * [Mobile Gaming Examples](https://beam.apache.org/get-started/mobile-gaming-example/): examples that demonstrate more complex functionality than the WordCount examples.
