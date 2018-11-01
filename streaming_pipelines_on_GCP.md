@@ -26,6 +26,7 @@ Modules:
 
 ## Table of Content
 
+
 * [Content](#content)
    * [GCP Beam/Dataflow](#gcp-beamdataflow)
 * [Lab 1 : Publish streaming data into Pub/Sub](#lab-1--publish-streaming-data-into-pubsub)
@@ -33,6 +34,8 @@ Modules:
    * [Task 2: Create Pub/Sub topic and subscription](#task-2-create-pubsub-topic-and-subscription)
    * [Task 3: Simulate traffic sensor data into Pub/Sub](#task-3-simulate-traffic-sensor-data-into-pubsub)
    * [Task 4: Verify that messages are received](#task-4-verify-that-messages-are-received)
+* [Dataflow Streaming: Implementing streaming pipelines (module #3)](#dataflow-streaming-implementing-streaming-pipelines-module-3)
+   * [Definitions](#definitions)
 * [Lab 2 : Streaming Data Pipelines](#lab-2--streaming-data-pipelines)
    * [Task 1: Preparation](#task-1-preparation-1)
    * [Task 2: Create a BigQuery Dataset and Cloud Storage Bucket](#task-2-create-a-bigquery-dataset-and-cloud-storage-bucket)
@@ -44,12 +47,11 @@ Modules:
    * [Task 8: Observe and understand autoscaling](#task-8-observe-and-understand-autoscaling)
    * [Task 9: Refresh the sensor data simulation script](#task-9-refresh-the-sensor-data-simulation-script)
    * [Task 10: Stackdriver integration](#task-10-stackdriver-integration)
-   * [Task 11: Explore metrics](#task-11-explore-metrics)
-   * [Task 12: Create alerts](#task-12-create-alerts)
-   * [Task 13: Set up dashboards](#task-13-set-up-dashboards)
+   * [Task 11: Explore metrics with StackDriver](#task-11-explore-metrics-with-stackdriver)
+   * [Task 12: Create alerts with StackDriver](#task-12-create-alerts-with-stackdriver)
+   * [Task 13: Set up dashboards with StackDriver](#task-13-set-up-dashboards-with-stackdriver)
    * [Task 14: Launch another streaming pipeline](#task-14-launch-another-streaming-pipeline)
 * [references](#references)
-
 
 
 
