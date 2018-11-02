@@ -26,7 +26,6 @@ Modules:
 
 ## Table of Content
 
-
 * [Content](#content)
    * [GCP Beam/Dataflow](#gcp-beamdataflow)
 * [Lab 1 : Publish streaming data into Pub/Sub](#lab-1--publish-streaming-data-into-pubsub)
@@ -52,6 +51,7 @@ Modules:
    * [Task 13: Set up dashboards with StackDriver](#task-13-set-up-dashboards-with-stackdriver)
    * [Task 14: Launch another streaming pipeline](#task-14-launch-another-streaming-pipeline)
 * [references](#references)
+
 
 
 
@@ -886,6 +886,270 @@ cd ~/training-data-analyst/courses/streaming/process/sandiego
 * Return to the browser tab for Console. On the **Navigation** menu, click **Dataflow** and click on the new pipeline job. Confirm that the pipeline job is listed and verify that it is running without errors.
 * It will take several minutes before the **current_conditions** table appears in BigQuery.
 
+----------------------------------------------------------------------------------
+## Streaming analytics & dashboard
+
+
+
+
+
+
+----------------------------------------------------------------------------------
+## Lab 3 :Streaming Analytics and Dashboards
+
+
+In this lab you will connect to a BigQuery data source and create reports and charts to visualize BigQuery data.
+
+[lab demo review in video](https://www.coursera.org/learn/building-resilient-streaming-systems-gcp/lecture/eycpA/lab-demo-and-review)
+
+(Building Resilient Streaming Systems Lab 3 : Streaming Analytics and Dashboards)
+
+
+Data visualization tools can help you make sense of your BigQuery data and help you analyze the data interactively. You can use visualization tools to help you identify trends, respond to them, and make predictions using your data. In this lab, you use Google Data Studio to visualize data in the BigQuery table populated by your Dataflow pipeline in the previous exercise.
+
+* Connect to a BigQuery data source
+* Create reports and charts to visualize BigQuery data
+
+This lab uses Google Data Studio to visualize data in BigQuery using the BigQuery connector. In subsequent tasks you will create a data source, a report, and charts that visualize data in the sample table.
+
+
+### Task 1: Preparation
+
+You will be running a sensor simulator from the training VM. There are several files and some setup of the environment required.
+
+Open the SSH terminal and connect to the training VM
+
+* In the Console, on the Navigation menu, click **Compute Engine > VM instances**.
+* Locate the line with the instance called **training_vm**.
+* On the far right, under 'connect', Click on **SSH** to open a terminal window.
+* In this lab you will enter CLI commands on the **training_vm**.
+
+Verify initialization is complete
+
+* The **training_vm** is installing software in the background. Verify that setup is complete by checking that the following directory exists. If it does not exist, wait a few minutes and try again.
+
+```shell
+google1391108_student@training-vm:~$ ls /training
+bq_magic.sh  env.txt  project_env.sh  Project_ID  sensor_magic.sh  training-data-analyst
+google1391108_student@training-vm:~$
+```
+
+* Wait until setup is complete before proceeding. You can verify the installation of maven with mvn -version and the JDK with java -version.
+
+Copy files
+
+* A repository has been downloaded to the VM. Copy the repository to your home directory.
+
+```shell
+cp -r /training/training-data-analyst/ .
+```
+
+Identify a project
+
+* One environment variable that you will set is **$DEVSHELL_PROJECT_ID** that contains the Google Cloud project ID required to access billable resources.
+
+```shell
+google1391108_student@training-vm:~$ echo $DEVSHELL_PROJECT_ID
+google1391108_student@training-vm:~$ cat /training/project_env.sh 
+#! /bin/bash
+# Create the DEVSHELL_PROJECT_ID on a VM
+curl "http://metadata.google.internal/computeMetadata/v1/project/project-id" -H "Metadata-Flavor: Google" > Project
+_ID
+awk '{print "export DEVSHELL_PROJECT_ID=" $0, "\n" "export BUCKET=" $0, "\n" "export JAVA_HOME=/usr/lib/jvm/java-8-
+openjdk-amd64/jre" }' Project_ID > env.txt
+source env.txt
+echo $DEVSHELL_PROJECT_ID
+google1391108_student@training-vm:~$ source /training/project_env.sh
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100    29  100    29    0     0   2524      0 --:--:-- --:--:-- --:--:--  2636
+qwiklabs-gcp-d4b40471fdc58d0d
+google1391108_student@training-vm:~$ echo $DEVSHELL_PROJECT_ID
+qwiklabs-gcp-d4b40471fdc58d0d
+```
+
+
+### Task 2: Creating a data source
+
+* [Google Data Studio](https://datastudio.google.com/) is a separate service. Open a new browser tab. Navigate to: datastudio.google.com or click on this link: [https://datastudio.google.com/](https://datastudio.google.com/)
+
+> The first step in creating a report in Data Studio is to create a data source for the report. A report may contain one or more data sources. When you create a BigQuery data source, Data Studio uses the BigQuery connector.
+
+> You must have the appropriate permissions in order to add a BigQuery data source to a Data Studio report. In addition, the permissions applied to BigQuery datasets will apply to the reports, charts, and dashboards you create in Data Studio. When a Data Studio report is shared, the report components are visible only to users who have appropriate permissions.
+
+* On the **Reports** page, in the **Start a new report section**, click the **Blank** template. This starts the account setup process.
+
+![Blank new report](https://run-qwiklab-website-prod.s3.amazonaws.com/instructions/documents/78597/original/img/a8eaa86ffbba3009.png)
+
+* On the **Reports** page, in the **Start a new report** section, click the **Blank** template. This time it will take you to a new page and begin an **Untitled Report**.
+* In the **Add a data source** panel on the right side, click **CREATE NEW DATA SOURCE**.
+
+![Create new data source](https://run-qwiklab-website-prod.s3.amazonaws.com/instructions/documents/78597/original/img/68d8c58936ddf694.png)
+
+* In the **Google Connectors** column on the left, select **BigQuery**.
+* Click on **Authorize**.
+* In the **Sign in** dialog, select your Qwiklabs student account.
+* Click **ALLOW**. to give Google Data Studio permission to view the BigQuery resources in your lab account.
+* Select **My Projects**.
+* In the **Project** column, click on your project name.
+* In the **Dataset** column, click on **demos**.
+* In the **Table** column, click **current_conditions**.
+* In the upper right corner of the window, click **CONNECT**.
+
+> Once Data Studio has connected to the BigQuery data source, the table's fields are displayed. You can use this page to adjust the field properties or to create new calculated fields.
+
+Example:
+
+1[example data studo](https://run-qwiklab-website-prod.s3.amazonaws.com/instructions/documents/78597/original/img/6a1ae456534cf687.png)
+
+* In the upper right corner, click **ADD TO REPORT**.
+* A verification panel opens. Click **ADD TO REPORT**.
+
+
+Example:
+
+![](https://run-qwiklab-website-prod.s3.amazonaws.com/instructions/documents/78597/original/img/ce1d4039235f0edf.png)
+
+* This will initiate another sign in process to allow Data Studio to access Google Drive.
+* In the Sign in dialog, select your Qwiklabs student account.
+* Click ALLOW to give Google Data Studio permission to use the Google Drive resources in your lab account.
+
+
+> Giving Data Studio permission to Google Cloud account resources is typically a first-time activity and not something you would need to do every time you create a report.
+
+
+
+
+### Task 2: Creating a bar chart using a calculated field
+
+Once you have added the current_conditions data source to the report, the next step is to create a visualization. Begin by creating a bar chart. The bar chart displays the total number of vehicles captured for each highway. To display this, you create a calculated field as follows.
+
+* (Optional) At the top of the page, click **Untitled Report** to change the report name. For example, type** <PROJECTID>-report1-yourname**.
+* When the report editor loads, click ** Insert > Bar chart**.
+* Using the handle, draw a rectangle on the report to display the chart.
+* In the **Bar chart properties** window, on the **Data** tab, notice the value for **Data Source** (**current_conditions**) and the default values for **Dimension** and **Metric**.
+* If **Dimension** is not set to **highway**, then change **Dimension** to **highway**. In the **Dimension** section, click the existing dimension.
+
+Example:
+
+![](https://run-qwiklab-website-prod.s3.amazonaws.com/instructions/documents/78597/original/img/38ab1ca54f8d67b7.png)
+
+* In the **Metric** section, click **+Add Metric here** and add **latitude**.
+* Click the back arrow.
+* In the **Metric** section, mouse over **Record Count** and click the **(x)** to remove it.
+* In the **Metric** section, click the existing metric.
+
+![](https://run-qwiklab-website-prod.s3.amazonaws.com/instructions/documents/78597/original/img/38ab1ca54f8d67b7.png)
+
+
+* In the **Metric** picker, click **CREATE NEW METRIC**.
+* To display a count of the number of vehicles using each highway, create a calculated field. For this lab, you count the entries in the sensorId field. The value is irrespective, we just need the number of occurrences.
+* For **Field Name**, type **vehicles**.
+* Leave the **Field ID** unchanged.
+* For **Formula**, type the following (or use the formula assistant): **COUNT(sensorId)**.
+* Click **SAVE**.
+* Click **DONE**.
+
+
+Add the metric
+
+
+* In the **Metric picker**, In the **Metric** section, click **Add metric here**.
+* Select **vehicles**. Click the back arrow.
+
+
+The Bar Chart will show an error. Do you know why?
+
+Verify that the value is numeric
+
+
+* Click on the pencil next to **Data Source**, **current_condition**.
+* Examine the type associated with **vehicles**. If it is incorrectly set to timestamp, set it to **Numeric** > **Number**. Click **Done**. The error is corrected.
+* The Dimension should be set to highway and the Metric should be set to vehicles. Notice the chart is sorted in Descending order by default. The highway with the most vehicles are displayed first.
+
+![bar chart](https://run-qwiklab-website-prod.s3.amazonaws.com/instructions/documents/78597/original/img/8220855e9c967fa8.png)
+
+* To enhance the chart, change the bar labels. In the **Bar chart properties** window, click the **STYLE** tab.
+* In the **Bar chart** section, check **Show data labels**.
+* The total number of vehicles is displayed above each bar in the chart.
+
+
+
+### Task 3: Creating a chart using a custom query
+
+
+Because Data Studio does not allow aggregations on metrics, some report components are easier to generate using a custom SQL query. The Custom Query option also lets you leverage BigQuery's full query capabilities such as joins, unions, and analytical functions.
+
+Alternatively, you can leverage BigQuery's full query capabilities by creating a view. A view is a virtual table defined by a SQL query. You can query data in a view by adding the dataset containing the view as a data source.
+
+When you specify a SQL query as your BigQuery data source, the results of the query are in table format, which becomes the field definition (schema) for your data source. When you use a custom query as a data source, Data Studio uses your SQL as an inner select statement for each generated query to BigQuery. For more information on custom queries in Data Studio, consult the online help.
+
+* To add a bar chart to your report that uses a custom query data source:
+* Click **Insert > Bar chart**.
+* Using the handle, draw a rectangle on the report to display the chart.
+* In the **Bar chart properties** window, on the **Data** tab, notice the value for Data Source (natality) and the default values for Dimension and Metric are the same as the previous chart. In the Data Source section, click given **data source**.
+
+![bar chart properties](https://run-qwiklab-website-prod.s3.amazonaws.com/instructions/documents/78597/original/img/b3fd0f90481c54bb.png)
+
+* Click **Create new data source**.
+* For **Google Connectors**, click **BigQuery**.
+* Click **Custom query**.
+* For **Project**, select your project.
+* Type the following in the **Enter custom query** window.
+
+```sql
+SELECT max(speed) as maxspeed, min(speed) as minspeed, avg(speed) as avgspeed, highway FROM [<PROJECTID>:demos.current_conditions] group by highway
+```
+
+This query uses max/min/avg functions to give you the same for each highway.
+
+* At the top of the window, click **Untitled data source**, and change the data source name to **San Diego highway traffic summary**.
+* In the upper right corner of the window, click **Connect**. Once Data Studio has connected to the BigQuery data source, the results of the query are used to determine the table schema.
+* When the schema is displayed, notice the type and aggregation for each field.
+* Click **Add to report**.
+* When prompted, click **Add to report**.
+
+> Data Studio may be unable to determine the appropriate Dimension and Metrics for the chart. This results in the error: Configuration incomplete - Invalid dimension or metric selected.
+
+* In the **Metric picker**, select **maxspeed**.
+* Click the back arrow to close the Metric picker.
+* In the **Metric** section, click **+Add metric here**.
+* In the **Metric picker**, select **minspeed**.
+* Click the back arrow to close the Metric picker.
+* In the **Metric section**, click **Add a metric**.
+* In the **Metric picker**, select **avgspeed**.
+* Click the back arrow to close the Metric picker.
+Your chart now displays the max speed, minimum speed and average speed for each highway.
+
+Notice each bar has a default color based on the order the metrics were added to the chart.
+
+![](https://run-qwiklab-website-prod.s3.amazonaws.com/instructions/documents/78597/original/img/6482fcba53715260.png)
+
+* For readability, change the chart styles. In the **Bar chart properties**, click the **Style** tab.
+
+
+![](https://run-qwiklab-website-prod.s3.amazonaws.com/instructions/documents/78597/original/img/406e5ee0da50b8aa.png)
+
+In the **Color by** section, click on the boxes to select different colors.
+
+![](https://run-qwiklab-website-prod.s3.amazonaws.com/instructions/documents/78597/original/img/bad3d793f601daaa.png)
+
+### Task 4: Viewing your query history
+
+You can view queries submitted via the BigQuery Connector by examining your query history in the BigQuery web interface. Using the query history, you can estimate query costs, and you can save queries for use in other scenarios.
+
+* On the **Navigation menu** click **BigQuery**.
+* Click **Go to Classic UI**.
+* The BigQuery console will open in a new browser tab. Now select your Qwiklabs project by clicking the down arrow next to **Google Cloud Shell**, selecting **Switch to Project** > **Your Qwiklab Project**.
+* Refresh the browser window.
+* Click **Query History**.
+* The list of queries is displayed with the most recent queries first. Click Open Query to view details on the query such as Job ID and Bytes Processed.
+
+
+![query history](https://run-qwiklab-website-prod.s3.amazonaws.com/instructions/documents/78597/original/img/5ea5c9237f3dd222.png)
+
+> [lab demo review in video](https://www.coursera.org/learn/building-resilient-streaming-systems-gcp/lecture/eycpA/lab-demo-and-review)
+
 
 ----------------------------------------------------------------------------------
 
@@ -898,3 +1162,4 @@ cd ~/training-data-analyst/courses/streaming/process/sandiego
   * [Examples for the Apache Beam SDKs](https://cloud.google.com/dataflow/examples/examples-beam)
     * [Wordcount Walkthrough](https://beam.apache.org/get-started/wordcount-example/): a series of four successively more detailed examples that build on each other and present various SDK concepts
     * [Mobile Gaming Examples](https://beam.apache.org/get-started/mobile-gaming-example/): examples that demonstrate more complex functionality than the WordCount examples.
+* [CODELABS: BigQuery/Data Studio](https://codelabs.developers.google.com/codelabs/cpb104-bigquery-datastudio/#0)
