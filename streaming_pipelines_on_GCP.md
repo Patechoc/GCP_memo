@@ -50,9 +50,21 @@ Modules:
    * [Task 12: Create alerts with StackDriver](#task-12-create-alerts-with-stackdriver)
    * [Task 13: Set up dashboards with StackDriver](#task-13-set-up-dashboards-with-stackdriver)
    * [Task 14: Launch another streaming pipeline](#task-14-launch-another-streaming-pipeline)
-* [references](#references)
-
-
+* [Streaming analytics &amp; dashboard](#streaming-analytics--dashboard)
+* [Lab 3 :Streaming Analytics using BigQuery and Dashboards with Data Studio](#lab-3-streaming-analytics-using-bigquery-and-dashboards-with-data-studio)
+   * [Task 1: Preparation](#task-1-preparation-2)
+   * [Task 2: Creating a data source](#task-2-creating-a-data-source)
+   * [Task 2: Creating a bar chart using a calculated field](#task-2-creating-a-bar-chart-using-a-calculated-field)
+   * [Task 3: Creating a chart using a custom query](#task-3-creating-a-chart-using-a-custom-query)
+   * [Task 4: Viewing your query history](#task-4-viewing-your-query-history)
+* [BigTable &amp; Cloud Spanner: for higher throughput and lower latency (milliseonds, microseconds)](#bigtable--cloud-spanner-for-higher-throughput-and-lower-latency-milliseonds-microseconds)
+* [Lab 4 : Streaming Data into BigTable](#lab-4--streaming-data-into-bigtable)
+   * [Task 1: Preparation](#task-1-preparation-3)
+   * [Task 2: Simulate traffic sensor data into Pub/Sub](#task-2-simulate-traffic-sensor-data-into-pubsub)
+   * [Task 3: Launch Dataflow Pipeline](#task-3-launch-dataflow-pipeline)
+   * [Task 4: Explore the pipeline](#task-4-explore-the-pipeline)
+   * [Task 5: Query Bigtable data](#task-5-query-bigtable-data)
+* [More References](#more-references)
 
 
 
