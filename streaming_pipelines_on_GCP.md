@@ -895,7 +895,7 @@ cd ~/training-data-analyst/courses/streaming/process/sandiego
 
 
 ----------------------------------------------------------------------------------
-## Lab 3 :Streaming Analytics and Dashboards
+## Lab 3 :Streaming Analytics using BigQuery and Dashboards with Data Studio 
 
 
 In this lab you will connect to a BigQuery data source and create reports and charts to visualize BigQuery data.
@@ -1153,9 +1153,425 @@ You can view queries submitted via the BigQuery Connector by examining your quer
 
 ----------------------------------------------------------------------------------
 
-## references
+## BigTable & Cloud Spanner: for higher throughput and lower latency (milliseonds, microseconds)
 
-* [lab demo review in video](https://www.coursera.org/learn/building-resilient-streaming-systems-gcp/lecture/kPEBt/lab-demo-and-review)
+BigQuery data stream ingestion available in matter of seconds. Sometimes this is not enough.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+----------------------------------------------------------------------------------
+
+## Lab 4 : Streaming Data into BigTable
+
+In this lab you will use Dataflow to collect traffic events from simulated traffic sensor data made available through Google Cloud PubSub, and write them into a Bigtable table.
+
+* Launch **Dataflow** pipeline to read from **PubSub** and write into **Bigtable**
+* Open an **HBase** shell to query the **Bigtable** data
+
+[lab demo review in video](https://www.coursera.org/learn/building-resilient-streaming-systems-gcp/lecture/wlLP1/lab-demo-and-review)
+
+
+
+### Task 1: Preparation
+
+You will be running a sensor simulator from the training VM. There are several files and some setup of the environment required.
+
+Open the SSH terminal and connect to the training VM
+
+* In the Console, on the Navigation menu, click **Compute Engine > VM instances**.
+* Locate the line with the instance called **training_vm**.
+* On the far right, under 'connect', Click on **SSH** to open a terminal window.
+* In this lab you will enter CLI commands on the **training_vm**.
+
+Verify initialization is complete
+
+* The **training_vm** is installing software in the background. Verify that setup is complete by checking that the following directory exists. If it does not exist, wait a few minutes and try again.
+
+```shell
+google1391108_student@training-vm:~$ ls /training
+bq_magic.sh  env.txt  project_env.sh  Project_ID  sensor_magic.sh  training-data-analyst
+google1391108_student@training-vm:~$
+```
+
+* Wait until setup is complete before proceeding. You can verify the installation of maven with mvn -version and the JDK with java -version.
+
+Copy files
+
+* A repository has been downloaded to the VM. Copy the repository to your home directory.
+
+```shell
+cp -r /training/training-data-analyst/ .
+```
+
+
+
+Set environment variables
+
+* One environment variable that you will set is **$DEVSHELL_PROJECT_ID** that contains the Google Cloud project ID required to access billable resources.
+
+```shell
+google1391108_student@training-vm:~$ echo $DEVSHELL_PROJECT_ID
+google1391108_student@training-vm:~$ cat /training/project_env.sh 
+#! /bin/bash
+# Create the DEVSHELL_PROJECT_ID on a VM
+curl "http://metadata.google.internal/computeMetadata/v1/project/project-id" -H "Metadata-Flavor: Google" > Project
+_ID
+awk '{print "export DEVSHELL_PROJECT_ID=" $0, "\n" "export BUCKET=" $0, "\n" "export JAVA_HOME=/usr/lib/jvm/java-8-
+openjdk-amd64/jre" }' Project_ID > env.txt
+source env.txt
+echo $DEVSHELL_PROJECT_ID
+google1391108_student@training-vm:~$ source /training/project_env.sh
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100    29  100    29    0     0   2524      0 --:--:-- --:--:-- --:--:--  2636
+qwiklabs-gcp-d4b40471fdc58d0d
+google1391108_student@training-vm:~$ echo $DEVSHELL_PROJECT_ID
+qwiklabs-gcp-d4b40471fdc58d0d
+```
+
+
+
+Prepare HBase quickstart files
+
+
+In the **training-vm** SSH terminal run the script to download and unzip the quickstart files (you will later use these to run the HBase shell.)
+
+```shell
+cd ~/training-data-analyst/courses/streaming/process/sandiego
+./install_quickstart.sh
+
+```
+
+
+### Task 2: Simulate traffic sensor data into Pub/Sub
+
+* In the **training-vm** SSH terminal, start the sensor simulator. The script reads sample data from a csv file and publishes it to Pub/Sub.
+
+```shell
+google1393188_student@training-vm:~/training-data-analyst/courses/streaming/process/sandiego$ /training/sensor_magi
+c.sh
+Copying gs://cloud-training-demos/sandiego/sensor_obs2008.csv.gz...
+/ [1 files][ 34.6 MiB/ 34.6 MiB]                                                
+Operation completed over 1 objects/34.6 MiB.  
+```
+
+> This command takes a looooooooooooongg time!!!!!
+> 
+> It will send 1 hour of data in 1 minute. Let the script continue to run in the current terminal.
+
+Open a second SSH terminal and connect to the training VM
+
+* In the upper right corner of the **training-vm** SSH terminal, click on the gear-shaped button () and select **New Connection to training-vm** from the drop-down menu. 
+
+![new terminal](https://run-qwiklab-website-prod.s3.amazonaws.com/instructions/documents/78603/original/img/aaafeb5bff33d832.png)
+
+A new terminal window will open.
+
+* The new terminal session will **not** have the required environment variables. Run the following command to set them.
+* In the new training-vm SSH terminal enter the following:
+
+```
+source /training/project_env.sh
+```
+
+
+
+### Task 3: Launch Dataflow Pipeline
+
+In the second **training-vm** SSH terminal, navigate to the directory for this lab. Examine the script in Cloud Shell or using nano. **Do not make any changes to the code.**
+
+```
+cd ~/training-data-analyst/courses/streaming/process/sandiego 
+
+nano run_oncloud.sh
+
+```
+
+What does the script do?
+
+[.../courses/streaming/process/sandiego/run_oncloud.sh](https://github.com/GoogleCloudPlatform/training-data-analyst/blob/master/courses/streaming/process/sandiego/run_oncloud.sh)
+
+```shell
+#!/bin/bash
+
+if [ "$#" -lt 3 ]; then
+   echo "Usage:   ./run_oncloud.sh project-name bucket-name classname [options] "
+   echo "Example: ./run_oncloud.sh cloud-training-demos cloud-training-demos CurrentConditions --bigtable"
+   exit
+fi
+
+PROJECT=$1
+shift
+BUCKET=$1
+shift
+MAIN=com.google.cloud.training.dataanalyst.sandiego.$1
+shift
+
+echo "Launching $MAIN project=$PROJECT bucket=$BUCKET $*"
+
+export PATH=/usr/lib/jvm/java-8-openjdk-amd64/bin/:$PATH
+mvn compile -e exec:java \
+ -Dexec.mainClass=$MAIN \
+      -Dexec.args="--project=$PROJECT \
+      --stagingLocation=gs://$BUCKET/staging/ $* \
+      --tempLocation=gs://$BUCKET/staging/ \
+      --runner=DataflowRunner"
+
+
+# If you run into quota problems, add this option the command line above
+#     --maxNumWorkers=2 
+# In this case, you will not be able to view autoscaling, however.
+```
+
+
+
+
+* The script takes 3 required arguments:
+  * project id,
+  * bucket name,
+  * classname
+  * and possibly a 4th argument: options.
+  
+  In this part of the lab, we will use the `--bigtable` option which will direct the pipeline to write into Cloud Bigtable.
+
+
+* Run the following script to create the Bigtable instance.
+
+```
+cd ~/training-data-analyst/courses/streaming/process/sandiego
+
+./create_cbt.sh
+```
+
+[.../courses/streaming/process/sandiego/create_cbt.sh](https://github.com/GoogleCloudPlatform/training-data-analyst/blob/master/courses/streaming/process/sandiego/create_cbt.sh)
+
+```
+gcloud beta bigtable instances create sandiego --cluster=cpb210 --cluster-zone=us-central1-b --display-name=="San Diego Freeway data" --instance-type=DEVELOPMENT
+
+```
+
+* Run the Dataflow pipeline to read from PubSub and write into Cloud Bigtable
+
+```
+cd ~/training-data-analyst/courses/streaming/process/sandiego
+
+./run_oncloud.sh $DEVSHELL_PROJECT_ID $BUCKET CurrentConditions --bigtable
+```
+
+Example of successful run:
+
+```
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 47.582 s
+[INFO] Finished at: 2018-06-08T21:25:32+00:00
+[INFO] Final Memory: 58M/213M
+[INFO] ------------------------------------------------------------------------
+```
+
+
+### Task 4: Explore the pipeline
+
+* Return to the browser tab for Console. On the **Navigation menu** click **Dataflow** and click on the new pipeline job. Confirm that the pipeline job is listed and verify that it is running without errors.
+* Find the **write:cbt** step in the pipeline graph, and click on the down arrow on the right to see the writer in action. Review the **Bigtable options** in the step summary.
+
+
+### Task 5: Query Bigtable data
+
+* In the second **training-vm** SSH terminal, run the **quickstart.sh** script to launch the HBase shell.
+
+```
+cd ~/training-data-analyst/courses/streaming/process/sandiego/quickstart
+
+./quickstart.sh
+```
+
+
+```
+$ cat quickstart.sh 
+#!/bin/bash
+#
+#    Copyright 2015 Google, Inc.
+#
+#    Licensed under the Apache License, Version 2.0 (the "License");
+#    you may not use this file except in compliance with the License.
+#    You may obtain a copy of the License at
+#
+#        http://www.apache.org/licenses/LICENSE-2.0
+#
+#    Unless required by applicable law or agreed to in writing, software
+#    distributed under the License is distributed on an "AS IS" BASIS,
+#    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#    See the License for the specific language governing permissions and
+#    limitations under the License.set -x -e
+# quickstart.sh
+#
+# This will start hbase shell using the pom.xml, assuming you have:
+# 1. gcloud auth login
+# 2. either given --project NAME or gcloud config set project XXXXX
+# 3. have created a Cloud Bigtable Instance
+# Prequsites: gcloud, mvn, Java
+# Allow overriding the date function for unit testing.
+function my_date() {
+  date "$@"
+}
+# Simple wrapper around "echo" so that it's easy to add log messages with a
+# date/time prefix.
+function loginfo() {
+  echo "$(my_date): ${@}"
+}
+# Simple wrapper around "echo" controllable with ${VERBOSE_MODE}.
+function logdebug() {
+  if (( ${VERBOSE_MODE} )); then
+    loginfo ${@}
+  fi
+}
+# Simple wrapper to pass errors to stderr.
+function logerror() {
+  loginfo ${@} >&2
+}
+# Handler for errors occuring during the deployment to print useful info before
+# exiting. The following global variables control whether handle_error() should
+# actually process and consolidate a trapped error, or otherwise simply flip
+# CAUGHT_ERROR to '1' without trying to consolidate logs or exiting in case
+# the caller wants to simply continue on error.
+SUPPRESS_TRAPPED_ERRORS=0
+CAUGHT_ERROR=0
+function handle_error() {
+
+```
+
+* If the script runs successfully, you would be in an HBase shell prompt that looks something like this:
+
+```
+hbase(main):001:0>
+```
+
+* At the HBase shell prompt, type the following query to retrieve 2 rows from your Bigtable table that was populated by the pipeline.
+
+```
+scan 'current_conditions', {'LIMIT' => 2}
+```
+
+you get 
+
+```
+ROW                           COLUMN+CELL                                                                          
+ 15#S#1#9223370811271375807   column=lane:direction, timestamp=1225583400, value=S                                 
+ 15#S#1#9223370811271375807   column=lane:highway, timestamp=1225583400, value=15                                  
+ 15#S#1#9223370811271375807   column=lane:lane, timestamp=1225583400, value=1.0                                    
+ 15#S#1#9223370811271375807   column=lane:latitude, timestamp=1225583400, value=32.723248                          
+ 15#S#1#9223370811271375807   column=lane:longitude, timestamp=1225583400, value=-117.115543                       
+ 15#S#1#9223370811271375807   column=lane:sensorId, timestamp=1225583400, value=32.723248,-117.115543,15,S,1       
+ 15#S#1#9223370811271375807   column=lane:speed, timestamp=1225583400, value=71.2                                  
+ 15#S#1#9223370811271375807   column=lane:timestamp, timestamp=1225583400, value=2008-11-01 23:50:00               
+ 15#S#1#9223370811271675807   column=lane:direction, timestamp=1225583100, value=S                                 
+ 15#S#1#9223370811271675807   column=lane:highway, timestamp=1225583100, value=15                                  
+ 15#S#1#9223370811271675807   column=lane:lane, timestamp=1225583100, value=1.0                                    
+ 15#S#1#9223370811271675807   column=lane:latitude, timestamp=1225583100, value=32.723248                          
+ 15#S#1#9223370811271675807   column=lane:longitude, timestamp=1225583100, value=-117.115543                       
+ 15#S#1#9223370811271675807   column=lane:sensorId, timestamp=1225583100, value=32.723248,-117.115543,15,S,1       
+ 15#S#1#9223370811271675807   column=lane:speed, timestamp=1225583100, value=71.6                                  
+ 15#S#1#9223370811271675807   column=lane:timestamp, timestamp=1225583100, value=2008-11-01 23:45:00               
+2 row(s) in 1.0520 seconds
+hbase(main):002:0> 
+```
+
+
+* Review the output. Notice each row is broken into column, timestamp, value combinations.
+Run another query. This time look only at the **lane: speed** column, limit to 10 rows, and specify **rowid patterns** for start and end rows to scan over.
+
+```
+hbase(main):058:0> scan 'current_conditions', {'LIMIT' => 10, STARTROW => '15#S#1', ENDROW => '15#S#999', COLUMN => 'lane:speed'}
+ROW                                                          COLUMN+CELL                                                                                                                                                                     
+ 15#S#1#9223370811271375807                                  column=lane:speed, timestamp=1225583400, value=71.2                                                                                                                             
+ 15#S#1#9223370811271675807                                  column=lane:speed, timestamp=1225583100, value=71.6                                                                                                                             
+ 15#S#1#9223370811271975807                                  column=lane:speed, timestamp=1225582800, value=75.2                                                                                                                             
+ 15#S#1#9223370811272275807                                  column=lane:speed, timestamp=1225582500, value=75.0                                                                                                                             
+ 15#S#1#9223370811272575807                                  column=lane:speed, timestamp=1225582200, value=74.5                                                                                                                             
+ 15#S#1#9223370811272875807                                  column=lane:speed, timestamp=1225581900, value=73.8                                                                                                                             
+ 15#S#1#9223370811273175807                                  column=lane:speed, timestamp=1225581600, value=71.2                                                                                                                             
+ 15#S#1#9223370811273475807                                  column=lane:speed, timestamp=1225581300, value=71.0                                                                                                                             
+ 15#S#1#9223370811273775807                                  column=lane:speed, timestamp=1225581000, value=69.4                                                                                                                             
+ 15#S#1#9223370811274075807                                  column=lane:speed, timestamp=1225580700, value=71.5                                                                                                                             
+10 row(s) in 0.2110 seconds
+
+hbase(main):059:0> 
+
+```
+* Review the output. Notice that you see 10 of the column, timestamp, value combinations, all of which correspond to Highway 15. Also notice that column is restricted to **lane: speed**.
+
+* Feel free to run other queries if you are familiar with the syntax. Once you're satisfied, ‘quit' to exit the shell.
+
+```
+quit
+```
+
+
+[lab demo review in video](https://www.coursera.org/learn/building-resilient-streaming-systems-gcp/lecture/wlLP1/lab-demo-and-review)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+----------------------------------------------------------------------------------
+
+## More References
+
+
 * [GCP Dataflow examples in Python (and JAVA)](https://github.com/GoogleCloudPlatform/DataflowSDK-examples)
 * [Codes Samples & Walkthoughs of applied use cases](https://cloud.google.com/dataflow/docs/samples)
   * [Machine Learning with Apache Beam and TensorFlow](https://cloud.google.com/dataflow/examples/molecules-walkthrough
