@@ -64,7 +64,9 @@ Modules:
    * [Task 3: Launch Dataflow Pipeline](#task-3-launch-dataflow-pipeline)
    * [Task 4: Explore the pipeline](#task-4-explore-the-pipeline)
    * [Task 5: Query Bigtable data](#task-5-query-bigtable-data)
+* [SUMMARY of the whole specialization](#summary-of-the-whole-specialization)
 * [More References](#more-references)
+
 
 
 
@@ -1550,25 +1552,11 @@ quit
 [lab demo review in video](https://www.coursera.org/learn/building-resilient-streaming-systems-gcp/lecture/wlLP1/lab-demo-and-review)
 
 
+----------------------------------------------------------------------------------
 
+## SUMMARY of the whole specialization
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+[Video SUMMARY of all GCP tools](https://www.coursera.org/learn/building-resilient-streaming-systems-gcp/lecture/YUGGw/summary-of-data-engineering-on-gcp-specialization)
 
 
 

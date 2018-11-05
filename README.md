@@ -29,3 +29,6 @@ The courses are:
 1. course 4: [Serverless Machine Learning with **Tensorflow on Google Cloud Platform**](./ML_on_GCP_with_Datalab_and_TensorFlow.md)
 1. course 5: [Building Resilient **Streaming Systems** on Google Cloud Platform](./streaming_pipelines_on_GCP.md)
 
+
+[Video SUMMARY of all GCP tools](https://www.coursera.org/learn/building-resilient-streaming-systems-gcp/lecture/YUGGw/summary-of-data-engineering-on-gcp-specialization)
+
