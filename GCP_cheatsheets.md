@@ -1,5 +1,15 @@
 # Google Cloud Platform Cheatsheets
 
+* [General overview of GCP](#general-overview-of-gcp)
+* [Tools](#tools)
+   * [<code>gcloud</code> &amp; <code>gsutil</code>](#gcloud--gsutil)
+   * [<code>kubectl</code>](#kubectl)
+* [Storage](#storage)
+* [Colaboratory](#colaboratory)
+   * [Colab's history and inheritance](#colabs-history-and-inheritance)
+* [GCP Products](#gcp-products)
+   * [Dataproc](#dataproc)
+
 
 ## General overview of GCP
 
@@ -19,12 +29,12 @@ GCP products described in 4 words or less ([Post on Medium](https://medium.com/g
 
 ## Tools
 
-### `gcloud` & `gsutil`
+### <code>gcloud</code> &amp; <code>gsutil</code>
 
 * [dennyzhang/cheatsheet-gcp-A4](https://github.com/dennyzhang/cheatsheet-gcp-A4)
 * quickstart by Google: https://cloud.google.com/storage/docs/quickstart-gsutil
 
-### `kubectl`
+### <code>kubectl</code>
 
 * [dennyzhang/cheatsheet-kubernetes-A4](https://github.com/dennyzhang/cheatsheet-kubernetes-A4)
 * [Official cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
@@ -33,16 +43,20 @@ GCP products described in 4 words or less ([Post on Medium](https://medium.com/g
 
 ![storage quick comparison](https://user-images.githubusercontent.com/300046/31043498-0da3e3a8-a57a-11e7-897e-8212079dcbfb.jpg)
 
+|                  | Cloud Storage                  | Cloud Datastore               | Bigtable                           | Cloud SQL (1stGen)                 | BigQuery                           |
+|------------------|--------------------------------|-------------------------------|------------------------------------|------------------------------------|------------------------------------|
+| Storage type     | BLOB store                     | NoSQL, document               | wide column NoSQL                  | Relational SQL                     | Relational SQL                     |
+| DB type          | Operational DB within an app   | Operational DB within an app  | Analytical DB in app or standalone | Operational DB within an app       | Analytical DB in app or standalone |
+| Overall capacity | Petabytes+  (~10<sup>15</sup>) | Terabytes+ (~10<sup>12</sup>) | Petabytes+  (~10<sup>15</sup>)     | Up to 500 GB   (~0.5<sup>12</sup>) |                                    |
+| Unit size        | 5 TB object                    | 1 MB entity                   | 10 MB cell                         | standard                           |                                    |
+| Transactions     | No                             | Yes                           | No                                 | Yes                                |                                    |
+| Complex queries  | No                             | No                            | No                                 | Yes                                |                                    |
+| Billing          |                                |                               |                                    |                                    | NoOps, pay by operations, cheap storage |
+| Strength         | *unstructured* data stores as *bytes* with a name within a place (.zip, .jpeg, .csv ) | NoSQL, no Schema & pay by the operation DB | DB storing +TBytes data, with millisec latency, high volume of writes, but expensive cluster, for apps that needs to scale | hosted MySQL service + Ops tasks.  | SQL query engine processing TBytes in seconds. Great for realtime analysis of large datasets |
 
-|                  | Cloud Storage | Cloud Datastore | Bigtable          | Cloud SQL (1stGen) |
-|------------------|---------------|-----------------|-------------------|--------------------|
-| Storage type     | BLOB store    | NoSQL, document | wide column NoSQL | Relational SQL     |
-| Overall capacity | Petabytes+    | Terabytes+      | Petabytes+        | Up to 500 GB       |
-| Unit size        | 5 TB object   | 1 MB entity     | 10 MB cell        | standard           |
-| Transactions     | No            | Yes             | No                | Yes                |
-| Complex queries  | No            | No              | No                | Yes                |
+![Storage decison tree](https://user-images.githubusercontent.com/300046/30033965-bd70b7a8-915b-11e7-9aba-9c2cbf5f62e8.png)
 
-![decison tree](https://user-images.githubusercontent.com/300046/30033965-bd70b7a8-915b-11e7-9aba-9c2cbf5f62e8.png)
+![Storage decison tree 2](https://i.stack.imgur.com/23CDj.png)
 
 References:
 

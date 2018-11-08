@@ -17,7 +17,7 @@ Useful commands/scripts for use on Google Cloud Platform.
 * [Architecting a BigQuery project](#architecting-a-bigquery-project)
 * [More links](#more-links)
 
-
+[videos](https://www.coursera.org/learn/serverless-data-analysis-bigquery-cloud-dataflow-gcp/lecture/pNKJG/course-introduction)
 
 ## Definition
 
@@ -265,6 +265,27 @@ bq load --source_format=NEWLINE_DELIMITED_JSON $DEVSHELL_PROJECT_ID:cpb101_fligh
 > 
 > There are multiple JSON files in the bucket named according to the convention: domestic_2014_flights_*.json. The wildcard (*) character is used to include all of the .json files in the bucket.
 
+More on wildcards for better performance [in this video](https://www.coursera.org/learn/serverless-data-analysis-bigquery-cloud-dataflow-gcp/lecture/BUxgU/wildcard-tables-and-partitioning).
+
+Performance can also be improved at loading time with [Table Partitioning](https://www.coursera.org/learn/serverless-data-analysis-bigquery-cloud-dataflow-gcp/lecture/BUxgU/wildcard-tables-and-partitioning) using Time-partitioning tables.
+
+Declare the table as partitioned at creation time using this flag: `--time_partitioning_type`, then filter your selection like so:
+
+```sql
+SELECT ...
+FROM `sales`
+WHERE _PARTITIONTIME
+BETWEEN TIMESTAMP("20160101")
+    AND TIMESTAMP("20160131")
+```
+
+You can then analyze the performance of your query using Google Stackdriver:
+
+* check the multiple (sequential) stages of your query
+* check the number of rows processed at each stage which you want to keep decreasing very rapidely (with adequate filtering)
+* `Wait`/`Read`/`Copute`/`Write`: helps undertand where a stage will be stucked or not, or have tai lskew (i.e. some stages being much longer than average!)
+
+
 Once the table is created, type the following command to verify table **flights_2014** exists in dataset **cpb101_flight_data**.
 
 ```shell
@@ -421,22 +442,6 @@ written in **SQL** or **Javascript**, they are temporary. But user-defined funct
 * programming logic
 * loops, complex conditions non-trivial string parsing (not supported by standard SQL)
 
-```sql
-
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 ## Architecting a BigQuery project
@@ -446,25 +451,7 @@ written in **SQL** or **Javascript**, they are temporary. But user-defined funct
 
 
 
-```shell
-
-
-```
-
-```shell
-
-
-```
-
-```shell
-
-
-```
-
-
 ## More links
 
 * https://github.com/GoogleCloudPlatform/python-docs-samples
 * [How to query public data sets using BigQuery (e.g. Github data)](https://cloud.google.com/bigquery/public-data/github)
-
-
