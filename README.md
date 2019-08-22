@@ -1,4 +1,6 @@
-# Data Engineering on Google Cloud Platform Specialization
+# Data Engineering & Cloud architect on GCP
+
+## Data Engineering on Google Cloud Platform Specialization
 
 
 (A set of [courses](https://www.coursera.org/specializations/gcp-data-machine-learning) by COURSERA)
@@ -34,3 +36,5 @@ The courses are:
 * [Video SUMMARY of all GCP tools](https://www.coursera.org/learn/building-resilient-streaming-systems-gcp/lecture/YUGGw/summary-of-data-engineering-on-gcp-specialization)
 
 * [GCP Cheatsheets](./GCP_cheatsheets.md)
+
+## Cloud Architect on Google Cloud Platform
