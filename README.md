@@ -1,4 +1,13 @@
-# Data Engineering on Google Cloud Platform Specialization
+# Google CLoud Platform (GCP) Data Engineering & Cloud architect
+
+      * [Data Engineering on Google Cloud Platform Specialization](#data-engineering-on-google-cloud-platform-specialization)
+         * [Lectures &amp; labs](#lectures--labs)
+         * [Codelabs](#codelabs)
+         * [App as playground](#app-as-playground)
+      * [Cloud Architect on Google Cloud Platform](#cloud-architect-on-google-cloud-platform)
+
+
+## Data Engineering on Google Cloud Platform Specialization
 
 
 (A set of [courses](https://www.coursera.org/specializations/gcp-data-machine-learning) by COURSERA)
@@ -22,7 +31,7 @@ This class is intended for experienced developers who are responsible for managi
 * Querying datasets, visualizing query results and creating reports
 
 
-## Lectures & labs
+### Lectures & labs
 
 The courses are:
 
@@ -38,13 +47,17 @@ The courses are:
 
 * [GCP Cheatsheets](./GCP_cheatsheets.md)
 
-## Codelabs
+
+### Codelabs
 
 https://codelabs.developers.google.com/devoxx
 
 * Getting Started with [Cloud Shell & gcloud](https://codelabs.developers.google.com/codelabs/cloud-shell)
 
 
-## App as playground
+### App as playground
 
 coming...
+
+## Cloud Architect on Google Cloud Platform
+
