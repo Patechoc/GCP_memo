@@ -41,6 +41,8 @@ GCP products described in 4 words or less ([Post on Medium](https://medium.com/g
 
 ## Storage
 
+Choosing a storage option: https://cloud.google.com/storage-options/ (same decisions trees as below and a video with details)
+
 ![storage quick comparison](https://user-images.githubusercontent.com/300046/31043498-0da3e3a8-a57a-11e7-897e-8212079dcbfb.jpg)
 
 |                  | Cloud Storage                  | Cloud Datastore               | Bigtable                           | Cloud SQL (1stGen)                 | BigQuery                           |
@@ -63,6 +65,12 @@ References:
 * https://stackoverflow.com/questions/tagged/google-cloud-storage
 * https://wilsonmar.github.io/gcp/ 
 
+
+## Compute
+
+* fully managed > **App Engine** (language specific: Ruby, PHP, .NET, Go, Java, Python, Node.js or any custom container with another language)
+* Cluster management > **Kubernetes Engine**
+* Moe control on HW > **Compute Engine**
 
 ## Colaboratory
 

@@ -21,6 +21,9 @@ This class is intended for experienced developers who are responsible for managi
 * Creating and maintaining machine learning and statistical models
 * Querying datasets, visualizing query results and creating reports
 
+
+## Lectures & labs
+
 The courses are:
 
 1.  course 1: **Google Cloud Platform** Big Data and Machine Learning Fundamentals
@@ -34,3 +37,14 @@ The courses are:
 * [Video SUMMARY of all GCP tools](https://www.coursera.org/learn/building-resilient-streaming-systems-gcp/lecture/YUGGw/summary-of-data-engineering-on-gcp-specialization)
 
 * [GCP Cheatsheets](./GCP_cheatsheets.md)
+
+## Codelabs
+
+https://codelabs.developers.google.com/devoxx
+
+* Getting Started with [Cloud Shell & gcloud](https://codelabs.developers.google.com/codelabs/cloud-shell)
+
+
+## App as playground
+
+coming...
