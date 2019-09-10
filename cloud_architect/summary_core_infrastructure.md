@@ -130,7 +130,13 @@ When you build an application on your on-premises infrastructure, you're respons
 
 ## GCP resource hierarchy
 
-[video](https://www.coursera.org/learn/gcp-fundamentals/lecture/K85Wf/the-google-cloud-platform-resource-hierarchy)
+[video #1](https://www.coursera.org/learn/gcp-fundamentals/lecture/K85Wf/the-google-cloud-platform-resource-hierarchy)
+
+[video #2](https://www.coursera.org/learn/gcp-fundamentals/lecture/K85Wf/the-google-cloud-platform-resource-hierarchy)
+
+<img src="../images/GCP_organization_heirarchy.png"
+     alt="GCP_organization_heirarchy.png"
+     style="float: left; margin-right: 10px;" />
 
 <table >
 	<tbody>
@@ -153,6 +159,61 @@ When you build an application on your on-premises infrastructure, you're respons
 Policies are inherated downwards in the hierarchy.
 <img src="../images/GCP_project_identifiers.png"
      alt="GCP_project_identifiers.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/Example_without_folders.png"
+     alt="Example_without_folders.png   "
+     style="float: left; margin-right: 10px;" />
+
+## Identity and Access Management (IAM)
+
+[video](https://www.coursera.org/learn/gcp-fundamentals/lecture/1zsAc/identity-and-access-management-iam)
+
+### Who (Account/Identity)/Doing what (Roles)/On which resources?
+
+IAM lets administrators authorize who can take action on specific resources. An IAM policy has:
+- a **"who" part**: The "who" part names the user or users you're talking about. The "who" part of an IAM policy can be defined either by:
+  - a Google account,
+  - a Google group,
+  - a Service account,
+  - an entire G Suite, 
+  - or a Cloud Identity domain. 
+- a **"can do what" part**: The "can do what" part is defined by an IAM role. An IAM role is a collection of permissions. Most of the time, to do any meaningful operations, you need more than one permission. For example, to manage instances in a project, you need to create, delete, start, stop, and change an instance. So the permissions are **grouped together into a role** that makes them easier to manage. 
+- and an **"on which resource" part**: 
+
+<img src="../images/roles_in_IAM.png"
+     alt="roles_in_IAM.png"
+     style="float: left; margin-right: 10px;" />
+**3 kinds of roles in Cloud IAM**
+
+- **Primitive roles** are broad. You apply them to a GCP project and they affect all resources in that project. These are the **owner**, **editor**, and **viewer roles**. If you're **a viewer on a given resource**, you can examine it but not change its state. If you're **an editor**, you can do everything a viewer can do, plus change its state. And if you are an owner, you can do everything an editor can do, plus manage rolls and permissions on the resource.
+- **The owner role** on a project also lets you do one more thing: set up billing. - - Often, companies want someone to be able to control the billing for a project without the right to change the resources in the project. And that's why you can grant someone the **billing administrator role**.
+
+**Predefined roles**
+Be careful, if you have several people working together on a project that contains sensitive data, primitive roles are probably too coarse. 
+Fortunately, GCP IAM provides a finer grained types of roles. GCP services offer their own sets of predefined roles and they define where those roles can be applied. For example, later in this course, we'll talk about Compute Engine, which offers virtual machines as a service. Compute Engine offers a set of predefined roles, and you can apply them to Compute Engine resources in a given project, a given folder, or in an entire organization. Another example. Consider Cloud Bigtable, which is a managed database service. Cloud Bigtable offers roles that can apply across an entire organization to a particular project or even to individual Bigtable database instances.
+
+***IAM more fine-grained predefined roles** on particular services ([video](https://www.coursera.org/learn/gcp-fundamentals/lecture/CiocS/iam-roles)).
+
+> A lot of companies have a least-privileged model in which each person in your organization has the minimum amount of privilege needed to do his or her job.
+
+### Services Accounts
+
+[mid of video](https://www.coursera.org/learn/gcp-fundamentals/lecture/CiocS/iam-roles)
+
+What if you want to give permissions to a Compute Engine virtual machine, rather than to a person? Then you would use a service account.
+
+<img src="../images/service_accounts.png"
+     alt="service_accounts.png"
+     style="float: left; margin-right: 10px;" />
+
+
+## Interacting with GCP
+
+[video](https://www.coursera.org/learn/gcp-fundamentals/lecture/hIpvL/interacting-with-google-cloud-platform)
+
+<img src="../images/GCP_4_ways_interactions.png"
+     alt="GCP_4_ways_interactions.png"
      style="float: left; margin-right: 10px;" />
 
 
