@@ -2,7 +2,6 @@
 
 ## Content
 
-* [Content](#content)
 * [Definition](#definition)
 * [Playing with ML](#playing-with-ml)
 * [Effective ML model](#effective-ml-model)

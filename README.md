@@ -54,6 +54,34 @@ The courses are:
 * [GCP Cheatsheets](./GCP_cheatsheets.md)
 
 
+
+## Cloud Architect on GCP Specialization
+
+(A set of [courses](https://www.coursera.org/specializations/gcp-data-machine-learning) by COURSERA)
+
+This course is aimed at IT professionals who are tasked with building and managing solutions in the cloud. If you are a system administrator, system operator, cloud solution architect, or software developer (or want to become one), this course is a great place for you to start.
+
+If you are a data analyst, data engineer, or data scientist (or want to become one), consider starting instead with [GCP Big Data & Machine Learning Fundamentals](https://www.coursera.org/learn/gcp-big-data-ml-fundamentals).
+
+This course teaches participants the following skills:
+
+
+
+
+### Lectures & labs
+
+The courses are:
+
+1. [course 1](https://www.coursera.org/learn/gcp-fundamentals/home/welcome): [**GCP Fundamentals: Core Infrastructure**](./cloud_architect/summary_core_infrastructure.md)
+1. course 2: 
+1. course 3: 
+1. course 4: 
+1. course 5: 
+1. course 6: 
+1. course 7: 
+1. course 8: 
+1. course 9:
+
 ### Codelabs
 
 https://codelabs.developers.google.com/devoxx
@@ -65,5 +93,4 @@ https://codelabs.developers.google.com/devoxx
 
 coming...
 
-## Cloud Architect on GCP Specialization
 
