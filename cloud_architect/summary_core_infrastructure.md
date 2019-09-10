@@ -94,9 +94,67 @@ Per second billing is offered for a virtual machine use through Compute Engine a
 
 ## Multi-layered security approach
 
+[video](https://www.coursera.org/learn/gcp-fundamentals/lecture/2K73n/multi-layered-security-approach)
+
 <img src="../images/GCP_security.png"
      alt="GCP_regions_zones.png"
      style="float: left; margin-right: 10px;" />
+
+## Starting with Google Cloud
+
+your **workloads in GCP**:
+- you use **projects** to organize them.
+- You use **Google Cloud Identity**, and **Access Management**, also called IM, or IAM to control who can do what.
+- you use your choice of several interfaces to connect.
+
+
+### Projects
+
+Projects are the main way you organize the resources you use in GCP. Use them to group together related resources, usually because they have a common business objective.
+
+### IAM
+
+The principle of least privilege is very important in managing any kind of compute infrastructure, whether it's in the Cloud or on-premises. This principle says that each user should have only those privileges needed to do their jobs. In a least-privilege environment, people are protected from an entire class of errors.
+GCP customers use IM to implement least privilege, and it makes everybody happier. There are four ways to interact with GCP's management layer:
+- through the **web-based console**,
+- through the **SDK** and its command-line tools,
+- through the **APIs**,
+- and through a **mobile app**.
+
+<img src="../images/Google_Security.png"
+     alt="Google_Security.png"
+     style="float: left; margin-right: 10px;" />
+
+
+When you build an application on your on-premises infrastructure, you're responsible for the entire stack security. From the physical security of the hardware, and the premises in which they're housed, through the encryption of the data on disk, the integrity of your network, all the way up to securing the content stored in those applications. When you move an application to Google Cloud Platform, Google handles many of the lower layers of security. Because of its scale, Google can deliver a higher level of security at these layers than most of its customers could afford to do on their own. The upper layers of the security stack remain the customers' responsibility. Google provides tools such as IAM to help customers implement the policies they choose at these layers.
+
+## GCP resource hierarchy
+
+[video](https://www.coursera.org/learn/gcp-fundamentals/lecture/K85Wf/the-google-cloud-platform-resource-hierarchy)
+
+<table >
+	<tbody>
+		<tr>
+			<td><img src="../images/GCP_resource_hierarchy.png"
+                    alt="GCP_resource_hierarchy.png"
+                    style="float: left; margin-right: 10px;" />
+            </td>
+			<td><img src="../images/Projects_in_a_Folder.png"
+                    alt="Projects_in_a_Folder.png"
+                    style="float: left; margin-right: 10px;" />
+            </td>
+		</tr>
+	</tbody>
+</table>
+
+
+     
+
+Policies are inherated downwards in the hierarchy.
+<img src="../images/GCP_project_identifiers.png"
+     alt="GCP_project_identifiers.png"
+     style="float: left; margin-right: 10px;" />
+
 
 
 ## Resources/Articles
@@ -104,3 +162,4 @@ Per second billing is offered for a virtual machine use through Compute Engine a
 - [GCP vs AWS platforms](https://cloud.google.com/docs/compare/aws/#resource_management_interfaces)
 - Blog post on [Professional Cloud Architect Certification](https://medium.com/google-cloud/professional-cloud-architect-certification-6a6dfa5c6ff5) by a Googler
 - [Cloud Run VS Cloud Functions: What’s the lowest cost?](https://medium.com/google-cloud/cloud-run-vs-cloud-functions-whats-the-lowest-cost-728d59345a2e)
+- https://linuxacademy.com/
