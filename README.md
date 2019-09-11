@@ -74,7 +74,7 @@ This course teaches participants the following skills:
 
 The courses are:
 
-1. [course 1](https://www.coursera.org/learn/gcp-fundamentals/home/welcome): [**GCP Fundamentals: Core Infrastructure**](./cloud_architect/README.md)
+1. [course 1](https://www.coursera.org/learn/gcp-fundamentals/home/welcome): [**GCP Fundamentals: Core Infrastructure**](./cloud_architect/course_1_Core_Infrastructure.md)
 1. course 2: 
 1. course 3: 
 1. course 4: 
