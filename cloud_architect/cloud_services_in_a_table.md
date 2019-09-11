@@ -1,7 +1,7 @@
 # Summary of cloud services and respective open-source equivalent 
 
 
-source: https://docs.google.com/spreadsheets/d/1Ibo41Cs_XNdCFSqmNiXEQ16h-ZU6ATb6CZrMdKsLsZI/edit?usp=sharing
+source: https://docs.google.com/spreadsheets/d/1Ibo41Cs_XNdCFSqmNiXEQ16h-ZU6ATb6CZrMdKsLsZI
 
 |  **** | **** | **Open-Source** | **GCP** | **AWS** | **...** |
 | --- | --- | --- | --- | --- | --- |

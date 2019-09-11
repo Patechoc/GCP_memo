@@ -1,53 +1,28 @@
 # GCP Fundamentals: Core Infrastructure
 
-|  **** | **** | **Open-Source** | **GCP** | **AWS** | **...** |
-| --- | --- | --- | --- | --- | --- |
-|  **Compute** | IaaS |  |  |  |  |
-|  **** | PaaS |  |  |  |  |
-|  **** | Containers |  |  |  |  |
-|  **** | Containers without infrastructure |  |  |  |  |
-|  **** | FaaS |  |  |  |  |
-|  **** | Managed Batch Computing |  |  |  |  |
-|  **Network** | Virtual Networks |  |  |  |  |
-|  **** | Load Balancer |  |  |  |  |
-|  **** | Dedicated Interconnect |  |  |  |  |
-|  **** | Domains and DNS |  |  |  |  |
-|  **** | CDN |  |  |  |  |
-|  **Storage** | Object Storage |  |  |  |  |
-|  **** | Block Storage |  |  |  |  |
-|  **** | Reduced-availability Storage |  |  |  |  |
-|  **** | Archival Storage |  |  |  |  |
-|  **** | File Storage |  |  |  |  |
-|  **Database** | RDBMS |  |  |  |  |
-|  **** | NoSQL: Key-value |  |  |  |  |
-|  **** | NoSQL: Indexed |  |  |  |  |
-|  **Big Data & Analytics** | Batch Data Processing |  |  |  |  |
-|  **** | Stream Data Processing |  |  |  |  |
-|  **** | Stream Data Ingest |  |  |  |  |
-|  **** | Analytics |  |  |  |  |
-|  **** | Workflow Orchestration |  |  |  |  |
-|  **Application Services** | Messaging |  |  |  |  |
-|  **Management Services** | Monitoring |  |  |  |  |
-|  **** | Logging |  |  |  |  |
-|  **** | Deployment |  |  |  |  |
-|  **Machine Learning** | Speech |  |  |  |  |
-|   | Vision |  |  |  |  |
-|  **** | Natural Language Processing |  |  |  |  |
-|  **** | Translation |  |  |  |  |
-|  **** | Conversational Interface |  |  |  |  |
-|  **** | Video Intelligence |  |  |  |  |
-|  **** | Auto-generated Models |  |  |  |  |
-|  **** | Fully Managed ML |  |  |  |  |
-|  **** |  |  |  |  |  |
-|  **Infrastructure Deployment Tools** | infrastructure-as-code |  |  |  |  |
-|  **Mobile** | Authentication |  |  |  |  |
-|  **** | Database |  |  |  |  |
-|  **** | Data Storage/CDN |  |  |  |  |
-|  **** | Serverless routines |  |  |  |  |
-|  **** | Notifications |  |  |  |  |
-|  **** | Client application services |  |  |  |  |
+## Content
 
-source: https://docs.google.com/spreadsheets/d/1Ibo41Cs_XNdCFSqmNiXEQ16h-ZU6ATb6CZrMdKsLsZI/edit?usp=sharing
+      * [What is Cloud Computing](#what-is-cloud-computing)
+      * [IaaS vs PaaS vs SaaS](#iaas-vs-paas-vs-saas)
+      * [GCP Multi-regions, Regions &amp; Zones](#gcp-multi-regions-regions--zones)
+      * [Pricing innovations](#pricing-innovations)
+      * [Multi-layered security approach](#multi-layered-security-approach)
+      * [Starting with Google Cloud](#starting-with-google-cloud)
+         * [Projects](#projects)
+         * [IAM](#iam)
+      * [GCP resource hierarchy](#gcp-resource-hierarchy)
+      * [Identity and Access Management (IAM)](#identity-and-access-management-iam)
+         * [Who (Account/Identity)/Doing what (Roles)/On which resources?](#who-accountidentitydoing-what-roleson-which-resources)
+         * [Services Accounts](#services-accounts)
+      * [Interacting with GCP](#interacting-with-gcp)
+         * [Cloud Marketplace (formerly Cloud Launcher)](#cloud-marketplace-formerly-cloud-launcher)
+      * [Virtual Machines on GCP](#virtual-machines-on-gcp)
+         * [Virtual Private Cloud (VPC) Network](#virtual-private-cloud-vpc-network)
+         * [Compute Engine](#compute-engine)
+         * [Important VPC capabilities](#important-vpc-capabilities)
+         * [Create a VM from Console](#create-a-vm-from-console)
+         * [Create a VM with gcloud in Cloud Shell](#create-a-vm-with-gcloud-in-cloud-shell)
+      * [Resources/Articles](#resourcesarticles)
 
 
 ## What is Cloud Computing
