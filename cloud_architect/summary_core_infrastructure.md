@@ -216,6 +216,112 @@ What if you want to give permissions to a Compute Engine virtual machine, rather
      alt="GCP_4_ways_interactions.png"
      style="float: left; margin-right: 10px;" />
 
+[APIs Explorer](https://developers.google.com/apis-explorer)
+
+### Cloud Marketplace (formerly Cloud Launcher)
+
+[console.cloud.google.com/marketplace](https://console.cloud.google.com/marketplace)
+
+[video](https://www.coursera.org/learn/gcp-fundamentals/lecture/AztZe/cloud-marketplace-formerly-cloud-launcher) 
+
+A Quick way to get access to "solutions" with minimum effort.
+
+e.g.:
+- deploying a LAMP stack on GCP (LAMP stands for Linux, Apache, MySQL, PHP) > [video demo](https://www.coursera.org/learn/gcp-fundamentals/lecture/b8wYV/demonstration-getting-started-with-cloud-launcher).
+
+
+
+
+
+## Virtual Machines on GCP
+
+**Compute Engine** lets you run virtual machines on Google's global infrastructure.
+
+### Virtual Private Cloud (VPC) Network
+
+Your VPC networks connect your GCP resources to each other and to the internet:
+- you can segment your networks,
+- you can use firewall rules to restrict access to instances, and
+- you can create static routes to forward traffic to specific destinations.
+
+The way a lot of people get started with GCP is:
+
+- to define their own Virtual Private Cloud inside their first GCP project,
+- or they can simply choose the default VPC and get started with that.
+
+<img src="../images/VPC_regions_subnets.png"
+     alt="VPC_regions_subnets.png"
+     style="float: left; margin-right: 10px;" />
+
+ The Virtual Private Cloud networks that you define have **global scope**.
+ 
+ > They can have subnets in any GCP region worldwide and **subnets can span the zones that make up a region**.
+ > "In Google Cloud VPCs, subnets have regional scope."
+
+ This architecture makes it easy for you to define your own network layout with global scope:
+ - You can also have resources in different zones on the same subnet.
+ - You can dynamically increase the size of a subnet in a custom network by expanding the range of IP addresses allocated to it. Doing that doesn't affect already configured VMs. In this example, your VPC has one network. So far, it has one subnet defined in GCP `us-east1` region. Notice that it has two Compute Engine VMs attached to it. They're neighbors on the same subnet even though they are in different zones. You can use this capability to build solutions that are resilient but still have simple network layouts.
+
+### Compute Engine
+
+[video](https://www.coursera.org/learn/gcp-fundamentals/lecture/tv56B/compute-engine)
+
+- OS, type of disk storage, software pre-installed with startup scripts, ...
+- snapshots of disks
+- preemptible VMs for jobs that can be stopped and restarted.
+
+### Important VPC capabilities
+
+[video](https://www.coursera.org/learn/gcp-fundamentals/lecture/wyDK3/important-vpc-capabilities)
+
+- provided **router**
+- provided **Firewall instances** to control traffic going through
+- **VPC Peering** to interconnect outside your project 2 VPCs on GCP. And **Shared VPC** would provide the IAM functionalities to specify Who can access What.
+- **Cloud Load Balancing**
+
+<img src="../images/Cloud_Load_balancing.png"
+     alt="Cloud_Load_balancing.png"
+     style="float: left; margin-right: 10px;" />
+
+- **Cloud DNS**: programmable with REST API
+- **Cloud CDN**: CDN stands for Content Delivery Network, a global system of **ddge caches** to cache content close to your users: better user-experience, less requests. Just enable it with checkbox!
+
+### Create a VM from Console 
+
+### Create a VM with gcloud in Cloud Shell
+
+Create the new VM in the same region, but in another zone, setting `us-central1-c` as the new default zone:
+<img src="../images/VM_gcloud.png"
+     alt="VM_gcloud.png"
+     style="float: left; margin-right: 10px;" />
+
+SSH the new VM:
+<img src="../images/VM_ping_ssh.png"
+     alt="VM_ping_ssh.png"
+     style="float: left; margin-right: 10px;" />
+
+
+Install a simple webserver and edit its homepage on the new VM:
+<img src="../images/VM_install_simple_webserver.png"
+     alt="VM_install_simple_webserver.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/VM_edit_webserver_homepage.png"
+     alt="VM_edit_webserver_homepage.png"
+     style="float: left; margin-right: 10px;" />
+
+
+Check that the running webserver serves the homepage locally on the new VM:
+
+<img src="../images/VM_check_webser_serves_local_homepage.png"
+     alt="VM_check_webser_serves_local_homepage.png"
+     style="float: left; margin-right: 10px;" />
+
+Check that the running webserver serves the homepage from the other VM on the same VPC:
+
+<img src="../images/VM1_seeing_homepage_of_VM2.png"
+     alt="VM1_seeing_homepage_of_VM2.png"
+     style="float: left; margin-right: 10px;" />
 
 
 ## Resources/Articles
