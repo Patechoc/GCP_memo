@@ -70,6 +70,8 @@ This course teaches participants the following skills:
 
 ### Lectures & labs
 
+[**Cloud Services in a table**](./cloud_architect/cloud_services_in_a_table.md)
+
 The courses are:
 
 1. [course 1](https://www.coursera.org/learn/gcp-fundamentals/home/welcome): [**GCP Fundamentals: Core Infrastructure**](./cloud_architect/summary_core_infrastructure.md)
