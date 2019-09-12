@@ -425,9 +425,14 @@ Let's you orchestrate many containers on many hosts, scale them as microsrvices 
                     style="float: left; margin-right: 10px;" />
             </td>
 		</tr>
+		<tr>
+			<td><img src="../images/containers_build_run_container.png"
+                    alt="containers_build_run_container.png"
+                    style="float: left; margin-right: 10px;" />
+            </td>
+
+		</tr>
 </table>
-
-
 
 
 ## Resources/Articles
