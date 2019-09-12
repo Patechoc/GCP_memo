@@ -1,6 +1,8 @@
 # GCP Fundamentals: Getting Started with Cloud Storage and Cloud SQL
 
-50 minutes
+lab ~50 minutes
+
+[a it more demonstrated in the video](https://www.coursera.org/learn/gcp-fundamentals/lecture/yboF1/demonstration-getting-started-with-cloud-storage-and-cloud-sql)
 
 ## Overview
 
