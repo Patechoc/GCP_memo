@@ -320,17 +320,19 @@ GCP has other storage options to meet your needs for:
 
 Its core storage options:
 
-- Cloud Storage ([video](https://www.coursera.org/learn/gcp-fundamentals/lecture/HLKXf/cloud-storage)): Cloud Storage objects are immutable,
-- Google Big Table ([video](https://www.coursera.org/learn/gcp-fundamentals/lecture/8LIth/google-cloud-bigtable))
-- Cloud SQL,
-- Cloud Spanner,
+- Cloud Storage
+- Google Big Table (NoSQL)
+- Cloud SQL, (RDBMS)
+- Cloud Spanner (RDBMS),
 - Cloud Data Store,
 
 
-### Cloud Storage  interactions
+### Cloud Storage interactions
 
 - [video 1](https://www.coursera.org/learn/gcp-fundamentals/lecture/HLKXf/cloud-storage)
 - [video 2](https://www.coursera.org/learn/gcp-fundamentals/lecture/2uNqj/cloud-storage-interactions)
+
+Cloud Storage objects are immutable
 
 4 classes:
 
@@ -356,6 +358,21 @@ Its core storage options:
 ### Google Cloud Bigtable
 
 [video](https://www.coursera.org/learn/gcp-fundamentals/lecture/8LIth/google-cloud-bigtable)
+
+Definition: Google CLoud (fully-managed) NoSQL, BigData, database service for TeraBytes applications (up to PetaBytes of data).
+
+<img src="../images/Storage_BigTable_interactions.png"
+     alt="Storage_BigTable_interactions.png"
+     style="float: left; margin-right: 10px;" />
+
+### Google Cloud SQL
+
+[video](https://www.coursera.org/learn/gcp-fundamentals/lecture/fVTwB/google-cloud-sql-and-google-cloud-spanner)
+
+a managed RDBMS database service. Either based on MySQL or PostgreSQLBeta.
+
+It manages "database transactions".
+
 
 ## Resources/Articles
 

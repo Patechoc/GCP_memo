@@ -49,3 +49,7 @@ source: https://docs.google.com/spreadsheets/d/1Ibo41Cs_XNdCFSqmNiXEQ16h-ZU6ATb6
 |   | Serverless routines |  |  |  |  |
 |   | Notifications |  |  |  |  |
 |   | Client application services |  |  |  |  |
+
+## Resources/Articles
+
+- [GCP vs AWS platforms](https://cloud.google.com/docs/compare/aws/#resource_management_interfaces)
