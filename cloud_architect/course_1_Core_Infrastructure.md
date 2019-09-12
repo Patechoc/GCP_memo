@@ -411,7 +411,6 @@ With this abstraction, your code is ultra portable, and you can treat the OS and
 Let's you orchestrate many containers on many hosts, scale them as microsrvices and deploy rollouts and rollbacks.
 
 <table >
-	<tbody>
 		<tr>
 			<td><img src="../images/containers_python_app.png"
                     alt="containers_python_app.png"
@@ -425,9 +424,7 @@ Let's you orchestrate many containers on many hosts, scale them as microsrvices 
                     alt="containers_dockerfile.png"
                     style="float: left; margin-right: 10px;" />
             </td>
-
 		</tr>
-	</tbody>
 </table>
 
 
