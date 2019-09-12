@@ -3,12 +3,14 @@
 ## Content
 
 * [Cloud Shell commands](#cloud-shell-commands)
-* [Data Engineering on GCP Specialization](#data-engineering-on-google-cloud-platform-specialization)
+* [Data Engineering on GCP Specialization](#data-engineering-on-gcp-specialization)
     * [Lectures &amp; labs](#lectures--labs)
+* [Cloud Architect on GCP Specialization](#cloud-architect-on-gcp-specialization)
+    * [Lectures &amp; labs](#lectures--labs-1)
     * [Codelabs](#codelabs)
     * [App as playground](#app-as-playground)
-* [Cloud Architect on GCP Specialization](#cloud-architect-on-gcp-specialization)
 
+    
 ## Cloud Shell commands
 
 Cloud shell & `gcloud` commands [memo](./Cloud_Shell_gcloud.md)
