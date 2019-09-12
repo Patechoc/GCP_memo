@@ -7,10 +7,10 @@
     * [Lectures &amp; labs](#lectures--labs)
 * [Cloud Architect on GCP Specialization](#cloud-architect-on-gcp-specialization)
     * [Lectures &amp; labs](#lectures--labs-1)
-    * [Codelabs](#codelabs)
-    * [App as playground](#app-as-playground)
+* [Codelabs](#codelabs)
+* [App as playground](#app-as-playground)
 
-    
+
 ## Cloud Shell commands
 
 Cloud shell & `gcloud` commands [memo](./Cloud_Shell_gcloud.md)
@@ -86,14 +86,14 @@ The courses are:
 1. course 8: 
 1. course 9:
 
-### Codelabs
+## Codelabs
 
 https://codelabs.developers.google.com/devoxx
 
 * Getting Started with [Cloud Shell & gcloud](https://codelabs.developers.google.com/codelabs/cloud-shell)
 
 
-### App as playground
+## App as playground
 
 coming...
 
