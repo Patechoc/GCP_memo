@@ -385,6 +385,7 @@ Definition: Google Spanner is horizontally scalable Relational Database Manageme
 
 [video](https://www.coursera.org/learn/gcp-fundamentals/lecture/yboF1/demonstration-getting-started-with-cloud-storage-and-cloud-sql)
 
+[notes](../labs/lab_create_blog_with_Cloud_Storage_Cloud_SQL_and_Compute_Engine.md) 
 
 ## Containers, Kubernetes, and Kubernetes Engine
 
@@ -568,6 +569,8 @@ New PODs will get created according to your update strategy:
 ### Lab: Containers / Kubernetes / GKE
 
 [video: k8s on GKE is much more...](https://www.coursera.org/learn/gcp-fundamentals/lecture/1aWl8/demo-and-lab-introduction)
+
+[notes](../labs/lab_create_a_webserver_deployed_on_kubernetes_cluster.md) 
 
 > _There are a lot of features in Kubernetes and GKE we haven't even touched on, such as configuring health checks, setting session affinity, managing different rollout strategies, and deploying pods across regions for high availability. But for now, that's enough. In this module, you've learned how to build a run containerized applications, orchestrate and scale them on a cluster, and deploy them using rollouts. Now you'll see how to do it in a demo and practice it in a lab exercise._
 
