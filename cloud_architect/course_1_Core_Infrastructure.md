@@ -8,11 +8,32 @@
 * [Pricing innovations](#pricing-innovations)
 * [Multi-layered security approach](#multi-layered-security-approach)
 * [Starting with Google Cloud](#starting-with-google-cloud)
+    * [Projects](#projects)
+    * [IAM](#iam)
 * [GCP resource hierarchy](#gcp-resource-hierarchy)
 * [Identity and Access Management (IAM)](#identity-and-access-management-iam)
+    * [Who (Account/Identity)/Doing what (Roles)/On which resources?](#who-accountidentitydoing-what-roleson-which-resources)
+    * [Services Accounts](#services-accounts)
 * [Interacting with GCP](#interacting-with-gcp)
+    * [Cloud Marketplace (formerly Cloud Launcher)](#cloud-marketplace-formerly-cloud-launcher)
 * [Virtual Machines on GCP](#virtual-machines-on-gcp)
+    * [Virtual Private Cloud (VPC) Network](#virtual-private-cloud-vpc-network)
+    * [Compute Engine](#compute-engine)
+    * [Important VPC capabilities](#important-vpc-capabilities)
+    * [Create a VM from Console](#create-a-vm-from-console)
+    * [Create a VM with gcloud in Cloud Shell](#create-a-vm-with-gcloud-in-cloud-shell)
+    * [Lab about Compute Engine](#lab-about-compute-engine)
 * [GCP Storage Options](#gcp-storage-options)
+    * [Cloud Storage &amp; Cloud Storage interactions](#cloud-storage--cloud-storage-interactions)
+    * [Google Cloud Bigtable](#google-cloud-bigtable)
+    * [Google Cloud Datastore](#google-cloud-datastore)
+    * [Google Cloud SQL](#google-cloud-sql)
+    * [Google Cloud Spanner](#google-cloud-spanner)
+    * [Lab: Cloud Storage / Cloud SQL](#lab-cloud-storage--cloud-sql)
+* [Containers, Kubernetes, and Kubernetes Engine](#containers-kubernetes-and-kubernetes-engine)
+    * [Containers](#containers)
+    * [Kubernetes](#kubernetes)
+    * [Lab: Containers / Kubernetes / GKE](#lab-containers--kubernetes--gke)
 * [Resources/Articles](#resourcesarticles)
 
 
@@ -570,11 +591,10 @@ New PODs will get created according to your update strategy:
 
 [video: k8s on GKE is much more...](https://www.coursera.org/learn/gcp-fundamentals/lecture/1aWl8/demo-and-lab-introduction)
 
-[notes](../labs/lab_create_a_webserver_deployed_on_kubernetes_cluster.md) 
-
 > _There are a lot of features in Kubernetes and GKE we haven't even touched on, such as configuring health checks, setting session affinity, managing different rollout strategies, and deploying pods across regions for high availability. But for now, that's enough. In this module, you've learned how to build a run containerized applications, orchestrate and scale them on a cluster, and deploy them using rollouts. Now you'll see how to do it in a demo and practice it in a lab exercise._
 
-[video: lab](https://www.coursera.org/learn/gcp-fundamentals/lecture/umRjO/demo-getting-started-with-kubernetes-engine)
+- [video: lab](https://www.coursera.org/learn/gcp-fundamentals/lecture/umRjO/demo-getting-started-with-kubernetes-engine)
+- [notes lab](../labs/lab_create_a_webserver_deployed_on_kubernetes_cluster.md) 
 
 ## Resources/Articles
 
