@@ -390,6 +390,9 @@ Definition: Google Spanner is horizontally scalable Relational Database Manageme
 
 [video](https://www.coursera.org/learn/gcp-fundamentals/lecture/XMTBL/containers-kubernetes-and-kubernetes-engine)
 
+
+### Containers
+
 <img src="../images/containers_IaaS.png"
      alt="containers_IaaS.png"
      style="float: left; margin-right: 10px;" />
@@ -401,6 +404,33 @@ Definition: Google Spanner is horizontally scalable Relational Database Manageme
 It scales like PaaS, but gives you nearly the same flexibility as IaaS.
 
 With this abstraction, your code is ultra portable, and you can treat the OS and the hardware as a blackbox. You can go from your laptop to the cloud without changing or rebuilding anything.
+
+
+### Kubernetes
+
+Let's you orchestrate many containers on many hosts, scale them as microsrvices and deploy rollouts and rollbacks.
+
+<table >
+	<tbody>
+		<tr>
+			<td><img src="../images/containers_python_app.png"
+                    alt="containers_python_app.png"
+                    style="float: left; margin-right: 10px;" />
+            </td>
+			<td><img src="../images/containers_python_requirements.png"
+                    alt="containers_python_requirements.png"
+                    style="float: left; margin-right: 10px;" />
+            </td>
+			<td><img src="../images/containers_dockerfile.png"
+                    alt="containers_dockerfile.png"
+                    style="float: left; margin-right: 10px;" />
+            </td>
+
+		</tr>
+	</tbody>
+</table>
+
+
 
 
 ## Resources/Articles
