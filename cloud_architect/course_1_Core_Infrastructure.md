@@ -524,10 +524,44 @@ the real strength of Kubernetes comes when you **work in a declarative way**. In
                     alt="containers_k8s_kubectl_run_configuration_file.png"
                     style="float: left; margin-right: 10px;" />
             </td>
-
 		</tr>
 </table>
 
+Watch the PODs come online:
+
+<img src="../images/containers_k8s_kubectl_watch_PODs_come_onine.png"
+                    alt="containers_k8s_kubectl_watch_PODs_come_onine.png"
+                    style="float: left; margin-right: 10px;" />
+
+Which ones are deployed?
+
+<img src="../images/containers_k8s_kubectl_watch_PODs_deployed.png"
+                    alt="containers_k8s_kubectl_watch_PODs_deployed.png"
+                    style="float: left; margin-right: 10px;" />
+
+Find out the external IP of the service(s):
+
+<img src="../images/containers_k8s_kubectl_watch_PODs_get_IPs.png"
+                    alt="containers_k8s_kubectl_watch_PODs_get_IPs.png"
+                    style="float: left; margin-right: 10px;" />
+
+And hit a public IP from a client:
+<img src="../images/containers_k8s_kubectl_watch_PODs_hit_IPs_from_client.png"
+                    alt="containers_k8s_kubectl_watch_PODs_hit_IPs_from_client.png"
+                    style="float: left; margin-right: 10px;" />
+
+What happens when you want to upload a new version of your app?
+
+It might be too risky to **rollout** all of your services all at once!
+
+Use `kubectl rollout ...` or change your **deployment configuration file** and apply the changes using `kubectl apply`:
+
+New PODs will get created according to your update strategy:
+
+> Here's an example configuration that will create a new version of your pods one-by-one, and wait for a new pod to be available before destroying one of the old pods.
+<img src="../images/containers_k8s_kubectl_update_code_rollout.png"
+                    alt="containers_k8s_kubectl_update_code_rollout.png"
+                    style="float: left; margin-right: 10px;" />
 
 
 
