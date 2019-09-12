@@ -8,21 +8,13 @@
 * [Pricing innovations](#pricing-innovations)
 * [Multi-layered security approach](#multi-layered-security-approach)
 * [Starting with Google Cloud](#starting-with-google-cloud)
-    * [Projects](#projects)
-    * [IAM](#iam)
 * [GCP resource hierarchy](#gcp-resource-hierarchy)
 * [Identity and Access Management (IAM)](#identity-and-access-management-iam)
-    * [Who (Account/Identity)/Doing what (Roles)/On which resources?](#who-accountidentitydoing-what-roleson-which-resources)
-    * [Services Accounts](#services-accounts)
 * [Interacting with GCP](#interacting-with-gcp)
-    * [Cloud Marketplace (formerly Cloud Launcher)](#cloud-marketplace-formerly-cloud-launcher)
 * [Virtual Machines on GCP](#virtual-machines-on-gcp)
-    * [Virtual Private Cloud (VPC) Network](#virtual-private-cloud-vpc-network)
-    * [Compute Engine](#compute-engine)
-    * [Important VPC capabilities](#important-vpc-capabilities)
-    * [Create a VM from Console](#create-a-vm-from-console)
-    * [Create a VM with gcloud in Cloud Shell](#create-a-vm-with-gcloud-in-cloud-shell)
+* [GCP Storage Options](#gcp-storage-options)
 * [Resources/Articles](#resourcesarticles)
+
 
 
 ## What is Cloud Computing
@@ -330,7 +322,7 @@ Its core storage options:
 - Cloud Data Store,
 
 
-### Cloud Storage interactions
+### Cloud Storage & Cloud Storage interactions
 
 - [video 1](https://www.coursera.org/learn/gcp-fundamentals/lecture/HLKXf/cloud-storage)
 - [video 2](https://www.coursera.org/learn/gcp-fundamentals/lecture/2uNqj/cloud-storage-interactions)
@@ -388,6 +380,11 @@ It manages "database transactions".
 [video, together with Cloud SQL](https://www.coursera.org/learn/gcp-fundamentals/lecture/fVTwB/google-cloud-sql-and-google-cloud-spanner)
 
 Definition: Google Spanner is horizontally scalable Relational Database Management System (RDBMS).
+
+### Lab: Cloud Storage / Cloud SQL
+
+[video](https://www.coursera.org/learn/gcp-fundamentals/lecture/yboF1/demonstration-getting-started-with-cloud-storage-and-cloud-sql)
+
 
 ## Resources/Articles
 
