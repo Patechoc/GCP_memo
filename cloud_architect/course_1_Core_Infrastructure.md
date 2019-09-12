@@ -405,11 +405,6 @@ It scales like PaaS, but gives you nearly the same flexibility as IaaS.
 
 With this abstraction, your code is ultra portable, and you can treat the OS and the hardware as a blackbox. You can go from your laptop to the cloud without changing or rebuilding anything.
 
-
-### Kubernetes
-
-Let's you orchestrate many containers on many hosts, scale them as microsrvices and deploy rollouts and rollbacks.
-
 <table >
 		<tr>
 			<td><img src="../images/containers_python_app.png"
@@ -432,6 +427,108 @@ Let's you orchestrate many containers on many hosts, scale them as microsrvices 
             </td>
 		</tr>
 </table>
+
+
+### Kubernetes
+
+[video](https://www.coursera.org/learn/gcp-fundamentals/lecture/XMTBL/containers-kubernetes-and-kubernetes-engine)
+
+Let's you orchestrate many containers on many hosts, scale them as microsrvices and deploy rollouts and rollbacks.
+
+Kubernetes is a set of APIs that you can use to deploy containers on a set of nodes called a cluster
+
+GKE is "hosted Kubernetes" by Google!!
+
+GKE clusters:
+
+- can be customised,
+- can be deloyed in one gcloud command: `gcloud container clusters create k1`
+- check status in the Admin Console
+- Then, you deploy containers on nodes using a wrapper around one or more containers called a pod. A Pod is the smallest unit in Kubernetes that you create or deploy
+
+<table >
+		<tr>
+			<td><img src="../images/containers_k8s_cluster.png"
+                    alt="containers_k8s_cluster.png"
+                    style="float: left; margin-right: 10px;" />
+            </td>
+			<td><img src="../images/containers_k8s_configure_with_GKE.png"
+                    alt="containers_k8s_configure_with_GKE.png"
+                    style="float: left; margin-right: 10px;" />
+            </td>
+			<td><img src="../images/containers_k8s_POD_containers.png"
+                    alt="containers_k8s_POD_containers.png"
+                    style="float: left; margin-right: 10px;" />
+            </td>
+		</tr>
+</table>
+
+One way to run a container in a POD in Kubernetes is to use `kubectl`:
+
+<table >
+		<tr>
+			<td><img src="../images/containers_k8s_kubectl.png"
+                    alt="containers_k8s_kubectl.png"
+                    style="float: left; margin-right: 10px;" />
+            </td>
+			<td><img src="../images/containers_k8s_kubectl_networking.png"
+                    alt="containers_k8s_kubectl_networking.png"
+                    style="float: left; margin-right: 10px;" />
+            </td>
+			<td><img src="../images/containers_k8s_kubectl_simple_loadbalancer.png"
+                    alt="containers_k8s_kubectl_simple_loadbalancer.png"
+                    style="float: left; margin-right: 10px;" />
+            </td>
+		</tr>
+</table>
+
+To get the IP of the load balancer:
+
+<img src="../images/containers_k8s_kubectl_get_IPs.png"
+                    alt="containers_k8s_kubectl_get_IPs.png"
+                    style="float: left; margin-right: 10px;" />
+
+To scale the deployment:
+
+<table >
+		<tr>
+			<td><img src="../images/containers_k8s_kubectl_scale_deployment.png"
+                    alt="containers_k8s_kubectl_scale_deployment.png"
+                    style="float: left; margin-right: 10px;" />
+            </td>
+			<td><img src="../images/containers_k8s_kubectl_autoscale_deployment.png"
+                    alt="containers_k8s_kubectl_autoscale_deployment.png"
+                    style="float: left; margin-right: 10px;" />
+            </td>
+		</tr>
+</table>
+
+
+the real strength of Kubernetes comes when you **work in a declarative way**. Instead of issuing commands, you provide a **configuration file** that tells Kubernetes what you want your desired state to look like, and Kubernetes figures out how to do it.
+
+<table >
+		<tr>
+			<td><img src="../images/containers_k8s_kubectl_configuration_file.png"
+                    alt="containers_k8s_kubectl_configuration_file.png"
+                    style="float: left; margin-right: 10px;" />
+            </td>
+			<td><img src="../images/containers_k8s_kubectl_configuration_file_app_nginx.png"
+                    alt="containers_k8s_kubectl_configuration_file_app_nginx.png"
+                    style="float: left; margin-right: 10px;" />
+            </td>
+			<td><img src="../images/containers_k8s_kubectl_configuration_file_app_nginx_scale_3_to_5.png"
+                    alt="containers_k8s_kubectl_configuration_file_app_nginx_scale_3_to_5.png"
+                    style="float: left; margin-right: 10px;" />
+            </td>
+			<td><img src="../images/containers_k8s_kubectl_run_configuration_file.png"
+                    alt="containers_k8s_kubectl_run_configuration_file.png"
+                    style="float: left; margin-right: 10px;" />
+            </td>
+
+		</tr>
+</table>
+
+
 
 
 ## Resources/Articles
