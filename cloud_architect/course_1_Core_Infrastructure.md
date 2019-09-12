@@ -546,6 +546,7 @@ Find out the external IP of the service(s):
                     style="float: left; margin-right: 10px;" />
 
 And hit a public IP from a client:
+
 <img src="../images/containers_k8s_kubectl_watch_PODs_hit_IPs_from_client.png"
                     alt="containers_k8s_kubectl_watch_PODs_hit_IPs_from_client.png"
                     style="float: left; margin-right: 10px;" />
@@ -559,11 +560,18 @@ Use `kubectl rollout ...` or change your **deployment configuration file** and a
 New PODs will get created according to your update strategy:
 
 > Here's an example configuration that will create a new version of your pods one-by-one, and wait for a new pod to be available before destroying one of the old pods.
+
 <img src="../images/containers_k8s_kubectl_update_code_rollout.png"
                     alt="containers_k8s_kubectl_update_code_rollout.png"
                     style="float: left; margin-right: 10px;" />
 
+### Lab: Containers / Kubernetes / GKE
 
+[video: k8s on GKE is much more...](https://www.coursera.org/learn/gcp-fundamentals/lecture/1aWl8/demo-and-lab-introduction)
+
+> _There are a lot of features in Kubernetes and GKE we haven't even touched on, such as configuring health checks, setting session affinity, managing different rollout strategies, and deploying pods across regions for high availability. But for now, that's enough. In this module, you've learned how to build a run containerized applications, orchestrate and scale them on a cluster, and deploy them using rollouts. Now you'll see how to do it in a demo and practice it in a lab exercise._
+
+[video: lab](https://www.coursera.org/learn/gcp-fundamentals/lecture/umRjO/demo-getting-started-with-kubernetes-engine)
 
 ## Resources/Articles
 
