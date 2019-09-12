@@ -252,7 +252,7 @@ The way a lot of people get started with GCP is:
 - provided **router**
 - provided **Firewall instances** to control traffic going through
 - **VPC Peering** to interconnect outside your project 2 VPCs on GCP. And **Shared VPC** would provide the IAM functionalities to specify Who can access What.
-- **Cloud Load Balancing**
+- **Cloud Load Balancing**: Google Cloud Load Balancing allows you to balance HTTP-based traffic across multiple Compute Engine regions.
 
 <img src="../images/Cloud_Load_balancing.png"
      alt="Cloud_Load_balancing.png"
@@ -298,6 +298,64 @@ Check that the running webserver serves the homepage from the other VM on the sa
      alt="VM1_seeing_homepage_of_VM2.png"
      style="float: left; margin-right: 10px;" />
 
+
+### Lab about Compute Engine
+
+[notes](../labs/lab_create_VMs_with_Compute_Engine.md) 
+
+
+
+
+## GCP Storage Options
+
+[video](https://www.coursera.org/learn/gcp-fundamentals/lecture/18wEV/introduction-to-google-cloud-platform-storage-options)
+
+
+GCP has other storage options to meet your needs for:
+
+- structured,
+- unstructured,
+- transactional
+- and relational data.
+
+Its core storage options:
+
+- Cloud Storage ([video](https://www.coursera.org/learn/gcp-fundamentals/lecture/HLKXf/cloud-storage)): Cloud Storage objects are immutable,
+- Google Big Table ([video](https://www.coursera.org/learn/gcp-fundamentals/lecture/8LIth/google-cloud-bigtable))
+- Cloud SQL,
+- Cloud Spanner,
+- Cloud Data Store,
+
+
+### Cloud Storage  interactions
+
+- [video 1](https://www.coursera.org/learn/gcp-fundamentals/lecture/HLKXf/cloud-storage)
+- [video 2](https://www.coursera.org/learn/gcp-fundamentals/lecture/2uNqj/cloud-storage-interactions)
+
+4 classes:
+
+- "multi-regional" & "regional" are high-performance object classes
+- "nearline" & "coldline" are backup/archivable storage
+
+<img src="../images/Cloud_Storage_interactions_4classes.png"
+     alt="Cloud_Storage_interactions_4classes.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/Storage_CloudStorage_bring_data_in.png"
+     alt="Storage_CloudStorage_bring_data_in.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/Storage_CloudStorage_interactions_with_other_GCP_services.png"
+     alt="Storage_CloudStorage_interactions_with_other_GCP_services.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/Storage_CloudStorage_buckets.png"
+     alt="Storage_CloudStorage_buckets.png"
+     style="float: left; margin-right: 10px;" />
+
+### Google Cloud Bigtable
+
+[video](https://www.coursera.org/learn/gcp-fundamentals/lecture/8LIth/google-cloud-bigtable)
 
 ## Resources/Articles
 
