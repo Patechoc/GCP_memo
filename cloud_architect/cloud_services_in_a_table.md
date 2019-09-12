@@ -1,7 +1,7 @@
 # Summary of cloud services and respective open-source equivalent 
 
 
-source: https://docs.google.com/spreadsheets/d/1Ibo41Cs_XNdCFSqmNiXEQ16h-ZU6ATb6CZrMdKsLsZI
+Edit this Sheet then convert to Markdown: https://docs.google.com/spreadsheets/d/1Ibo41Cs_XNdCFSqmNiXEQ16h-ZU6ATb6CZrMdKsLsZI
 
 |  **** | **** | **Open-Source** | **GCP** | **AWS** | **...** |
 | --- | --- | --- | --- | --- | --- |
@@ -53,3 +53,5 @@ source: https://docs.google.com/spreadsheets/d/1Ibo41Cs_XNdCFSqmNiXEQ16h-ZU6ATb6
 ## Resources/Articles
 
 - [GCP vs AWS platforms](https://cloud.google.com/docs/compare/aws/#resource_management_interfaces)
+- [Open-source Cloud tools](https://dzone.com/articles/top-5-enterprise-etl-tools)
+- [Open-source tools matched with Cloud service providers](https://www.griddynamics.com/technologies/data-platform/cloud-native-data-platform)

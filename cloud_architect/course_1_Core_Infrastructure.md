@@ -310,6 +310,9 @@ Check that the running webserver serves the homepage from the other VM on the sa
 
 [video](https://www.coursera.org/learn/gcp-fundamentals/lecture/18wEV/introduction-to-google-cloud-platform-storage-options)
 
+<img src="../images/Storage_COMPARISON.png"
+     alt="Storage_COMPARISON.png"
+     style="float: left; margin-right: 10px;" />
 
 GCP has other storage options to meet your needs for:
 
@@ -365,14 +368,26 @@ Definition: Google CLoud (fully-managed) NoSQL, BigData, database service for Te
      alt="Storage_BigTable_interactions.png"
      style="float: left; margin-right: 10px;" />
 
+### Google Cloud Datastore
+
+[vidoe](https://www.coursera.org/learn/gcp-fundamentals/lecture/7sYyx/google-cloud-datastore)
+
+Definition: Google CLoud Datastore is a managed horizontally scalable NoSQL database.
+
+
 ### Google Cloud SQL
 
 [video](https://www.coursera.org/learn/gcp-fundamentals/lecture/fVTwB/google-cloud-sql-and-google-cloud-spanner)
 
-a managed RDBMS database service. Either based on MySQL or PostgreSQLBeta.
+a managed Relational Database Management System (RDBMS) database service. Either based on MySQL or PostgreSQLBeta.
 
 It manages "database transactions".
 
+### Google Cloud Spanner
+
+[video, together with Cloud SQL](https://www.coursera.org/learn/gcp-fundamentals/lecture/fVTwB/google-cloud-sql-and-google-cloud-spanner)
+
+Definition: Google Spanner is horizontally scalable Relational Database Management System (RDBMS).
 
 ## Resources/Articles
 
