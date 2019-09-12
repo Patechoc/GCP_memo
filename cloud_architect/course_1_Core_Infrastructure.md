@@ -386,6 +386,23 @@ Definition: Google Spanner is horizontally scalable Relational Database Manageme
 [video](https://www.coursera.org/learn/gcp-fundamentals/lecture/yboF1/demonstration-getting-started-with-cloud-storage-and-cloud-sql)
 
 
+## Containers, Kubernetes, and Kubernetes Engine
+
+[video](https://www.coursera.org/learn/gcp-fundamentals/lecture/XMTBL/containers-kubernetes-and-kubernetes-engine)
+
+<img src="../images/containers_IaaS.png"
+     alt="containers_IaaS.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/containers_containers.png"
+     alt="containers_containers.png"
+     style="float: left; margin-right: 10px;" />
+
+It scales like PaaS, but gives you nearly the same flexibility as IaaS.
+
+With this abstraction, your code is ultra portable, and you can treat the OS and the hardware as a blackbox. You can go from your laptop to the cloud without changing or rebuilding anything.
+
+
 ## Resources/Articles
 
 - [GCP vs AWS platforms](https://cloud.google.com/docs/compare/aws/#resource_management_interfaces)
