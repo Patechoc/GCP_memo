@@ -739,6 +739,64 @@ Stackdriver is GCP's tool for monitoring, logging and diagnostics.
 - [video lab](https://www.coursera.org/learn/gcp-fundamentals/lecture/CJO1F/demonstration-getting-started-with-deployment-manager-and-stackdriver)
 - notes lab 
 
+
+
+## Big Data and Machine Learning
+
+- [video #1](https://www.coursera.org/learn/gcp-fundamentals/lecture/6WqVr/introduction-to-big-data-and-machine-learning)
+- [video #2](https://www.coursera.org/learn/gcp-fundamentals/lecture/gP7vk/google-cloud-big-data-platform)
+- [video #3](https://www.coursera.org/learn/gcp-fundamentals/lecture/OK31U/cloud-dataflow)
+
+<img src="../images/BigData_ML_tools.png"
+        alt="BigData_ML_tools.png"
+        style="float: left; margin-right: 10px;" />
+
+### Dataproc
+
+- [video #2](https://www.coursera.org/learn/gcp-fundamentals/lecture/gP7vk/google-cloud-big-data-platform)
+
+<img src="../images/BigData_ML_Dataproc.png"
+        alt="BigData_ML_Dataproc.png"
+        style="float: left; margin-right: 10px;" />
+
+
+- Spark/SparkSQL for data mining
+- MLlib (Spark ML libraries)
+
+### Dataflow
+
+- [video #3](https://www.coursera.org/learn/gcp-fundamentals/lecture/OK31U/cloud-dataflow)
+
+<table >
+	<tbody>
+		<tr>
+			<td><img src="../images/BigData_ML_Dataflow.png"
+        alt="BigData_ML_Dataflow.png"
+        style="float: left; margin-right: 10px;" />
+            </td>
+			<td><img src="../images/BigData_ML_Dataflow_pipelines.png"
+        alt="BigData_ML_Dataflow_pipelines.png"
+        style="float: left; margin-right: 10px;" />
+            </td>
+		</tr>
+	</tbody>
+</table>
+
+<img src="../images/BigData_ML_Dataflow_pipeline_example.png"
+        alt="BigData_ML_Dataflow_pipeline_example.png"
+        style="float: left; margin-right: 10px;" />
+
+
+
+
+
+### BigQuery
+
+
+
+### Cloud Pub/Sub
+
+
 ## Resources/Articles
 
 - [GCP vs AWS platforms](https://cloud.google.com/docs/compare/aws/#resource_management_interfaces)
