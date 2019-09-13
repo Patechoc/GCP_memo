@@ -746,6 +746,7 @@ Stackdriver is GCP's tool for monitoring, logging and diagnostics.
 - [video #1](https://www.coursera.org/learn/gcp-fundamentals/lecture/6WqVr/introduction-to-big-data-and-machine-learning)
 - [video #2](https://www.coursera.org/learn/gcp-fundamentals/lecture/gP7vk/google-cloud-big-data-platform)
 - [video #3](https://www.coursera.org/learn/gcp-fundamentals/lecture/OK31U/cloud-dataflow)
+- [video #4](https://www.coursera.org/learn/gcp-fundamentals/lecture/KM2ei/bigquery)
 
 <img src="../images/BigData_ML_tools.png"
         alt="BigData_ML_tools.png"
@@ -778,6 +779,14 @@ Stackdriver is GCP's tool for monitoring, logging and diagnostics.
         alt="BigData_ML_Dataflow_pipelines.png"
         style="float: left; margin-right: 10px;" />
             </td>
+			<td><img src="../images/BigData_ML_Dataflow_ETL_tool.png"
+        alt="BigData_ML_Dataflow_ETL_tool.png"
+        style="float: left; margin-right: 10px;" />
+            </td>
+			<td><img src="../images/BigData_ML_Dataflow_orchestration.png"
+        alt="BigData_ML_Dataflow_orchestration.png"
+        style="float: left; margin-right: 10px;" />
+            </td>
 		</tr>
 	</tbody>
 </table>
@@ -787,11 +796,28 @@ Stackdriver is GCP's tool for monitoring, logging and diagnostics.
         style="float: left; margin-right: 10px;" />
 
 
-
-
-
 ### BigQuery
 
+- [video #4](https://www.coursera.org/learn/gcp-fundamentals/lecture/KM2ei/bigquery)
+
+<table >
+	<tbody>
+		<tr>
+			<td><img src="../images/BigData_ML_BigQuery.png"
+        alt="BigData_ML_BigQuery.png"
+        style="float: left; margin-right: 10px;" />
+            </td>
+			<td><img src="../images/BigData_ML_BigQuery_fully_managed.png"
+        alt="BigData_ML_BigQuery_fully_managed.png"
+        style="float: left; margin-right: 10px;" />
+            </td>
+			<td><img src="../images/BigData_ML_BigQuery_global_service.png"
+        alt="BigData_ML_BigQuery_global_service.png"
+        style="float: left; margin-right: 10px;" />
+            </td>
+		</tr>
+	</tbody>
+</table>
 
 
 ### Cloud Pub/Sub
