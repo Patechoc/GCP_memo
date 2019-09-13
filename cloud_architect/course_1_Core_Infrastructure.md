@@ -605,6 +605,10 @@ New PODs will get created according to your update strategy:
 
 ## App Engine
 
+- [video #1](https://www.coursera.org/learn/gcp-fundamentals/lecture/PrttY/google-app-engine-standard-environment)
+- [video #2](https://www.coursera.org/learn/gcp-fundamentals/lecture/4ZurT/google-app-engine-flexible-environment)
+
+
 - Compute infrastructure (IaaS): **Compute Engine** & **Kubernetes Engine**
 - Platform-as-a-Service (PaaS) and "focus on your code": **App Engine**
 
@@ -628,7 +632,43 @@ App Engine:
 
 ### **Flexible** Environment
 
-- 
+- runs on containers (running on VMs)
+- Allows to configure your containers
+- Use standard runtime
+
+
+### Comparison Standard vs Flexible
+
+<img src="../images/AppEngine_Comparison_standard_flexible.png"
+        alt="AppEngine_Comparison_standard_flexible.png"
+        style="float: left; margin-right: 10px;" />
+
+### Comparison App Engine vs Kubernetes Engine
+
+<img src="../images/AppEngine_Comparison_app_engine_vs_Kubernetes_engine.png"
+        alt="AppEngine_Comparison_app_engine_vs_Kubernetes_engine.png"
+        style="float: left; margin-right: 10px;" />
+
+
+## Google Cloud Endpoints and Apigee Edge
+
+[video](https://www.coursera.org/learn/gcp-fundamentals/lecture/tPtB0/google-cloud-endpoints-and-apigee-edge)
+
+- What's an API? a clean, well-defined interface that abstract away needless details on the service's implementation
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Resources/Articles
 
