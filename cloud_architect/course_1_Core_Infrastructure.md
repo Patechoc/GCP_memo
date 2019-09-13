@@ -697,6 +697,48 @@ Many users of Apigee Edge are providing a software service to other companies an
 - [video](https://www.coursera.org/learn/gcp-fundamentals/lecture/T1C9J/demonstration-getting-started-with-app-engine)
 - [notes lab](../labs/lab_deploy_appengine_webapp.md)
 
+
+## Development in the cloud
+
+[video](https://www.coursera.org/learn/gcp-fundamentals/lecture/8Hfmz/development-in-the-cloud)
+
+- Git: hosted git (private) provider > **Cloud Source Repositories**
+- Managed applications which can be triggered (events in Cloud Storage, in Cloud Pub/Sub or an HTTP call): **Cloud Functions (beta)**
+
+
+## Deployment: Infrastructure as code
+
+[video](https://www.coursera.org/learn/gcp-fundamentals/lecture/0hYEJ/deployment-infrastructure-as-code)
+
+It's often more efficient to **use a template** to set up your GCP environment.
+
+That means a specification of what the environment should look like. It's **declarative** rather than **imperative**, using either:
+- `yaml` markup language
+- or `Python`
+
+Then you give the template to [**Deployment Manager**](https://cloud.google.com/deployment-manager/docs/), and you allows you to version control your deployment templates in Git repositories (e.g. Cloud Source Repositories).
+
+## Monitoring: Proactive instrumentation (Stackdriver & )
+
+[video](https://www.coursera.org/learn/gcp-fundamentals/lecture/cHNEH/monitoring-proactive-instrumentation)
+
+You can't run an application stably without monitoring. Monitoring lets you figure out whether the changes you made were good or bad. It lets you respond with information rather than with panic, when one of your end users complains that your application is down
+
+Stackdriver is GCP's tool for monitoring, logging and diagnostics.
+
+<img src="../images/Monitoring_StackDriver.png"
+        alt="Monitoring_StackDriver.png"
+        style="float: left; margin-right: 10px;" />
+
+<img src="../images/Monitoring_StackDriver_services.png"
+        alt="Monitoring_StackDriver_services.png"
+        style="float: left; margin-right: 10px;" />
+
+### lab: Getting Started with Deployment Manager and Stackdriver
+
+- [video lab](https://www.coursera.org/learn/gcp-fundamentals/lecture/CJO1F/demonstration-getting-started-with-deployment-manager-and-stackdriver)
+- notes lab 
+
 ## Resources/Articles
 
 - [GCP vs AWS platforms](https://cloud.google.com/docs/compare/aws/#resource_management_interfaces)
