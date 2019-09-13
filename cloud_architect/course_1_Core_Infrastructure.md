@@ -749,6 +749,7 @@ Stackdriver is GCP's tool for monitoring, logging and diagnostics.
 - [video #4](https://www.coursera.org/learn/gcp-fundamentals/lecture/KM2ei/bigquery)
 - [video #5](https://www.coursera.org/learn/gcp-fundamentals/lecture/LnOme/cloud-pub-sub-and-cloud-datalab)
 - [video #6](https://www.coursera.org/learn/gcp-fundamentals/lecture/x2zsd/google-cloud-machine-learning-platform)
+- [video #7](https://www.coursera.org/learn/gcp-fundamentals/lecture/VwUfz/machine-learning-apis)
 
 <img src="../images/BigData_ML_tools.png"
         alt="BigData_ML_tools.png"
@@ -867,6 +868,54 @@ Stackdriver is GCP's tool for monitoring, logging and diagnostics.
         style="float: left; margin-right: 10px;" />
 
 
+### Machine learning APIs
+
+- [video #7](https://www.coursera.org/learn/gcp-fundamentals/lecture/VwUfz/machine-learning-apis)
+
+<table >
+	<tbody>
+		<tr>
+			<td><img src="../images/BigData_ML_API_Vision.png"
+        alt="BigData_ML_API_Vision.png"
+        style="float: left; margin-right: 10px;" />
+            </td>
+			<td><img src="../images/BigData_ML_API_Vision_aplications.png"
+        alt="BigData_ML_API_Vision_aplications.png"
+        style="float: left; margin-right: 10px;" />
+            </td>
+		</tr>
+	</tbody>
+</table>
+
+
+<table >
+	<tbody>
+		<tr>
+			<td><img src="../images/BigData_ML_API_Natural_Language.png"
+        alt="BigData_ML_API_Natural_Language.png"
+        style="float: left; margin-right: 10px;" />
+            </td>
+			<td><img src="../images/BigData_ML_API_Natural_Language_applications.png"
+        alt="BigData_ML_API_Natural_Language_applications.png"
+        style="float: left; margin-right: 10px;" />
+            </td>
+		</tr>
+	</tbody>
+</table>
+
+
+<img src="../images/BigData_ML_API_Translation.png"
+        alt="BigData_ML_API_Translation.png"
+        style="float: left; margin-right: 10px;" />
+
+<img src="../images/BigData_ML_API_VideoBeta.png"
+        alt="BigData_ML_API_VideoBeta.png"
+        style="float: left; margin-right: 10px;" />
+
+### lab: Getting Started with BigQuery
+
+- [video lab](https://www.coursera.org/learn/gcp-fundamentals/lecture/V6Daj/demonstration-getting-started-with-bigquery)
+- [notes lab](../labs/lab_load_data_and_query_BigQuery.md)
 
 ## Resources/Articles
 
