@@ -658,8 +658,8 @@ App Engine:
 
 Google provides 2 APIs-related approach:
 
-- Cloud Endpoints
-- Apigee Edge
+- **Cloud Endpoints**: managed API proxies
+- **Apigee Edge**: also a managed API proxies, but business-oriented (rate limiting, quotas, analytics), providing a software service to OTHER companies.
 
 <table >
 	<tbody>
@@ -683,16 +683,19 @@ Google provides 2 APIs-related approach:
 </table>
 
 
+<img src="../images/API_ApigeeEdge.png"
+                    alt="API_ApigeeEdge.png"
+                    style="float: left; margin-right: 10px;" />
 
 
+Many users of Apigee Edge are providing a software service to other companies and those features come in handy.
 
+> Because of the backend services for Apigee Edge need not be in GCP, engineers often use it when they are "taking apart" a legacy application. Instead of replacing a monolithic application in one risky move, they can instead use Apigee Edge to peel off its services one by one, standing up microservices to implement each in turn, until the legacy application can be finally retired.
 
+### Lab: Getting Started with App Engine
 
-
-
-
-
-
+- [video](https://www.coursera.org/learn/gcp-fundamentals/lecture/T1C9J/demonstration-getting-started-with-app-engine)
+- [notes lab](../labs/lab_deploy_appengine_webapp.md)
 
 ## Resources/Articles
 
