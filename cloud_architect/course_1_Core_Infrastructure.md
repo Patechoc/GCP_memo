@@ -747,6 +747,8 @@ Stackdriver is GCP's tool for monitoring, logging and diagnostics.
 - [video #2](https://www.coursera.org/learn/gcp-fundamentals/lecture/gP7vk/google-cloud-big-data-platform)
 - [video #3](https://www.coursera.org/learn/gcp-fundamentals/lecture/OK31U/cloud-dataflow)
 - [video #4](https://www.coursera.org/learn/gcp-fundamentals/lecture/KM2ei/bigquery)
+- [video #5](https://www.coursera.org/learn/gcp-fundamentals/lecture/LnOme/cloud-pub-sub-and-cloud-datalab)
+- [video #6](https://www.coursera.org/learn/gcp-fundamentals/lecture/x2zsd/google-cloud-machine-learning-platform)
 
 <img src="../images/BigData_ML_tools.png"
         alt="BigData_ML_tools.png"
@@ -820,7 +822,50 @@ Stackdriver is GCP's tool for monitoring, logging and diagnostics.
 </table>
 
 
-### Cloud Pub/Sub
+### Cloud Pub/Sub and Cloud Datalab
+
+- [video #5](https://www.coursera.org/learn/gcp-fundamentals/lecture/LnOme/cloud-pub-sub-and-cloud-datalab)
+
+<table >
+	<tbody>
+		<tr>
+			<td><img src="../images/BigData_ML_PubSub.png"
+        alt="BigData_ML_PubSub.png"
+        style="float: left; margin-right: 10px;" />
+            </td>
+			<td><img src="../images/BigData_ML_PubSub_usage.png"
+        alt="BigData_ML_PubSub_usage.png"
+        style="float: left; margin-right: 10px;" />
+            </td>
+		</tr>
+	</tbody>
+</table>
+
+
+<table >
+	<tbody>
+		<tr>
+			<td><img src="../images/BigData_ML_Datalab.png"
+        alt="BigData_ML_Datalab.png"
+        style="float: left; margin-right: 10px;" />
+            </td>
+			<td><img src="../images/BigData_ML_Datalab_interactions.png"
+        alt="BigData_ML_Datalab_interactions.png"
+        style="float: left; margin-right: 10px;" />
+            </td>
+		</tr>
+	</tbody>
+</table>
+
+ 
+### Google Cloud Machine Learning Platform
+
+- [video #6](https://www.coursera.org/learn/gcp-fundamentals/lecture/x2zsd/google-cloud-machine-learning-platform)
+
+<img src="../images/BigData_ML_ML_platform.png"
+        alt="BigData_ML_ML_platform.png"
+        style="float: left; margin-right: 10px;" />
+
 
 
 ## Resources/Articles
