@@ -63,6 +63,12 @@ Both sure beat the old way where you bought everything in advance based on lots 
 
 What about SaaS? Of course, Google's popular applications like, Google Search, Gmail, Google Docs and Google Drive are Software as a Service applications in that they're consumed directly over the internet by end users (e.g. GSuite).
 
+<img src="../images/GCP_IaaS_PaaS_FaaS.png"
+     alt="GCP_IaaS_PaaS_FaaS.png"
+     style="float: left; margin-right: 10px;" />
+
+article: https://cloud.google.com/blog/products/gcp/time-to-hello-world-vms-vs-containers-vs-paas-vs-faas
+
 ## GCP Multi-regions, Regions & Zones
 
 <img src="../images/GCP_regions_zones.png"
@@ -596,9 +602,38 @@ New PODs will get created according to your update strategy:
 - [video: lab](https://www.coursera.org/learn/gcp-fundamentals/lecture/umRjO/demo-getting-started-with-kubernetes-engine)
 - [notes lab](../labs/lab_create_a_webserver_deployed_on_kubernetes_cluster.md) 
 
+
+## App Engine
+
+- Compute infrastructure (IaaS): **Compute Engine** & **Kubernetes Engine**
+- Platform-as-a-Service (PaaS) and "focus on your code": **App Engine**
+
+App Engine:
+
+- scales automatically
+- you pay for what you use
+- 2 environments: **Standard** & **Flexible**
+
+### **Standard** Environment
+
+- Simpler type: works in sandbox (why it can scales)
+- Some environment at NO charge
+- has contraints: "60 seconds time-out" (if not suitable, move to Flexible)
+- Runtime for Java, Python, PHP and Go
+
+
+<img src="../images/AppEngine_Standard_example_workflow.png"
+        alt="AppEngine_Standard_example_workflow.png"
+        style="float: left; margin-right: 10px;" />
+
+### **Flexible** Environment
+
+- 
+
 ## Resources/Articles
 
 - [GCP vs AWS platforms](https://cloud.google.com/docs/compare/aws/#resource_management_interfaces)
 - Blog post on [Professional Cloud Architect Certification](https://medium.com/google-cloud/professional-cloud-architect-certification-6a6dfa5c6ff5) by a Googler
 - [Cloud Run VS Cloud Functions: What’s the lowest cost?](https://medium.com/google-cloud/cloud-run-vs-cloud-functions-whats-the-lowest-cost-728d59345a2e)
 - https://linuxacademy.com/
+- [blog post comparing AWS, GCP and Azure](https://medium.com/globallogic-cloud-and-devops-blogs/clouds-compared-aws-vs-azure-vs-gcp-c59519b9d5e4)
