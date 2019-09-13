@@ -656,7 +656,31 @@ App Engine:
 
 - What's an API? a clean, well-defined interface that abstract away needless details on the service's implementation
 
+Google provides 2 APIs-related approach:
 
+- Cloud Endpoints
+- Apigee Edge
+
+<table >
+	<tbody>
+		<tr>
+			<td><img src="../images/API_Cloud_Endpoints.png"
+                    alt="API_Cloud_Endpoints.png"
+                    style="float: left; margin-right: 10px;" />
+            </td>
+			<td><img src="../images/API_Cloud_Endpoints_managed_Proxy.png"
+                    alt="API_Cloud_Endpoints_managed_Proxy.png"
+                    style="float: left; margin-right: 10px;" />
+            </td>
+		</tr>
+		<tr>
+			<td><img src="../images/API_Cloud_Endpoints_supported_platforms.png"
+                    alt="API_Cloud_Endpoints_supported_platforms.png"
+                    style="float: left; margin-right: 10px;" />
+            </td>
+		</tr>
+	</tbody>
+</table>
 
 
 
