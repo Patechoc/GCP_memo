@@ -146,72 +146,83 @@ Use the dialog to add three subnets as follows.
         alt="lab_network_parameters_learncurstom_subnet_a.png"
         style="float: left; margin-right: 10px;" />
 
-Click Add subnet.
-For the second subnet, specify the following:
-Property	Value (type value or select option as specified)
-Name	subnet-1b
-Region	us-central1
-IP address range	192.168.3.0/24
-Click Add subnet.
-For the third subnet, specify the following:
-Property	Value (type value or select option as specified)
-Name	subnet-2
-Region	us-west1
-IP address range	192.168.7.0/24
-Click Create.
+5. Click Add subnet.
+6. For the second subnet, specify the following:
 
-Explore the routes and firewall rules
+<img src="../images/lab_network_parameters_learncurstom_subnet_1b.png"
+        alt="lab_network_parameters_learncurstom_subnet_1b.png"
+        style="float: left; margin-right: 10px;" />
+
+7. Click Add subnet.
+8. For the third subnet, specify the following:
+
+<img src="../images/lab_network_parameters_learncurstom_subnet_2.png"
+        alt="lab_network_parameters_learncurstom_subnet_2.png"
+        style="float: left; margin-right: 10px;" />
+
+9. Click Create.
+
+### Explore the routes and firewall rules
+
 Did creating the custom network automatically create routes?
 
-In the left pane, click Routes.
-Click Network in the table header to sort by network name. Routes should be displayed for each subnetwork.
+1. In the left pane, click Routes.
+2. Click Network in the table header to sort by network name. Routes should be displayed for each subnetwork.
 Did creating the custom network automatically create firewall rules?
 
-In the left pane, click Firewall rules.
+3. In the left pane, click Firewall rules.
 
-Click Network in the table header to sort by network name. No default firewall rules were created for the custom network. You will have to manually add default rules in the next step.
+4. Click Network in the table header to sort by network name. No default firewall rules were created for the custom network. You will have to manually add default rules in the next step.
 
-Create firewall rules for the learncustom network
+### Create firewall rules for the learncustom network
+
 Notice that for the other networks, the default network and the learnauto network, GCP automatically created default firewall rules allowing SSH traffic (tcp:22), icmp traffic, and rdp (tcp:3389) traffic for Windows VMs. Add a firewall rule to provide the same access for the learncustom network.
 
-Click Create firewall rule.
-Specify the following, and leave the remaining settings as their defaults:
-Property	Value (type value or select option as specified)
-Name	allow-ssh-icmp-rdp-learncustom
-Network	learncustom
-Target tags	allow-defaults
-Source IP ranges	0.0.0.0/0
-Protocols and ports	Specified protocols and ports
-For tcp, specify ports 22 and 3389.
+1. Click Create firewall rule.
+2. Specify the following, and leave the remaining settings as their defaults:
 
-Specify the icmp protocol.
+<img src="../images/lab_network_parameters_learncurstom_firewall.png"
+        alt="lab_network_parameters_learncurstom_firewall.png"
+        style="float: left; margin-right: 10px;" />
 
-Make sure that the source filter address includes the final "/0". If you specify 0.0.0.0 instead of 0.0.0.0/0, the filter defaults to 0.0.0.0/32, which is an exact host address that doesn't exist.
+3.For tcp, specify ports 22 and 3389.
 
-Click Create.
+4. Specify the icmp protocol.
+
+> Make sure that the source filter address includes the final "/0". If you specify 0.0.0.0 instead of 0.0.0.0/0, the filter defaults to 0.0.0.0/32, which is an exact host address that doesn't exist.
+
+5. Click Create.
+
 Click Check my progress to verify the objective.
-Create the network topology
+> Create the network topology
 
-Create an overlapping subnet
+### Create an overlapping subnet
+
 In this subtask, you attempt to modify the network by adding a subnet with an overlapping address range but in a different region. What do you predict will happen?
 
-In the left pane, click VPC networks.
-Click learncustom.
-Click Add subnet.
-Specify the following, leaving all other values with their defaults:
-Property	Value (type value or select option as specified)
-Name	subnet-3
-Region	europe-west1
-IP address range	192.168.5.0/24
-The IP address range label is displayed in red with the following error message: "This IP address range overlaps with a subnet you already added. Enter an address range that doesn't overlap."
+1. In the left pane, click VPC networks.
+2. Click learncustom.
+3. Click Add subnet.
+4. Specify the following, leaving all other values with their defaults:
 
-Click CANCEL.
+<img src="../images/lab_network_parameters_learncurstom_overlapping_subnet.png"
+        alt="lab_network_parameters_learncurstom_overlapping_subnet.png"
+        style="float: left; margin-right: 10px;" />
+
+> The IP address range label is displayed in red with the following error message: "This IP address range overlaps with a subnet you already added. Enter an address range that doesn't overlap."
+
+5. Click CANCEL.
+
+
+
 
 ## Task 2: Create the VM instances
 
 To explore the Cloud Virtual Network, you create five micro VMs in different locations in the network. You will not install any additional software on them. They will not run any applications. You will just use them to explore the connectivity across the topologies in the network.
 
-e4e8f0bf4ac565ca.png
+<img src="../images/lab_network_VMs_diagram.png"
+        alt="lab_network_VMs_diagram.png"
+        style="float: left; margin-right: 10px;" />
 
 Name	Network	Region	Zone
 learn-1	default	us-west1	us-west1-a
