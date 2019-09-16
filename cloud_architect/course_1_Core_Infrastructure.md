@@ -917,6 +917,40 @@ Stackdriver is GCP's tool for monitoring, logging and diagnostics.
 - [video lab](https://www.coursera.org/learn/gcp-fundamentals/lecture/V6Daj/demonstration-getting-started-with-bigquery)
 - [notes lab](../labs/lab_load_data_and_query_BigQuery.md)
 
+
+## Summary
+
+[video](https://www.coursera.org/learn/gcp-fundamentals/lecture/1W4bz/review)
+
+- GCP: a continuum of servces from **"managed infrastructure"** to **"dynamic infrastructure"**
+
+<img src="../images/summary_GCP_continuum_managed_to_dynamic_infrastructure.png"
+        alt="summary_GCP_continuum_managed_to_dynamic_infrastructure.png"
+        style="float: left; margin-right: 10px;" />
+
+- GCP offers a variety of Load balancers:
+
+<img src="../images/various_load_balancing_services.png"
+        alt="various_load_balancing_services.png"
+        style="float: left; margin-right: 10px;" />
+
+- GCP offers various ways to interconnect other networks to it:
+
+<img src="../images/Interconnect_other_network_to_GCP.png"
+        alt="Interconnect_other_network_to_GCP.png"
+        style="float: left; margin-right: 10px;" />
+
+- GCP offers various type of storage:
+
+<img src="../images/various_storages.png"
+        alt="various_storages.png"
+        style="float: left; margin-right: 10px;" />
+
+<img src="../images/various_storages_classes.png"
+        alt="various_storages_classes.png"
+        style="float: left; margin-right: 10px;" />
+
+
 ## Resources/Articles
 
 - [GCP vs AWS platforms](https://cloud.google.com/docs/compare/aws/#resource_management_interfaces)
