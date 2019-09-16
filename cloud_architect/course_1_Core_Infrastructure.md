@@ -974,6 +974,7 @@ Stackdriver is GCP's tool for monitoring, logging and diagnostics.
 ## Resources/Articles
 
 - [GCP vs AWS platforms](https://cloud.google.com/docs/compare/aws/#resource_management_interfaces)
+- [Google Cloud Platform Fundamentals for AWS Professionals](https://www.coursera.org/learn/gcp-fundamentals-aws?mkt_tok=eyJpIjoiTXpNd1l6Sm1OakV3TlRFNCIsInQiOiI1NDJXZ2lvRGs4R1VKRlo1OThJTVVHeWFPOUxoOFN4TUpcL1kyUnQ3dm9uemhHUk9pNVcyYXJRV2pYdkJkNmlxcDc3SjFhMGRZQVVnQTFFaXJWMzBPSitkVWN6citzZUF2ZFFWQzQzcUlOVWVXaWw3c2tSXC9KR3piQTBjZU0waHV3In0%3D)
 - Blog post on [Professional Cloud Architect Certification](https://medium.com/google-cloud/professional-cloud-architect-certification-6a6dfa5c6ff5) by a Googler
 - [Cloud Run VS Cloud Functions: What’s the lowest cost?](https://medium.com/google-cloud/cloud-run-vs-cloud-functions-whats-the-lowest-cost-728d59345a2e)
 - https://linuxacademy.com/
