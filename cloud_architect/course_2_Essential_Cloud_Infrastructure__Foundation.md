@@ -18,7 +18,6 @@ This specialization is defined for cloud solution architects, DevOps engineers, 
     * [Routes and Firewall Rules](#routes-and-firewall-rules)
     * [Network Billing](#network-billing)
     * [Lab 1: Virtual Networking](#lab-1-virtual-networking)
-* [Module 3: Virtual Machines](#module-3-virtual-machines)
     * [Common network designs](#common-network-designs)
     * [Need of increased Availability](#need-of-increased-availability)
     * [Globalization: Need of increased isolation against software/hardware failures](#globalization-need-of-increased-isolation-against-softwarehardware-failures)
@@ -27,8 +26,12 @@ This specialization is defined for cloud solution architects, DevOps engineers, 
     * [Bastion host isolation](#bastion-host-isolation)
     * [NAT Gateway host isolation](#nat-gateway-host-isolation)
     * [Lab 2: Bastion Host](#lab-2-bastion-host)
+* [Module 3: Virtual Machines](#module-3-virtual-machines)
+    * [What's Compute Engine?](#whats-compute-engine)
+    * [What are compute options (vCPY, Memory)?](#what-are-compute-options-vcpy-memory)
+    * [Compute Engine images?](#compute-engine-images)
+    * [common Compute Engine actions](#common-compute-engine-actions)
 * [Resources/Articles](#resourcesarticles)
-
 
 ## Module 1: Introduction to GCP
 
@@ -299,9 +302,98 @@ This will be followed by an in-depth lab that explores many of the features and 
 
 ### What's Compute Engine?
 
+[video](https://www.coursera.org/learn/gcp-infrastructure-foundation/lecture/7Yk7C/compute-engine)
+
 <img src="../images/Compute_engine_in_GCP_Compute_spectrum.png"
         alt="Compute_engine_in_GCP_Compute_spectrum.png"
         style="float: left; margin-right: 10px;" />
+
+<img src="../images/Compute_engine_what_it_is.png"
+        alt="Compute_engine_what_it_is.png"
+        style="float: left; margin-right: 10px;" />
+
+<img src="../images/Compute_engine_features.png"
+        alt="Compute_engine_features.png"
+        style="float: left; margin-right: 10px;" />
+
+
+#### Compute options
+
+<img src="../images/Compute_engine_Compute_options.png"
+        alt="Compute_engine_Compute_options.png"
+        style="float: left; margin-right: 10px;" />
+
+#### Disk (Storage) options
+
+<img src="../images/Compute_engine_Disk_options.png"
+        alt="Compute_engine_Disk_options.png"
+        style="float: left; margin-right: 10px;" />
+
+
+#### Networking options
+
+<img src="../images/Compute_engine_Networking_options.png"
+        alt="Compute_engine_Networking_options.png"
+        style="float: left; margin-right: 10px;" />
+
+#### Demo Compute Engine options
+
+- [video](https://www.coursera.org/learn/gcp-infrastructure-foundation/lecture/5NGzq/demo-compute-engine)
+
+#### Pricing and discounts
+
+[video](https://www.coursera.org/learn/gcp-infrastructure-foundation/lecture/2B8Tb/pricing-and-discounts) 
+
+<img src="../images/Compute_engine_pricing.png"
+        alt="Compute_engine_pricing.png"
+        style="float: left; margin-right: 10px;" />
+
+<img src="../images/Compute_engine_pricing_VM_discounts.png"
+        alt="Compute_engine_pricing_VM_discounts.png"
+        style="float: left; margin-right: 10px;" />
+
+Example of cumulated usage for calculating **"sustained-use" discounts**: 
+
+<img src="../images/Compute_engine_pricing_VM_discounts_example_of_cumulated_usage.png"
+        alt="Compute_engine_pricing_VM_discounts_example_of_cumulated_usage.png"
+        style="float: left; margin-right: 10px;" />
+
+#### VM access and lifecycle
+
+[video](https://www.coursera.org/learn/gcp-infrastructure-foundation/lecture/CGmcv/vm-access-and-lifecycle)
+
+
+<img src="../images/Compute_engine_VM_access_Linux_Windows.png"
+        alt="Compute_engine_VM_access_Linux_Windows.png"
+        style="float: left; margin-right: 10px;" />
+
+VM lifecycle:
+
+<img src="../images/Compute_engine_VM_lifecycle.png"
+        alt="Compute_engine_VM_lifecycle.png"
+        style="float: left; margin-right: 10px;" />
+
+Changing VM's state from "running": 
+
+<img src="../images/Compute_engine_VM_change_of_state_from_running.png"
+        alt="Compute_engine_VM_change_of_state_from_running.png"
+        style="float: left; margin-right: 10px;" />
+
+<img src="../images/Compute_engine_VM_possible_auto_live_migration.png"
+        alt="Compute_engine_VM_possible_auto_live_migration.png"
+        style="float: left; margin-right: 10px;" />
+
+Stopped VM (No charge):
+
+<img src="../images/Compute_engine_VM_stopped.png"
+        alt="Compute_engine_VM_stopped.png"
+        style="float: left; margin-right: 10px;" />
+
+#### Lab 1 Creating Virtual Machines
+
+[video](https://www.coursera.org/learn/gcp-infrastructure-foundation/lecture/vc4nH/lab-1-creating-virtual-machines-overview-and-objectives)
+
+
 
 
 ### What are compute options (vCPY, Memory)?
