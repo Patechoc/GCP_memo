@@ -6,6 +6,28 @@ This specialization is defined for cloud solution architects, DevOps engineers, 
 
 ## Content
 
+* [Module 1: Introduction to GCP](#module-1-introduction-to-gcp)
+    * [GCP infrastruture](#gcp-infrastruture)
+    * [Using GCP](#using-gcp)
+    * [Lab 1: Console and Cloud Shell](#lab-1-console-and-cloud-shell)
+    * [Projects](#projects)
+    * [Lab 2: Infrastructure Preview (Jenkins with Cloud Deployment Manager in no time)](#lab-2-infrastructure-preview-jenkins-with-cloud-deployment-manager-in-no-time)
+* [Module 2: Virtual Networks](#module-2-virtual-networks)
+    * [Projects, networks, and subnetworks](#projects-networks-and-subnetworks)
+    * [IP addresses](#ip-addresses)
+    * [Routes and Firewall Rules](#routes-and-firewall-rules)
+    * [Network Billing](#network-billing)
+    * [Lab 1: Virtual Networking](#lab-1-virtual-networking)
+* [Module 3: Virtual Machines](#module-3-virtual-machines)
+    * [Common network designs](#common-network-designs)
+    * [Need of increased Availability](#need-of-increased-availability)
+    * [Globalization: Need of increased isolation against software/hardware failures](#globalization-need-of-increased-isolation-against-softwarehardware-failures)
+    * [Resources in differents regions/networks/projects &amp; VPC Network Peering](#resources-in-differents-regionsnetworksprojects--vpc-network-peering)
+    * [Management Separation (different projects, within same zone)](#management-separation-different-projects-within-same-zone)
+    * [Bastion host isolation](#bastion-host-isolation)
+    * [NAT Gateway host isolation](#nat-gateway-host-isolation)
+* [Lab 2: Bastion Host](#lab-2-bastion-host)
+* [Resources/Articles](#resourcesarticles)
 
 
 ## Module 1: Introduction to GCP
@@ -40,7 +62,7 @@ Analogy of infrastructure and applications:
 
 ### Using GCP
 
-# ways to interact with GCP
+Ways to interact with GCP
 
 1. The **GCloud console** (http:://console.cloud.google.com)
 2. The **Google Cloud SDK** to use `gcloud` in a terminal window
