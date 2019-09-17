@@ -177,7 +177,33 @@ This will be followed by an in-depth lab that explores many of the features and 
 
 
 
+### Common network designs
+
+How these elements work together:
+
+* projects
+* networks
+* subnetworks
+* regions
+* zones
+
+ 
+In short, they provide a rich set of:
+
+ * alternatives for managing groups of resources with varying availability
+ * and access control requirements.
+
+So you can work globally or work at a very granular level if you want/need to.
+
+#### Availability
+
+<img src="../images/networking_availability.png"
+        alt="networking_availability.png"
+        style="float: left; margin-right: 10px;" />
+
+
 
 ## Resources/Articles
 
-- 
+- IP Addresses: https://cloud.google.com/compute/docs/ip-addresses/
+- Subnets and CIDR ranges: https://cloud.google.com/compute/docs/alias-ip/#subnets_and_cidr_ranges
