@@ -242,10 +242,24 @@ You can assign different people to different roles (for management separation) f
 
 #### NAT Gateway host isolation
 
+Let's one network/project/"VM instance" to not access internet. Therefore this allows Instance 1 to communicate with another instance on a separate network via the gateway.
+
+The two networks do not have to be in the same project for this design to work.
+
 <img src="../images/networking_NAT_gateway_host_isolation.png"
         alt="networking_NAT_gateway_host_isolation.png"
         style="float: left; margin-right: 10px;" />
 
+
+## Lab 2: Bastion Host
+
+[video](https://www.coursera.org/learn/gcp-infrastructure-foundation/lecture/qfyZl/lab-2-bastion-host-overview-and-objectives)
+
+Removing the connection to the internet of a webserver meant to deliver services only to a corporate audience.
+
+<img src="../images/lab_network_bastion_host.png"
+        alt="lab_network_bastion_host.png"
+        style="float: left; margin-right: 10px;" />
 
 
 ## Resources/Articles
