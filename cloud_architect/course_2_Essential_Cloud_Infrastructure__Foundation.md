@@ -26,7 +26,7 @@ This specialization is defined for cloud solution architects, DevOps engineers, 
     * [Management Separation (different projects, within same zone)](#management-separation-different-projects-within-same-zone)
     * [Bastion host isolation](#bastion-host-isolation)
     * [NAT Gateway host isolation](#nat-gateway-host-isolation)
-* [Lab 2: Bastion Host](#lab-2-bastion-host)
+    * [Lab 2: Bastion Host](#lab-2-bastion-host)
 * [Resources/Articles](#resourcesarticles)
 
 
@@ -273,7 +273,7 @@ The two networks do not have to be in the same project for this design to work.
         style="float: left; margin-right: 10px;" />
 
 
-## Lab 2: Bastion Host
+#### Lab 2: Bastion Host
 
 - [video](https://www.coursera.org/learn/gcp-infrastructure-foundation/lecture/qfyZl/lab-2-bastion-host-overview-and-objectives)
 
