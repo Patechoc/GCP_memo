@@ -478,14 +478,63 @@ fastest, for low needs in memory.
 
 ### common Compute Engine actions
 
+[video](https://www.coursera.org/learn/gcp-infrastructure-foundation/lecture/sdGf3/common-compute-engine-actions)
 
 
+#### Moving an instance to a new zone
+
+<img src="../images/Compute_engine_actions_moving_zones.png"
+        alt="Compute_engine_actions_moving_zones.png"
+        style="float: left; margin-right: 10px;" />
+ 
+
+<img src="../images/Compute_engine_actions_moving_zones_automated.png"
+        alt="Compute_engine_actions_moving_zones_automated.png"
+        style="float: left; margin-right: 10px;" />
+
+#### Snapshots
+
+##### disk backup
+
+<img src="../images/Compute_engine_actions_snapshots_disk_backup.png"
+        alt="Compute_engine_actions_snapshots_disk_backup.png"
+        style="float: left; margin-right: 10px;" />
+
+##### data migration between zones
+
+<img src="../images/Compute_engine_actions_snapshots_data_migration.png"
+        alt="Compute_engine_actions_snapshots_data_migration.png"
+        style="float: left; margin-right: 10px;" />
+
+##### change disk type (HDD <> SSD)
+
+<img src="../images/Compute_engine_actions_snapshots_change_disk_type.png"
+        alt="Compute_engine_actions_snapshots_change_disk_type.png"
+        style="float: left; margin-right: 10px;" />
+
+#### Safe snapshot preparation
+
+<img src="../images/Compute_engine_actions_safe_snapshots_preparation.png"
+        alt="Compute_engine_actions_safe_snapshots_preparation.png"
+        style="float: left; margin-right: 10px;" />
+
+#### Resize persistent disk
+
+<img src="../images/Compute_engine_actions_sresize_disk.png"
+        alt="Compute_engine_actions_sresize_disk.png"
+        style="float: left; margin-right: 10px;" />
+
+### Lab 2 Working with VM: setup a gaming application server
+
+- [video](https://www.coursera.org/learn/gcp-infrastructure-foundation/lecture/eazN4/lab-2-working-with-virtual-machines-overview-and-objectives)
 
 
+Build the infrastructure needed for production activities:
 
+- Backups
+- graceful shutdown/restart services
 
-
-
+[Lab notes](../labs/lab_VM_backups_application_in_production.md)
 
 ## Resources/Articles
 
