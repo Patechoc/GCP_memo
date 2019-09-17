@@ -391,8 +391,8 @@ Stopped VM (No charge):
 
 #### Lab 1 Creating Virtual Machines
 
-[video](https://www.coursera.org/learn/gcp-infrastructure-foundation/lecture/vc4nH/lab-1-creating-virtual-machines-overview-and-objectives)
-
+- [video](https://www.coursera.org/learn/gcp-infrastructure-foundation/lecture/vc4nH/lab-1-creating-virtual-machines-overview-and-objectives)
+- [lab notes](../labs/lab_VMS_Linux_Windows.md)
 
 
 
