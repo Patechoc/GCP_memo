@@ -253,7 +253,7 @@ The two networks do not have to be in the same project for this design to work.
 
 ## Lab 2: Bastion Host
 
-[video](https://www.coursera.org/learn/gcp-infrastructure-foundation/lecture/qfyZl/lab-2-bastion-host-overview-and-objectives)
+- [video](https://www.coursera.org/learn/gcp-infrastructure-foundation/lecture/qfyZl/lab-2-bastion-host-overview-and-objectives)
 
 Removing the connection to the internet of a webserver meant to deliver services only to a corporate audience.
 
@@ -261,6 +261,8 @@ Removing the connection to the internet of a webserver meant to deliver services
         alt="lab_network_bastion_host.png"
         style="float: left; margin-right: 10px;" />
 
+
+[lab notes](../labs/lab_Networking_Bastion_host.md)
 
 ## Resources/Articles
 
