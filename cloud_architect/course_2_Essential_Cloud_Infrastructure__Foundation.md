@@ -398,7 +398,83 @@ Stopped VM (No charge):
 
 ### What are compute options (vCPY, Memory)?
 
-### Compute Engine images?
+[video](https://www.coursera.org/learn/gcp-infrastructure-foundation/lecture/JjM0D/compute-options)
+
+Compute engine 3 options to create VMs: 
+
+<img src="../images/Compute_engine_3_options_to_create_VMs.png"
+        alt="Compute_engine_3_options_to_create_VMs.png"
+        style="float: left; margin-right: 10px;" />
+
+Compute engine 4 classes of VMs:
+
+<img src="../images/Compute_engine_4_classes_of_VMs.png"
+        alt="Compute_engine_4_classes_of_VMs.png"
+        style="float: left; margin-right: 10px;" />
+
+
+Compute engine 80% on preemptible VMs (24hours max):
+
+<img src="../images/Compute_engine_80%_on_preemptible_VMs.png"
+        alt="Compute_engine_80%_on_preemptible_VMs.png"
+        style="float: left; margin-right: 10px;" />
+
+There exists ways to monitr and restart preemptible VMs even though this doesn't come as a default option. 
+
+
+### Compute Engine (disk) images?
+
+[video](https://www.coursera.org/learn/gcp-infrastructure-foundation/lecture/To7uo/images)
+
+<img src="../images/Compute_engine_disk_image.png"
+        alt="Compute_engine_disk_image.png"
+        style="float: left; margin-right: 10px;" />
+
+<img src="../images/Compute_engine_disk_image_private_or_public.png"
+        alt="Compute_engine_disk_image_private_or_public.png"
+        style="float: left; margin-right: 10px;" />
+
+### Compute Engine Disk options
+
+[video](https://www.coursera.org/learn/gcp-infrastructure-foundation/lecture/5Ibi2/disk-options)
+
+<img src="../images/Compute_engine_disk_image_boot_image.png"
+        alt="Compute_engine_disk_image_boot_image.png"
+        style="float: left; margin-right: 10px;" />
+
+#### Persistent disks
+
+- bounded to their zone
+- dynamically resizable, even when running!
+
+<img src="../images/Compute_engine_disk_image_boot_image_persistent.png"
+        alt="Compute_engine_disk_image_boot_image_persistent.png"
+        style="float: left; margin-right: 10px;" />
+
+#### Local SSD disks 
+
+- data will survive a RESET
+- data will NOT survive a STOP or TERMINATE (because these disks can't be re-attached to a different VM)
+
+#### RAM disk
+fastest, for low needs in memory.
+
+
+#### Summary
+
+<img src="../images/Compute_engine_disk_image_summary.png"
+        alt="Compute_engine_disk_image_summary.png"
+        style="float: left; margin-right: 10px;" />
+
+
+<img src="../images/Compute_engine_disk_max_disk_for_max_cores.png"
+        alt="Compute_engine_disk_max_disk_for_max_cores.png"
+        style="float: left; margin-right: 10px;" />
+
+
+<img src="../images/Compute_engine_disk_differences_cloud_vs_physical_disks.png"
+        alt="Compute_engine_disk_differences_cloud_vs_physical_disks.png"
+        style="float: left; margin-right: 10px;" />
 
 ### common Compute Engine actions
 
