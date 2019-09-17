@@ -179,6 +179,8 @@ This will be followed by an in-depth lab that explores many of the features and 
 
 ### Common network designs
 
+[video](https://www.coursera.org/learn/gcp-infrastructure-foundation/lecture/OeuYo/common-network-designs)
+
 How these elements work together:
 
 * projects
@@ -195,10 +197,53 @@ In short, they provide a rich set of:
 
 So you can work globally or work at a very granular level if you want/need to.
 
-#### Availability
+#### Need of increased Availability
 
 <img src="../images/networking_availability.png"
         alt="networking_availability.png"
+        style="float: left; margin-right: 10px;" />
+
+#### Globalization: Need of increased isolation against software/hardware failures
+
+<img src="../images/networking_globalization.png"
+        alt="networking_globalization.png"
+        style="float: left; margin-right: 10px;" />
+
+#### Resources in differents regions/networks/projects & VPC Network Peering
+
+- **Region/Network/Proect isolated services** >>> preventing compromised of one part from spreading to other parts.
+- **VPC Network Peering** >>> Allows these services can still communicate over a private address space.
+
+<img src="../images/networking_globalization_different_subnets.png"
+        alt="networking_globalization_different_subnets.png"
+        style="float: left; margin-right: 10px;" />
+
+#### Management Separation (different projects, within same zone)
+
+VMs isolated into separate projects, but within the same zone, useful for **Identity and Access Management**.
+
+You can assign different people to different roles (for management separation) for each project, limiting the access to the network they need access to.
+
+<img src="../images/networking_project_management.png"
+        alt="networking_project_management.png"
+        style="float: left; margin-right: 10px;" />
+
+> This allows granular access management per sub-project for a better access control,
+> 
+> But remember than a network can NOT span Projects... so the projects NEED to communicate via the internet!
+
+
+
+#### Bastion host isolation
+
+<img src="../images/networking_bastion_host_isolation.png"
+        alt="networking_bastion_host_isolation.png"
+        style="float: left; margin-right: 10px;" />
+
+#### NAT Gateway host isolation
+
+<img src="../images/networking_NAT_gateway_host_isolation.png"
+        alt="networking_NAT_gateway_host_isolation.png"
         style="float: left; margin-right: 10px;" />
 
 
