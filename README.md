@@ -4,11 +4,13 @@
 
 * [Cloud Shell commands](#cloud-shell-commands)
 * [Data Engineering on GCP Specialization](#data-engineering-on-gcp-specialization)
+    * [Objectives](#objectives)
     * [Lectures &amp; labs](#lectures--labs)
 * [Cloud Architect on GCP Specialization](#cloud-architect-on-gcp-specialization)
+    * [Objectives](#objectives-1)
     * [Lectures &amp; labs](#lectures--labs-1)
 * [Codelabs](#codelabs)
-* [App as playground](#app-as-playground)
+
 
 
 ## Cloud Shell commands
@@ -19,6 +21,8 @@ Cloud shell & `gcloud` commands [memo](./Cloud_Shell_gcloud.md)
 
 
 (A set of [courses](https://www.coursera.org/specializations/gcp-data-machine-learning) by COURSERA)
+
+### Objectives
 
 This course teaches participants the following skills:
 
@@ -61,13 +65,12 @@ The courses are:
 
 (A set of [courses](https://www.coursera.org/specializations/gcp-data-machine-learning) by COURSERA)
 
+
+### Objectives
+
 This course is aimed at IT professionals who are tasked with building and managing solutions in the cloud. If you are a system administrator, system operator, cloud solution architect, or software developer (or want to become one), this course is a great place for you to start.
 
 If you are a data analyst, data engineer, or data scientist (or want to become one), consider starting instead with [GCP Big Data & Machine Learning Fundamentals](https://www.coursera.org/learn/gcp-big-data-ml-fundamentals).
-
-This course teaches participants the following skills:
-
-
 
 
 ### Lectures & labs
@@ -78,23 +81,13 @@ The courses are:
 
 1. [course 1](https://www.coursera.org/learn/gcp-fundamentals/home/welcome): [**GCP Fundamentals: Core Infrastructure**](./cloud_architect/course_1_Core_Infrastructure.md)
 1. [course 2](https://www.coursera.org/learn/gcp-infrastructure-foundation/home/welcome): [Essential Cloud Infrastructure: Foundation](./cloud_architect/course_2_Essential_Cloud_Infrastructure__Foundation.md)
-1. course 3: 
-1. course 4: 
-1. course 5: 
-1. course 6: 
-1. course 7: 
-1. course 8: 
-1. course 9:
+1. course 3: Essential Cloud Infrastructure: Core Services
+1. course 4: Elastic Cloud infrastructure: scaling/automation
+1. course 5: Elastic Cloud infrastructure: containers/services
+1. course 6: Reliable Cloud infrastructure: design & process
 
 ## Codelabs
 
 https://codelabs.developers.google.com/devoxx
 
 * Getting Started with [Cloud Shell & gcloud](https://codelabs.developers.google.com/codelabs/cloud-shell)
-
-
-## App as playground
-
-coming...
-
-

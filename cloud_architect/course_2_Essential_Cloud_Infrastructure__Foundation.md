@@ -534,7 +534,12 @@ Build the infrastructure needed for production activities:
 - Backups
 - graceful shutdown/restart services
 
-[Lab notes](../labs/lab_VM_backups_application_in_production.md)
+[Lab notes](../labs/lab_VM_backups_application_in_production.md) & [video lab review](https://www.coursera.org/learn/gcp-infrastructure-foundation/lecture/0ZuCj/lab-2-working-with-virtual-machines-review)
+
+
+### Module 3 review
+
+[video](https://www.coursera.org/learn/gcp-infrastructure-foundation/lecture/RZE3H/module-3-review)
 
 ## Resources/Articles
 
