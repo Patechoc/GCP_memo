@@ -20,7 +20,7 @@ Cloud shell & `gcloud` commands [memo](./Cloud_Shell_gcloud.md)
 ## Data Engineering on GCP Specialization
 
 
-(A set of [courses](https://www.coursera.org/specializations/gcp-data-machine-learning) by COURSERA)
+(A set of [courses](https://www.coursera.org/specializations/gcp-architecture) by COURSERA)
 
 ### Objectives
 
@@ -80,11 +80,11 @@ If you are a data analyst, data engineer, or data scientist (or want to become o
 The courses are:
 
 1. [course 1](https://www.coursera.org/learn/gcp-fundamentals/home/welcome): [**GCP Fundamentals: Core Infrastructure**](./cloud_architect/course_1_Core_Infrastructure.md)
-1. [course 2](https://www.coursera.org/learn/gcp-infrastructure-foundation/home/welcome): [**Essential Cloud Infrastructure**: Foundation](./cloud_architect/course_2_Essential_Cloud_Infrastructure__Foundation.md)
-1. course 3: Essential Cloud Infrastructure: **Core Services**
-1. course 4: Elastic Cloud infrastructure: **scaling**/**automation**
-1. course 5: Elastic Cloud infrastructure: **containers**/**services**
-1. course 6: Reliable Cloud infrastructure: **design** & **process**
+1. [course 2](https://www.coursera.org/learn/gcp-infrastructure-foundation/home/welcome): [**Essential Cloud Infrastructure: Foundation**](./cloud_architect/course_2_Essential_Cloud_Infrastructure__Foundation.md)
+1. [course 3](https://www.coursera.org/learn/gcp-infrastructure-core-services?specialization=gcp-architecture): Essential Cloud Infrastructure: [**Core Services**](./cloud_architect/course_3_Essential_Cloud_Infrastructure__Core_Services.md)
+1. [course 4](https://www.coursera.org/learn/gcp-infrastructure-scaling-automation?specialization=gcp-architecture): Elastic Cloud infrastructure: [**scaling**/**automation**](./cloud_architect/course_4_Elastic_Cloud_Infrastructure__Scaling_and_Automation.md)
+1. [course 5](https://www.coursera.org/learn/gcp-infrastructure-containers-services): Elastic Cloud infrastructure: **containers**/**services**
+1. [course 6](https://www.coursera.org/learn/cloud-infrastructure-design-process): Reliable Cloud infrastructure: **design** & **process**
 
 ## Codelabs
 

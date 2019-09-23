@@ -6,13 +6,13 @@ This specialization is defined for cloud solution architects, DevOps engineers, 
 
 ## Content
 
-* [Module 1: Introduction to GCP](#module-1-introduction-to-gcp)
+* [Module 1: **Introduction to GCP**](#module-1-introduction-to-gcp)
     * [GCP infrastruture](#gcp-infrastruture)
     * [Using GCP](#using-gcp)
     * [Lab 1: Console and Cloud Shell](#lab-1-console-and-cloud-shell)
     * [Projects](#projects)
     * [Lab 2: Infrastructure Preview (Jenkins with Cloud Deployment Manager in no time)](#lab-2-infrastructure-preview-jenkins-with-cloud-deployment-manager-in-no-time)
-* [Module 2: Virtual Networks](#module-2-virtual-networks)
+* [Module 2: **Virtual Networks**](#module-2-virtual-networks)
     * [Projects, networks, and subnetworks](#projects-networks-and-subnetworks)
     * [IP addresses](#ip-addresses)
     * [Routes and Firewall Rules](#routes-and-firewall-rules)
@@ -26,7 +26,7 @@ This specialization is defined for cloud solution architects, DevOps engineers, 
     * [Bastion host isolation](#bastion-host-isolation)
     * [NAT Gateway host isolation](#nat-gateway-host-isolation)
     * [Lab 2: Bastion Host](#lab-2-bastion-host)
-* [Module 3: Virtual Machines](#module-3-virtual-machines)
+* [Module 3: **Virtual Machines**](#module-3-virtual-machines)
     * [What's Compute Engine?](#whats-compute-engine)
     * [What are compute options (vCPY, Memory)?](#what-are-compute-options-vcpy-memory)
     * [Compute Engine images?](#compute-engine-images)
