@@ -20,10 +20,21 @@ This course builds on the [Essential Cloud Infrastructure: Foundation](./cloud_a
 
 
 * [Cloud Identity and Access Management (Cloud IAM)](#cloud-identity-and-access-management-cloud-iam)
-* [**Data Storage Services**](#data-storage-services)
-* [**Resource Management**](#resource-management)
-* [**Resource Monitoring**](#resource-monitoring)
+    * [Organizations](#organizations)
+    * [Folders: sub-organizations](#folders-sub-organizations)
+    * [Roles](#roles)
+    * [Demo: Create a Custom role in GCP](#demo-create-a-custom-role-in-gcp)
+    * [Members](#members)
+    * [Service Accounts](#service-accounts)
+    * [Scopes](#scopes)
+    * [Cloud IAM best practices](#cloud-iam-best-practices)
+    * [Cloud IAP](#cloud-iap)
+    * [Lab Intro: Cloud IAM](#lab-intro-cloud-iam)
+* [Data Storage Services](#data-storage-services)
+* [Resource Management](#resource-management)
+* [Resource Monitoring](#resource-monitoring)
 * [Resources/Articles](#resourcesarticles)
+
 
 -  more than one solution for a task or application in GCP, a [solution continuum](https://github.com/Patechoc/GCP_memo/blob/master/cloud_architect/course_2_Essential_Cloud_Infrastructure__Foundation.md#gcp-infrastruture)
 - Infrastructure, Users, Applications [analogy](https://github.com/Patechoc/GCP_memo/blob/master/cloud_architect/course_2_Essential_Cloud_Infrastructure__Foundation.md#gcp-infrastruture)
