@@ -288,10 +288,141 @@ So you can use an application level access control model instead of relying on n
 - Module Review video
 
 
+The purpose of this module is to explain which services are available and when to consider using them from an **infrastructure perspective**.
+
+> "I want you to be able to set up and connect to a service without detailed knowledge of how to use a database system. If you want a deeper dive into the design, organizations, structures, schemas, and details on how data can be optimized,served, and stored properly within those different services, I recommend **Google Cloud's data engineering courses**"
+
+<img src="../images/core_services_Data_Storage_module_scope.png"
+        alt="core_services_Data_Storage_module_scope.png"
+        style="float: left; margin-right: 10px;" />
+
+
 Google offers several storage services to choose from:
 
+- Cloud Storage
+- Cloud SQL
+- Cloud Spanner
+- Cloud Firestore
+- and Cloud Bigtable.
+
+<img src="../images/core_services_Data_Storage_services.png"
+        alt="core_services_Data_Storage_services.png"
+        style="float: left; margin-right: 10px;" />
 
 
+Choose using this decision tree:
+
+<img src="../images/core_services_Data_Storage_services_decision_tree.png"
+        alt="core_services_Data_Storage_services_decision_tree.png"
+        style="float: left; margin-right: 10px;" />
+
+### Cloud Storage
+
+[video](https://www.coursera.org/learn/gcp-infrastructure-core-services/lecture/MXyDu/cloud-storage)
+
+Overview of storage classes:
+
+- Regional
+- Multi-regional
+- Nearline
+- Coldline
+
+<img src="../images/core_services_Data_Storage_storage_classes.png"
+        alt="core_services_Data_Storage_storage_classes.png"
+        style="float: left; margin-right: 10px;" />
+
+
+Cloud Storage entities:
+
+- buckets
+- objects
+- access
+
+<img src="../images/core_services_Data_Storage_storage_entities.png"
+        alt="core_services_Data_Storage_storage_entities.png"
+        style="float: left; margin-right: 10px;" />
+
+
+Changing default storage class:
+
+<img src="../images/core_services_Data_Storage_storage_changing_classes.png"
+        alt="core_services_Data_Storage_storage_changing_classes.png"
+        style="float: left; margin-right: 10px;" />
+
+<img src="../images/core_services_Data_Storage_storage_access_control.png"
+        alt="core_services_Data_Storage_storage_access_control.png"
+        style="float: left; margin-right: 10px;" />
+
+Zooming on ACL (Access Control Lists) = Who can access your bucket and what they can do (100 ACLs max). 
+
+<img src="../images/core_services_Data_Storage_storage_access_control_ACLs.png"
+        alt="core_services_Data_Storage_storage_access_control_ACLs.png"
+        style="float: left; margin-right: 10px;" />
+
+
+Limited-time access to a user:
+
+`gsutil signurl -d 10m path/to/privatekey.p12 gs://bucket/object`
+
+<img src="../images/core_services_Data_Storage_storage_limited_time_Access_to_user.png"
+        alt="core_services_Data_Storage_storage_limited_time_Access_to_user.png"
+        style="float: left; margin-right: 10px;" />
+
+Cloud Storage Features
+
+([video](https://www.coursera.org/learn/gcp-infrastructure-core-services/lecture/wKUHL/cloud-storage-features))
+
+<img src="../images/core_services_Data_Storage_storage_features.png"
+        alt="core_services_Data_Storage_storage_features.png"
+        style="float: left; margin-right: 10px;" />
+
+
+Object versioning (OFF by default)
+
+<img src="../images/core_services_Data_Storage_storage_features_object_versioning.png"
+        alt="core_services_Data_Storage_storage_features_object_versioning.png"
+        style="float: left; margin-right: 10px;" />
+
+Object lifecycle management (rule-based actions: e.g. delete an object after a year, ...)
+
+<img src="../images/core_services_Data_Storage_storage_features_object_lifecycle_management.png"
+        alt="core_services_Data_Storage_storage_features_object_lifecycle_management.png"
+        style="float: left; margin-right: 10px;" />
+
+Object Notification with webhooks
+
+<img src="../images/core_services_Data_Storage_storage_features_object_change_notifications.png"
+        alt="core_services_Data_Storage_storage_features_object_change_notifications.png"
+        style="float: left; margin-right: 10px;" />
+
+Data Import services (TeraBytes of data):
+
+- **Transfer Appliance** (hardware appliance from 100TB to 1 PetaBytes)
+- **Storage Transfer Service** (from online data, e.g. from AWS bucket)
+- **Offline Media Import**: 3rd party provider uploads data from physical media 
+
+<img src="../images/core_services_Data_Storage_storage_features_data_import_services.png"
+        alt="core_services_Data_Storage_storage_features_data_import_services.png"
+        style="float: left; margin-right: 10px;" />
+
+Decision tree to choose your storage class
+
+<img src="../images/core_services_Data_Storage_storage_decision_tree_class_storage.png"
+        alt="core_services_Data_Storage_storage_decision_tree_class_storage.png"
+        style="float: left; margin-right: 10px;" />
+
+
+### Cloud Storage lab
+
+- [lab tasks description](https://www.coursera.org/learn/gcp-infrastructure-core-services/lecture/bcncM/lab-intro-cloud-storage)
+- lab notes
+
+### Cloud SQL
+### Cloud SQL lab
+### Cloud Spanner
+### Cloud Firestore
+### Cloud Bigtable
+### Cloud Memorystore
 
 
 
