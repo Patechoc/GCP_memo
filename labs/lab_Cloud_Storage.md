@@ -1,228 +1,661 @@
-# Bastion Host v1.5
+# lab: Cloud Storage
 
-~ 40 minutes
+~ 1 hour 15 minutes
 
 ## Overview
 
-A best practice for infrastructure administration is to limit access to the resources. In this lab, you learn one method of hardening an infrastructure called a Bastion Host.
+Cloud Storage is a fundamental resource in GCP, with many advanced features. In this lab, you exercise many Cloud Storage features that could be useful in your designs. You explore Cloud Storage using both the console and the gsutil tool.
 
-<img src="../images/lab_network_bastion_host_architecture.png"
-        alt="lab_network_bastion_host_architecture.png"
-        style="float: left; margin-right: 10px;" />
-
-
-During operations, you harden the server by removing its external IP address, which prevents connections from the internet. During maintenance, you start up a bastion host that has an external IP address. You then connect via SSH to the bastion host, and from there to the server over the internal IP address. You can further restrict access with firewall rules.
-
-## Objectives
+### Objectives
 
 In this lab, you learn how to perform the following tasks:
 
-* Create an application web server to represent a service provided to an internal corporate audience
-* Prevent the web server from access to or from the internet
-* Create a maintenance server, called a Bastion Host, to gain access to and verify internal connectivity to the application server
+* Create and use buckets
+* Set access control lists to restrict access
+* Use your own encryption keys
+* Implement version controls
+* Use directory synchronization
+* Share a bucket across projects using IAM
 
 
-## Task 1: Launch an instance and verify access
+## Task 1: Preparation
 
-### Launch an instance
+### Create a Cloud Storage bucket
 
-1. In the Console, on the Navigation menu ( 7a91d354499ac9f1.png), click Compute Engine > VM instances.
-2. Click Create.
+1. On the Navigation menu ( 7a91d354499ac9f1.png), click Storage > Browser.
+
+> A bucket must have a globally unique name. You could use part of your PROJECT_ID_1 in the name to help make it unique. For example, if the PROJECT_ID_1 is "myproj-154920," your bucket name might be "storecore154920."
+
+2. Click Create bucket.
 3. Specify the following, and leave the remaining settings as their defaults:
 
-<img src="../images/lab_network_bastion_host_architecture_VM1.png"
-        alt="lab_network_bastion_host_architecture_VM1.png"
+<img src="../images/lab_Cloud_storage_01.png"
+        alt="lab_Cloud_storage_01.png"
         style="float: left; margin-right: 10px;" />
 
-4. Click Create.
-5. Click Check my progress to verify the objective: Launch an instance
 
-### Verify IP access
+4. Make a note of the bucket name. It will be used later in this lab and referred to as [BUCKET_NAME_1].
+5. Click Create.
+   Click Check my progress to verify the objective.
+   Create a Cloud Storage bucket
 
-1. For webserver, click SSH to launch a terminal and connect.
+### Download a sample file using CURL and make two copies
 
-> Tip: Setting the Source IP at creation time is a best practice for this lab because it allows the initial SSH credentials to be set for you behind the scenes.
+1. In the GCP Console, click Activate Cloud Shell (Cloud Shell).
 
-2. Enter a few commands to test connectivity:
+2. If prompted, click Start Cloud Shell.
+
+3. Store [BUCKET_NAME_1] in an environment variable:
+
+`export BUCKET_NAME_1=<enter bucket name 1 here>`
+
+4. Verify it with echo:
+
+`echo $BUCKET_NAME_1`
+
+5. Run the following command to download a sample file (this sample file is a publicly available Hadoop documentation HTML file):
 
 ```shell
-ls
-pwd
+curl \
+http://hadoop.apache.org/docs/current/\
+hadoop-project-dist/hadoop-common/\
+ClusterSetup.html > setup.html
 ```
 
-3. Enter the following command to close the terminal:
-
-`exit`
-
-## Task 2: Restrict firewall rule settings for SSH
-
-The default setting for a default or auto-type network is to allow SSH access from any source IP address. Restrict access to just your source IP address to see what happens when you try to connect from the GCP Console.
-
-### Find your IP address
-Find the IP address of the computer you are using. One easy way to do this is to go to a website that provides this address.
-
-1. Open a browser in a new tab.
-2. Go to www.google.com and search for "what's my IP." It will either directly reply with your IP or give you a list of sites that perform this service.
-3. Ensure that the IP address only contains numerals (IPv4) and is not represented in hexadecimals (IPv6).
-4. Copy your IP address. It will be referred to as YOUR_IP_ADDRESS. You will be using it to modify the default firewall rule.
-
-### Edit the default SSH rule
-
-1. In the GCP Console, on the Navigation menu ( 7a91d354499ac9f1.png), click VPC network > Firewall rules.
-2. Click the default-allow-ssh rule, and then click Edit.
-3. Specify the following, and leave the remaining settings as their defaults:
-
-<img src="../images/lab_network_bastion_host_architecture_param.png.png"
-        alt="lab_network_bastion_host_architecture_param.png"
-        style="float: left; margin-right: 10px;" />
-
-4. Click Save. Wait until the firewall rule is updated (the status in the bottom pane is Updating firewall rule; when it closes, you can continue).
-
-### Test connectivity
-
-1. On the Navigation menu ( 7a91d354499ac9f1.png), click Compute Engine > VM instances.
-2. For webserver, click SSH to launch a terminal and connect.
-
-> What happened?
-> 
-> When you connect via SSH to an instance from your browser, you need to allow SSH from Cloud Platform resources, so you must allow connections from either any IP address or from Google's IP address range, which you can get from Public SPF records. If you want to restrict SSH access to just your IP address, you need to SSH from a terminal session.
-> 
-> For this lab, leaving SSH open to any connections is sufficient.
-
-### Reset the IP address range in the firewall rule
-
-1. In the GCP Console, on the Navigation menu ( 7a91d354499ac9f1.png), click VPC network > Firewall rules.
-2. Click the default-allow-ssh rule, and then click Edit.
-3. Specify the following, and leave the remaining settings as their defaults:
-
-<img src="../images/lab_network_bastion_host_architecture_firewall_param.png"
-        alt="lab_network_bastion_host_architecture_firewall_param.png"
-        style="float: left; margin-right: 10px;" />
-
-4. Click Save. Wait until the firewall rule is updated (the status in the bottom pane is Updating firewall rule; when it closes, you can continue).
-
-### Verify the change
-
-1. On the Navigation menu, click Compute Engine > VM instances.
-2. For webserver, click SSH to launch a terminal and connect. Leave the terminal open for the next task.
-
-## Task 3: Install a simple web application
-
-Install a simple web application on your instance to represent an internal 
-application. You then secure it by preventing access from the internet.
-
-### Install and configure a web server
-
-1. In the webserver SSH terminal, update the package index:
+6. To make copies of the file, run the following commands:
 
 ```shell
-sudo apt-get update
+cp setup.html setup2.html
+cp setup.html setup3.html
 ```
 
-2. Install the apache2 package:
+## Task 2: Access control lists (ACLs)
 
-`sudo apt-get install apache2 -y`
+### Copy the file to the bucket and configure the access control list
 
-3. To create a new default web page by overwriting the default, run the following:
+1. Run the following command to copy the first file to the bucket:
+
+`gsutil cp setup.html gs://$BUCKET_NAME_1/`
+
+2. To get the default access list that's been assigned to setup.html, run the following command:
 
 ```shell
-echo '<!doctype html><html><body><h1>Hello World!</h1></body></html>' | sudo tee /var/www/html/index.html
+gsutil acl get gs://$BUCKET_NAME_1/setup.html  > acl.txt
+cat acl.txt
 ```
 
-### Verify that the web server is working
+3. To set the access list to private and verify the results, run the following commands:
 
-Test that your instance is serving traffic on its external IP.
+```shell
+gsutil acl set private gs://$BUCKET_NAME_1/setup.html
+gsutil acl get gs://$BUCKET_NAME_1/setup.html  > acl2.txt
+cat acl2.txt
+```
 
-1. In the GCP Console, on the Navigation menu, click Compute Engine > VM instances.
-2. For webserver, click the external IP to open in a new tab. You should see the "Hello World!" page you updated earlier.
+4. To update the access list to make the file publicly readable, run the following commands:
 
-## Task 4: Restrict firewall rule settings for HTTP
+```shell
+gsutil acl ch -u AllUsers:R gs://$BUCKET_NAME_1/setup.html
+gsutil acl get gs://$BUCKET_NAME_1/setup.html  > acl3.txt
+cat acl3.txt
+```
 
-Restrict access to the web interface by changing the source IP address in the default-allow-http rule to your IP address.
+Click Check my progress to verify the objective.
+Make file publicly readable
 
-### Restrict HTTP access
+### Examine the file in the GCP Console
 
-1. In the GCP Console, on the Navigation menu ( 7a91d354499ac9f1.png), click VPC network > Firewall rules.
-2. Click the default-allow-http rule, and then click Edit.
-3. Specify the following, and leave the remaining settings as their defaults:
+1. In the GCP Console, on the Navigation menu ( 7a91d354499ac9f1.png), click Storage > Browser.
 
-<img src="../images/lab_network_bastion_host_restrict_http_access.png"
-        alt="lab_network_bastion_host_restrict_http_access.png"
-        style="float: left; margin-right: 10px;" />
+2. Click [BUCKET_NAME_1].
 
-4. Click Save. Wait until the firewall rule is updated (the status in the bottom pane is Updating firewall rule; when it closes, you can continue).
+3. Verify that for file setup.html, Public access has a Public link available.
 
+### Delete the local file and copy back from Cloud Storage
 
-### Verify that you still have access to the web server
+1. Return to Cloud Shell. If necessary, click Activate Cloud Shell (Cloud Shell).
 
-1. On the Navigation menu, click Compute Engine > VM instances.
-2. For webserver, click the external IP to open in a new tab. You should still see the "Hello World!" page.
+2. Run the following command to delete the setup file:
 
-## Task 5: Restrict access to the VM from the internet
+`rm setup.html`
 
-### Edit the VM Properties
+3. To verify that the file has been deleted, run the following command:
 
-1. Return to the VM instances page of the GCP Console.
-2. Click webserver to access the instance details.
-3. Click Edit.
-4. For Network interfaces, click the default network and change External IP from Ephemeral to None.
-5. Click Done.
-6. Click Save.
+`ls`
 
-### Try to access the VM
+4. To copy the file from the bucket again, run the following command:
 
-1. First try HTTP: In the left pane, click VM instances. Notice that webserver doesn't have a value under External IP.
-2. Try SSH: for webserver, try to use the SSH link to launch a terminal and connect.
+`gsutil cp gs://$BUCKET_NAME_1/setup.html setup.html`
 
-> What happened?
+## Task 3: Customer-supplied encryption keys (CSEK)
+
+### Generate a CSEK key
+
+For the next step, you need an AES-256 base-64 key.
+
+1. Run the following command to create a key:
+
+`python -c 'import base64; import os; print(base64.encodestring(os.urandom(32)))'`
+
+Result (do not copy; this is example output):
+
+`python -c 'import base64; import os; print(base64.encodestring(os.urandom(32)))'
+tmxElCaabWvJqR7uXEWQF39DhWTcDvChzuCmpHe6sb0=`
+
+2. Copy the value of the key.
+
+### Modify the boto file
+
+The encryption controls are contained in a gsutil configuration file named .boto.
+
+1. To view and open the boto file, run the following commands:
+
+`ls -al`
+
+`nano .boto`
+
+> If the `.boto` file is empty, close the nano editor with Ctrl+X and generate a new `.boto` file using the `gsutil config -n` command. Then, try opening the file again with the above commands.
 > 
-> The VM is no longer associated with an External IP. It is no longer reachable from the internet.
+> If the `.boto` file is still empty, you might have to locate it using the `gsutil version -l` command.
+
+2. Locate the line with "`#encryption_key=`"
+3. Uncomment the line by removing the # character, and paste the key you generated earlier at the end.
+
+Example (do not copy; this is an example):
+
+```shell
+Before:
+# encryption_key=
+
+After:
+encryption_key=tmxElCaabWvJqR7uXEWQF39DhWTcDvChzuCmpHe6sb0=
+```
+
+4. Press Ctrl+O, ENTER to save the boto file, and then press Ctrl+X to exit nano.
+
+### Upload the remaining setup files (encrypted) and verify in the GCP Console
+
+1. To upload the remaining setup.html files, run the following commands:
+
+```shell
+gsutil cp setup2.html gs://$BUCKET_NAME_1/
+gsutil cp setup3.html gs://$BUCKET_NAME_1/
+```
+
+2. Return to the GCP Console.
+3. Click [BUCKET_NAME_1]. Both setup2.html and setup3.html files show that they are customer-encrypted.
+   Click Check my progress to verify the objective.
+   Customer-supplied encryption keys (CSEK)
+
+### Delete local files, copy new files, and verify encryption
+
+1. To delete your local files, run the following command in Cloud Shell:
+
+`rm setup*`
+
+2. To copy the files from the bucket again, run the following command:
+
+`gsutil cp gs://$BUCKET_NAME_1/setup* ./`
+
+3. To cat the encrypted files to see whether they made it back, run the following commands:
+
+```shell
+cat setup.html
+cat setup2.html
+cat setup3.html
+```
+
+## Task 4: Rotate CSEK keys
+
+### Move the current CSEK encrypt key to decrypt key
+
+1. Run the following command to open the .boto file:
+
+`nano .boto`
+
+2. Comment out the current encryption_key line by adding the # character to the beginning of the line.
+3. Uncomment decryption_key1 by removing the # character, and copy the current key from the encryption_key line to the decryption_key1 line.
+
+Result (do not copy; this is example output):
+
+```shell
+Before:
+encryption_key=2dFWQGnKhjOcz4h0CudPdVHLG2g+OoxP8FQOIKKTzsg=
+
+# decryption_key1=
+
+After:
+# encryption_key=2dFWQGnKhjOcz4h0CudPdVHLG2g+OoxP8FQOIKKTzsg=
+
+decryption_key1=2dFWQGnKhjOcz4h0CudPdVHLG2g+OoxP8FQOIKKTzsg=
+```
+
+4. Press Ctrl+O, ENTER to save the boto file, and then press Ctrl+X to exit nano.
+
+> Note: In practice, you would delete the old CSEK key from the encryption_key line.
+
+### Generate another CSEK key and add to the boto file
+
+1. Run the following command to generate a new key:
+
+`python -c 'import base64; import os; print(base64.encodestring(os.urandom(32)))'`
+
+2. Copy the value of the generated key.
+
+3. To open the boto file, run the following command:
+
+`nano .boto`
+
+4. Add a new line with encryption_key= and paste the new key value.
+
+Result (do not copy; this is example output):
+
+```shell
+Before:
+# encryption_key=2dFWQGnKhjOcz4h0CudPdVHLG2g+OoxP8FQOIKKTzsg=
+
+After:
+encryption_key=HbFK4I8CaStcvKKIx6aNpdTse0kTsfZNUjFpM+YUEjY=
+```
+
+5. Press Ctrl+O, ENTER to save the boto file, and then press Ctrl+X to exit nano.
+
+### Rewrite the key for file 1 and comment out the old decrypt key
+
+When a file is encrypted, rewriting the file decrypts it using the decryption_key1 that you previously set, and encrypts the file with the new encryption_key.
+
+You are rewriting the key for setup2.html, but not for setup3.html, so that you can see what happens if you don't rotate the keys properly.
+
+1. Run the following command:
+
+`gsutil rewrite -k gs://$BUCKET_NAME_1/setup2.html`
+
+2. To open the boto file, run the following command:
+
+`nano .boto`
+
+3. Comment out the current decryption_key1 line by adding the # character back in.
+
+Result (do not copy; this is example output):
+
+```shell
+Before:
+decryption_key1=2dFWQGnKhjOcz4h0CudPdVHLG2g+OoxP8FQOIKKTzsg=
+
+After:
+# decryption_key1=2dFWQGnKhjOcz4h0CudPdVHLG2g+OoxP8FQOIKKTzsg=
+```
+
+4. Press Ctrl+O, ENTER to save the boto file, and then press Ctrl+X to exit nano.
+
+> Note: In practice, you would delete the old CSEK key from the decryption_key1 line.
+
+### Download setup 2 and setup3
+
+1. To download setup2.html, run the following command:
+
+`gsutil cp  gs://$BUCKET_NAME_1/setup2.html recover2.html`
+
+2. To download setup3.html, run the following command:
+
+`gsutil cp  gs://$BUCKET_NAME_1/setup3.html recover3.html`
+
+> What happened? setup3.html was not rewritten with the new key, so it can no longer be decrypted, and the copy will fail.
+> 
+> You have successfully rotated the CSEK keys.
+
+## Task 5: Enable lifecycle management
+
+### View the current lifecycle policy for the bucket
+
+Run the following command to view the current lifecycle policy:
+
+`gsutil lifecycle get gs://$BUCKET_NAME_1`
+
+> There is no lifecycle configuration. You create one in the next steps.
+
+### Create a JSON lifecycle policy file
+
+To create a file named life.json, run the following command:
+
+`nano life.json`
+
+2. Paste the following value into the life.json file:
+
+```json
+{
+  "rule":
+  [
+    {
+      "action": {"type": "Delete"},
+      "condition": {"age": 31}
+    }
+  ]
+}
+```
+
+> These instructions tell Cloud Storage to delete the object after 31 days.
+
+3. Press Ctrl+O, ENTER to save the file, and then press Ctrl+X to exit nano.
+
+### Set the policy and verify
+
+1. To set the policy, run the following command:
+
+`gsutil lifecycle set life.json gs://$BUCKET_NAME_1`
+
+2. To verify the policy, run the following command:
+
+`gsutil lifecycle get gs://$BUCKET_NAME_1`
 
 Click Check my progress to verify the objective.
 
-Restrict access to the VM from the internet
+Enable lifecycle management
 
-## Task 6: Create a Bastion Host
+## Task 6: Enable versioning
 
-###  Launch another instance
+### View the versioning status for the bucket and enable versioning
 
-1. Click Create instance.
-2. Specify the following, and leave the remaining settings as their defaults:
+1. Run the following command to view the current versioning status for the bucket:
 
-<img src="../images/lab_network_bastion_host_architecture_VM2.png"
-        alt="lab_network_bastion_host_architecture_VM2.png"
+`gsutil versioning get gs://$BUCKET_NAME_1`
+
+> The Suspended policy means that it is not enabled.
+
+2. To enable versioning, run the following command:
+
+`gsutil versioning set on gs://$BUCKET_NAME_1`
+
+3. To verify that versioning was enabled, run the following command:
+
+`gsutil versioning get gs://$BUCKET_NAME_1`
+
+Click Check my progress to verify the objective.
+
+Enable versioning
+
+### Create several versions of the sample file in the bucket
+
+1. Check the size of the sample file:
+
+`ls -al setup.html`
+
+2. Open the setup.html file:
+
+`nano setup.html`
+
+3. Delete any 5 lines from setup.html to change the size of the file.
+
+4. Press Ctrl+O, ENTER to save the file, and then press Ctrl+X to exit nano.
+
+5. Copy the file to the bucket with the -v versioning option:
+
+`gsutil cp -v setup.html gs://$BUCKET_NAME_1`
+
+6. Open the setup.html file:
+
+`nano setup.html`
+
+7. Delete another 5 lines from setup.html to change the size of the file.
+
+8. Press Ctrl+O, ENTER to save the file, and then press Ctrl+X to exit nano.
+
+9. Copy the file to the bucket with the -v versioning option:
+
+`gsutil cp -v setup.html gs://$BUCKET_NAME_1`
+
+### List all versions of the file
+
+1. To list all versions of the file, run the following command:
+
+`gsutil ls -a gs://$BUCKET_NAME_1/setup.html`
+
+2. Highlight and copy the name of the oldest version of the file (the first listed), referred to as [VERSION_NAME] in the next step.
+
+3. Store the version value in the environment variable [VERSION_NAME].
+
+`export VERSION_NAME=<Enter VERSION name here>`
+
+Verify it with echo:
+
+`echo $VERSION_NAME`
+
+### Download the oldest, original version of the file and verify recovery
+
+1. Download the original version of the file:
+
+`gsutil cp $VERSION_NAME recovered.txt`
+
+2. To verify recovery, run the following commands:
+
+`ls -al setup.html`
+
+`ls -al recovered.txt`
+
+> You have recovered the original file from the backup version. Notice that the original is bigger than the current version because you deleted lines.
+
+## Task 7: Synchronize a directory to a bucket
+
+### Make a nested directory and sync with a bucket
+
+Make a nested directory structure so that you can examine what happens when it is recursively copied to a bucket.
+
+1. Run the following commands:
+
+```shell
+mkdir firstlevel
+mkdir ./firstlevel/secondlevel
+cp setup.html firstlevel
+cp setup.html firstlevel/secondlevel
+```
+
+2. To sync the firstlevel directory on the VM with your bucket, run the following command:
+
+`gsutil rsync -r ./firstlevel gs://$BUCKET_NAME_1/firstlevel`
+
+3. To verify that versioning was enabled, run the following command in Cloud Shell:
+
+`gsutil versioning get gs://$BUCKET_NAME_1`
+
+### Examine the results
+
+1. In the GCP Console, on the Navigation menu ( 7a91d354499ac9f1.png), click Storage > Browser.
+
+2. Click [BUCKET_NAME_1]. Notice the subfolders in the bucket.
+
+3. Click on /firstlevel and then on /secondlevel.
+
+4. Compare what you see in the GCP Console with the results of the following command:
+
+`gsutil ls -r gs://$BUCKET_NAME_1/firstlevel`
+
+5. Exit Cloud Shell:
+
+`exit`
+
+## Task 8: Cross-project sharing
+
+### Switch to the second project
+
+1. Open a new incognito tab.
+
+2. Navigate to console.cloud.google.com.
+
+3. Click the project selector dropdown in the title bar.
+
+4. Click All, and then click the second project provided for you in the Qwiklabs Connection Details dialog. Remember that the Project ID is a unique name across all Google Cloud projects. The second project ID will be referred to as [PROJECT_ID_2].
+
+### Prepare the bucket
+
+1. In the GCP Console, on the Navigation menu ( 7a91d354499ac9f1.png), click Storage > Browser.
+2. Click Create bucket.
+3. Specify the following, and leave the remaining settings as their defaults:
+
+<img src="../images/lab_Cloud_storage_02.png"
+        alt="lab_Cloud_storage_02.png"
         style="float: left; margin-right: 10px;" />
 
 
-3. Click Create.
-4. Click Check my progress to verify the objective.
+4. Note the bucket name. It will be referred to as [BUCKET_NAME_2] in the following steps.
 
-Create a Bastion Host
+5. Click Create.
+
+### Upload a text file to the bucket
+
+1. Upload a file to [BUCKET_NAME_2]. Any small example file or text file will do.
+
+2. Note the file name (referred to as [FILE_NAME]); you will use it later.
+
+### Create an IAM Service Account
+
+1. In the GCP Console, on the Navigation menu ( 7a91d354499ac9f1.png), click IAM & admin > Service accounts.
+2. Click Create service account.
+3. On Service account details page, specify the Service account name as cross-project-storage.
+4. Click Create.
+5. On the Service account permissions page, specify the role as Storage > Storage Object Viewer.
+6. Click Continue.
+7. Click Create Key.
+8. Select JSON as the key type.
+9. Click Create. A JSON key file will be downloaded. You will need to find this key file and upload it in into the VM in a later step.
+10. Click Close.
+11. Click Done.
+12. On your hard drive, rename the JSON key file to credentials.json.
+13. In the upper pane, switch back to [PROJECT_ID_1].
+   Click Check my progress to verify the objective.
+   Create the resources in the second project
+
+### Create a VM
+
+1. On the Navigation menu ( 7a91d354499ac9f1.png), click Compute Engine > VM instances.
+2. Click Create.
+3. Specify the following, and leave the remaining settings as their defaults:
+
+<img src="../images/lab_Cloud_storage_03.png"
+        alt="lab_Cloud_storage_03.png"
+        style="float: left; margin-right: 10px;" />
 
 
-###  Connect to the Bastion Host via SSH and verify access to webserver
+4. Click Create.
 
+### SSH to the VM
 
-1. For bastion, click SSH to launch a terminal and connect.
-2. Verify that the home page on webserver is reachable from bastion by running the following command:
+1. For crossproject, click SSH to launch a terminal and connect.
 
-`curl webserver`
+2. Store [BUCKET_NAME_2] in an environment variable:
 
-> Even though webserver is no longer associated with an external IP address, clients inside your network can still view and use the web service on this VM over the internal IP address.
+`export BUCKET_NAME_2=<enter bucket name 2 here>`
 
-3. From the bastion SSH terminal, connect to webserver by running the following command:
+3. Verify it with echo:
 
-`ssh -a webserver`
+`echo $BUCKET_NAME_2`
 
-4. When prompted, type yes to continue.
+4. Store [FILE_NAME] in an environment variable:
 
-> When instances do not have external IP addresses, they can only be reached by other instances on the network or via a managed VPN gateway.
+`export FILE_NAME=<enter FILE_NAME here>`
+
+5. Verify it with echo:
+
+`echo $FILE_NAME`
+
+6. List the files in [PROJECT_ID_2]:
+
+`gsutil ls gs://$BUCKET_NAME_2/`
+
+Result (do not copy; this is example output):
+
+```shell
+AccessDeniedException: 403 Caller does not have storage.objects.list access to bucket [BUCKET_NAME_2].
+```
+
+### Authorize the VM
+
+1. To upload credentials.json through the SSH VM terminal, click on the gear icon ( d88f3e00dc8118df.png) in the upper-right corner, and then click Upload file.
+
+2. Select credentials.json and upload it.
+
+3. Click Close in the File Transfer window.
+
+4. Verify that the JSON file has been uploaded to the VM:
+
+`ls`
+
+Result (do not copy; this is example output):
+
+`credentials.json`
+
+5. Enter the following command in the terminal to authorize the VM to use the Google Cloud API:
+
+`gcloud auth activate-service-account --key-file credentials.json`
+
+> The image you are using has the Google Cloud SDK pre-installed; therefore, you don't need to initialize the Google Cloud SDK. If you are attempting this lab in a different environment, make sure you have followed these procedures regarding installing the Google Cloud SDK:
+
+https://cloud.google.com/sdk/downloads
+
+### Verify access
+
+1. Retry this command:
+
+`gsutil ls gs://$BUCKET_NAME_2/`
+
+2. Retry this command:
+
+`gsutil cat gs://$BUCKET_NAME_2/$FILE_NAME`
+
+3. Try to copy the credentials file to the bucket:
+
+`gsutil cp credentials.json gs://$BUCKET_NAME_2/`
+
+Result (do not copy; this is example output):
+
+```shell
+Copying file://credentials.json [Content-Type=application/json]...
+AccessDeniedException: 403 Caller does not have storage.objects.create access to bucket [BUCKET_NAME_2].
+```
+
+### Modify role
+
+1. In the upper pane, switch back to [PROJECT_ID_2].
+2. In the GCP Console, on the Navigation menu ( 7a91d354499ac9f1.png), click IAM & admin > IAM.
+3. Click the pencil icon for the cross-project-storage service account (You might have to scroll to the right to see this icon).
+4. Click on the Storage Object Viewer role, and then click Storage > Storage Object Admin.
+5. Click Save. If you don't click Save, the change will not be made.
+   Click Check my progress to verify the objective.
+   Create and verify the resources in the first project
+
+### Verify changed access
+
+1. Return to the SSH terminal for crossproject.
+
+2. Copy the credentials file to the bucket:
+
+`gsutil cp credentials.json gs://$BUCKET_NAME_2/`
+
+Result (do not copy; this is example output):
+
+```shell
+Copying file://credentials.json [Content-Type=application/json]...
+- [1 files][  2.3 KiB/  2.3 KiB]
+Operation completed over 1 objects/2.3 KiB.
+```
+
+> In this example the VM in PROJECT_ID_1 can now upload files to Cloud Storage in a bucket that was created in another project.
 > 
-> In this case, the bastion VM serves as a management and maintenance interface to the webserver VM.
+> Note that the project where the bucket was created is the billing project for this activity. That means if the VM uploads a ton of files, it will not be billed to PROJECT_ID_1, but instead to PROJECT_ID_2.
 
-## Task 7: Review
+## Task 9: Review
 
-You restricted access to the webserver VM by removing the external IP address.
+In this lab you learned to create and work with buckets and objects, and you learned about the following features for Cloud Storage:
 
-You created a bastion host named bastion to gain access to the webserver VM over its internal IP. Normally, you would harden the bastion host by restricting the source IPs that can access the bastion host, by editing the firewall rules just as you did earlier in this lab. When you're not using the bastion host, you can shut it down.
-
+* CSEK: Customer-supplied encryption key
+* Use your own encryption keys
+* Rotate keys
+* ACL: Access control list
+* Set an ACL for private, and modify to public
+* Lifecycle management
+* Set policy to delete objects after 31 days
+* Versioning
+* Create a version and restore a previous version
+* Directory synchronization
+* Recursively synchronize a VM directory with a bucket
+* Cross-project resource sharing using IAM
+* Use IAM to enable access to resources across projects
