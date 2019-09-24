@@ -234,7 +234,8 @@ Services Accounts use keys:
 
 ### Cloud IAM best practices
 
-[video](https://www.coursera.org/learn/gcp-infrastructure-core-services/lecture/xghL2/cloud-iam-best-practices)
+- [Module intro video](https://www.coursera.org/learn/gcp-infrastructure-core-services/lecture/xghL2/cloud-iam-best-practices)
+- [Module Review video](https://www.coursera.org/learn/gcp-infrastructure-core-services/lecture/u8ETv/module-review)
 
 <img src="../images/core_services_Cloud_IAM_best_practices_resource_hierarchy.png"
         alt="core_services_Cloud_IAM_best_practices_resource_hierarchy.png"
@@ -266,11 +267,25 @@ So you can use an application level access control model instead of relying on n
 
 ### Lab Intro: Cloud IAM
 
-lab notes
-
+- [lab notes](../labs/lab_Cloud_IAM.md)
+- [walkthrough video](https://www.coursera.org/learn/gcp-infrastructure-core-services/lecture/mpXBr/lab-review-cloud-iam)
 
 
 ## Data Storage Services
+
+- [Module intro video](https://www.coursera.org/learn/gcp-infrastructure-core-services/lecture/HBW4r/module-overview)
+- Module Review video
+
+
+Google offers several storage services to choose from:
+
+
+
+
+
+
+
+
 
 ## Resource Management
 

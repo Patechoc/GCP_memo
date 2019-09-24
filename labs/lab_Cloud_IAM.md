@@ -1,5 +1,7 @@
 # Lab: Cloud IAM
 
+[walkthrough video](https://www.coursera.org/learn/gcp-infrastructure-core-services/lecture/mpXBr/lab-review-cloud-iam)
+
 ## Overview
 
 In this lab, you learn how to use the Service Account User role and how to grant roles.
