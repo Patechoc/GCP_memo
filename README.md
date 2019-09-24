@@ -63,7 +63,11 @@ The courses are:
 
 ## Cloud Architect on GCP Specialization
 
-(A set of [courses](https://www.coursera.org/specializations/gcp-data-machine-learning) by COURSERA)
+
+- The [Cloud Architect certification](https://cloud.google.com/certification/cloud-architect) (training, exam's guide, hands-on, ...)
+- [Preparing for the Professional Cloud Architect Examination](https://google.qwiklabs.com/courses/879&utm_source=cloud-dot-google&utm_medium=website)
+
+(A set of [courses](https://www.coursera.org/specializations/gcp-architecture) by COURSERA)
 
 
 ### Objectives
@@ -71,6 +75,15 @@ The courses are:
 This course is aimed at IT professionals who are tasked with building and managing solutions in the cloud. If you are a system administrator, system operator, cloud solution architect, or software developer (or want to become one), this course is a great place for you to start.
 
 If you are a data analyst, data engineer, or data scientist (or want to become one), consider starting instead with [GCP Big Data & Machine Learning Fundamentals](https://www.coursera.org/learn/gcp-big-data-ml-fundamentals).
+
+The Professional Cloud Architect certification demonstrates your mastery of developing robust and secure cloud solutions that are aligned to business objectives:
+
+* Plan a cloud solution architecture
+* Manage and provision a solution infrastructure
+* Design for security and compliance
+* Analyze and optimize technical and business processes
+* Manage implementation
+* Ensure solution and operations reliability
 
 
 ### Lectures & labs
