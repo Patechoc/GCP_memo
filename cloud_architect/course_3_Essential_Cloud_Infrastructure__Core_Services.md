@@ -415,7 +415,8 @@ Decision tree to choose your storage class
 ### Cloud Storage lab
 
 - [lab tasks description](https://www.coursera.org/learn/gcp-infrastructure-core-services/lecture/bcncM/lab-intro-cloud-storage)
-- lab notes
+- [lab notes](../labs/lab_Cloud_Storage.md)
+- [Lab Review: Cloud Storage](https://www.coursera.org/learn/gcp-infrastructure-core-services/lecture/6IAAh/lab-review-cloud-storage)
 
 ### Cloud SQL
 ### Cloud SQL lab
