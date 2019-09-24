@@ -22,7 +22,7 @@ In this lab, you learn how to perform the following tasks:
 
 ### Create a Cloud Storage bucket
 
-1. On the Navigation menu ( 7a91d354499ac9f1.png), click Storage > Browser.
+1. On the Navigation menu, click Storage > Browser.
 
 > A bucket must have a globally unique name. You could use part of your PROJECT_ID_1 in the name to help make it unique. For example, if the PROJECT_ID_1 is "myproj-154920," your bucket name might be "storecore154920."
 
@@ -105,7 +105,7 @@ Make file publicly readable
 
 ### Examine the file in the GCP Console
 
-1. In the GCP Console, on the Navigation menu ( 7a91d354499ac9f1.png), click Storage > Browser.
+1. In the GCP Console, on the Navigation menu, click Storage > Browser.
 
 2. Click [BUCKET_NAME_1].
 
@@ -459,7 +459,7 @@ cp setup.html firstlevel/secondlevel
 
 ### Examine the results
 
-1. In the GCP Console, on the Navigation menu ( 7a91d354499ac9f1.png), click Storage > Browser.
+1. In the GCP Console, on the Navigation menu, click Storage > Browser.
 
 2. Click [BUCKET_NAME_1]. Notice the subfolders in the bucket.
 
@@ -487,7 +487,7 @@ cp setup.html firstlevel/secondlevel
 
 ### Prepare the bucket
 
-1. In the GCP Console, on the Navigation menu ( 7a91d354499ac9f1.png), click Storage > Browser.
+1. In the GCP Console, on the Navigation menu, click Storage > Browser.
 2. Click Create bucket.
 3. Specify the following, and leave the remaining settings as their defaults:
 
@@ -508,7 +508,7 @@ cp setup.html firstlevel/secondlevel
 
 ### Create an IAM Service Account
 
-1. In the GCP Console, on the Navigation menu ( 7a91d354499ac9f1.png), click IAM & admin > Service accounts.
+1. In the GCP Console, on the Navigation menu, click IAM & admin > Service accounts.
 2. Click Create service account.
 3. On Service account details page, specify the Service account name as cross-project-storage.
 4. Click Create.
@@ -526,7 +526,7 @@ cp setup.html firstlevel/secondlevel
 
 ### Create a VM
 
-1. On the Navigation menu ( 7a91d354499ac9f1.png), click Compute Engine > VM instances.
+1. On the Navigation menu, click Compute Engine > VM instances.
 2. Click Create.
 3. Specify the following, and leave the remaining settings as their defaults:
 
@@ -569,7 +569,7 @@ AccessDeniedException: 403 Caller does not have storage.objects.list access to b
 
 ### Authorize the VM
 
-1. To upload credentials.json through the SSH VM terminal, click on the gear icon ( d88f3e00dc8118df.png) in the upper-right corner, and then click Upload file.
+1. To upload credentials.json through the SSH VM terminal, click on the gear icon in the upper-right corner, and then click Upload file.
 
 2. Select credentials.json and upload it.
 
@@ -615,7 +615,7 @@ AccessDeniedException: 403 Caller does not have storage.objects.create access to
 ### Modify role
 
 1. In the upper pane, switch back to [PROJECT_ID_2].
-2. In the GCP Console, on the Navigation menu ( 7a91d354499ac9f1.png), click IAM & admin > IAM.
+2. In the GCP Console, on the Navigation menu, click IAM & admin > IAM.
 3. Click the pencil icon for the cross-project-storage service account (You might have to scroll to the right to see this icon).
 4. Click on the Storage Object Viewer role, and then click Storage > Storage Object Admin.
 5. Click Save. If you don't click Save, the change will not be made.
