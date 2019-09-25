@@ -16,7 +16,8 @@ This course builds on the [Essential Cloud Infrastructure: Foundation](./cloud_a
 
 ## Content
 
-[course intro video](https://www.coursera.org/learn/gcp-infrastructure-core-services/lecture/6Zi73/course-introduction)
+- [course intro video](https://www.coursera.org/learn/gcp-infrastructure-core-services/lecture/6Zi73/course-introduction)
+- [course review video on storage/database services](https://www.coursera.org/learn/gcp-infrastructure-core-services/lecture/EismW/module-review)
 
 
 * [Cloud Identity and Access Management (Cloud IAM)](#cloud-identity-and-access-management-cloud-iam)
@@ -577,6 +578,17 @@ Linear scaling of data re-distribution with number of nodes:
 ## Resource Management
 
 = Manage and examine **Billing** of GCP resources
+
+- [module overview](https://www.coursera.org/learn/gcp-infrastructure-core-services/lecture/jPfvH/module-overview)
+
+In this module, we will cover resource management.
+Resources and GCP are billable, so **managing resources means controlling cost**. There are several methods in place for controlling access to the resources and there are quotas that limit consumption
+
+Overview of Resource Manager ([video](https://www.coursera.org/learn/gcp-infrastructure-core-services/lecture/ubZCA/cloud-resource-manager))
+
+<img src="../images/lab_Cloud_ResourceManager.png"
+        alt="lab_Cloud_ResourceManager.png"
+        style="float: left; margin-right: 10px;" />
 
 
 ## Resource Monitoring
