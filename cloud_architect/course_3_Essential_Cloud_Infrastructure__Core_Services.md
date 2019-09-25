@@ -587,6 +587,8 @@ Linear scaling of data re-distribution with number of nodes:
 = Manage and examine **Billing** of GCP resources
 
 - [module overview](https://www.coursera.org/learn/gcp-infrastructure-core-services/lecture/jPfvH/module-overview)
+- [module review](https://www.coursera.org/learn/gcp-infrastructure-core-services/lecture/tJOrj/module-review)
+
 
 ### Cloud Resource
 
@@ -712,9 +714,113 @@ Visualize your spends with Data Studio
 
 ## Resource Monitoring
 
-=  monitor GCP resources using **StackDriver**
+- [video module intro](https://www.coursera.org/learn/gcp-infrastructure-core-services/lecture/yCn32/module-overview)
+
+=  monitor GCP resources using **StackDriver**:
+
+- **monitoring**,
+- **logging**, and
+- **diagnostics** for your applications
+
+<img src="../images/StackDriver.png"
+        alt="StackDriver.png"
+        style="float: left; margin-right: 10px;" />
+
+### StackDriver Overview
+
+([video](https://www.coursera.org/learn/gcp-infrastructure-core-services/lecture/xrHfO/stackdriver-overview))
+
+
+<img src="../images/StackDriver_overview.png"
+        alt="StackDriver_overview.png"
+        style="float: left; margin-right: 10px;" />
+
+Multiple integrated products/tasks
+
+<img src="../images/StackDriver_multiple_integrated_products.png"
+        alt="StackDriver_multiple_integrated_products.png"
+        style="float: left; margin-right: 10px;" />
+
+
+Integrations partners (security, ...)
+
+<img src="../images/StackDriver_integrations_partners_on_top_of_StackDriver.png"
+        alt="StackDriver_integrations_partners_on_top_of_StackDriver.png"
+        style="float: left; margin-right: 10px;" />
+
+### Monitoring with StackDriver
+
+[video](https://www.coursera.org/learn/gcp-infrastructure-core-services/lecture/ra3Di/monitoring)
+
+#### SRE: Site Reliability Engineering
+
+<img src="../images/StackDriver_SRE.png"
+        alt="StackDriver_SRE.png"
+        style="float: left; margin-right: 10px;" />
+
+
+<img src="../images/StackDriver_SRE_monitoring.png"
+        alt="StackDriver_SRE_monitoring.png"
+        style="float: left; margin-right: 10px;" />
+
+<img src="../images/StackDriver_SRE_monitoring_workspace.png"
+        alt="StackDriver_SRE_monitoring_workspace.png"
+        style="float: left; margin-right: 10px;" />
+
+Alerting policies
+
+<img src="../images/StackDriver_SRE_monitoring_alerts.png"
+        alt="StackDriver_SRE_monitoring_alerts.png"
+        style="float: left; margin-right: 10px;" />
+
+Best practices for monitoring and alerts:
+
+- **monitor on symptoms**, not necessarily causes. For example, you want to monitor failing queries of a database and then identify whether the database is down.
+- **use multiple notification channels**. Like e-mail and SMS. This helps avoid a single point of failure in your alerting strategy.
+- **customize your alerts to the audiences need** by describing what actions need to be taken or what resources need to be examined. 
+- **avoid noise**, because this will cause alerts to be dismissed overtime. Specifically, adjust monitoring alerts so that they are actionable, and don't just set up alerts on everything possible. 
+
+<img src="../images/StackDriver_SRE_monitoring_alerts_creating_best_practices.png"
+        alt="StackDriver_SRE_monitoring_alerts_creating_best_practices.png"
+        style="float: left; margin-right: 10px;" />
+
+Uptime checks
+
+Uptime checks can be configured to test the availability of your public services from locations around the world. As you can see on this slide. The type of uptime check can be set to HTTP, HTTPS or TCP. The resource to be checked can be an app engine application, a computer engine instance, a URL of a host, or an AWS instance or Load Balancer. For each uptime check, you can create an alerting policy and view the latency of each global location. 
+
+<img src="../images/StackDriver_SRE_monitoring_alerts_uptime_checks.png"
+        alt="StackDriver_SRE_monitoring_alerts_uptime_checks.png"
+        style="float: left; margin-right: 10px;" />
+
+
+Here is an example of an HTTP uptime check. The resources checked every minute with a 10 second timeout. Uptime checks that do not get a response within this timeout period are considered failures. So far there is a 100 percent uptime with no outages. 
+
+<img src="../images/StackDriver_SRE_monitoring_alerts_uptime_check_example.png"
+        alt="StackDriver_SRE_monitoring_alerts_uptime_check_example.png"
+        style="float: left; margin-right: 10px;" />
+
+
+If the standard metrics provided by Stackdriver monitoring do not fit your needs, you can create custom metrics.
+
+For example, imagine a game server that has a capacity of 50 users what metric indicator might you use to trigger scaling events. From an infrastructure perspective, you might consider using CPU load, or perhaps network traffic load, as values that are somewhat correlated with the number of users.
+But with a custom metric, you could actually pass the current number of users directly from your application into Stackdriver.
+
+
+<img src="../images/StackDriver_SRE_monitoring_custom_metrics.png"
+        alt="StackDriver_SRE_monitoring_custom_metrics.png"
+        style="float: left; margin-right: 10px;" />
+
+
+### Lab. Resource Monitoring with StackDriver
+
+- [video overview](https://www.coursera.org/learn/gcp-infrastructure-core-services/lecture/IvHOD/lab-intro-resource-monitoring)
+- [lab notes](../labs/lab_monitoring_with_StackDriver.md)
 
 ## Resources/Articles
 
 - ["Programmatic Budgets Notification Examples"](https://cloud.google.com/billing/docs/how-to/notify)
 - [Export billing to BigQuery](https://cloud.google.com/billing/docs/how-to/export-data-bigquery)
+- Free books on Site Reliability Engineering (SRE) (by Google) 
+- [GCP metrics](https://cloud.google.com/monitoring/api/metrics_gcp)
+- [Stackdriver pricing overview](https://cloud.google.com/stackdriver/pricing#alert-usage)
+- [Creating StackDriver custom metrics](https://cloud.google.com/monitoring/custom-metrics/creating-metrics#monitoring-create-metric-python)
