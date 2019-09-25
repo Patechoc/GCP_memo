@@ -31,10 +31,17 @@ This course builds on the [Essential Cloud Infrastructure: Foundation](./cloud_a
     * [Cloud IAP](#cloud-iap)
     * [Lab Intro: Cloud IAM](#lab-intro-cloud-iam)
 * [Data Storage Services](#data-storage-services)
+    * [Cloud Storage](#cloud-storage)
+    * [Cloud Storage lab](#cloud-storage-lab)
+    * [Cloud SQL](#cloud-sql)
+    * [Cloud SQL lab](#cloud-sql-lab)
+    * [Cloud Spanner](#cloud-spanner)
+    * [Cloud Firestore](#cloud-firestore)
+    * [Cloud Bigtable](#cloud-bigtable)
+    * [Cloud Memorystore (Redis)](#cloud-memorystore-redis)
 * [Resource Management](#resource-management)
 * [Resource Monitoring](#resource-monitoring)
 * [Resources/Articles](#resourcesarticles)
-
 
 -  more than one solution for a task or application in GCP, a [solution continuum](https://github.com/Patechoc/GCP_memo/blob/master/cloud_architect/course_2_Essential_Cloud_Infrastructure__Foundation.md#gcp-infrastruture)
 - Infrastructure, Users, Applications [analogy](https://github.com/Patechoc/GCP_memo/blob/master/cloud_architect/course_2_Essential_Cloud_Infrastructure__Foundation.md#gcp-infrastruture)
