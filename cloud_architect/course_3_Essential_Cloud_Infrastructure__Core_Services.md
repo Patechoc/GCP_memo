@@ -557,11 +557,14 @@ Linear scaling of data re-distribution with number of nodes:
 
 
 
-### Cloud Memorystore
+### Cloud Memorystore (Redis)
+
+[video](https://www.coursera.org/learn/gcp-infrastructure-core-services/lecture/Vh6cS/cloud-memorystore)
 
 
-
-
+<img src="../images/lab_Cloud_MemoryStore_Redis.png"
+        alt="lab_Cloud_MemoryStore_Redis.png"
+        style="float: left; margin-right: 10px;" />
 
 
 ## Resource Management
