@@ -419,7 +419,51 @@ Decision tree to choose your storage class
 - [Lab Review: Cloud Storage](https://www.coursera.org/learn/gcp-infrastructure-core-services/lecture/6IAAh/lab-review-cloud-storage)
 
 ### Cloud SQL
+
+- [module intro video](https://www.coursera.org/learn/gcp-infrastructure-core-services/lecture/cMja1/cloud-sql)
+
+Cloud SQL is a **"managed service"** offering an _SQL database_ **service**.
+
+<img src="../images/core_services_cloudSQL_manage_service.png"
+        alt="core_services_cloudSQL_manage_service.png"
+        style="float: left; margin-right: 10px;" />
+
+Performances
+<img src="../images/core_services_cloudSQL_performance.png"
+        alt="core_services_cloudSQL_performance.png"
+        style="float: left; margin-right: 10px;" />
+
+Optional features (backup, automatic failover, import/export and scaling)
+
+<img src="../images/core_services_cloudSQL_optional_features.png"
+        alt="core_services_cloudSQL_optional_features.png"
+        style="float: left; margin-right: 10px;" />
+
+Connecting to a Cloud SQL instance (Summarized in a decision tree for Best Practices)
+
+<img src="../images/core_services_cloudSQL_connecting_to_CloudSQL_instance.png"
+        alt="core_services_cloudSQL_connecting_to_CloudSQL_instance.png"
+        style="float: left; margin-right: 10px;" />
+
+Decision tree for your SQL storage
+
+<img src="../images/core_services_cloudSQL_choosing_your_SQL_storage.png"
+        alt="core_services_cloudSQL_choosing_your_SQL_storage.png"
+        style="float: left; margin-right: 10px;" />
+
+
 ### Cloud SQL lab
+
+- [lab tasks description](https://www.coursera.org/learn/gcp-infrastructure-core-services/lecture/caD6h/lab-intro-cloud-sql)
+- [lab notes](../labs/lab_Cloud_SQL.md)
+- [Lab Review: Cloud SQL (PostgreSQL)]()
+
+<img src="../images/lab_Cloud_SQL_01.png"
+        alt="lab_Cloud_SQL_01.png"
+        style="float: left; margin-right: 10px;" />
+
+
+
 ### Cloud Spanner
 ### Cloud Firestore
 ### Cloud Bigtable
