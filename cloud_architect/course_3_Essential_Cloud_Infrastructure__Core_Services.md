@@ -581,6 +581,10 @@ Linear scaling of data re-distribution with number of nodes:
 
 - [module overview](https://www.coursera.org/learn/gcp-infrastructure-core-services/lecture/jPfvH/module-overview)
 
+### Cloud Resource
+
+- [video Resource Manager](https://www.coursera.org/learn/gcp-infrastructure-core-services/lecture/ubZCA/cloud-resource-manager)
+
 In this module, we will cover resource management.
 Resources and GCP are billable, so **managing resources means controlling cost**. There are several methods in place for controlling access to the resources and there are quotas that limit consumption
 
@@ -590,9 +594,116 @@ Overview of Resource Manager ([video](https://www.coursera.org/learn/gcp-infrast
         alt="lab_Cloud_ResourceManager.png"
         style="float: left; margin-right: 10px;" />
 
+Root Node = Organization node:
+
+<img src="../images/lab_Cloud_ResourceManager_root_node_organization.png"
+        alt="lab_Cloud_ResourceManager_root_node_organization.png"
+        style="float: left; margin-right: 10px;" />
+
+From a physical organization standpoint, resources are categorized as:
+
+- global,
+- regional or
+- zonal.
+
+Let's look at some examples. Images, snapshots, and networks, are global resources. 
+
+External IP addresses are regional resources, and instances and disks are zonal resources. However, regardless of the type, each resource is organized into a project. This enables each project to have its own billing and reporting.
+
+<img src="../images/lab_Cloud_ResourceManager_what_can_be_tracked.png"
+        alt="lab_Cloud_ResourceManager_what_can_be_tracked.png"
+        style="float: left; margin-right: 10px;" />
+
+<img src="../images/lab_Cloud_ResourceManager_regional_zonal.png"
+        alt="lab_Cloud_ResourceManager_regional_zonal.png"
+        style="float: left; margin-right: 10px;" />
+
+
+### Quotas
+
+[video](https://www.coursera.org/learn/gcp-infrastructure-core-services/lecture/cVawh/quotas)
+
+<img src="../images/lab_Resources_Quotas.png"
+        alt="lab_Resources_Quotas.png"
+        style="float: left; margin-right: 10px;" />
+
+Why quotas?
+
+- protection against high bills
+- prevent billing spikes
+- forces sizing considerations
+
+<img src="../images/lab_Resources_Quotas_why.png"
+        alt="lab_Resources_Quotas_why.png"
+        style="float: left; margin-right: 10px;" />
+
+
+### Labels and names
+
+[video](https://www.coursera.org/learn/gcp-infrastructure-core-services/lecture/kklUj/labels-and-names)
+
+Projects and folders provide levels of segregation for resources. But what if you want more granularity?
+
+That's where labels and names come in.
+
+- **Labels are a utility for organizing GCP resources**.
+- **Labels are key value pairs** that you can attach to your resources like VMs, disks, snapshots, and images.
+
+<img src="../images/lab_Resources_Labels.png"
+        alt="lab_Resources_Labels.png"
+        style="float: left; margin-right: 10px;" />
+
+What to use them for?
+
+<img src="../images/lab_Resources_Labels_example_usage.png"
+        alt="lab_Resources_Labels_example_usage.png"
+        style="float: left; margin-right: 10px;" />
+
+
+Labels vs Tags
+
+<img src="../images/lab_Resources_Labels_vs_tags.png"
+        alt="lab_Resources_Labels_vs_tags.png"
+        style="float: left; margin-right: 10px;" />
+
+### Billing
+
+[video](https://www.coursera.org/learn/gcp-infrastructure-core-services/lecture/PiRrk/billing)
+
+<img src="../images/lab_Resources_budget_creation_interface.png"
+        alt="lab_Resources_budget_creation_interface.png"
+        style="float: left; margin-right: 10px;" />
+
+#### Use Labels to optimize spendings
+
+[video](https://www.coursera.org/learn/gcp-infrastructure-core-services/lecture/PiRrk/billing)
+
+Maybe these instances are sending most of their traffic to a different continent which could incur higher cost.
+
+In that case, you might consider relocating some of those instances or using a caching service like Cloud CDN to cach content closer to your users, which reduces your networking spend. 
+
+> **Google recommends labeling all your resources and exporting your billing data to BigQuery to analyze your spend.**
+
+<img src="../images/lab_Resources_budget_use_Labels_to_optimize_spending.png"
+        alt="lab_Resources_budget_use_Labels_to_optimize_spending.png"
+        style="float: left; margin-right: 10px;" />
+
+Visualize your spends with Data Studio
+
+<img src="../images/lab_Resources_budget_visualize_spendings_over_time_DataStudio.png"
+        alt="lab_Resources_budget_visualize_spendings_over_time_DataStudio.png"
+        style="float: left; margin-right: 10px;" />
+
+### Lab: Billing Administration
+
+- [video billing administration](https://www.coursera.org/learn/gcp-infrastructure-core-services/lecture/xpHII/demo-billing-administration)
+- [video Lab Intro: Examining **Billing Data** with **BigQuery**](https://www.coursera.org/learn/gcp-infrastructure-core-services/lecture/Nz755/lab-intro-examining-billing-data-with-bigquery)
+- [Lab notes: Billing data with BigQuery](../labs/lab_billing_data_with_BigQuery.md)
 
 ## Resource Monitoring
 
 =  monitor GCP resources using **StackDriver**
 
 ## Resources/Articles
+
+- ["Programmatic Budgets Notification Examples"](https://cloud.google.com/billing/docs/how-to/notify)
