@@ -493,8 +493,32 @@ This architecture allows for high availability and global placement:
 
 ### Cloud Firestore
 
+[video](https://www.coursera.org/learn/gcp-infrastructure-core-services/lecture/Z0QRZ/cloud-firestore)
+
+Cloud Firestore is a:
+- fast,
+- fully managed,
+- serverless Cloud native,
+- NoSQL document database,
+- that simplifies storing, sinking, and querying data for your mobile, web, and IoT apps at global scale
+
+<img src="../images/lab_Cloud_Firestore.png"
+        alt="lab_Cloud_Firestore.png"
+        style="float: left; margin-right: 10px;" />
+
+
+<img src="../images/lab_Cloud_Firestore_new_Datastore.png"
+        alt="lab_Cloud_Firestore_new_Datastore.png"
+        style="float: left; margin-right: 10px;" />
+
+<img src="../images/lab_Cloud_FireStore_Decision_tree_to_choose_FireStore.png"
+        alt="lab_Cloud_FireStore_Decision_tree_to_choose_FireStore.png"
+        style="float: left; margin-right: 10px;" />
+
 
 ### Cloud Bigtable
+
+
 ### Cloud Memorystore
 
 
