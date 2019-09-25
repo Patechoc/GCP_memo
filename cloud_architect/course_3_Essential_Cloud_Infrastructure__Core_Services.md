@@ -456,7 +456,7 @@ Decision tree for your SQL storage
 
 - [lab tasks description](https://www.coursera.org/learn/gcp-infrastructure-core-services/lecture/caD6h/lab-intro-cloud-sql)
 - [lab notes](../labs/lab_Cloud_SQL.md)
-- [Lab Review: Cloud SQL (PostgreSQL)]()
+- [Lab Review: Cloud SQL (MySQL)](https://www.coursera.org/learn/gcp-infrastructure-core-services/lecture/1Il73/lab-review-cloud-sql)
 
 <img src="../images/lab_Cloud_SQL_01.png"
         alt="lab_Cloud_SQL_01.png"
@@ -465,7 +465,35 @@ Decision tree for your SQL storage
 
 
 ### Cloud Spanner
+
+[video](https://www.coursera.org/learn/gcp-infrastructure-core-services/lecture/gu1Xc/cloud-spanner)
+
+<img src="../images/lab_Cloud_Spanner_features.png"
+        alt="lab_Cloud_Spanner_features.png"
+        style="float: left; margin-right: 10px;" />
+
+Best of Relational & non-relational DB world
+
+<img src="../images/lab_Cloud_Spanner_characteristics_best_relational_non_relational_worlds.png"
+        alt="lab_Cloud_Spanner_characteristics_best_relational_non_relational_worlds.png"
+        style="float: left; margin-right: 10px;" />
+
+This architecture allows for high availability and global placement:
+
+<img src="../images/lab_Cloud_Spanner_architecture.png"
+        alt="lab_Cloud_Spanner_architecture.png"
+        style="float: left; margin-right: 10px;" />
+
+
+<img src="../images/lab_Cloud_Spanner_Decision_tree_to_choose_Spanner.png"
+        alt="lab_Cloud_Spanner_Decision_tree_to_choose_Spanner.png"
+        style="float: left; margin-right: 10px;" />
+
+
+
 ### Cloud Firestore
+
+
 ### Cloud Bigtable
 ### Cloud Memorystore
 
