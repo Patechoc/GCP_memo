@@ -2,6 +2,8 @@
 
 ~1 hour 30 minutes
 
+- [video Lab Intro: Examining **Billing Data** with **BigQuery**](https://www.coursera.org/learn/gcp-infrastructure-core-services/lecture/Nz755/lab-intro-examining-billing-data-with-bigquery)
+- [Lab Review: Examining Billing Data with BigQuery](https://www.coursera.org/learn/gcp-infrastructure-core-services/lecture/As3u1/lab-review-examining-billing-data-with-bigquery)
 
 ## Overview
 
@@ -24,7 +26,7 @@ In this lab, you learn how to perform the following tasks:
 3. If prompted, click Done.
 4. click on to your Project ID (starts with qwiklabs-gcp) and click Create Dataset.
 
-> You can export billing data directly to BigQuery as outlined here. However, for the purposes of this lab, a sample CSV billing file has been prepared for you. It is located in a Cloud Storage bucket where it is accessible to your student account. You will import this billing information into a BigQuery table and examine it.
+> You can export billing data directly to BigQuery as outlined [here](https://cloud.google.com/billing/docs/how-to/export-data-bigquery). However, for the purposes of this lab, a sample CSV billing file has been prepared for you. It is located in a Cloud Storage bucket where it is accessible to your student account. You will import this billing information into a BigQuery table and examine it.
 
 4. Specify the following:
 
@@ -69,6 +71,14 @@ Use BigQuery to import data
 3. Click Preview.
 4. Locate the row that has the Description: Network Internet Ingress from EMEA to Americas.
 
+```sql
+SELECT *
+FROM `imported_billing_data.sampleinfotable`
+WHERE Description = "Network Internet Ingress from EMEA to Americas";
+```
+
+
+
 > What was the total consumption and units consumed?
 
 <img src="../images/lab_Billing_with_BigQuery_04.png"
@@ -80,6 +90,12 @@ Use BigQuery to import data
 > The cost was 0.0, so with an ingress of 9.7 Mbytes, traffic from EMEA to the Americas had no charge.
 
 6. Locate the row that has the Description: Network Internet Egress from Americas to China.
+
+```sql
+SELECT *
+FROM `imported_billing_data.sampleinfotable`
+WHERE Description = "Network Internet Egress from Americas to China";
+```
 
 Can you interpret the information?
 
@@ -105,8 +121,8 @@ Now construct a simple query based on the Cost field.
 2. Paste the following in Query Editor:
 
 ```sql
-SELECT * FROM `imported_billing_data.sampleinfotable`
-WHERE Cost > 0
+    SELECT * FROM `imported_billing_data.sampleinfotable`
+    WHERE Cost > 0
 ```
 
 3. Click Run.

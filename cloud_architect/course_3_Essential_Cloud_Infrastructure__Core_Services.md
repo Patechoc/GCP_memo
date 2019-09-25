@@ -706,6 +706,9 @@ Visualize your spends with Data Studio
 - [video billing administration](https://www.coursera.org/learn/gcp-infrastructure-core-services/lecture/xpHII/demo-billing-administration)
 - [video Lab Intro: Examining **Billing Data** with **BigQuery**](https://www.coursera.org/learn/gcp-infrastructure-core-services/lecture/Nz755/lab-intro-examining-billing-data-with-bigquery)
 - [Lab notes: Billing data with BigQuery](../labs/lab_billing_data_with_BigQuery.md)
+- [Lab Review: Examining Billing Data with BigQuery](https://www.coursera.org/learn/gcp-infrastructure-core-services/lecture/As3u1/lab-review-examining-billing-data-with-bigquery)
+
+
 
 ## Resource Monitoring
 
@@ -714,3 +717,4 @@ Visualize your spends with Data Studio
 ## Resources/Articles
 
 - ["Programmatic Budgets Notification Examples"](https://cloud.google.com/billing/docs/how-to/notify)
+- [Export billing to BigQuery](https://cloud.google.com/billing/docs/how-to/export-data-bigquery)
