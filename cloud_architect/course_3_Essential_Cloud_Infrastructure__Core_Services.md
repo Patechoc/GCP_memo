@@ -48,7 +48,12 @@ This course builds on the [Essential Cloud Infrastructure: Foundation](./cloud_a
     * [Use Labels to optimize spendings](#use-labels-to-optimize-spendings)
     * [Lab: Billing Administration](#lab-billing-administration)
 * [Resource Monitoring](#resource-monitoring)
+    * [StackDriver Overview](#stackdriver-overview)
+    * [Monitoring with StackDriver](#monitoring-with-stackdriver)
+    * [SRE: Site Reliability Engineering](#sre-site-reliability-engineering)
+    * [Lab. Resource Monitoring with StackDriver](#lab-resource-monitoring-with-stackdriver)
 * [Resources/Articles](#resourcesarticles)
+
 
 
 -  more than one solution for a task or application in GCP, a [solution continuum](https://github.com/Patechoc/GCP_memo/blob/master/cloud_architect/course_2_Essential_Cloud_Infrastructure__Foundation.md#gcp-infrastruture)
@@ -815,6 +820,7 @@ But with a custom metric, you could actually pass the current number of users di
 
 - [video overview](https://www.coursera.org/learn/gcp-infrastructure-core-services/lecture/IvHOD/lab-intro-resource-monitoring)
 - [lab notes](../labs/lab_monitoring_with_StackDriver.md)
+- [review of the lab: Resource Monitoring](https://www.coursera.org/learn/gcp-infrastructure-core-services/lecture/vMsEK/lab-review-resource-monitoring)
 
 ## Resources/Articles
 
