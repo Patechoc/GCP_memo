@@ -41,8 +41,15 @@ This course builds on the [Essential Cloud Infrastructure: Foundation](./cloud_a
     * [Cloud Bigtable](#cloud-bigtable)
     * [Cloud Memorystore (Redis)](#cloud-memorystore-redis)
 * [Resource Management](#resource-management)
+    * [Cloud Resource](#cloud-resource)
+    * [Quotas](#quotas)
+    * [Labels and names](#labels-and-names)
+    * [Billing](#billing)
+    * [Use Labels to optimize spendings](#use-labels-to-optimize-spendings)
+    * [Lab: Billing Administration](#lab-billing-administration)
 * [Resource Monitoring](#resource-monitoring)
 * [Resources/Articles](#resourcesarticles)
+
 
 -  more than one solution for a task or application in GCP, a [solution continuum](https://github.com/Patechoc/GCP_memo/blob/master/cloud_architect/course_2_Essential_Cloud_Infrastructure__Foundation.md#gcp-infrastruture)
 - Infrastructure, Users, Applications [analogy](https://github.com/Patechoc/GCP_memo/blob/master/cloud_architect/course_2_Essential_Cloud_Infrastructure__Foundation.md#gcp-infrastruture)
