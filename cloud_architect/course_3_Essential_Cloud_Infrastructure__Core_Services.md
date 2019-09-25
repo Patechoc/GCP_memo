@@ -518,6 +518,44 @@ Cloud Firestore is a:
 
 ### Cloud Bigtable
 
+[video](https://www.coursera.org/learn/gcp-infrastructure-core-services/lecture/98vuS/cloud-bigtable)
+
+<img src="../images/lab_Cloud_BigTable.png"
+        alt="lab_Cloud_BigTable.png"
+        style="float: left; margin-right: 10px;" />
+
+
+Cloud Bigtable stores data in massively scalable tables:
+- each of which is a sorted key value map.
+- The table is composed of rows, each of which typically describes a single entity, - columns which contain individual values for each row.
+- Each row is indexed by a single row key.
+- Columns that are related to one another are typically grouped together into a column family.
+- Each column is identified by a combination of the column family and a column qualifier which is a unique name within the column family.
+- Each row column intersection can contain multiple cells or versions at different timestamps, providing a record of how the stored data has been altered over time. 
+
+
+<img src="../images/lab_Cloud_BigTable_storage_model.png"
+        alt="lab_Cloud_BigTable_storage_model.png"
+        style="float: left; margin-right: 10px;" />
+
+Processing is separated from storage:
+
+<img src="../images/lab_Cloud_BigTable_storage_model_overal_architechture.png"
+        alt="lab_Cloud_BigTable_storage_model_overal_architechture.png"
+        style="float: left; margin-right: 10px;" />
+
+
+Linear scaling of data re-distribution with number of nodes:
+
+<img src="../images/lab_Cloud_BigTable_storage_model_overal_architechture_auto_rebalance.png"
+        alt="lab_Cloud_BigTable_storage_model_overal_architechture_auto_rebalance.png"
+        style="float: left; margin-right: 10px;" />
+
+<img src="../images/lab_Cloud_BigTable_Decision_tree_to_choose_BigTable.png"
+        alt="lab_Cloud_BigTable_Decision_tree_to_choose_BigTable.png"
+        style="float: left; margin-right: 10px;" />
+
+
 
 ### Cloud Memorystore
 
