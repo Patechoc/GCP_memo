@@ -822,7 +822,59 @@ But with a custom metric, you could actually pass the current number of users di
 - [lab notes](../labs/lab_monitoring_with_StackDriver.md)
 - [review of the lab: Resource Monitoring](https://www.coursera.org/learn/gcp-infrastructure-core-services/lecture/vMsEK/lab-review-resource-monitoring)
 
-## Resources/Articles
+
+### Logging with Stackdriver
+
+- [video](https://www.coursera.org/learn/gcp-infrastructure-core-services/lecture/yXpyQ/logging)
+
+<img src="../images/StackDriver_LOGGING.png"
+    alt="StackDriver_LOGGING.png"
+    style="float: left; margin-right: 10px;" />
+
+Analyze logs and visualize them wiht **BigQuery** and **Data Studio**
+
+<img src="../images/StackDriver_LOGGING_analysis_with_BigQuery_Studio.png"
+    alt="StackDriver_LOGGING_analysis_with_BigQuery_Studio.png"
+    style="float: left; margin-right: 10px;" />
+
+How to install Logging agent on VM:
+
+<img src="../images/StackDriver_LOGGING_how_to_install_Logging_agent_on_VM.png"
+    alt="StackDriver_LOGGING_how_to_install_Logging_agent_on_VM.png"
+    style="float: left; margin-right: 10px;" />
+
+### Error Reporting with Stackdriver
+
+[video](https://www.coursera.org/learn/gcp-infrastructure-core-services/lecture/J3gb8/error-reporting)
+
+<img src="../images/StackDriver_ERROR_REPORTING.png"
+    alt="StackDriver_ERROR_REPORTING.png"
+    style="float: left; margin-right: 10px;" />
+
+### Tracing with Stackdriver
+
+[video](https://www.coursera.org/learn/gcp-infrastructure-core-services/lecture/Whikg/tracing)
+
+<img src="../images/StackDriver_TRACING.png"
+    alt="StackDriver_TRACING.png"
+    style="float: left; margin-right: 10px;" />
+
+### Debugging with Stackdriver
+
+[video](https://www.coursera.org/learn/gcp-infrastructure-core-services/lecture/j66MW/debugging)
+
+<img src="../images/StackDriver_DEBUGGER.png"
+    alt="StackDriver_DEBUGGER.png"
+    style="float: left; margin-right: 10px;" />
+
+
+### Lab: Error Reporting and Debugging with Stackdriver
+
+- [Lab Intro: Error Reporting and Debugging](https://www.coursera.org/learn/gcp-infrastructure-core-services/lecture/yLquA/lab-intro-error-reporting-and-debugging)
+- [Lab notes](../labs/lab_Stackdriver_error_reporting_debugging.md)
+
+## Resources/Articles### Debugging with Stackdriver
+
 
 - ["Programmatic Budgets Notification Examples"](https://cloud.google.com/billing/docs/how-to/notify)
 - [Export billing to BigQuery](https://cloud.google.com/billing/docs/how-to/export-data-bigquery)
