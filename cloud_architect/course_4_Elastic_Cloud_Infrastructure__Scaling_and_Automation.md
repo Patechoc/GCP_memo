@@ -29,7 +29,8 @@ In this course, we start by going over:
 
 ## Interconnecting Networks (Module 1)
 
-- [Module Overview: Interconnecting Networks](https://www.coursera.org/learn/gcp-infrastructure-scaling-automation/lecture/Hi6hM/module-overview)   
+- [Module Overview video: Interconnecting Networks](https://www.coursera.org/learn/gcp-infrastructure-scaling-automation/lecture/Hi6hM/module-overview)
+- [Module Review video](https://www.coursera.org/learn/gcp-infrastructure-scaling-automation/lecture/BDnmM/module-review)  
 
 = different options to interconnect to GCP
 
@@ -236,8 +237,16 @@ Differences in Network administration models:
     alt="Sharing_VPC_comparison_network_administration_models.png"
     style="float: left; margin-right: 10px;" />
 
+
+
+
+
+
+
+
 ## Load Balancing & Autoscaling  (Module 2)
 
+- [Module overivew video](https://www.coursera.org/learn/gcp-infrastructure-scaling-automation/lecture/hYGrW/module-overview)
 
 ## Infrastructure Automation  (Module 3: Deployment Manager & Terraform)
 
