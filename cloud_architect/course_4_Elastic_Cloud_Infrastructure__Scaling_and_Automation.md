@@ -76,14 +76,100 @@ The services are:
 * **Dedicated Interconnect**, 
 * and **Partner Interconnect**.
 
- Now as I just explained earlier, Google also offers its own Virtual Private Network service called Cloud VPN. This service uses the public Internet but traffic is encrypted and provides access to internal IP addresses. That's why Cloud VPN is a useful addition to Direct Peering and Carrier Peering. Let me explain the Cloud Interconnect and Peering services separately first and then I'll provide some guidance on choosing the right connection.
-
-
 <img src="../images/Cloud_Interconnect_and_Peering.png"
     alt="Cloud_Interconnect_and_Peering.png"
     style="float: left; margin-right: 10px;" />
 
+
+ Now as I just explained earlier, Google also offers its own Virtual Private Network service called **Cloud VPN**. This service uses the public Internet but traffic is encrypted and provides access to internal IP addresses. That's why Cloud VPN is a useful addition to Direct Peering and Carrier Peering. 
+
+
 #### Cloud Interconnect
+
+[video](https://www.coursera.org/learn/gcp-infrastructure-scaling-automation/lecture/OeoTK/cloud-interconnect)
+
+##### Dedicated Interconnect
+
+[Documentation](https://cloud.google.com/interconnect/docs/concepts/dedicated-overview#redundancy)
+
+<img src="../images/Cloud_Interconnect_and_Peering_dedicated_interconnect.png"
+    alt="Cloud_Interconnect_and_Peering_dedicated_interconnect.png"
+    style="float: left; margin-right: 10px;" />
+
+Definition **SLA***: Service Level Agreement
+
+"99.9% uptime SLA"
+
+**Dedicated Interconnect** needs **Colocation Facility Locations**:
+
+[Documentation on Colocation Facility Locations](https://cloud.google.com/interconnect/docs/concepts/colocation-facilities)
+
+Google locations for physically interconnecting between Google's network and a private network:
+
+<img src="../images/Cloud_Interconnect_physical_Google_location_for_physically_interconnecting_with_private_network.png"
+    alt="Cloud_Interconnect_physical_Google_location_for_physically_interconnecting_with_private_network.png"
+    style="float: left; margin-right: 10px;" />
+
+#### Supported Service Providers
+
+[Documentation & list of Service providers per country](https://cloud.google.com/interconnect/docs/concepts/service-providers)
+
+
+#### Partner Interconnect 
+
+If you are no-where near one of this "Colocation Facility Locations", consider **Partner Interconnect**.
+
+[Documentation](https://cloud.google.com/interconnect/docs/concepts/partner-overview#redundancy)
+
+<img src="../images/Cloud_Interconnect_partner_interconnect.png"
+    alt="Cloud_Interconnect_partner_interconnect.png"
+    style="float: left; margin-right: 10px;" />
+
+
+#### Comparison of capacity/location's requirements
+
+<img src="../images/Cloud_Interconnect_comparison.png"
+    alt="Cloud_Interconnect_comparison.png"
+    style="float: left; margin-right: 10px;" />
+
+
+### Cloud Peering service
+
+- [video](https://www.coursera.org/learn/gcp-infrastructure-scaling-automation/lecture/4QMn8/peering)
+- [Documentation on Peering](https://peering.google.com/#/options/peering)
+- [Google LLC PeeringDB](https://www.peeringdb.com/asn/15169)
+- [Public Peering Exchange Points](https://www.peeringdb.com/net/4319)
+- [Peering Service providers](https://cloud.google.com/interconnect/docs/how-to/carrier-peering#service_providers)
+
+There is 2 kinds of Peering:
+
+- Direct Peering 
+- Carrier Peering
+
+
+#### Direct Peering 
+
+<img src="../images/Cloud_Peering_Direct_peering.png"
+    alt="Cloud_Peering_Direct_peering.png"
+    style="float: left; margin-right: 10px;" />
+
+<img src="../images/Cloud_Peering_Direct_peering_edge_points.png"
+    alt="Cloud_Peering_Direct_peering_edge_points.png"
+    style="float: left; margin-right: 10px;" />
+
+#### Carrier Peering
+
+If you are no-where near these Google locations, you might consider "**Carrier Peering**".
+
+<img src="../images/Cloud_Peering_Carrier_peering.png"
+    alt="Cloud_Peering_Carrier_peering.png"
+    style="float: left; margin-right: 10px;" />
+
+#### Comparison of Peering options
+
+<img src="../images/Cloud_Peering_Carrier_comparison_of_options.png"
+    alt="Cloud_Peering_Carrier_comparison_of_options.png"
+    style="float: left; margin-right: 10px;" />
 
 
 ### Sharing VPC Networks
