@@ -1,5 +1,7 @@
 # Virtual Private Networks (VPN)
 
+[Lab Review video: Virtual Private Networks (VPN)](https://www.coursera.org/learn/gcp-infrastructure-scaling-automation/lecture/nTXif/lab-review-virtual-private-networks-vpn)
+
 ~ 1 hour 30 minutes
 
 ## Overview

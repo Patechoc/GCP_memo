@@ -56,8 +56,35 @@ Dynamic routes with **Cloud Router**
 ### lab: Cloud VPN
 
 - [Lab Intro: Virtual Private Networks (VPN)](https://www.coursera.org/learn/gcp-infrastructure-scaling-automation/lecture/Z2dw4/lab-intro-virtual-private-networks-vpn)
+- [Lab Review video: Virtual Private Networks (VPN)](https://www.coursera.org/learn/gcp-infrastructure-scaling-automation/lecture/nTXif/lab-review-virtual-private-networks-vpn)
+
 
 ### Cloud Interconnect & Peering
+
+[video](https://www.coursera.org/learn/gcp-infrastructure-scaling-automation/lecture/lhPq3/cloud-interconnect-and-peering) 
+
+There are different **Cloud Interconnect** and **Peering services** available to connect your infrastructure to Google's network.
+
+These services can be split into:
+- **dedicated connections** versus **shared connections**: Dedicated connections provide a direct connection to Google's network. But, shared connections provide a connection to Google's network through a partner.
+- and **layer 2** verses **layer 3** connections: Layer 2 connections use a **VLAN that pipes directly into your GCP environment**, providing connectivity to internal IP addresses in the RFC 1918 address space. Layer 3 connections provide **access to G Suite services, YouTube and Google Cloud APIs using public IP addresses**. 
+
+The services are:
+
+* **Direct Peering**,
+* **Carrier Peering**, 
+* **Dedicated Interconnect**, 
+* and **Partner Interconnect**.
+
+ Now as I just explained earlier, Google also offers its own Virtual Private Network service called Cloud VPN. This service uses the public Internet but traffic is encrypted and provides access to internal IP addresses. That's why Cloud VPN is a useful addition to Direct Peering and Carrier Peering. Let me explain the Cloud Interconnect and Peering services separately first and then I'll provide some guidance on choosing the right connection.
+
+
+<img src="../images/Cloud_Interconnect_and_Peering.png"
+    alt="Cloud_Interconnect_and_Peering.png"
+    style="float: left; margin-right: 10px;" />
+
+#### Cloud Interconnect
+
 
 ### Sharing VPC Networks
 
