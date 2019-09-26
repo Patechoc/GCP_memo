@@ -171,27 +171,70 @@ If you are no-where near these Google locations, you might consider "**Carrier P
     alt="Cloud_Peering_Carrier_comparison_of_options.png"
     style="float: left; margin-right: 10px;" />
 
+#### Choosing a connection
 
-### Sharing VPC Networks
+The 5 different ways to connect your infrastructure to GCP:
 
+<img src="../images/Cloud_Interconnect_and_Peering.png"
+    alt="Cloud_Interconnect_and_Peering.png"
+    style="float: left; margin-right: 10px;" />
 
-
-
-
-
-
-
-
-
-
+<img src="../images/Cloud_Interconnect_5_ways.png"
+    alt="Cloud_Interconnect_5_ways.png"
+    style="float: left; margin-right: 10px;" />
 
 
+Another way to organize these sources is by:
+
+- **interconnect services**: Interconnect services provide direct access to RFC1918 IP addresses in your VPC with an SLA.
+- and by **peering services**: Peering services in contrast offer access to Google public IP addresses only without an SLA. 
+
+ 
+<img src="../images/Cloud_Peering_Carrier_choose_a_network_connection.png"
+    alt="Cloud_Peering_Carrier_choose_a_network_connection.png"
+    style="float: left; margin-right: 10px;" />
+
+#### Flow diagram to decide which connection to choose
+
+<img src="../images/Cloud_Interconnect_decision_diagram.png"
+    alt="Cloud_Interconnect_decision_diagram.png"
+    style="float: left; margin-right: 10px;" />
 
 
+### Sharing VPC Networks: Shared VPC and VPC Peering
 
+[video](https://www.coursera.org/learn/gcp-infrastructure-scaling-automation/lecture/d6NEM/shared-vpc-and-vpc-peering)
 
+2 configurations for sharing VPC networks across GCP projects:
 
+- **Shared VPC**: allows you to share a network across several projects in your GCP organization
+- **VPC Network Peering**: allows you to configure private communication across projects in same or different organizations.
 
+#### Shared VPC
+
+<img src="../images/Sharing_VPC_networkd_shared_VPC.png"
+    alt="Sharing_VPC_networkd_shared_VPC.png"
+    style="float: left; margin-right: 10px;" />
+
+#### VPC Network Peering
+
+VPC Network Peering is a decentralized or distributed approach to multiproject networking. Because each VPC network, may remain under the control of separate administrator groups, and maintains its own global firewall, and routing tables.
+
+<img src="../images/Sharing_VPC_networkd_VPC_peering.png"
+    alt="Sharing_VPC_networkd_VPC_peering.png"
+    style="float: left; margin-right: 10px;" />
+
+#### Comparison Shared VPC vs VPC Peering
+
+<img src="../images/Sharing_VPC_comparison.png"
+    alt="Sharing_VPC_comparison.png"
+    style="float: left; margin-right: 10px;" />
+
+Differences in Network administration models:
+
+<img src="../images/Sharing_VPC_comparison_network_administration_models.png"
+    alt="Sharing_VPC_comparison_network_administration_models.png"
+    style="float: left; margin-right: 10px;" />
 
 ## Load Balancing & Autoscaling  (Module 2)
 
@@ -206,3 +249,6 @@ If you are no-where near these Google locations, you might consider "**Carrier P
 Other managed services that you would like to leverage in GCP (e.g. MongoDB, Kafka, ...)
 
 ## Resources/Articles
+
+
+- [Networking in Google Cloud Platform course](https://www.qwiklabs.com/courses/751)
