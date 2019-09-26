@@ -877,8 +877,11 @@ How to install Logging agent on VM:
 
 - [Lab Intro: Error Reporting and Debugging](https://www.coursera.org/learn/gcp-infrastructure-core-services/lecture/yLquA/lab-intro-error-reporting-and-debugging)
 - [Lab notes](../labs/lab_Stackdriver_error_reporting_debugging.md)
+- [Lab Review video: Error Reporting and Debugging](https://www.coursera.org/learn/gcp-infrastructure-core-services/lecture/E00hP/lab-review-error-reporting-and-debugging)
 
-## Resources/Articles### Debugging with Stackdriver
+
+
+## Resources/Articles
 
 
 - ["Programmatic Budgets Notification Examples"](https://cloud.google.com/billing/docs/how-to/notify)
