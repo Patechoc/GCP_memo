@@ -52,7 +52,12 @@ This course builds on the [Essential Cloud Infrastructure: Foundation](./cloud_a
     * [Monitoring with StackDriver](#monitoring-with-stackdriver)
     * [SRE: Site Reliability Engineering](#sre-site-reliability-engineering)
     * [Lab. Resource Monitoring with StackDriver](#lab-resource-monitoring-with-stackdriver)
-* [Resources/Articles](#resourcesarticles)
+    * [Logging with Stackdriver](#logging-with-stackdriver)
+    * [Error Reporting with Stackdriver](#error-reporting-with-stackdriver)
+    * [Tracing with Stackdriver](#tracing-with-stackdriver)
+    * [Debugging with Stackdriver](#debugging-with-stackdriver)
+    * [Lab: Error Reporting and Debugging with Stackdriver](#lab-error-reporting-and-debugging-with-stackdriver)
+* [Resources/Articles### Debugging with Stackdriver](#resourcesarticles-debugging-with-stackdriver)
 
 
 
