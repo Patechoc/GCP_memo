@@ -18,6 +18,7 @@ This course builds on the [Essential Cloud Infrastructure: Foundation](./cloud_a
 
 - [course intro video](https://www.coursera.org/learn/gcp-infrastructure-core-services/lecture/6Zi73/course-introduction)
 - [course review video on storage/database services](https://www.coursera.org/learn/gcp-infrastructure-core-services/lecture/EismW/module-review)
+- [Module review video](https://www.coursera.org/learn/gcp-infrastructure-core-services/lecture/tLWuy/course-review)
 
 
 * [Cloud Identity and Access Management (Cloud IAM)](#cloud-identity-and-access-management-cloud-iam)
@@ -725,6 +726,8 @@ Visualize your spends with Data Studio
 ## Resource Monitoring
 
 - [video module intro](https://www.coursera.org/learn/gcp-infrastructure-core-services/lecture/yCn32/module-overview)
+- [Module review on Resource Monitoring](https://www.coursera.org/learn/gcp-infrastructure-core-services/lecture/BqDvV/module-review) >> Next step... **Site Reliability Engineering (SRE)**!
+
 
 =  monitor GCP resources using **StackDriver**:
 
