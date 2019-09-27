@@ -252,10 +252,117 @@ Differences in Network administration models:
 
 = "Deployment Manager" or "Terraform" to automate the deployment of **GCP infrastructure Services**
 
+Different types of load balancers that can be divided into two categories:
+
+- **global**
+- **regional**
+
+<img src="../images/Load_balancing_different_kinds.png"
+    alt="Load_balancing_different_kinds.png"
+    style="float: left; margin-right: 10px;" />
+
+### Global load balancers
+
+The global load balancers are the HTTP, HTTPS, SSL proxy, and TCP proxy load balancers. 
+
+These load balancers leverage the Google front ends which are software defined, distributed systems that sit in Google's Point-of-Presence and are distributed globally. Therefore, you want to use a global load balancer when your users and instances are globally distributed. Your users need access to the same application and content and you want to provide access using a single anycast IP address.
+
+### Regional load balancers
+
+The regional load balancers are the **internal and network load balancers** and they distribute traffic to instances that are in a single GCP region.
+
+The internal load balancer uses Andromeda which is GCP's software defined network virtualization stack and the network load balancer uses Maglev which is a large distributed software system. There's also another internal load balancer for HTTP, HTTPS traffic, but it's in beta as of this recording
+
+### Managed Instance Groups
+
+[video](https://www.coursera.org/learn/gcp-infrastructure-scaling-automation/lecture/IbepU/managed-instance-groups)
+
+**Definition**: A managed instance group is a **collection of identical virtual machine instances** that you control as a single entity using an **instance template**.
+
+<img src="../images/Load_balancing_Managed_instances.png"
+    alt="Load_balancing_Managed_instances.png"
+    style="float: left; margin-right: 10px;" />
+
+You will need to create/use Instance Templates: 
+
+<img src="../images/Load_balancing_instance_template.png"
+    alt="Load_balancing_instance_template.png"
+    style="float: left; margin-right: 10px;" />
+
+Define "rules" for your instance group:
+
+<img src="../images/Load_balancing_manage_instance_groups.png"
+    alt="Load_balancing_manage_instance_groups.png"
+    style="float: left; margin-right: 10px;" />
+
+In practice, you are just creating VMs but applying much more rules to that instance group.
+
+#### Autoscaling & Health checks
+
+[video](https://www.coursera.org/learn/gcp-infrastructure-scaling-automation/lecture/IylfJ/autoscaling-and-health-checks)
+
+Based on utilization and your thresholds:
+
+<img src="../images/Load_balancing_manage_instance_groups_autoscaling.png"
+    alt="Load_balancing_manage_instance_groups_autoscaling.png"
+    style="float: left; margin-right: 10px;" />
+
+How to decide on a threshold?
+
+<img src="../images/Load_balancing_manage_instance_groups_autoscaling_how_to_set_thresholds.png"
+    alt="Load_balancing_manage_instance_groups_autoscaling_how_to_set_thresholds.png"
+    style="float: left; margin-right: 10px;" />
+
+
+Another tool: Health Check, similar to Uptime checks in Stackdriver:
+
+<img src="../images/Load_balancing_manage_instance_groups_autoscaling_create_health_check.png"
+    alt="Load_balancing_manage_instance_groups_autoscaling_create_health_check.png"
+    style="float: left; margin-right: 10px;" />
+
+
+### HTTP(S) Load Balancing
+
+[overview video](https://www.coursera.org/learn/gcp-infrastructure-scaling-automation/lecture/suxVg/overview-of-http-s-load-balancing)
+
+<img src="../images/Load_balancing_HTTPS_load_balancing.png"
+    alt="Load_balancing_HTTPS_load_balancing.png"
+    style="float: left; margin-right: 10px;" />
+
+
+### Lab: ...
+
+### SSL Proxy/TCP Proxy Load Balancing
+
+### Network Load Balancing
+
+### Internal Load Balancing
+
+### Lab: ...
+
+
+### Choosing a Load Balancer
 
 ## Managed Services  (Module 4)
 
 Other managed services that you would like to leverage in GCP (e.g. MongoDB, Kafka, ...)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Resources/Articles
 
