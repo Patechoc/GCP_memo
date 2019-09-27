@@ -390,13 +390,112 @@ SSL certificate:
 - demonstrate load balancing
 - demonstrate autoscaling
 
+
+
+
 ### SSL Proxy/TCP Proxy Load Balancing
+
+
+#### SSL Proxy load balancing
+
+[video](https://www.coursera.org/learn/gcp-infrastructure-scaling-automation/lecture/CNZxs/ssl-proxy-load-balancing)
+
+<img src="../images/SSL_proxy.png"
+    alt="SSL_proxy.png"
+    style="float: left; margin-right: 10px;" />
+
+
+More on [SSL Proxy Load Balancing Concepts](https://cloud.google.com/load-balancing/docs/ssl/#overview)
+
+Example using SSL Proxy load balancing (recommended over TCP load balancing)
+
+<img src="../images/SSL_proxy_example.png"
+    alt="SSL_proxy_example.png"
+    style="float: left; margin-right: 10px;" />
+
+
+#### TCP Proxy load balancing
+
+[video](https://www.coursera.org/learn/gcp-infrastructure-scaling-automation/lecture/GnrcQ/tcp-proxy-load-balancing)
+
+> NOT ENCRYPTED!!!!
+
+<img src="../images/TCP_proxy.png"
+    alt="TCP_proxy.png"
+    style="float: left; margin-right: 10px;" />
+
+
+Example using TCP Proxy load balancing:
+
+<img src="../images/TCP_proxy_example.png"
+    alt="TCP_proxy_example.png"
+    style="float: left; margin-right: 10px;" />
+
+> Also recommended to use SSL here between the backend and the frontend!
 
 ### Network Load Balancing
 
+[video](https://www.coursera.org/learn/gcp-infrastructure-scaling-automation/lecture/PbNT7/network-load-balancing) 
+
+Network load balancing is a **regional** **non-proxied** load balancing service.
+
+In other words, all traffic is passed through the load balancer instead of being proxied and **traffic can only be balanced between virtual machine instances that are in the same region unlike a global load balancer**.
+
+<img src="../images/network_load_balancer.png"
+    alt="network_load_balancer.png"
+    style="float: left; margin-right: 10px;" />
+
+**When/Where to use it?**
+
+You can use it to load balance UDP traffic and to load balance TCP NSSL traffic on ports that are not supported by the TCP proxy and SSL proxy load balancer.
+
+The back ends of a network load balancer can be a **template-based instance group** or **target pooled resource**.
+
+#### What is a target pooled resource?
+
+<img src="../images/network_load_balancer_Target_pool_resource.png"
+    alt="network_load_balancer_Target_pool_resource.png"
+    style="float: left; margin-right: 10px;" />
+
+They have limitations:
+
+<img src="../images/network_load_balancer_Target_pool_resource_limitations.png"
+    alt="network_load_balancer_Target_pool_resource_limitations.png"
+    style="float: left; margin-right: 10px;" />
+
+
 ### Internal Load Balancing
 
-### Lab: ...
+[video](https://www.coursera.org/learn/gcp-infrastructure-scaling-automation/lecture/Ys411/internal-load-balancing)
+
+<img src="../images/internal_load_balancer.png"
+    alt="internal_load_balancer.png"
+    style="float: left; margin-right: 10px;" />
+
+**Internal load balancing** is a **regional**, private load balancing service for TCP and UDP based traffic. 
+
+In other words, this load balancer enables you to run and **scale your services behind a private load balancing IP address**. This means that it is only accessible through the **internal IP address of virtual machine instances that are in the same region**. Therefore, use internal load balancing to configure an internal load balancing IP address, to act as the front end to your private backend instances.
+
+
+<img src="../images/internal_load_balancer_software_solution.png"
+    alt="internal_load_balancer_software_solution.png"
+    style="float: left; margin-right: 10px;" />
+
+**"3-tier web service" use case**
+
+<img src="../images/internal_load_balancer_3tier_balancer_use_case.png"
+    alt="internal_load_balancer_3tier_balancer_use_case.png"
+    style="float: left; margin-right: 10px;" />
+
+### Lab: Configuring an Internal Load Balancer
+
+- [video intro](https://www.coursera.org/learn/gcp-infrastructure-scaling-automation/lecture/vt2PJ/lab-intro-configuring-an-internal-load-balancer)
+- Lab notes: 
+- [Lab review video](https://www.coursera.org/learn/gcp-infrastructure-scaling-automation/lecture/WPl40/lab-review-configuring-an-internal-load-balancer)
+
+<img src="../images/lab_internal_load_balancer.png"
+    alt="lab_internal_load_balancer.png"
+    style="float: left; margin-right: 10px;" />
 
 
 ### Choosing a Load Balancer
@@ -426,3 +525,6 @@ Other managed services that you would like to leverage in GCP (e.g. MongoDB, Kaf
 
 
 - [Networking in Google Cloud Platform course](https://www.qwiklabs.com/courses/751)
+- Load balancing over the QUIC protocol: [QUIC, a multiplexed stream transport over UDP](https://www.chromium.org/quic)
+- [SSL Proxy Load Balancing Concepts](https://cloud.google.com/load-balancing/docs/ssl/#overview)
+- [Andromeda](https://cloudplatform.googleblog.com/2014/04/enter-andromeda-zone-google-cloud-platforms-latest-networking-stack.html): Google's network virtualization stack, to provide software-defined load balancing that directly delivers the traffic from the client instance to a backend instance. 
