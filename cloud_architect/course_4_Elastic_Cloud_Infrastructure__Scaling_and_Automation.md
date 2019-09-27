@@ -533,6 +533,31 @@ In other words, this load balancer enables you to run and **scale your services 
 
 ### Choosing a Load Balancer
 
+[video](https://www.coursera.org/learn/gcp-infrastructure-scaling-automation/lecture/bTKU2/choosing-a-load-balancer)
+
+#### Support for IPV6 is a differentiator
+
+**One differentiator** between the different GCP load balancers is the **support for IPv6 clients**. Only the HTTPS, SSL proxy, and TCP proxy load balancing services support IPV6 clients
+
+<img src="../images/Load_balancing_what_to_choose.png"
+    alt="Load_balancing_what_to_choose.png"
+    style="float: left; margin-right: 10px;" />
+
+#### Decision tree to help you find your load balancing service
+
+- Global vs regional load balancing,
+- external vs internal load balancing,
+- and the traffic type
+
+<img src="../images/Load_balancing_decision_tree.png"
+    alt="Load_balancing_decision_tree.png"
+    style="float: left; margin-right: 10px;" />
+
+<img src="../images/Load_balancing_comparison_table.png"
+    alt="Load_balancing_comparison_table.png"
+    style="float: left; margin-right: 10px;" />
+
+
 ## Managed Services  (Module 4)
 
 Other managed services that you would like to leverage in GCP (e.g. MongoDB, Kafka, ...)
