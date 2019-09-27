@@ -25,7 +25,6 @@
     * [VPC Network Peering](#vpc-network-peering)
     * [Comparison Shared VPC vs VPC Peering](#comparison-shared-vpc-vs-vpc-peering)
 * [Load Balancing &amp; Autoscaling  (Module 2)](#load-balancing--autoscaling--module-2)
-* [Infrastructure Automation  (Module 3: Deployment Manager &amp; Terraform)](#infrastructure-automation--module-3-deployment-manager--terraform)
     * [Global load balancers](#global-load-balancers)
     * [Regional load balancers](#regional-load-balancers)
     * [Managed Instance Groups](#managed-instance-groups)
@@ -40,8 +39,12 @@
     * [Internal Load Balancing](#internal-load-balancing)
     * [Lab: Configuring an Internal Load Balancer](#lab-configuring-an-internal-load-balancer)
     * [Choosing a Load Balancer](#choosing-a-load-balancer)
+    * [Support for IPV6 is a differentiator](#support-for-ipv6-is-a-differentiator)
+    * [Decision tree to help you find your load balancing service](#decision-tree-to-help-you-find-your-load-balancing-service)
+* [Infrastructure Automation  (Module 3: Deployment Manager &amp; Terraform)](#infrastructure-automation--module-3-deployment-manager--terraform)
 * [Managed Services  (Module 4)](#managed-services--module-4)
 * [Resources/Articles](#resourcesarticles)
+
 
 
 
@@ -280,10 +283,7 @@ Differences in Network administration models:
 ## Load Balancing & Autoscaling  (Module 2)
 
 - [Module overivew video](https://www.coursera.org/learn/gcp-infrastructure-scaling-automation/lecture/hYGrW/module-overview)
-
-## Infrastructure Automation  (Module 3: Deployment Manager & Terraform)
-
-= "Deployment Manager" or "Terraform" to automate the deployment of **GCP infrastructure Services**
+- [Module review video](https://www.coursera.org/learn/gcp-infrastructure-scaling-automation/lecture/LNgte/module-review)
 
 Different types of load balancers that can be divided into two categories:
 
@@ -558,23 +558,17 @@ In other words, this load balancer enables you to run and **scale your services 
     style="float: left; margin-right: 10px;" />
 
 
+## Infrastructure Automation  (Module 3: Deployment Manager & Terraform)
+
+- [Module intro video](https://www.coursera.org/learn/gcp-infrastructure-scaling-automation/lecture/v1K52/module-overview)
+
+= "Deployment Manager" or "Terraform" to automate the deployment of **GCP infrastructure Services**
+
+= How to automate the deployment of GCP infrastructure
+
 ## Managed Services  (Module 4)
 
-Other managed services that you would like to leverage in GCP (e.g. MongoDB, Kafka, ...)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+- Other managed services that you would like to leverage in GCP (e.g. MongoDB, Kafka, ...)
 
 
 
