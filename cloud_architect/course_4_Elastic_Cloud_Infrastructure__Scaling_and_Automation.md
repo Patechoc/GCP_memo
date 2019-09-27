@@ -330,7 +330,65 @@ Another tool: Health Check, similar to Uptime checks in Stackdriver:
     style="float: left; margin-right: 10px;" />
 
 
-### Lab: ...
+Architecture of an HTTP(S) load balancer
+
+<img src="../images/Load_balancing_HTTPS_architecture.png"
+    alt="Load_balancing_HTTPS_architecture.png"
+    style="float: left; margin-right: 10px;" />
+
+Backend services provided by a load balancer:
+
+<img src="../images/Load_balancing_HTTPS_recall_of_services.png"
+    alt="Load_balancing_HTTPS_recall_of_services.png"
+    style="float: left; margin-right: 10px;" />
+
+Example #1: HTTP load balancer on a single global IP ([video](https://www.coursera.org/learn/gcp-infrastructure-scaling-automation/lecture/RodYr/example-http-load-balancer))
+
+<img src="../images/Load_balancing_example.png"
+    alt="Load_balancing_example.png"
+    style="float: left; margin-right: 10px;" />
+
+
+Example #2: HTTP load balancer (Content-based load balancer)
+
+- 2 backends service: WEB (`/<whatever>`) or VIDEO (`/video`) traffic
+- traffic is split by the URL header, as specified by the URL map
+
+<img src="../images/Load_balancing_example_2.png"
+    alt="Load_balancing_example_2.png"
+    style="float: left; margin-right: 10px;" />
+
+HTTPS load balancer ([video](HTTP(S) load balancing))
+
+- same structure as an HTTP load balancer
+- SSL certificate
+- QUIC transport layer protocol
+
+<img src="../images/Load_balancing_httpS.png"
+    alt="Load_balancing_httpS.png"
+    style="float: left; margin-right: 10px;" />
+
+SSL certificate:
+
+<img src="../images/Load_balancing_httpS_SSL_certificate.png"
+    alt="Load_balancing_httpS_SSL_certificate.png"
+    style="float: left; margin-right: 10px;" />
+
+
+
+### Lab: Configuring an HTTP Load Balancer with Autoscaling
+
+- [intro video](https://www.coursera.org/learn/gcp-infrastructure-scaling-automation/lecture/WBXBJ/lab-intro-configuring-an-http-load-balancer-with-autoscaling)
+- [lab notes](../labs/lab_Load_balancer_with_Autoscaling.md)
+- [review video](https://www.coursera.org/learn/gcp-infrastructure-scaling-automation/lecture/cF54y/lab-review-configuring-an-http-load-balancer-with-autoscaling)
+
+<img src="../images/lab_Load_balancing_autoscaling.png"
+    alt="lab_Load_balancing_autoscaling.png"
+    style="float: left; margin-right: 10px;" />
+
+- 2 backends in different regions: us_central_1 & europe_west_1
+- demonstrate load balancing
+- demonstrate autoscaling
 
 ### SSL Proxy/TCP Proxy Load Balancing
 
