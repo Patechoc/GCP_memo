@@ -523,7 +523,7 @@ In other words, this load balancer enables you to run and **scale your services 
 ### Lab: Configuring an Internal Load Balancer
 
 - [video intro](https://www.coursera.org/learn/gcp-infrastructure-scaling-automation/lecture/vt2PJ/lab-intro-configuring-an-internal-load-balancer)
-- Lab notes: 
+- [Lab notes](../labs/lab_Internal_Load_balancer.md) 
 - [Lab review video](https://www.coursera.org/learn/gcp-infrastructure-scaling-automation/lecture/WPl40/lab-review-configuring-an-internal-load-balancer)
 
 <img src="../images/lab_internal_load_balancer.png"
