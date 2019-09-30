@@ -22,6 +22,11 @@ The class uses a **tiered design model to organize the learning**. And along the
 
 Speaking of examples, the example solutions in the class exercises are intended to get you thinking about **design**. There are adequate solutions but not perfect solutions, you'll probably think of ways to improve on these solutions and come up with your own designs that are better and that's exactly what we want you to do, to learn to develop your own designs.
 
+<img src="../images/design_and_process.png"
+     alt="design_and_process.png"
+     style="float: left; margin-right: 10px;" />
+
+
 ## Objectives
 
 [video](https://www.coursera.org/learn/cloud-infrastructure-design-process/lecture/Cp9Nv/course-overview)
@@ -35,8 +40,8 @@ Speaking of examples, the example solutions in the class exercises are intended 
 
 Learned in the labs:
 
-<img src="../images/course_5_design_and_process:lit_labs.png"
-     alt="course_5_design_and_process:list_labs.png"
+<img src="../images/course_6_design_and_process_list_labs.png"
+     alt="course_6_design_and_process_list_labs.png"
      style="float: left; margin-right: 10px;" />
 
 
@@ -62,6 +67,13 @@ Learned in the labs:
 3. A related application problem. You'll be presented with the problem and challenge to come up with your own design, to think through the design challenge on your own, after, you can compare your design to a standard solution. 
 4. Hands on labs with **Google Deployment Manager**.
    Deployment Manager is a template-based infrastructure tool. It enables you to produce identical environments for development, test in production, and it's useful for documenting and testing variations in your designs. So you'll be learning deployment manager as a cloud architect tool.
+
+
+## CONTINUE from here
+
+https://www.coursera.org/learn/cloud-infrastructure-design-process/lecture/p7j9G/about-your-lab-environment
+
+
 
 
 
