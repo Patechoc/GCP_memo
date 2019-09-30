@@ -48,7 +48,6 @@
 
 
 
-
 This course builds on the [Essential Cloud Infrastructure: Core Services](./course_3_Essential_Cloud_Infrastructure__Core_Services.md) course and enhances your study of architecting with Compute Engine.
 
 In this course, we start by going over:
