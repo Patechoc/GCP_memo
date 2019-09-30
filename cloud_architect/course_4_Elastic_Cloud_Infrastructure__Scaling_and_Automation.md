@@ -560,7 +560,7 @@ In other words, this load balancer enables you to run and **scale your services 
 ## Infrastructure Automation  (Module 3: Deployment Manager & Terraform)
 
 - [Module intro video](https://www.coursera.org/learn/gcp-infrastructure-scaling-automation/lecture/v1K52/module-overview)
-
+- [Module review video](https://www.coursera.org/learn/gcp-infrastructure-scaling-automation/lecture/uYPYG/module-review)
 
 = "Deployment Manager" or "Terraform" to automate the deployment of **GCP infrastructure Services**
 
@@ -645,13 +645,67 @@ Many of them works across other Cloud provider, e.g. Terraform!
 
 ### GCP Marketplace
 
+[video](https://www.coursera.org/learn/gcp-infrastructure-scaling-automation/lecture/NUkQL/gcp-marketplace)
+
+<img src="../images/infrastructure_management_GCP_Marketplace.png"
+    alt="infrastructure_management_GCP_Marketplace.png"
+    style="float: left; margin-right: 10px;" />
+
+GCP marketplace lets you quickly deploy functional software packages that run on GCP. Essentially, GCP marketplace offers production grade solutions from third-party vendors who have already created their own deployment configurations based on Deployment Manager.
+
+[Demo: Launch on GCP Marketplace (LAMP stack)](https://www.coursera.org/learn/gcp-infrastructure-scaling-automation/lecture/PpU8W/demo-launch-on-gcp-marketplace)
 
 
 ## Managed Services  (Module 4)
 
+- [video](https://www.coursera.org/learn/gcp-infrastructure-scaling-automation/lecture/e9a4x/module-overview)
+- [Module review video](https://www.coursera.org/learn/gcp-infrastructure-scaling-automation/lecture/mS3CY/module-review)
+
 - Other managed services that you would like to leverage in GCP (e.g. MongoDB, Kafka, ...)
 
 
+As an alternative to infrastructure automation you can eliminate the need to create infrastructure by leveraging a managed service.
+
+Managed services are partial or complete solutions offered as a service. They exist on a continuum between platform as a service and software as a service depending on how much of the internal methods and controls are exposed
+
+ In this module, we give you an overview of **BigQuery**, **Cloud Dataflow**, **Cloud Dataprep** by **Trifecta** and **Cloud Dataproc**. Now, all of these services are for data analytics purposes. And since that's not the focus of this course series, there won't be any labs on this module. Instead we'll have a quick demo to illustrate how easy it is to use managed services.
+
+- [1min about BigQuery](https://www.coursera.org/learn/gcp-infrastructure-scaling-automation/lecture/1XYDI/bigquery)
+   <img src="../images/Managed_Services_BigQuery.png"
+    alt="Managed_Services_BigQuery.png"
+    style="float: left; margin-right: 10px;" />
+   <img src="../images/Managed_Services_BigQuery_02.png"
+    alt="Managed_Services_BigQuery_02.png"
+    style="float: left; margin-right: 10px;" />
+
+- [1min about Cloud Dataflow](https://www.coursera.org/learn/gcp-infrastructure-scaling-automation/lecture/k3C1g/cloud-dataflow)
+   <img src="../images/Managed_Services_CloudDataflow.png"
+    alt="Managed_Services_CloudDataflow.png"
+    style="float: left; margin-right: 10px;" />
+   <img src="../images/Managed_Services_CloudDataflow_02.png"
+    alt="Managed_Services_CloudDataflow_02.png"
+    style="float: left; margin-right: 10px;" />
+
+- [1min about Cloud Dataprep](https://www.coursera.org/learn/gcp-infrastructure-scaling-automation/lecture/ycy9w/cloud-dataprep) by Trifacta
+   <img src="../images/Managed_Services_CloudDataPrep.png"
+    alt="Managed_Services_CloudDataPrep.png"
+    style="float: left; margin-right: 10px;" />
+   <img src="../images/Managed_Services_CloudDataPrep_02.png"
+    alt="Managed_Services_CloudDataPrep_02.png"
+    style="float: left; margin-right: 10px;" />
+
+
+- [1min about Cloud Dataproc](https://www.coursera.org/learn/gcp-infrastructure-scaling-automation/lecture/7veQ3/cloud-dataproc)
+   <img src="../images/Managed_Services_CloudDataproc.png"
+    alt="Managed_Services_CloudDataproc.png"
+    style="float: left; margin-right: 10px;" />
+   <img src="../images/Managed_Services_CloudDataproc_02.png"
+    alt="Managed_Services_CloudDataproc_02.png"
+    style="float: left; margin-right: 10px;" />
+
+
+
+[Demo: Cloud Dataproc](https://www.coursera.org/learn/gcp-infrastructure-scaling-automation/lecture/6RIEm/demo-cloud-dataproc)
 
 
 ## Resources/Articles
