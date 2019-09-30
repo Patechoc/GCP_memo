@@ -102,7 +102,7 @@ For a normal Deployment Manager configuration, which subnetwork resource type wo
 - compute.beta.subnetwork (FALSE)
 - compute.v1.subnetwork (TRUE)
 
-> Alternatively, you can find the full list of available resource types here.
+> Alternatively, you can find the full list of available resource types [here](https://cloud.google.com/deployment-manager/docs/configuration/supported-resource-types).
 
 6. Locate compute.v1.network, which is the type needed to create a VPC network using Deployment Manager.
 

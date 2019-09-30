@@ -636,6 +636,12 @@ Many of them works across other Cloud provider, e.g. Terraform!
     alt="lab_infrastructure_management_as_code.png"
     style="float: left; margin-right: 10px;" />
 
+#### Lab: Automating the Infrastructure of networks using Terraform
+
+- [overview video](https://www.coursera.org/learn/gcp-infrastructure-scaling-automation/lecture/lqJj0/lab-intro-automating-the-infrastructure-of-networks-using-deployment-manager-or)
+- [lab notes](../labs/lab_deployment_infrastructure_using_Terraform_automode_network_with_firewall.md)
+- [lab review video](https://www.coursera.org/learn/gcp-infrastructure-scaling-automation/lecture/z1lV3/lab-review-automating-the-infrastructure-of-networks-using-terraform)
+
 
 ### GCP Marketplace
 
