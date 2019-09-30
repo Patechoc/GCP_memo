@@ -561,9 +561,85 @@ In other words, this load balancer enables you to run and **scale your services 
 
 - [Module intro video](https://www.coursera.org/learn/gcp-infrastructure-scaling-automation/lecture/v1K52/module-overview)
 
+
 = "Deployment Manager" or "Terraform" to automate the deployment of **GCP infrastructure Services**
 
 = How to automate the deployment of GCP infrastructure
+
+In this module, we cover :
+
+- how to use **deployment manager** _to automate the deployment of infrastructure_,
+- and how to use **GCP marketplace** _to launch infrastructure solutions_.
+
+### Deployment Manager
+
+[video](https://www.coursera.org/learn/gcp-infrastructure-scaling-automation/lecture/PUEkH/deployment-manager)
+
+Creating resources using GCP:
+
+- GCP Console (GUI, easy for newbies or new to a service)
+- Cloud Shell (Command line tool, if you know how to use the service)
+- Cloud SDK (programmatically... one step further)
+
+<img src="../images/infrastructure_management_console_cloudshell_deploymentManager.png"
+    alt=""
+    style="float: left; margin-right: 10px;" />
+
+
+Deployment Manager takes it one step further: a **declarative approach**.
+
+<img src="../images/infrastructure_management_deploymentManager.png"
+    alt="infrastructure_management_deploymentManager.png"
+    style="float: left; margin-right: 10px;" />
+
+#### Example: automode network with firewall rule 
+
+<img src="../images/infrastructure_management_deploymentManager_example_network_with_firewall.png"
+    alt="infrastructure_management_deploymentManager_example_network_with_firewall.png"
+    style="float: left; margin-right: 10px;" />
+
+- automate using templates: one of the automode network, one for the firewall rule.
+
+<img src="../images/infrastructure_management_deploymentManager_example_network_with_firewall_02.png"
+    alt="infrastructure_management_deploymentManager_example_network_with_firewall_02.png"
+    style="float: left; margin-right: 10px;" />
+
+- [Supported resources type for Deployment Manager](https://cloud.google.com/deployment-manager/docs/configuration/supported-resource-types)
+
+
+#### Other tools than Deployment Manager
+
+- Terraform
+- Ansible
+- Packer
+- Chef
+- puppet
+- ...
+
+Many of them works across other Cloud provider, e.g. Terraform!
+
+<img src="../images/infrastructure_management_other_tools_than_deploymentManager.png"
+    alt="infrastructure_management_other_tools_than_deploymentManager.png"
+    style="float: left; margin-right: 10px;" />
+
+- Other tools similar to Deployment Manager: [Infrastructure as Code (IaC) tools for Google Cloud](https://cloud.google.com/solutions/infrastructure-as-code/#cards)
+
+
+#### Lab Intro: Automating the Infrastructure of Networks Using Deployment Manager and/or Terraform
+
+- [overview video](https://www.coursera.org/learn/gcp-infrastructure-scaling-automation/lecture/lqJj0/lab-intro-automating-the-infrastructure-of-networks-using-deployment-manager-or)
+- [lab notes](../labs/lab_deployment_manager_from_templates_automode_network_with_firewall.md)
+- [lab review video](https://www.coursera.org/learn/gcp-infrastructure-scaling-automation/lecture/rAynt/lab-review-automating-the-infrastructure-of-networks-using-deployment-manager)
+
+
+<img src="../images/lab_infrastructure_management_as_code.png"
+    alt="lab_infrastructure_management_as_code.png"
+    style="float: left; margin-right: 10px;" />
+
+
+### GCP Marketplace
+
+
 
 ## Managed Services  (Module 4)
 
@@ -579,3 +655,5 @@ In other words, this load balancer enables you to run and **scale your services 
 - Load balancing over the QUIC protocol: [QUIC, a multiplexed stream transport over UDP](https://www.chromium.org/quic)
 - [SSL Proxy Load Balancing Concepts](https://cloud.google.com/load-balancing/docs/ssl/#overview)
 - [Andromeda](https://cloudplatform.googleblog.com/2014/04/enter-andromeda-zone-google-cloud-platforms-latest-networking-stack.html): Google's network virtualization stack, to provide software-defined load balancing that directly delivers the traffic from the client instance to a backend instance. 
+- [Supported resources type for Deployment Manager](https://cloud.google.com/deployment-manager/docs/configuration/supported-resource-types)
+- Other tools similar to Deployment Manager: [Infrastructure as Code (IaC) tools for Google Cloud](https://cloud.google.com/solutions/infrastructure-as-code/#cards)
