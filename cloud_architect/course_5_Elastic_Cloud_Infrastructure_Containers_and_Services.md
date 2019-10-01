@@ -54,8 +54,6 @@
 
 - course site: https://www.coursera.org/learn/gcp-infrastructure-containers-services
 - [1-week course intro video](https://www.coursera.org/learn/gcp-infrastructure-containers-services/lecture/sIb77/elastic-cloud-infrastructure-containers-and-services-course-intro): Elastic Cloud Infrastructure: Containers and Services
-
-
 - [Course overview video](https://www.coursera.org/learn/gcp-infrastructure-containers-services/lecture/OEhAf/module-overview-intro)
 
 
@@ -452,16 +450,3 @@ In this lab:
 <img src="../images/containerization_comparison_differentiators.png"
      alt="containerization_comparison_differentiators.png"
      style="float: left; margin-right: 10px;" />
-
-
-
-<img src="../images/dummy.png"
-     alt="dummy.png"
-     style="float: left; margin-right: 10px;" />
-<img src="../images/dummy.png"
-     alt="dummy.png"
-     style="float: left; margin-right: 10px;" /
-
-
-## Resources/Articles
-
