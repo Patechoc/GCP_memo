@@ -92,12 +92,12 @@ The Professional Cloud Architect certification demonstrates your mastery of deve
 
 The courses are:
 
-1. [course 1](https://www.coursera.org/learn/gcp-fundamentals/home/welcome): [**GCP Fundamentals: Core Infrastructure**](./cloud_architect/course_1_Core_Infrastructure.md)
-1. [course 2](https://www.coursera.org/learn/gcp-infrastructure-foundation/home/welcome): [**Essential Cloud Infrastructure: Foundation**](./cloud_architect/course_2_Essential_Cloud_Infrastructure__Foundation.md)
-1. [course 3](https://www.coursera.org/learn/gcp-infrastructure-core-services?specialization=gcp-architecture): Essential Cloud Infrastructure: [**Core Services**](./cloud_architect/course_3_Essential_Cloud_Infrastructure__Core_Services.md)
-1. [course 4](https://www.coursera.org/learn/gcp-infrastructure-scaling-automation?specialization=gcp-architecture): Elastic Cloud infrastructure: [**scaling**/**automation**](./cloud_architect/course_4_Elastic_Cloud_Infrastructure__Scaling_and_Automation.md)
-1. [course 5](https://www.coursera.org/learn/gcp-infrastructure-containers-services): [Elastic Cloud infrastructure: **containers**/**services**](course_5_Elastic_Cloud_Infrastructure_Containers_and_Services.md)
-1. [course 6](https://www.coursera.org/learn/cloud-infrastructure-design-process): [Reliable Cloud infrastructure: **design** & **process**](course_6_Reliable_Cloud_Infrastructure_Design_and_Process.md)
+1. [course 1](https://www.coursera.org/learn/gcp-fundamentals/home/welcome): **[GCP Fundamentals: Core Infrastructure](./cloud_architect/course_1_Core_Infrastructure.md)**
+1. [course 2](https://www.coursera.org/learn/gcp-infrastructure-foundation/home/welcome): **Essential Cloud Infrastructure: [Foundation](./cloud_architect/course_2_Essential_Cloud_Infrastructure__Foundation.md)**
+1. [course 3](https://www.coursera.org/learn/gcp-infrastructure-core-services?specialization=gcp-architecture): **Essential Cloud Infrastructure: [Core Services](./cloud_architect/course_3_Essential_Cloud_Infrastructure__Core_Services.md)**
+1. [course 4](https://www.coursera.org/learn/gcp-infrastructure-scaling-automation?specialization=gcp-architecture): **Elastic Cloud infrastructure: [scaling/automation](./cloud_architect/course_4_Elastic_Cloud_Infrastructure__Scaling_and_Automation.md)**
+1. [course 5](https://www.coursera.org/learn/gcp-infrastructure-containers-services): **Elastic Cloud infrastructure: [containers/services](course_5_Elastic_Cloud_Infrastructure_Containers_and_Services.md)**
+1. [course 6](https://www.coursera.org/learn/cloud-infrastructure-design-process): **[Reliable Cloud infrastructure: design & process](course_6_Reliable_Cloud_Infrastructure_Design_and_Process.md)**
 
 ## Codelabs
 
