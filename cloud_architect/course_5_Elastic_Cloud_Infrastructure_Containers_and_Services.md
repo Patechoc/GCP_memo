@@ -75,10 +75,6 @@ Now, then, **what about our services?** What are they? Well, first of all, they 
 
 - [module review video](https://www.coursera.org/learn/gcp-infrastructure-containers-services/lecture/L778e/module-1-review-outro)
 
-<img src="../images/application_infrastructure_services.png"
-     alt="application_infrastructure_services.png"
-     style="float: left; margin-right: 10px;" />
-
 In this module, you will learn about Cloud Pub/Sub, API Management, Cloud Functions, Cloud Source Repositories, and Specialty APIs.
 
 This module covers **"Application Infrastruture Services Concepts"**:
