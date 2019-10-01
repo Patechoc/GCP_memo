@@ -2,7 +2,52 @@
 
 ## Content
 
-ToC
+* [Course Intro](#course-intro)
+* [Module: Application Infrastruture Services Concepts](#module-application-infrastruture-services-concepts)
+    * [Cloud Pub/Sub](#cloud-pubsub)
+    * [Benefits of Cloud Pub/Sub](#benefits-of-cloud-pubsub)
+    * [Basics of Pub/Sub](#basics-of-pubsub)
+    * [Complexity handled by Pub/Sub](#complexity-handled-by-pubsub)
+    * [Integrations for publishing or subsribing](#integrations-for-publishing-or-subsribing)
+    * [Use cases for Pub/Sub](#use-cases-for-pubsub)
+    * [API Management](#api-management)
+    * [Cloud Endpoints](#cloud-endpoints)
+    * [Apigee](#apigee)
+    * [Cloud Functions: Serverless offering](#cloud-functions-serverless-offering)
+    * [A microservices architecture responding on triggers](#a-microservices-architecture-responding-on-triggers)
+    * [Differences Cloud Functions/Endpoints](#differences-cloud-functionsendpoints)
+    * [Demo: Cloud Functions](#demo-cloud-functions)
+    * [Cloud Source Repositories](#cloud-source-repositories)
+    * [Specialty APIs](#specialty-apis)
+* [Module: Application Development Services (i.e. App Engine)](#module-application-development-services-ie-app-engine)
+    * [App Engine among other compute services](#app-engine-among-other-compute-services)
+    * [Example of App Engine app](#example-of-app-engine-app)
+    * [Microservices in App Engine](#microservices-in-app-engine)
+    * [Choosing Flexible or Standard environment](#choosing-flexible-or-standard-environment)
+* [Module: Containers](#module-containers)
+    * [Introduction to Containers.](#introduction-to-containers)
+    * [Basics of containerization](#basics-of-containerization)
+    * [Kubernetes Engine among other compute services](#kubernetes-engine-among-other-compute-services)
+    * [History of containerization](#history-of-containerization)
+    * [Benefits of containerization](#benefits-of-containerization)
+    * [Google Kubernetes Engine](#google-kubernetes-engine)
+    * [K8s clusters:](#k8s-clusters)
+    * [K8s master endpoint/node:](#k8s-master-endpointnode)
+    * [K8s Pods:](#k8s-pods)
+    * [K8s Load Balancing using Labels:](#k8s-load-balancing-using-labels)
+    * [K8s Deployment:](#k8s-deployment)
+    * [K8s Pods scheduled on nodes:](#k8s-pods-scheduled-on-nodes)
+    * [K8s deployed with built-in resilience](#k8s-deployed-with-built-in-resilience)
+    * [K8s Rolling update:](#k8s-rolling-update)
+    * [K8s support for IAM](#k8s-support-for-iam)
+    * [K8s multizone container cluster](#k8s-multizone-container-cluster)
+    * [K8s Node Pools: instance groups in the k8s cluster](#k8s-node-pools-instance-groups-in-the-k8s-cluster)
+    * [K8s more features](#k8s-more-features)
+    * [Google Container Registry](#google-container-registry)
+    * [Lab: Kubernetes Load Balancing (Overview and Objectives)](#lab-kubernetes-load-balancing-overview-and-objectives)
+* [Container environment comparison: Kubernetes Engine, App Engine, or Containers on Compute Engine?](#container-environment-comparison-kubernetes-engine-app-engine-or-containers-on-compute-engine)
+* [Resources/Articles](#resourcesarticles)
+
 
 
 ## Course Intro
@@ -12,6 +57,7 @@ ToC
 
 
 - [Course overview video](https://www.coursera.org/learn/gcp-infrastructure-containers-services/lecture/OEhAf/module-overview-intro)
+
 
 **What does "Containers and Services" mean?**
 
@@ -241,7 +287,7 @@ In this module, we will discuss Google App Engine. App Engine handles all the fr
 In this module, you'll be introduced to the concept of containers and you will learn about Google Kubernetes Engine, Google Container Registry, and complete a hands-on lab.
 
 - [module overview video](https://www.coursera.org/learn/gcp-infrastructure-containers-services/lecture/WRIMr/module-overview-intro)
-- 
+- [module review video](https://www.coursera.org/learn/gcp-infrastructure-containers-services/lecture/gLy3G/module-3-review)
 
 
 ### Introduction to Containers.
@@ -383,18 +429,32 @@ Google Container Registry is an open-source Container Management System.
 ### Lab: Kubernetes Load Balancing (Overview and Objectives)
 
 - [lab overview video](https://www.coursera.org/learn/gcp-infrastructure-containers-services/lecture/xblOd/lab-kubernetes-load-balancing-overview-and-objectives)
-
+- [lab notes: Lab Kubernetes Load Balancing](../labs/Lab_Kubernetes_Load_Balancing.md)
+- [lab review video](https://www.coursera.org/learn/gcp-infrastructure-containers-services/lecture/tD9bL/lab-kubernetes-load-balancing-review)
 
 <img src="../images/KubernetesEngine_lab.png"
      alt="KubernetesEngine_lab.png"
      style="float: left; margin-right: 10px;" />
 
+In this lab:
+
+- you deployed a container application using Kubernetes and Google Kubernetes Engine.
+- Then you tested the configuration of your application.
+- You then undeployed it and redeployed it behind a Google Compute Engine HTTP(S) Load Balancer using the Ingress extension to Kubernetes. 
+
+
+## Container environment comparison: Kubernetes Engine, App Engine, or Containers on Compute Engine?
+
+[video](https://www.coursera.org/learn/gcp-infrastructure-containers-services/lecture/xgKRV/kubernetes-engine-app-engine-or-containers-on-compute-engine)
 
 
 
-<img src="../images/dummy.png"
-     alt="dummy.png"
+<img src="../images/containerization_comparison_differentiators.png"
+     alt="containerization_comparison_differentiators.png"
      style="float: left; margin-right: 10px;" />
+
+
+
 <img src="../images/dummy.png"
      alt="dummy.png"
      style="float: left; margin-right: 10px;" />
