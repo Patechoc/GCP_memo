@@ -76,7 +76,7 @@ Learned in the labs:
 8. **Deployment, monitoring and alerting, and incident response** (Key if you have/want an automated deployment, to understand how we respond to incidences)
 
 
-## 4 parts of this class
+### 4 parts of this class
 
 [video](https://www.coursera.org/learn/cloud-infrastructure-design-process/lecture/SIBjx/modules-in-this-course)
 
@@ -236,7 +236,7 @@ You could use **cache**, but that might become overloaded, so to overcome that, 
      style="float: left; margin-right: 10px;" />
 
 
-#### Google's common design
+##### Google's common design
 
 This solution is a design process and fits many solutions:
 
@@ -284,7 +284,7 @@ To define a service level, you need to identify what the users care about.
 
 Chances are that you've seen terms like Service Level Agreement or SLA. Perhaps you've even wonder how these figures are determined or more importantly, how they're monitored. Service levels define how a given service or product should behave. There are a number of factors that go into service levels ranging from availability specifications such as 99.99 percent up time or performance specification such as a minimum response time of one second. Service levels helps set the user's expectation and help keep their expectations in line with the design of the service.
 
-#### Service Level Indicators (SLI)
+##### Service Level Indicators (SLI)
 
  SLIs should be directly observable and measurable by the users. SLIs should not be internal system metrics such as server, CPU utilization or the number of server failures. This is done for two reasons:
  1. the user can't directly measure those internal factors because they are on the outside of the system.
@@ -312,7 +312,7 @@ Example SLI:
      style="float: left; margin-right: 10px;" />
 
 
-#### Service Level Objectives (SLO)
+##### Service Level Objectives (SLO)
 
 Once we've identified what the users care about, we need to quantify those thresholds of pain. This is represented as the Service Level Objective or SLO. The SLO is a threshold value for an SLI, and the result should be set at the lowest or poorest level of service, where the users will still consider the service to be in good working order. That's to say, the SLO represents the point at which the user would consider opening a support ticket because the service failed to meet his or her expectation.
 
@@ -340,7 +340,7 @@ When designing your SLOs, it's important to **put reality above utopia**. While 
      alt="Design_process_Determining_SLO_alerts_on_UX.png"
      style="float: left; margin-right: 10px;" />
 
-#### Service Level Agreements (SLA)
+##### Service Level Agreements (SLA)
 
 Going one step further, we have SLAs. As previously mentioned, some services are so critical that the loss of the service could represent loss of money for the customer or even loss of life in extreme situations such as, autonomous cars or air traffic control. These contracts define an even more restrictive level of service that is lower or poorer than what is defined in the SLO. The key difference here is that the SLO is a soft target used by the owner of the service to set expectations. The SLA is a business contract that grants a user compensation if the service falls below a certain threshold. Therefore, developers and operations team strive to maintain the SLO, which inherently meets the SLA figures.
 
@@ -371,7 +371,7 @@ If you don't know your user, how can you establish what they find important and 
 
 Requirements or items that are important to the business, business goals. Requirements are related to measurement. For example; one requirement might be that the service is responsive to users. That requirement is embodied in an objective, such as; no more than half second latency in responding to customer request. And the objective is supported by a measurable indicator, such as; measuring round trip time between user request and delivery of a result. This lesson covers gathering requirements and things to consider and discuss that will help identify requirements. 
 
-#### Just ask questions: who, what...
+##### Just ask questions: who, what...
 > 
 > * Who's the main character?
 > * What do they do?
@@ -384,19 +384,19 @@ Requirements or items that are important to the business, business goals. Requir
      alt="Design_process_questions_for_gathering_requirements.png"
      style="float: left; margin-right: 10px;" />
 
-#### Specify constraints: time, data , users
+##### Specify constraints: time, data , users
      
 <img src="../images/Design_process_questions_for_time_data.png"
      alt="Design_process_questions_for_time_data.png"
      style="float: left; margin-right: 10px;" />
 
-#### Scaling requirements: backend, frontend
+##### Scaling requirements: backend, frontend
 
 <img src="../images/Design_process_questions_scaling_requirements.png"
      alt="Design_process_questions_scaling_requirements.png"
      style="float: left; margin-right: 10px;" />
 
-#### Size requirements
+##### Size requirements
 
 <img src="../images/Design_process_questions_size_requirements.png"
      alt="Design_process_questions_size_requirements.png"
