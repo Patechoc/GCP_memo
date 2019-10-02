@@ -61,20 +61,129 @@ Learned in the labs:
 
 [video](https://www.coursera.org/learn/cloud-infrastructure-design-process/lecture/SIBjx/modules-in-this-course)
 
-1. Introduction to architecting concepts and principles.
-2. The application of those principles to a real world design.
+1. Introduction to **architecting concepts and principles**.
+   * Defining the Service
+
+2. The application of those principles to a **real world design**.
+   
    You'll begin with an application on a single virtual machine, and through the modules, you'll evolve the design into a sophisticated scalable, resilient, stable, secure solution.
-3. A related application problem. You'll be presented with the problem and challenge to come up with your own design, to think through the design challenge on your own, after, you can compare your design to a standard solution. 
+3. A **related application problem**.
+
+   You'll be presented with the problem and challenge to come up with your own design, to think through the design challenge on your own, after, you can compare your design to a standard solution. 
 4. Hands on labs with **Google Deployment Manager**.
+
    Deployment Manager is a template-based infrastructure tool. It enables you to produce identical environments for development, test in production, and it's useful for documenting and testing variations in your designs. So you'll be learning deployment manager as a cloud architect tool.
 
 
-## CONTINUE from here
+## Defining the Service
 
-https://www.coursera.org/learn/cloud-infrastructure-design-process/lecture/p7j9G/about-your-lab-environment
+- [video course overview](https://www.coursera.org/learn/cloud-infrastructure-design-process/lecture/hRsj7/defining-the-service-course-overview)
+
+A step-by-step process so you can learn how to think about cloud design.
+
+### Layered and iterative approach to design used in this training
+
+- [video "Define the Service" process](https://www.coursera.org/learn/cloud-infrastructure-design-process/lecture/VGUfp/defining-the-service-module-overview)
+
+Each module expands on the previous design, exploring it from a new perspective, evolving it into a scalable, reliable, stable, secure design
 
 
+After introducing a layered model, the module discusses three concepts that are critical to design and to cloud architecture. These are:
 
+- state,
+- measurement,
+- and requirements.
+
+<img src="../images/Design_process_rough_design.png"
+     alt="Design_process_rough_design.png"
+     style="float: left; margin-right: 10px;" />
+
+1. **Design the service... roughly** (we will iterate on it) and involve the team going through that design process.
+2. then continue with a **more structured design approach**... iterate!
+
+   - is it handling different scenarios?
+   - do we have the proper budget?
+   - ...
+3. Define measurable
+   
+   - define measurable instruments that will allow us to define
+   - are we succeeding the goals that we've set out?
+   - What are exactly our service level objectives?
+   - and how do we create service level indicators to measure those?
+4. Then we move to our **three-tier architecture**:
+
+    - Presentation layer (Networking)
+    - Business logic layer (Compute)
+    - Data layer (Storage)
+
+    <img src="../images/Design_process_3-tier_architecture.png"
+        alt="Design_process_3-tier_architecture.png"
+        style="float: left; margin-right: 10px;" />
+
+5. Resiliency, scalability and disaster recovery
+
+    <img src="../images/Design_process_understand_disaster_resiliency.png"
+        alt="Design_process_understand_disaster_resiliency.png"
+        style="float: left; margin-right: 10px;" />
+
+6. Security
+
+    <img src="../images/Design_process_security.png"
+        alt="Design_process_security.png"
+        style="float: left; margin-right: 10px;" />
+
+7. Budget, Capacity planning and cost optimization
+
+    <img src="../images/Design_process_budget.png"
+        alt="Design_process_budget.png"
+        style="float: left; margin-right: 10px;" />
+
+8. Deployment, monitoring, alerting and incident response
+
+    <img src="../images/Design_process_deployment_types.png"
+        alt="Design_process_deployment_types.png"
+        style="float: left; margin-right: 10px;" />
+
+
+**Recency bias**
+
+(always remember to try new instead of re-using old)
+
+<img src="../images/Design_process_Recency_assess.png"
+     alt="Design_process_Recency_assess.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/Design_process_summary.png"
+     alt="Design_process_summary.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
 
 
 
