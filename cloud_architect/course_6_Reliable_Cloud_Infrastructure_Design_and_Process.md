@@ -667,17 +667,94 @@ Think of **App Engine** first, then **K8s** if you need more control on the scal
      style="float: left; margin-right: 10px;" />
 
 
+## Application: The photo service is slow!!!
+
+[video](https://www.coursera.org/learn/cloud-infrastructure-design-process/lecture/rb6kW/the-photo-service-is-slow)
+
+### Business problem
+
+- the service has been slowing down
+- what's te cause of this slow service?
+- What can be done about it?
+- What opportunities does this offer for improving the design?
 
 
+<img src="../images/app_photo_service_slow.png"
+     alt="app_photo_service_slow.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/app_photo_service_problem.png"
+     alt="app_photo_service_problem.png"
+     style="float: left; margin-right: 10px;" />
+
+### Systematic logical troubleshooting
+
+<img src="../images/app_photo_service_problem_troubleshooting.png"
+     alt="app_photo_service_problem_troubleshooting.png"
+     style="float: left; margin-right: 10px;" />
+
+### Collaboration & communication
+
+<img src="../images/app_photo_service_problem_troubleshooting_collaboration.png"
+     alt="app_photo_service_problem_troubleshooting_collaboration.png"
+     style="float: left; margin-right: 10px;" />
+
+### Break down business logic on the photo service
+
+<img src="../images/app_photo_service_slow_breakdown.png"
+     alt="app_photo_service_slow_breakdown.png"
+     style="float: left; margin-right: 10px;" />
+
+### Identify the attributes of the different services?
+
+<img src="../images/app_photo_service_slow_breakdown_identify_attributes_Services.png"
+     alt="app_photo_service_slow_breakdown_identify_attributes_Services.png"
+     style="float: left; margin-right: 10px;" />
+
+### Segregate services for better performance and scalability
+
+<img src="../images/app_photo_service_slow_segregates_Services.png"
+     alt="app_photo_service_slow_segregates_Services.png"
+     style="float: left; margin-right: 10px;" />
+
+### What about our Service Level Objectives (SLOs) and Indicators (SLIs)
+
+<img src="../images/app_photo_service_slow_new_SLO_SLI.png"
+     alt="app_photo_service_slow_new_SLO_SLI.png"
+     style="float: left; margin-right: 10px;" />
+
+## Design challenge #1: Log aggregation
+
+This lesson introduces a related independent design problem, the **log files**.
+
+On the original single virtual machine solution, all of the log files were stored on the instance. As the design changes, new complications are introduced into the design of a log system. To meet troubleshooting requirements, the separate logs will need to be aggregated onto a single system. Watch the lesson that describes the problem and then come up with your own solution. When you're ready, continue the lesson to see a sample solution. Remember that the sample solution is not the best possible solution, it's just an example, your design might be better
 
 
+<img src="../images/challenge_log_files.png"
+     alt="challenge_log_files.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/challenge_log_files_segregated.png"
+     alt="challenge_log_files_segregated.png"
+     style="float: left; margin-right: 10px;" />
+
+What that means is, we have two different log entries now, one for the web and one for the application. They do share a common session ID fields so we need to have a process that will join those together for troubleshooting.
 
 
+ we have logs on two servers, we're going to aggregate them into a single log. So, the solution here is to design a logging server. This server will accept logs, perhaps we're just using sys log fluid d or something else like that, maybe even Kafka. So, in this case we're going to create, let's call this a Python script. We're just going to whip something together, we're going to have a daily cron job that's going to take all these log files and it's going to aggregate them. So, it's purpose is to ingest that data to open the log files together, so it pushes them together. Then we need to transform them. So, even though they're all in one file, we're going to transform them and join them on that session ID. Then we're going to output that data and now we have aggregate log files. Then the daily cron job will go ahead and repeat itself. So, every 24 hours, we will have combined logs. 
 
+<img src="../images/challenge_log_files_segregated_implement_logging_server.png"
+     alt="challenge_log_files_segregated_implement_logging_server.png"
+     style="float: left; margin-right: 10px;" />
 
+**New business logic:**
 
-<img src="../images/dummy.png"
-     alt="dummy.png"
+<img src="../images/challenge_log_files_segregated_implement_logging_server_new_business_logic.png"
+     alt="challenge_log_files_segregated_implement_logging_server_new_business_logic.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/challenge_log_files_slow_new_business_logic_output_numbers_for design.png"
+     alt="challenge_log_files_slow_new_business_logic_output_numbers_for design.png"
      style="float: left; margin-right: 10px;" />
 
 <img src="../images/dummy.png"
@@ -691,8 +768,6 @@ Think of **App Engine** first, then **K8s** if you need more control on the scal
 <img src="../images/dummy.png"
      alt="dummy.png"
      style="float: left; margin-right: 10px;" />
-
-
 
 
 
