@@ -405,18 +405,94 @@ Requirements or items that are important to the business, business goals. Requir
 
 This can limit your choice in the type of tools, implementation you will have to build.
 
+## Application: Introducing an example Photo Application service
+
+[video](https://www.coursera.org/learn/cloud-infrastructure-design-process/lecture/YvgUm/introducing-an-example-photo-application-service)
+
+This lesson introduces the Thumbnail photo service, an example application, that will evolve and design throughout the class. This lesson focuses on applying the principles that were learned in the previous lessons in this module. In this case, we're going to introduce a very basic photo service.
+
+<img src="../images/app_photo_service.png"
+     alt="app_photo_service.png"
+     style="float: left; margin-right: 10px;" />
+
+### Gather requirements
+
+* users
+* speed
+* resources
+* scale
+* size
+* availability
+
+<img src="../images/app_photo_service_gather_requirements.png"
+     alt="app_photo_service_gather_requirements.png"
+     style="float: left; margin-right: 10px;" />
+
+### Business logic
+
+<img src="../images/app_photo_service_gather_busines_logic.png"
+     alt="app_photo_service_gather_busines_logic.png"
+     style="float: left; margin-right: 10px;" />
+
+### From logic, define Services Levels (SLIs, SLOs)
+
+<img src="../images/app_photo_service_SLO.png"
+     alt="app_photo_service_SLO.png"
+     style="float: left; margin-right: 10px;" />
+
+### Process: test before & during launch
+
+<img src="../images/app_photo_service_tests.png"
+     alt="app_photo_service_tests.png"
+     style="float: left; margin-right: 10px;" />
+
+Pre-production tests:
+
+* unit tests
+* integration tests
+* system tests
+* stress test
+
+Production tests:
+
+* Rollout (staged) with user
+* acceptance, A/B testing
+
+
+## Lab: use Deployment Manager to create a VM
+
+[video](https://www.coursera.org/learn/cloud-infrastructure-design-process/lecture/XjMe5/lab-intro-deployment-manager)
+
+- understand YAML templates syntax
+- deploy a single appserver with Deployment Manager
 
 <img src="../images/dummy.png"
      alt="dummy.png"
      style="float: left; margin-right: 10px;" />
-<img src="../images/dummy.png"
-     alt="dummy.png"
-     style="float: left; margin-right: 10px;" />
+
 <img src="../images/dummy.png"
      alt="dummy.png"
      style="float: left; margin-right: 10px;" />
 
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
 
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
 
 
 ## Resources/Articles
