@@ -20,7 +20,33 @@
         * [Specify constraints: time, data , users](#specify-constraints-time-data--users)
         * [Scaling requirements: backend, frontend](#scaling-requirements-backend-frontend)
         * [Size requirements](#size-requirements)
+* [Application: Introducing an example Photo Application service](#application-introducing-an-example-photo-application-service)
+    * [Gather requirements](#gather-requirements)
+    * [Business logic](#business-logic)
+    * [From logic, define Services Levels (SLIs, SLOs)](#from-logic-define-services-levels-slis-slos)
+    * [Process: test before &amp; during launch](#process-test-before--during-launch)
+* [Lab: use Deployment Manager to create a VM](#lab-use-deployment-manager-to-create-a-vm)
+* [Business-logic Layer design](#business-logic-layer-design)
+    * [Business-logic Layer: Design Overview](#business-logic-layer-design-overview)
+    * [Business-logic Layer: Microservice Architecture](#business-logic-layer-microservice-architecture)
+    * [Benefits of microservives](#benefits-of-microservives)
+    * [How microservices complicate business logic?](#how-microservices-complicate-business-logic)
+    * [When using microservices make sense?](#when-using-microservices-make-sense)
+    * [Google's offering for microservices](#googles-offering-for-microservices)
+        * [Cloud Functions](#cloud-functions)
+        * [Cloud Functions example: translate text in an image](#cloud-functions-example-translate-text-in-an-image)
+        * [Cloud Functions example: implementation on GAE &amp; limitations](#cloud-functions-example-implementation-on-gae--limitations)
+    * [GCP 12-factor support](#gcp-12-factor-support)
+        * [GCP development tools matching 12-factor methodology](#gcp-development-tools-matching-12-factor-methodology)
+    * [Mapping computing needs to platform products](#mapping-computing-needs-to-platform-products)
+    * [Compute System Provisioning](#compute-system-provisioning)
+        * [Prefer &amp; plan for horizontal scaling](#prefer--plan-for-horizontal-scaling)
+        * [Pros/Cons of horizontal scaling](#proscons-of-horizontal-scaling)
+        * [Horizontal scaling design](#horizontal-scaling-design)
+        * [Horizontal scaling tradeoffs: latency, capacity, scalability, cost](#horizontal-scaling-tradeoffs-latency-capacity-scalability-cost)
+        * [Design first, dimension later](#design-first-dimension-later)
 * [Resources/Articles](#resourcesarticles)
+
 
 
 
@@ -461,14 +487,194 @@ Production tests:
 
 ## Lab: use Deployment Manager to create a VM
 
-[video](https://www.coursera.org/learn/cloud-infrastructure-design-process/lecture/XjMe5/lab-intro-deployment-manager)
+- [video](https://www.coursera.org/learn/cloud-infrastructure-design-process/lecture/XjMe5/lab-intro-deployment-manager)
 
 - understand YAML templates syntax
 - deploy a single appserver with Deployment Manager
 
-<img src="../images/dummy.png"
-     alt="dummy.png"
+
+
+
+## Business-logic Layer design
+
+### Business-logic Layer: Design Overview
+
+[video](https://www.coursera.org/learn/cloud-infrastructure-design-process/lecture/tVAxY/business-logic-layer-design-overview)
+
+**What is business logic?**
+
+In computer science, it's **the code that implements business rules that determines what happens to data**. In other words, **processing**. I think of business logic in this way.
+
+Consider the transaction of buying an airline ticket. I could buy the ticket at the counter. I could buy the ticket through a travel agent. I could buy the ticket from a kiosk machine at the airport. I could buy the ticket online using a web browser, or I could buy the ticket using an app on my phone. All of these are different front ends or interfaces, but the transaction itself, of purchasing the ticket, remains the same no matter what interface is used. And that, to me, is the business logic. By definition, business logic operates on data. And that means executing code, processing. So for this reason, the business logic layer is also the part of the design process where you'll consider cloud processing options and determine what service the business logic code will use when it needs to run.
+
+**Microservices** are **a specific kind of Service Oriented Architecture**, or **SOA**, that leverages small, stateless processing for improved scalability and resiliency.
+
+Microservices design is a popular approach to applications, and this lesson explores how microservices work and support on the Google Cloud platform for microservices.
+
+
+In computer software, business logic or domain logic is part of the program that encodes the real-world business rules that determine how data can be created, stored, and changed. 
+
+In this module, we're going to cover:
+
+* **microservice architecture**,
+* **how GCP supports 12-factor**,
+* **mapping computing needs to platform products**,
+* **compute system provisioning**.
+
+We're also going to explore our photo service. We're going to have our first issue. The photo service is slow, so we're going to have to identify what the cause is, and then understand exactly how we're going to redesign for this. We're also going to have a new design challenge, and this is going to have to do with our log aggregation which you're going to see as a result of our photo service. This will be followed up by another lab. This will be our GCP lab deployment manager in package and deploy.
+
+So now we're going to **package**:
+
+* learn how to package our applications
+* and deploy those versus just simply deploying applications in their source.
+
+### Business-logic Layer: Microservice Architecture
+
+[video](https://www.coursera.org/learn/cloud-infrastructure-design-process/lecture/mLIMB/business-logic-layer-microservice-architecture)
+
+Microservices are a specific kind of service-oriented architecture or SOA that leverages small, stateless processing from proof scalability and resiliency.
+
+Microservices design is a popular approach to applications and this lesson explores how microservices work and support on the Google Cloud Platform for microservices.
+
+
+<img src="../images/Design_process_business_logic_microservices.png"
+     alt="Design_process_business_logic_microservices.png"
      style="float: left; margin-right: 10px;" />
+
+#### Benefits of microservives
+
+<img src="../images/Design_process_business_logic_microservices_benefits_drawbacks.png"
+     alt="Design_process_business_logic_microservices_benefits_drawbacks.png"
+     style="float: left; margin-right: 10px;" />
+
+#### How microservices complicate business logic?
+
+<img src="../images/Design_process_business_logic_microservices_how_much_more_complex.png"
+     alt="Design_process_business_logic_microservices_how_much_more_complex.png"
+     style="float: left; margin-right: 10px;" />
+
+#### When using microservices make sense?
+
+<img src="../images/Design_process_business_logic_microservices_use_when_make_sense.png"
+     alt="Design_process_business_logic_microservices_use_when_make_sense.png"
+     style="float: left; margin-right: 10px;" />
+
+#### Google's offering for microservices
+
+##### Cloud Functions
+
+<img src="../images/Design_process_business_logic_microservices_cloud_functions.png"
+     alt="Design_process_business_logic_microservices_cloud_functions.png"
+     style="float: left; margin-right: 10px;" />
+
+
+##### Cloud Functions example: translate text in an image
+
+<img src="../images/Design_process_business_logic_microservices_cloud_functions_example.png"
+     alt="Design_process_business_logic_microservices_cloud_functions_example.png"
+     style="float: left; margin-right: 10px;" />
+
+##### Cloud Functions example: implementation on GAE & limitations
+
+<img src="../images/Design_process_business_logic_microservices_cloud_functions_example_in_GAE.png"
+     alt="Design_process_business_logic_microservices_cloud_functions_example_in_GAE.png"
+     style="float: left; margin-right: 10px;" />
+
+#### GCP 12-factor support
+
+https://12factor.net/
+
+<img src="../images/Design_process_12-factor.png"
+     alt="Design_process_12-factor.png"
+     style="float: left; margin-right: 10px;" />
+
+##### GCP development tools matching 12-factor methodology
+
+<img src="../images/Design_process_12-factor_GCP_tools.png"
+     alt="Design_process_12-factor_GCP_tools.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/Design_process_12-factor_GCP_tools_2.png"
+     alt="Design_process_12-factor_GCP_tools_2.png"
+     style="float: left; margin-right: 10px;" />
+
+Storing states in your environment
+
+<img src="../images/Design_process_12-factor_GCP_tools_storing_states.png"
+     alt="Design_process_12-factor_GCP_tools_storing_states.png"
+     style="float: left; margin-right: 10px;" />
+
+#### Mapping computing needs to platform products
+
+<img src="../images/Design_process_12-factor_where_to_get_CPUs.png"
+     alt="Design_process_12-factor_where_to_get_CPUs.png"
+     style="float: left; margin-right: 10px;" />
+
+Think of **App Engine** first, then **K8s** if you need more control on the scaling, or **Compute Engine** as a last resort.
+
+<img src="../images/Design_process_12-factor_think_about_appengine_first.png"
+     alt="Design_process_12-factor_think_about_appengine_first.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/Design_process_12-factor_think_about_appengine_code_first.png"
+     alt="Design_process_12-factor_think_about_appengine_code_first.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/Design_process_12-factor_think_about_k8s_second.png"
+     alt="Design_process_12-factor_think_about_k8s_second.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/Design_process_12-factor_think_about_ComputeEngine_third.png"
+     alt="Design_process_12-factor_think_about_ComputeEngine_third.png"
+     style="float: left; margin-right: 10px;" />
+
+
+#### Compute System Provisioning
+
+<img src="../images/Design_process_compute_system_provisioning.png"
+     alt="Design_process_compute_system_provisioning.png"
+     style="float: left; margin-right: 10px;" />
+
+##### Prefer & plan for horizontal scaling
+
+<img src="../images/Design_process_compute_system_provisioning_how_to_grow.png"
+     alt="Design_process_compute_system_provisioning_how_to_grow.png"
+     style="float: left; margin-right: 10px;" />
+
+##### Pros/Cons of horizontal scaling
+
+<img src="../images/Design_process_compute_system_provisioning_prefer_horizontal_scaling.png"
+     alt="Design_process_compute_system_provisioning_prefer_horizontal_scaling.png"
+     style="float: left; margin-right: 10px;" />
+
+##### Horizontal scaling design
+
+<img src="../images/Design_process_compute_system_provisioning_horizontal_scaling_design.png"
+     alt="Design_process_compute_system_provisioning_horizontal_scaling_design.png"
+     style="float: left; margin-right: 10px;" />
+
+
+##### Horizontal scaling tradeoffs: latency, capacity, scalability, cost
+
+<img src="../images/Design_process_compute_system_provisioning_horizontal_scaling_tradeoffs.png"
+     alt="Design_process_compute_system_provisioning_horizontal_scaling_tradeoffs.png"
+     style="float: left; margin-right: 10px;" />
+
+##### Design first, dimension later
+
+<img src="../images/Design_process_compute_system_provisioning_design_first_dimension_later.png"
+     alt="Design_process_compute_system_provisioning_design_first_dimension_later.png"
+     style="float: left; margin-right: 10px;" />
+
+
+
+
+
+
+
+
+
+
 
 <img src="../images/dummy.png"
      alt="dummy.png"
@@ -486,14 +692,11 @@ Production tests:
      alt="dummy.png"
      style="float: left; margin-right: 10px;" />
 
-<img src="../images/dummy.png"
-     alt="dummy.png"
-     style="float: left; margin-right: 10px;" />
 
-<img src="../images/dummy.png"
-     alt="dummy.png"
-     style="float: left; margin-right: 10px;" />
+
+
 
 
 ## Resources/Articles
 
+- https://cloud.google.com/compute/docs/reference/rest/v1/instances

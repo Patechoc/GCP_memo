@@ -2,6 +2,30 @@
 
 ~1 hour 30 minutes
 
+* [Overview](#overview)
+    * [Objectives](#objectives)
+    * [Overview](#overview-1)
+* [About Deployment Manager](#about-deployment-manager)
+* [Deployment Manager use cases](#deployment-manager-use-cases)
+* [How Deployment Manager works?](#how-deployment-manager-works)
+* [YAML](#yaml)
+* [Syntax complications](#syntax-complications)
+    * [1) The API and therefore the YAML requires this kind of nested construction.](#1-the-api-and-therefore-the-yaml-requires-this-kind-of-nested-construction)
+    * [2) Leaving out a required nested element generates an error.](#2-leaving-out-a-required-nested-element-generates-an-error)
+    * [3) The API and YAML use tuple construction for properties.](#3-the-api-and-yaml-use-tuple-construction-for-properties)
+    * [4) You specify defaults, when they exist, by simply omitting the tuple from the list of properties.](#4-you-specify-defaults-when-they-exist-by-simply-omitting-the-tuple-from-the-list-of-properties)
+    * [5) The API uses both property sequences and lists. If a list is required and you specify a property instead of a list, it is a syntax error.](#5-the-api-uses-both-property-sequences-and-lists-if-a-list-is-required-and-you-specify-a-property-instead-of-a-list-it-is-a-syntax-error)
+* [Create a resource](#create-a-resource)
+* [Examine the resource properties](#examine-the-resource-properties)
+* [Learn about resource properties](#learn-about-resource-properties)
+* [Prune the properties](#prune-the-properties)
+* [Dash it all](#dash-it-all)
+* [Configure the resource properties](#configure-the-resource-properties)
+* [Deploy appserver!](#deploy-appserver)
+* [Cleaning up from a failed launch](#cleaning-up-from-a-failed-launch)
+* [Using the power of Deployment Manager](#using-the-power-of-deployment-manager)
+
+
 ## Overview
 
 In this lab, you create a Cloud Deployment Manager template for appserver. Activities include:
@@ -982,7 +1006,16 @@ You are now ready to leverage the power of Deployment Manager. In the next step 
 
 Return to the Cloud Shell tab in the browser.
 
-Create appserver environments for four organizations: development, load testing, security, and production, using the example below as a guide.
+Create appserver environments for four organizations using the example below as a guide.:
+
+* development,
+* load
+* testing,
+* security,
+* and
+* production,
+
+
 
 **Example**
 
