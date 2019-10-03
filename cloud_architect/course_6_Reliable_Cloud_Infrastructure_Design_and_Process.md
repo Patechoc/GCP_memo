@@ -757,6 +757,33 @@ What that means is, we have two different log entries now, one for the web and o
      alt="challenge_log_files_slow_new_business_logic_output_numbers_for design.png"
      style="float: left; margin-right: 10px;" />
 
+
+## lab: useDeployment Manager: Package and Deploy
+
+In this lab, you'll learn:
+
+- how to customize an instance using the deployment manager template. 
+- how to install library packages and software required of an application.
+- how to package and install a Python application, the Echo application, that will be installed at boot time and will run when the instance starts up.
+
+The application development team is supposed to provide an early version of the photo application for you to start building the infrastructure, but they're late. Instead, they provide a similar Python application, called Echo for you to use until the real app is ready. Note that you'll not need to do any programming for this lab. The application is already written. You'll just be creating and configuring the templates. Your challenge in this lab is to use deployment manager templates to create the app server. You'll need to package and install the pre-written Python application. You'll need to install the required application frameworks that the application depends on. And you'll need to handle environment metadata to customize and initialize the server during the boot process.
+
+
+**Qwiklabs – Deployment Manager Package and Deploy**
+
+In this lab you will...
+
+* Develop a service using a pre-written Python application called "Echo" and example Deployment Manager templates written in YAML and JINJA2.
+* Create a deployment package suitable for Deployment Manager using the python package manager, pip.
+* Stage your package in a Cloud Storage bucket.
+* Manually test the application to ensure that it is working properly.
+* Use Deployment Manager to deploy the Echo service.
+* Test the new service.
+
+- [video lab overview](https://www.coursera.org/learn/cloud-infrastructure-design-process/lecture/V7NHs/deployment-manager-package-and-deploy)
+- [lab notes](../labs/lab_design_and_process_develop_and_deploy_a_service_with_deployment_manager.md)
+
+
 <img src="../images/dummy.png"
      alt="dummy.png"
      style="float: left; margin-right: 10px;" />
