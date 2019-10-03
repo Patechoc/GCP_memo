@@ -45,6 +45,43 @@
         * [Horizontal scaling design](#horizontal-scaling-design)
         * [Horizontal scaling tradeoffs: latency, capacity, scalability, cost](#horizontal-scaling-tradeoffs-latency-capacity-scalability-cost)
         * [Design first, dimension later](#design-first-dimension-later)
+* [Application: The photo service is slow!!!](#application-the-photo-service-is-slow)
+    * [Business problem](#business-problem)
+    * [Systematic logical troubleshooting](#systematic-logical-troubleshooting)
+    * [Collaboration &amp; communication](#collaboration--communication)
+    * [Break down business logic on the photo service](#break-down-business-logic-on-the-photo-service)
+    * [Identify the attributes of the different services?](#identify-the-attributes-of-the-different-services)
+    * [Segregate services for better performance and scalability](#segregate-services-for-better-performance-and-scalability)
+    * [What about our Service Level Objectives (SLOs) and Indicators (SLIs)](#what-about-our-service-level-objectives-slos-and-indicators-slis)
+* [Design challenge #1: Log aggregation](#design-challenge-1-log-aggregation)
+* [lab: useDeployment Manager: Package and Deploy](#lab-usedeployment-manager-package-and-deploy)
+* [Data Layer Design](#data-layer-design)
+    * [Classifying and Characterizing Data](#classifying-and-characterizing-data)
+    * [BASE](#base)
+    * [ACID](#acid)
+    * [What are the data consistency requirements?](#what-are-the-data-consistency-requirements)
+    * [What are you truing to optimize? Domain/App specific](#what-are-you-truing-to-optimize-domainapp-specific)
+    * [Data Ingest and Data Migration](#data-ingest-and-data-migration)
+    * [GCS migration tools: console, gsutil, JSON API](#gcs-migration-tools-console-gsutil-json-api)
+    * [GCS migration tools for large transfers: Cloud Storage Transfer Service](#gcs-migration-tools-for-large-transfers-cloud-storage-transfer-service)
+    * [GCS migration tools for large transfers without network: Google Transfer Appliance](#gcs-migration-tools-for-large-transfers-without-network-google-transfer-appliance)
+    * [GCS migration tools scal-up table](#gcs-migration-tools-scal-up-table)
+    * [Data ingestion tools](#data-ingestion-tools)
+    * [Identification of Storage Needs and Mapping to Storage Systems](#identification-of-storage-needs-and-mapping-to-storage-systems)
+    * [Choose a storage solution between: DISK, MOBILE or CLOUD solutions](#choose-a-storage-solution-between-disk-mobile-or-cloud-solutions)
+    * [Choose a storage solution for unstructured data on Cloud Storage: regional, multi-regional, nearline, coldline](#choose-a-storage-solution-for-unstructured-data-on-cloud-storage-regional-multi-regional-nearline-coldline)
+    * [Choose a storage solution for analytics: BigQuery](#choose-a-storage-solution-for-analytics-bigquery)
+    * [Choose a storage solution for SQL (scalable or not): Clud SQL or Spanner](#choose-a-storage-solution-for-sql-scalable-or-not-clud-sql-or-spanner)
+    * [Choose a storage solution for NoSQL: Cloud Datastore](#choose-a-storage-solution-for-nosql-cloud-datastore)
+    * [Choose a storage solution: decision tree &amp; summary table](#choose-a-storage-solution-decision-tree--summary-table)
+* [Application: The photo service experiences Intermittent Outages](#application-the-photo-service-experiences-intermittent-outages)
+    * [Business problem](#business-problem-1)
+    * [Systematic logical troubleshooting](#systematic-logical-troubleshooting-1)
+    * [Break down business logic on the photo service](#break-down-business-logic-on-the-photo-service-1)
+    * [New Service Level Objectives (SLOs) and Indicators (SLIs)](#new-service-level-objectives-slos-and-indicators-slis)
+* [Design challenge #2: Complication](#design-challenge-2-complication)
+* [Presentation Layer](#presentation-layer)
+    * [Overview](#overview)
 * [Resources/Articles](#resourcesarticles)
 
 
@@ -1066,6 +1103,13 @@ Your challenge is to **modify the log aggregation design to avoid or overcome th
 <img src="../images/app_photo_service_capacity_problem_for_log_aggregation_Bigtable.png"
      alt="app_photo_service_capacity_problem_for_log_aggregation_Bigtable.png"
      style="float: left; margin-right: 10px;" />
+
+## Presentation Layer
+
+[video](https://www.coursera.org/learn/cloud-infrastructure-design-process/lecture/hpapG/presentation-layer-design-overview)
+
+### Overview
+
 
 <img src="../images/dummy.png"
      alt="dummy.png"

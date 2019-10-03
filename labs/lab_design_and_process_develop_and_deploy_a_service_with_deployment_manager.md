@@ -2,6 +2,47 @@
 
 ~1 hour 30 minutes
 
+* [Overview](#overview)
+    * [Objectives](#objectives)
+* [Creating the application infrastructure in Deployment Manager](#creating-the-application-infrastructure-in-deployment-manager)
+* [Create the directory structure for the deployment](#create-the-directory-structure-for-the-deployment)
+* [About the photo application](#about-the-photo-application)
+* [Write the python application](#write-the-python-application)
+    * [__init__.py](#__init__py)
+    * [default.cfg](#defaultcfg)
+* [Prepare files for the Python package manager (PIP)](#prepare-files-for-the-python-package-manager-pip)
+    * [setup.py](#setuppy)
+    * [LICENSE.txt](#licensetxt)
+    * [MANIFEST.in](#manifestin)
+* [Create the Deployment Manager template](#create-the-deployment-manager-template)
+    * [config.yaml](#configyaml)
+* [Create the startup script](#create-the-startup-script)
+    * [install-echo.sh](#install-echosh)
+* [Create the JINJA2 instance template](#create-the-jinja2-instance-template)
+    * [instance.jinja](#instancejinja)
+* [Create the schema file](#create-the-schema-file)
+    * [instance.jinja.schema](#instancejinjaschema)
+* [Create the package](#create-the-package)
+    * [Examine the setup instructions](#examine-the-setup-instructions)
+    * [Create the package](#create-the-package-1)
+* [Host the distribution package in a bucket](#host-the-distribution-package-in-a-bucket)
+    * [Create a bucket](#create-a-bucket)
+    * [Upload the file to the bucket](#upload-the-file-to-the-bucket)
+* [Test the Echo application](#test-the-echo-application)
+    * [Start a minimal VM in Compute Engine](#start-a-minimal-vm-in-compute-engine)
+    * [Prepare the environment](#prepare-the-environment)
+    * [Install the package](#install-the-package)
+    * [Run the application](#run-the-application)
+    * [Verify that the service is working](#verify-that-the-service-is-working)
+* [Configure the template](#configure-the-template)
+    * [Tailor the configuration file](#tailor-the-configuration-file)
+    * [config.yaml](#configyaml-1)
+* [Deploy the service](#deploy-the-service)
+    * [Allow traffic to the service](#allow-traffic-to-the-service)
+* [Verify the launch](#verify-the-launch)
+* [Verify that the echo application is working](#verify-that-the-echo-application-is-working)
+
+
 ## Overview
 
 In this lab you will...
