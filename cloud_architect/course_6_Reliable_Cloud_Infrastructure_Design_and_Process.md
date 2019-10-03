@@ -784,6 +784,317 @@ In this lab you will...
 - [lab notes](../labs/lab_design_and_process_develop_and_deploy_a_service_with_deployment_manager.md)
 
 
+
+
+
+## Data Layer Design
+
+[video](https://www.coursera.org/learn/cloud-infrastructure-design-process/lecture/Sw0BJ/data-layer-design-overview)
+
+The data layer covers the storage and retrieval of data, including the mechanisms of storage and retrieval, such as databases and file systems, and including the access methods that use the services, such as SQL and API's. However, what's not covered in this module is the transport of data into, around, and out of the system. The networking transport of data is covered in the presentation layer module.
+
+The data layer includes; the data persistent mechanisms, such as the database services and storage services, and the data access layer, which encapsulates the persistent mechanisms and exposes the data.
+
+<img src="../images/Data_layer_design_data_layer.png"
+     alt="Data_layer_design_data_layer.png"
+     style="float: left; margin-right: 10px;" />
+
+### Classifying and Characterizing Data
+
+[video](https://www.coursera.org/learn/cloud-infrastructure-design-process/lecture/2FsRQ/data-layer-design-classifying-and-characterizing-data)
+
+There are many ways to characterize data such as structured or unstructured, persistent or ephemeral. This lesson focuses on characterizing data based on what the user cares about. Most often, the user doesn't care about the underlying technology, but about whether the data is accessible when they need it. And whether the data they retrieve is the same data they stored and not modified or altered.
+
+
+<img src="../images/dummyData_layer_design_data_integrity.png"
+     alt="dummyData_layer_design_data_integrity.png"
+     style="float: left; margin-right: 10px;" />
+
+What users really care about is **data integrity**.
+
+They can't really distinguish the difference between:
+
+- data loss,
+- data corruption,
+- extended unavailability.
+
+If their data's not there, it might as well be gone.
+
+However, as an engineer, persistence and access are very separate. Access, basically, is a loss of data access, is very important to users, but that doesn't mean that our data is gone. Persistence and proactive detection and rapid recovery is really what our goal is. If there is data that is somehow lost we want to be able to get it back, **recover it maybe using version controls or backups**. **Or some kind of failover mechanism**.
+
+<img src="../images/Data_layer_design_data_transaction_property.png"
+     alt="Data_layer_design_data_transaction_property.png"
+     style="float: left; margin-right: 10px;" />
+
+So when you're thinking about your data, you need to think about what data transaction properties are going to be required. And, of course, you have your menu, and **you can only really pick two**, and this is the **CAP Theorem**. So here you have to choose between:
+- **consistency**,
+- **availability**, 
+- and **partition tolerance**.
+
+
+#### BASE
+
+If you want availability and partition tolerance, you can go over to BASE, which is **Basically Available Storage**. It's soft state and it's going to be eventual consistency. Now, what that means is, you may make an update, it may not be available there immediately. Or specific changes may not necessarily be available. But with that type of ability, it allows you to write data, it allows you to expand your data very, very quickly. And eventually everything will all be consistent.
+
+#### ACID
+
+Now if you want pure consistency, then we get into what we call ACID transactions. Which stands for **Atomicity, Consistency, Isolation,** and **Durability**. That means if you write some data to your data storage system, it is guaranteed to be there. You will not get an acknowledgement until it has been written and it is completely fault-tolerant, replicated, et cetera. So it will ensure any type of failover capabilities.
+
+#### What are the data consistency requirements?
+
+<img src="../images/Data_layer_design_data_consistency_requirements.png"
+     alt="Data_layer_design_data_consistency_requirements.png"
+     style="float: left; margin-right: 10px;" />
+
+#### What are you truing to optimize? Domain/App specific
+
+- uptime
+- latency
+- scale
+- velocity
+- privacy
+
+<img src="../images/Data_layer_design_data_consistency_requirements_what_to_optimize.png"
+     alt="Data_layer_design_data_consistency_requirements_what_to_optimize.png"
+     style="float: left; margin-right: 10px;" />
+
+### Data Ingest and Data Migration
+
+[video](https://www.coursera.org/learn/cloud-infrastructure-design-process/lecture/yWyty/data-layer-design-data-ingest-and-data-migration)
+
+**Data migration** is the idea that data already exists somewhere and that it will be transported into the cloud. Once the base of existing data has been migrated, updates and new data will be added to the cloud version and the original is no longer needed.
+
+**Data ingestion** is the idea that data will continue to originate outside of the cloud and will be periodically loaded into the cloud.
+
+This lesson covers the most **common methods for getting data into the cloud**.
+
+#### GCS migration tools: console, gsutil, JSON API
+
+<img src="../images/Data_layer_design_Data_migration_tools_on_GCP.png"
+     alt="Data_layer_design_Data_migration_tools_on_GCP.png"
+     style="float: left; margin-right: 10px;" />
+
+About data migration. We need to bring data into our system and we potentially need to migrate it from different locations.
+
+So there's a few ways that we do this:
+
+* One is directly from the **console for GCS**, you can just drag and drop files.
+* There's the **`gsutil` for the Google storage utility command**. This also has the built in Amazon S3 SDK so it allows us to transfer data from Amazon buckets on ourselves. But it also gives us capability to do identity access management, sign URLs, access control lists. There's a whole bunch of capabilities just from this command line.
+* And then of course, our **JSON API**. So here you can make the API calls yourself, you can compress this data, and you can also do partial uploads which is really good especially because most uploads to GCS buckets are going to be entire updates. And so in this case here, if you control the API, you might be able to have a little bit more efficiency built in.
+
+
+#### GCS migration tools for large transfers: Cloud Storage Transfer Service
+
+<img src="../images/Data_layer_design_Data_migration_tools_on_GCP_large_trasnfers.png"
+     alt="Data_layer_design_Data_migration_tools_on_GCP_large_trasnfers.png"
+     style="float: left; margin-right: 10px;" />
+
+Now we also have a commercial service, well not a commercial, but it's a service that is designed for very large transfers, and it's called the **Cloud transfer service**. It's basically a web based interface that's using a lot of the APIs in the back end to transfer data between say, Amazon and us, and it does so very efficiently. Now it usually recommends typically over a terabyte worth of data because it can do a lot of management like deleting the source data, making sure one is synchronized, overriding any changes, but optimizes the number of streams as well. So it looks at that source material says, how many of them are there? I will create an optimized number of streams to ensure we can get this moved over as fast as possible.
+
+#### GCS migration tools for large transfers without network: Google Transfer Appliance
+
+<img src="../images/Data_layer_design_Data_migration_tools_on_GCP_trasnfers_appliance.png"
+     alt="Data_layer_design_Data_migration_tools_on_GCP_trasnfers_appliance.png"
+     style="float: left; margin-right: 10px;" />
+
+Now of course, the size always does matter and if you need to be transferring hundreds of terabytes of data, perhaps, you don't want to do that over the network. Even though ingress is free, it may not be time efficient. So we now have the transfer appliance very similar to Amazon's Snowball capability. It's an appliance that ships on site, you can either rock it or do it as a off-the-shelf appliance up to a petabyte worth of storage. And this way, you can copy all the data on your local network and then ship it to Google for data ingest.
+ 
+#### GCS migration tools scal-up table
+
+<img src="../images/Data_layer_design_Data_migration_tools_summary_table_scaleup.png"
+alt="Data_layer_design_Data_migration_tools_summary_table_scaleup.png"
+style="float: left; margin-right: 10px;" />
+
+
+Here's a fun little table to kind of give you an idea. When you really start to scale up and the amount of data you need to move over to us, you also have to scale up in the amount of bandwidth that you might have capable. Now, even at 10 gigs fully saturated, 30 hours is pretty considerable but, I wouldn't say considerable. The fact that you probably cannot utilize that full amount of bandwidth yourself and this is where you'll start to see some serious delays in a larger data transfer. So just kind of use this and we do recommend using the Google transfer appliance probably between 10 and 100 terabytes just to make your life a little easier.
+
+#### Data ingestion tools
+
+<img src="../images/Data_layer_design_Data_ingestion_tools.png"
+     alt="Data_layer_design_Data_ingestion_tools.png"
+     style="float: left; margin-right: 10px;" />
+
+  
+So other ways that we ingest data into your service.
+
+* Now first, obviously, it can be done **through the network** which is going to be, its globally available, it's highly available, there's a bandwidth of a 100 gigs and many of our peering locations in low latency.
+* You can post directly **to cloud storage using HTTP, RESTful APIs**.
+* You can put front end application **through App Engine**. So this way, we can build an authentication, integrate that way, even cloud endpoints.
+
+So we can expose just a simple API that can ingest data into your application even through cloud functions, or set up a computer engine instance and store it on local persistent disk. There's a number of different ways to bring data in, some of them have various pros and cons which we can cover.
+
+
+### Identification of Storage Needs and Mapping to Storage Systems
+
+[video](https://www.coursera.org/learn/cloud-infrastructure-design-process/lecture/dQlqJ/data-layer-design-identification-of-storage-needs-and-mapping-to-storage-systems)
+
+Google Cloud Platform offers a wide variety of storage and database services.
+
+This lesson provides a general **method to narrow down the list of candidates storage services**. The diagrams and charts in this lesson can help you ask meaningful questions about the data that will help you match the data to storage services.
+
+#### Choose a storage solution between: DISK, MOBILE or CLOUD solutions
+
+<img src="../images/Data_layer_design_GCP_solution_Disk-or-Mobile-or-Cloud.png"
+     alt="Data_layer_design_GCP_solution_Disk-or-Mobile-or-Cloud.png"
+     style="float: left; margin-right: 10px;" />
+
+#### Choose a storage solution for unstructured data on Cloud Storage: regional, multi-regional, nearline, coldline
+
+<img src="../images/Data_layer_design_Coud_Storage_regional_coldline_nearline.png"
+     alt="Data_layer_design_Coud_Storage_regional_coldline_nearline.png"
+     style="float: left; margin-right: 10px;" />
+
+#### Choose a storage solution for analytics: BigQuery
+
+<img src="../images/Data_layer_design_Why_choose_BigQuery.png"
+     alt="Data_layer_design_Why_choose_BigQuery.png"
+     style="float: left; margin-right: 10px;" />
+
+#### Choose a storage solution for SQL (scalable or not): Clud SQL or Spanner
+
+<img src="../images/Data_layer_design_Why_choose_if_SQL.png"
+     alt="Data_layer_design_Why_choose_if_SQL.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/Data_layer_design_Why_choose_if_SQL_scalable.png"
+     alt="Data_layer_design_Why_choose_if_SQL_scalable.png"
+     style="float: left; margin-right: 10px;" />
+
+#### Choose a storage solution for NoSQL: Cloud Datastore
+
+<img src="../images/Data_layer_design_Why_choose_if_NoSQL.png"
+     alt="Data_layer_design_Why_choose_if_NoSQL.png"
+     style="float: left; margin-right: 10px;" />
+
+#### Choose a storage solution: decision tree & summary table
+
+<img src="../images/Data_layer_design_GCP_solution_decision_tree.png"
+     alt="Data_layer_design_GCP_solution_decision_tree.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/Data_layer_design_GCP_solution_summary_table.png"
+     alt="Data_layer_design_GCP_solution_summary_table.png"
+     style="float: left; margin-right: 10px;" />
+
+
+## Application: The photo service experiences Intermittent Outages
+
+[video](https://www.coursera.org/learn/cloud-infrastructure-design-process/lecture/1NbrK/intermittent-outages)
+
+There's something wrong with the photo application.
+
+Occasionally, the service simply fails to produce the smaller preview image. This used to suddenly occur, but in recent weeks the frequency appears to be increasing and it is becoming a problem recognize by users. The issue appears to be **random**. 
+
+- What's happening?
+- and how can you change the design to fix this problem? 
+
+### Business problem
+
+<img src="../images/app_photo_service_intermittent_outages.png"
+     alt="app_photo_service_intermittent_outages.png"
+     style="float: left; margin-right: 10px;" />
+
+
+
+### Systematic logical troubleshooting
+
+<img src="../images/app_photo_service_intermittent_outages_analysis.png"
+     alt="app_photo_service_intermittent_outages_analysis.png"
+     style="float: left; margin-right: 10px;" />
+
+- systematic & logical troubleshooting
+- and answering the ["five why's"](https://en.wikipedia.org/wiki/Five_Whys)
+
+
+The team has determined that the root problem, is the persistent disk on the application server cannot keep up with the scale of demands being placed on it. All right. So, that's the thing. You can scale up CPU, but sometimes your underlying disk IO performance cannot keep up. As well as something that most people don't think about, is disk IO also does need some CPU? So, that could be a problem. But in this case, we're focusing strictly on that. There's not enough virtual machine disc IO power to handle this kind of scale that we're looking at.
+
+### Break down business logic on the photo service
+
+<img src="../images/app_photo_service_refreshed_business_logic.png"
+     alt="app_photo_service_refreshed_business_logic.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/app_photo_service_business_logic_with_bottleneck.png"
+     alt="app_photo_service_business_logic_with_bottleneck.png"
+     style="float: left; margin-right: 10px;" />
+
+with 1 millions pictures per day, we need to move from our local file system to Cloud Storage for scalability.
+
+### New Service Level Objectives (SLOs) and Indicators (SLIs)
+
+we're going to introduce some **new service level objectives**.
+
+In this case here, we want to **reduce the error rate**. So, we want to keep the failures to produce a thumbnail down below, less than one 10th of one percent. So, that's **about 100 errors per million images**.
+
+Now, how are we going to measure this? While our service level indicators are going to look at the logs and we're going to identify if there's any logs that failed to, if they indicate any type of errors. So, this means that **our error budget is going to be 3,000 errors per month**. 
+
+Now, one of the things that our IOs do, is they are allocated an error budget. As long as they stay within that budget, then they can work on future things. But if they're unable to remain within their error budget during the month, then they will have to focus on automation and tools, and whatever it takes, to ensure that they can now meet that error budget month after month before they can work on new things, or just simply take a break, right? Because that's really the goal, you don't want your SRE is working full time. They should only be working about half the time and if they are, it should be either responding to requests or developing for future uses. Take the job of a firefighter, they're always on-call, always on edge, but they're not physically working all the time. If you did that, then they wouldn't be able to offer that same kind of response.
+
+<img src="../images/app_photo_service_outages_new_service_levels.png"
+     alt="app_photo_service_outages_new_service_levels.png"
+     style="float: left; margin-right: 10px;" />
+
+## Design challenge #2: Complication
+
+[video](https://www.coursera.org/learn/cloud-infrastructure-design-process/lecture/XVrs7/design-challenge-2-complication)
+
+In the application lesson, the random intermittent failure turned out to be a **capacity issue**. The services simply couldn't keep up with the demand and you're able to redesign a solution to add a storage service component in addition to the web server component and the thumbnail processing app server component. 
+
+This leads to **another problem in the log aggregation system**: The log aggregator needs to account for another source of log entries and **the log aggregation servers running out of disk space**. Take a closer look at this problem. 
+
+Your challenge is to **modify the log aggregation design to avoid or overcome this issue**. Watch the lesson that describes the problem, then come up with your own solution. When you're ready, continue the lesson to see a sample solution. Remember that the sample solution is not the best possible solution. it's just an example and your design might 
+
+
+<img src="../images/app_photo_service_capacity_problem_for_log_aggregation.png"
+     alt="app_photo_service_capacity_problem_for_log_aggregation.png"
+     style="float: left; margin-right: 10px;" />
+
+**Business logic**
+
+<img src="../images/app_photo_service_capacity_problem_for_log_aggregation_new_business_logic.png"
+     alt="app_photo_service_capacity_problem_for_log_aggregation_new_business_logic.png"
+     style="float: left; margin-right: 10px;" />
+
+- Why not **GCS** for aggregating this log files?
+
+<img src="../images/app_photo_service_capacity_problem_for_log_aggregation_properties.png"
+     alt="app_photo_service_capacity_problem_for_log_aggregation_properties.png"
+     style="float: left; margin-right: 10px;" />
+
+- Why not **Bigtable** for aggregating this log files?
+
+<img src="../images/app_photo_service_capacity_problem_for_log_aggregation_Bigtable.png"
+     alt="app_photo_service_capacity_problem_for_log_aggregation_Bigtable.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+
 <img src="../images/dummy.png"
      alt="dummy.png"
      style="float: left; margin-right: 10px;" />

@@ -145,9 +145,9 @@ if __name__ == '__main__':
 # [END app]
 ```
 
-Examine the python application. In the section with #Load Conf it loads default settings from a configuration file in the same directory.
+Examine the python application. In the section with `#Load Conf` it loads default settings from a configuration file in the same directory.
 
-Using the Cloud Shell Code Editor, create the default.cfg file in ~/echolb/echo/echo/default.cfg
+Using the Cloud Shell Code Editor, create the `default.cfg` file in `~/echolb/echo/echo/`
 
 ### `default.cfg`
 
@@ -261,6 +261,22 @@ resources:
 ```
 
 The zone: property should look familiar. However, the instance has some new properties that you have not used in a template before. tags: - http means that a tag will be applied to the instance so that a firewall rule can be applied to it to allow web traffic.
+
+Your current file structure should look like this:
+
+```shell
+google5470003_student@cloudshell:~$ tree echolb/
+echolb/
+├── deployment-manager-examples
+│   └── config.yaml
+└── echo
+    ├── echo
+    │   ├── default.cfg
+    │   └── __init__.py
+    ├── LICENSE.txt
+    ├── MANIFEST.in
+    └── setup.py
+```
 
 You may recall from the Architecting GCP: Infrastructure class that an instance can receive a startup script during the boot process. The metadata name that tells GCP to load and execute a startup script is startup-script. And it appears the script is called `nstall-echo.sh`.
 
@@ -394,6 +410,25 @@ tags:
 
 You have seen JINJA2 comments illustrated in the license at the top of the file, variables passed from the environment, variables inherited from the calling template, if-endif conditionals, and for-loops. Of course you will want to study JINJA2 in more detail as you develop your own templates, but the basics of the language are illustrated for you in this template.
 
+
+Your current file structure should look like this:
+
+```shell
+google5470003_student@cloudshell:~$ tree echolb/
+echolb/
+├── deployment-manager-examples
+│   ├── config.yaml
+│   ├── install-echo.sh
+│   └── instance.jinja
+└── echo
+    ├── echo
+    │   ├── default.cfg
+    │   └── __init__.py
+    ├── LICENSE.txt
+    ├── MANIFEST.in
+    └── setup.py
+```
+
 ## Create the schema file
 
 What in the world is a schema file? Well, imagine that you are working in a large IT organization where there are dozens of people working on Deployment Manager templates. You would want to develop a library of reusable templates. For example, the instance.jinja template is quite sophisticated. Why not develop and debug that template once, and then use it whenever an instance is needed. No one would need to write their own instance template.
@@ -462,6 +497,27 @@ properties:
           type: string
 ```
 
+
+Your current file structure should look like this:
+
+```shell
+google5470003_student@cloudshell:~$ tree echolb/
+echolb/
+├── deployment-manager-examples
+│   ├── config.yaml
+│   ├── install-echo.sh
+│   ├── instance.jinja
+│   └── instance.jinja.schema
+└── echo
+    ├── echo
+    │   ├── default.cfg
+    │   └── __init__.py
+    ├── LICENSE.txt
+    ├── MANIFEST.in
+    └── setup.py
+```
+
+
 ## Create the package
 
 Use the Python package manager to create a distribution package that will be used by Deployment Manager to upload the application to instances.
@@ -481,6 +537,34 @@ cd ~/echolb/echo
 python setup.py sdist
 cd dist
 ls
+```
+
+
+Your current file structure should look like this:
+
+```shell
+google5470003_student@cloudshell:~$ tree echolb/
+echolb/
+├── deployment-manager-examples
+│   ├── config.yaml
+│   ├── install-echo.sh
+│   ├── instance.jinja
+│   └── instance.jinja.schema
+└── echo
+    ├── dist
+    │   └── echo-0.0.1.tar.gz
+    ├── echo
+    │   ├── default.cfg
+    │   └── __init__.py
+    ├── echo.egg-info
+    │   ├── dependency_links.txt
+    │   ├── PKG-INFO
+    │   ├── requires.txt
+    │   ├── SOURCES.txt
+    │   └── top_level.txt
+    ├── LICENSE.txt
+    ├── MANIFEST.in
+    └── setup.py
 ```
 
 ## Host the distribution package in a bucket
