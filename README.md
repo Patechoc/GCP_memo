@@ -97,7 +97,9 @@ The courses are:
 1. [course 3](https://www.coursera.org/learn/gcp-infrastructure-core-services?specialization=gcp-architecture): **Essential Cloud Infrastructure: [Core Services](./cloud_architect/course_3_Essential_Cloud_Infrastructure__Core_Services.md)**
 1. [course 4](https://www.coursera.org/learn/gcp-infrastructure-scaling-automation?specialization=gcp-architecture): **Elastic Cloud infrastructure: [scaling/automation](./cloud_architect/course_4_Elastic_Cloud_Infrastructure__Scaling_and_Automation.md)**
 1. [course 5](https://www.coursera.org/learn/gcp-infrastructure-containers-services): **Elastic Cloud infrastructure: [containers/services](./cloud_architect/course_5_Elastic_Cloud_Infrastructure_Containers_and_Services.md)**
-1. [course 6](https://www.coursera.org/learn/cloud-infrastructure-design-process): **[Reliable Cloud infrastructure: design & process](./cloud_architect/course_6_Reliable_Cloud_Infrastructure_Design_and_Process.md)**
+1. [course 6](https://www.coursera.org/learn/cloud-infrastructure-design-process):
+   * **[Reliable Cloud infrastructure: design & process](./cloud_architect/course_6_Reliable_Cloud_Infrastructure_Design_and_Process.md)**
+   * **[Reliable Cloud infrastructure: Design for Resiliency, Scalability, and Disaster Recovery](course_6_Reliable_Cloud_Infrastructure_Design_for_Resiliency_Scalability_and_Disaster_Recovery.md)**
 
 ## Codelabs
 
