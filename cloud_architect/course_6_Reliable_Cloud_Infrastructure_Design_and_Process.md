@@ -5,84 +5,86 @@
 * [Course Intro](#course-intro)
 * [Objectives](#objectives)
 * [Modules covered](#modules-covered)
-    * [4 parts of this class](#4-parts-of-this-class)
+	* [4 parts of this class](#4-parts-of-this-class)
 * [Defining the Service](#defining-the-service)
-    * [Layered and iterative approach to design used in this training](#layered-and-iterative-approach-to-design-used-in-this-training)
-    * [Defining the Service: State and Solution](#defining-the-service-state-and-solution)
-        * [Google's common design](#googles-common-design)
-    * [Defining the Service: Measurement](#defining-the-service-measurement)
-        * [Service Level Indicators (SLI)](#service-level-indicators-sli)
-        * [Service Level Objectives (SLO)](#service-level-objectives-slo)
-        * [Service Level Agreements (SLA)](#service-level-agreements-sla)
-    * [User Persona](#user-persona)
-    * [Defining the Service: Gathering Requirements](#defining-the-service-gathering-requirements)
-        * [Just ask questions: who, what...](#just-ask-questions-who-what)
-        * [Specify constraints: time, data , users](#specify-constraints-time-data--users)
-        * [Scaling requirements: backend, frontend](#scaling-requirements-backend-frontend)
-        * [Size requirements](#size-requirements)
-* [Application: Introducing an example Photo Application service](#application-introducing-an-example-photo-application-service)
-    * [Gather requirements](#gather-requirements)
-    * [Business logic](#business-logic)
-    * [From logic, define Services Levels (SLIs, SLOs)](#from-logic-define-services-levels-slis-slos)
-    * [Process: test before &amp; during launch](#process-test-before--during-launch)
-* [Lab: use Deployment Manager to create a VM](#lab-use-deployment-manager-to-create-a-vm)
+	* [Layered and iterative approach to design used in this training](#layered-and-iterative-approach-to-design-used-in-this-training)
+	* [Defining the Service: State and Solution](#defining-the-service-state-and-solution)
+		* [Google's common design](#googles-common-design)
+	* [Defining the Service: Measurement](#defining-the-service-measurement)
+		* [Service Level Indicators (SLI)](#service-level-indicators-sli)
+		* [Service Level Objectives (SLO)](#service-level-objectives-slo)
+		* [Service Level Agreements (SLA)](#service-level-agreements-sla)
+	* [User Persona](#user-persona)
+	* [Defining the Service: Gathering Requirements](#defining-the-service-gathering-requirements)
+		* [Just ask questions: who, what...](#just-ask-questions-who-what)
+		* [Specify constraints: time, data , users](#specify-constraints-time-data--users)
+		* [Scaling requirements: backend, frontend](#scaling-requirements-backend-frontend)
+		* [Size requirements](#size-requirements)
+	* [Application: Introducing an example Photo Application service](#application-introducing-an-example-photo-application-service)
+	* [Gather requirements](#gather-requirements)
+	* [Business logic](#business-logic)
+	* [From logic, define Services Levels (SLIs, SLOs)](#from-logic-define-services-levels-slis-slos)
+	* [Process: test before &amp; during launch](#process-test-before--during-launch)
+	* [Lab: use Deployment Manager to create a VM](#lab-use-deployment-manager-to-create-a-vm)
 * [Business-logic Layer design](#business-logic-layer-design)
-    * [Business-logic Layer: Design Overview](#business-logic-layer-design-overview)
-    * [Business-logic Layer: Microservice Architecture](#business-logic-layer-microservice-architecture)
-    * [Benefits of microservives](#benefits-of-microservives)
-    * [How microservices complicate business logic?](#how-microservices-complicate-business-logic)
-    * [When using microservices make sense?](#when-using-microservices-make-sense)
-    * [Google's offering for microservices](#googles-offering-for-microservices)
-        * [Cloud Functions](#cloud-functions)
-        * [Cloud Functions example: translate text in an image](#cloud-functions-example-translate-text-in-an-image)
-        * [Cloud Functions example: implementation on GAE &amp; limitations](#cloud-functions-example-implementation-on-gae--limitations)
-    * [GCP 12-factor support](#gcp-12-factor-support)
-        * [GCP development tools matching 12-factor methodology](#gcp-development-tools-matching-12-factor-methodology)
-    * [Mapping computing needs to platform products](#mapping-computing-needs-to-platform-products)
-    * [Compute System Provisioning](#compute-system-provisioning)
-        * [Prefer &amp; plan for horizontal scaling](#prefer--plan-for-horizontal-scaling)
-        * [Pros/Cons of horizontal scaling](#proscons-of-horizontal-scaling)
-        * [Horizontal scaling design](#horizontal-scaling-design)
-        * [Horizontal scaling tradeoffs: latency, capacity, scalability, cost](#horizontal-scaling-tradeoffs-latency-capacity-scalability-cost)
-        * [Design first, dimension later](#design-first-dimension-later)
-* [Application: The photo service is slow!!!](#application-the-photo-service-is-slow)
-    * [Business problem](#business-problem)
-    * [Systematic logical troubleshooting](#systematic-logical-troubleshooting)
-    * [Collaboration &amp; communication](#collaboration--communication)
-    * [Break down business logic on the photo service](#break-down-business-logic-on-the-photo-service)
-    * [Identify the attributes of the different services?](#identify-the-attributes-of-the-different-services)
-    * [Segregate services for better performance and scalability](#segregate-services-for-better-performance-and-scalability)
-    * [What about our Service Level Objectives (SLOs) and Indicators (SLIs)](#what-about-our-service-level-objectives-slos-and-indicators-slis)
-* [Design challenge #1: Log aggregation](#design-challenge-1-log-aggregation)
-* [lab: useDeployment Manager: Package and Deploy](#lab-usedeployment-manager-package-and-deploy)
+	* [Business-logic Layer: Design Overview](#business-logic-layer-design-overview)
+	* [Business-logic Layer: Microservice Architecture](#business-logic-layer-microservice-architecture)
+	* [Benefits of microservives](#benefits-of-microservives)
+	* [How microservices complicate business logic?](#how-microservices-complicate-business-logic)
+	* [When using microservices make sense?](#when-using-microservices-make-sense)
+	* [Google's offering for microservices](#googles-offering-for-microservices)
+		* [Cloud Functions](#cloud-functions)
+		* [Cloud Functions example: translate text in an image](#cloud-functions-example-translate-text-in-an-image)
+		* [Cloud Functions example: implementation on GAE &amp; limitations](#cloud-functions-example-implementation-on-gae--limitations)
+	* [GCP 12-factor support](#gcp-12-factor-support)
+		* [GCP development tools matching 12-factor methodology](#gcp-development-tools-matching-12-factor-methodology)
+	* [Mapping computing needs to platform products](#mapping-computing-needs-to-platform-products)
+	* [Compute System Provisioning](#compute-system-provisioning)
+		* [Prefer &amp; plan for horizontal scaling](#prefer--plan-for-horizontal-scaling)
+		* [Pros/Cons of horizontal scaling](#proscons-of-horizontal-scaling)
+		* [Horizontal scaling design](#horizontal-scaling-design)
+		* [Horizontal scaling tradeoffs: latency, capacity, scalability, cost](#horizontal-scaling-tradeoffs-latency-capacity-scalability-cost)
+		* [Design first, dimension later](#design-first-dimension-later)
+	* [Application: The photo service is slow!!!](#application-the-photo-service-is-slow)
+	* [Business problem](#business-problem)
+	* [Systematic logical troubleshooting](#systematic-logical-troubleshooting)
+	* [Collaboration &amp; communication](#collaboration--communication)
+	* [Break down business logic on the photo service](#break-down-business-logic-on-the-photo-service)
+	* [Identify the attributes of the different services?](#identify-the-attributes-of-the-different-services)
+	* [Segregate services for better performance and scalability](#segregate-services-for-better-performance-and-scalability)
+	* [What about our Service Level Objectives (SLOs) and Indicators (SLIs)](#what-about-our-service-level-objectives-slos-and-indicators-slis)
+	* [Design challenge #1: Log aggregation](#design-challenge-1-log-aggregation)
+	* [lab: useDeployment Manager: Package and Deploy](#lab-usedeployment-manager-package-and-deploy)
 * [Data Layer Design](#data-layer-design)
-    * [Classifying and Characterizing Data](#classifying-and-characterizing-data)
-    * [BASE](#base)
-    * [ACID](#acid)
-    * [What are the data consistency requirements?](#what-are-the-data-consistency-requirements)
-    * [What are you truing to optimize? Domain/App specific](#what-are-you-truing-to-optimize-domainapp-specific)
-    * [Data Ingest and Data Migration](#data-ingest-and-data-migration)
-    * [GCS migration tools: console, gsutil, JSON API](#gcs-migration-tools-console-gsutil-json-api)
-    * [GCS migration tools for large transfers: Cloud Storage Transfer Service](#gcs-migration-tools-for-large-transfers-cloud-storage-transfer-service)
-    * [GCS migration tools for large transfers without network: Google Transfer Appliance](#gcs-migration-tools-for-large-transfers-without-network-google-transfer-appliance)
-    * [GCS migration tools scal-up table](#gcs-migration-tools-scal-up-table)
-    * [Data ingestion tools](#data-ingestion-tools)
-    * [Identification of Storage Needs and Mapping to Storage Systems](#identification-of-storage-needs-and-mapping-to-storage-systems)
-    * [Choose a storage solution between: DISK, MOBILE or CLOUD solutions](#choose-a-storage-solution-between-disk-mobile-or-cloud-solutions)
-    * [Choose a storage solution for unstructured data on Cloud Storage: regional, multi-regional, nearline, coldline](#choose-a-storage-solution-for-unstructured-data-on-cloud-storage-regional-multi-regional-nearline-coldline)
-    * [Choose a storage solution for analytics: BigQuery](#choose-a-storage-solution-for-analytics-bigquery)
-    * [Choose a storage solution for SQL (scalable or not): Clud SQL or Spanner](#choose-a-storage-solution-for-sql-scalable-or-not-clud-sql-or-spanner)
-    * [Choose a storage solution for NoSQL: Cloud Datastore](#choose-a-storage-solution-for-nosql-cloud-datastore)
-    * [Choose a storage solution: decision tree &amp; summary table](#choose-a-storage-solution-decision-tree--summary-table)
+	* [Classifying and Characterizing Data](#classifying-and-characterizing-data)
+	* [BASE](#base)
+	* [ACID](#acid)
+	* [What are the data consistency requirements?](#what-are-the-data-consistency-requirements)
+	* [What are you truing to optimize? Domain/App specific](#what-are-you-truing-to-optimize-domainapp-specific)
+	* [Data Ingest and Data Migration](#data-ingest-and-data-migration)
+	* [GCS migration tools: console, gsutil, JSON API](#gcs-migration-tools-console-gsutil-json-api)
+	* [GCS migration tools for large transfers: Cloud Storage Transfer Service](#gcs-migration-tools-for-large-transfers-cloud-storage-transfer-service)
+	* [GCS migration tools for large transfers without network: Google Transfer Appliance](#gcs-migration-tools-for-large-transfers-without-network-google-transfer-appliance)
+	* [GCS migration tools scal-up table](#gcs-migration-tools-scal-up-table)
+	* [Data ingestion tools](#data-ingestion-tools)
+	* [Identification of Storage Needs and Mapping to Storage Systems](#identification-of-storage-needs-and-mapping-to-storage-systems)
+	* [Choose a storage solution between: DISK, MOBILE or CLOUD solutions](#choose-a-storage-solution-between-disk-mobile-or-cloud-solutions)
+	* [Choose a storage solution for unstructured data on Cloud Storage: regional, multi-regional, nearline, coldline](#choose-a-storage-solution-for-unstructured-data-on-cloud-storage-regional-multi-regional-nearline-coldline)
+	* [Choose a storage solution for analytics: BigQuery](#choose-a-storage-solution-for-analytics-bigquery)
+	* [Choose a storage solution for SQL (scalable or not): Clud SQL or Spanner](#choose-a-storage-solution-for-sql-scalable-or-not-clud-sql-or-spanner)
+	* [Choose a storage solution for NoSQL: Cloud Datastore](#choose-a-storage-solution-for-nosql-cloud-datastore)
+	* [Choose a storage solution: decision tree &amp; summary table](#choose-a-storage-solution-decision-tree--summary-table)
 * [Application: The photo service experiences Intermittent Outages](#application-the-photo-service-experiences-intermittent-outages)
-    * [Business problem](#business-problem-1)
-    * [Systematic logical troubleshooting](#systematic-logical-troubleshooting-1)
-    * [Break down business logic on the photo service](#break-down-business-logic-on-the-photo-service-1)
-    * [New Service Level Objectives (SLOs) and Indicators (SLIs)](#new-service-level-objectives-slos-and-indicators-slis)
+	* [Business problem](#business-problem-1)
+	* [Systematic logical troubleshooting](#systematic-logical-troubleshooting-1)
+	* [Break down business logic on the photo service](#break-down-business-logic-on-the-photo-service-1)
+	* [New Service Level Objectives (SLOs) and Indicators (SLIs)](#new-service-level-objectives-slos-and-indicators-slis)
 * [Design challenge #2: Complication](#design-challenge-2-complication)
-* [Presentation Layer](#presentation-layer)
-    * [Overview](#overview)
+* [Presentation Layer Design](#presentation-layer-design)
+	* [Overview](#overview)
 * [Resources/Articles](#resourcesarticles)
+
+
 
 
 
@@ -468,7 +470,7 @@ Requirements or items that are important to the business, business goals. Requir
 
 This can limit your choice in the type of tools, implementation you will have to build.
 
-## Application: Introducing an example Photo Application service
+### Application: Introducing an example Photo Application service
 
 [video](https://www.coursera.org/learn/cloud-infrastructure-design-process/lecture/YvgUm/introducing-an-example-photo-application-service)
 
@@ -478,7 +480,7 @@ This lesson introduces the Thumbnail photo service, an example application, that
      alt="app_photo_service.png"
      style="float: left; margin-right: 10px;" />
 
-### Gather requirements
+#### Gather requirements
 
 * users
 * speed
@@ -491,19 +493,19 @@ This lesson introduces the Thumbnail photo service, an example application, that
      alt="app_photo_service_gather_requirements.png"
      style="float: left; margin-right: 10px;" />
 
-### Business logic
+#### Business logic
 
 <img src="../images/app_photo_service_gather_busines_logic.png"
      alt="app_photo_service_gather_busines_logic.png"
      style="float: left; margin-right: 10px;" />
 
-### From logic, define Services Levels (SLIs, SLOs)
+#### From logic, define Services Levels (SLIs, SLOs)
 
 <img src="../images/app_photo_service_SLO.png"
      alt="app_photo_service_SLO.png"
      style="float: left; margin-right: 10px;" />
 
-### Process: test before & during launch
+#### Process: test before & during launch
 
 <img src="../images/app_photo_service_tests.png"
      alt="app_photo_service_tests.png"
@@ -522,7 +524,7 @@ Production tests:
 * acceptance, A/B testing
 
 
-## Lab: use Deployment Manager to create a VM
+### Lab: use Deployment Manager to create a VM
 
 - [video](https://www.coursera.org/learn/cloud-infrastructure-design-process/lecture/XjMe5/lab-intro-deployment-manager)
 
@@ -704,11 +706,11 @@ Think of **App Engine** first, then **K8s** if you need more control on the scal
      style="float: left; margin-right: 10px;" />
 
 
-## Application: The photo service is slow!!!
+### Application: The photo service is slow!!!
 
 [video](https://www.coursera.org/learn/cloud-infrastructure-design-process/lecture/rb6kW/the-photo-service-is-slow)
 
-### Business problem
+#### Business problem
 
 - the service has been slowing down
 - what's te cause of this slow service?
@@ -724,43 +726,43 @@ Think of **App Engine** first, then **K8s** if you need more control on the scal
      alt="app_photo_service_problem.png"
      style="float: left; margin-right: 10px;" />
 
-### Systematic logical troubleshooting
+#### Systematic logical troubleshooting
 
 <img src="../images/app_photo_service_problem_troubleshooting.png"
      alt="app_photo_service_problem_troubleshooting.png"
      style="float: left; margin-right: 10px;" />
 
-### Collaboration & communication
+#### Collaboration & communication
 
 <img src="../images/app_photo_service_problem_troubleshooting_collaboration.png"
      alt="app_photo_service_problem_troubleshooting_collaboration.png"
      style="float: left; margin-right: 10px;" />
 
-### Break down business logic on the photo service
+#### Break down business logic on the photo service
 
 <img src="../images/app_photo_service_slow_breakdown.png"
      alt="app_photo_service_slow_breakdown.png"
      style="float: left; margin-right: 10px;" />
 
-### Identify the attributes of the different services?
+#### Identify the attributes of the different services?
 
 <img src="../images/app_photo_service_slow_breakdown_identify_attributes_Services.png"
      alt="app_photo_service_slow_breakdown_identify_attributes_Services.png"
      style="float: left; margin-right: 10px;" />
 
-### Segregate services for better performance and scalability
+#### Segregate services for better performance and scalability
 
 <img src="../images/app_photo_service_slow_segregates_Services.png"
      alt="app_photo_service_slow_segregates_Services.png"
      style="float: left; margin-right: 10px;" />
 
-### What about our Service Level Objectives (SLOs) and Indicators (SLIs)
+#### What about our Service Level Objectives (SLOs) and Indicators (SLIs)
 
 <img src="../images/app_photo_service_slow_new_SLO_SLI.png"
      alt="app_photo_service_slow_new_SLO_SLI.png"
      style="float: left; margin-right: 10px;" />
 
-## Design challenge #1: Log aggregation
+### Design challenge #1: Log aggregation
 
 This lesson introduces a related independent design problem, the **log files**.
 
@@ -795,7 +797,7 @@ What that means is, we have two different log entries now, one for the web and o
      style="float: left; margin-right: 10px;" />
 
 
-## lab: useDeployment Manager: Package and Deploy
+### lab: useDeployment Manager: Package and Deploy
 
 In this lab, you'll learn:
 
@@ -1104,12 +1106,17 @@ Your challenge is to **modify the log aggregation design to avoid or overcome th
      alt="app_photo_service_capacity_problem_for_log_aggregation_Bigtable.png"
      style="float: left; margin-right: 10px;" />
 
-## Presentation Layer
+## Presentation Layer Design
 
 [video](https://www.coursera.org/learn/cloud-infrastructure-design-process/lecture/hpapG/presentation-layer-design-overview)
 
 ### Overview
 
+The **presentation layer** has to do with the **flow of data through the system** between the user, business logic, and the stored service, aka **this is the network**:
+
+- the **network edge configuration**,
+- the **network configuration for data transfer** within the service,
+- and **network integration** with other environments. 
 
 <img src="../images/dummy.png"
      alt="dummy.png"
