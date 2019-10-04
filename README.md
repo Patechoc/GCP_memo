@@ -66,7 +66,7 @@ The courses are:
 
 - The [Cloud Architect certification](https://cloud.google.com/certification/cloud-architect) (training, exam's guide, hands-on, ...)
 - [Preparing for the Professional Cloud Architect Examination](https://google.qwiklabs.com/courses/879&utm_source=cloud-dot-google&utm_medium=website)
-
+- [Flashcards #1](https://www.brainscape.com/flashcards/reliable-cloud-infrastructure-design-and-6610349/packs/10478211) 
 (A set of [courses](https://www.coursera.org/specializations/gcp-architecture) by COURSERA)
 
 

@@ -1118,9 +1118,210 @@ The **presentation layer** has to do with the **flow of data through the system*
 - the **network configuration for data transfer** within the service,
 - and **network integration** with other environments. 
 
-<img src="../images/dummy.png"
-     alt="dummy.png"
+#### Network Configuration
+
+[video](https://www.coursera.org/learn/cloud-infrastructure-design-process/lecture/LOWWt/presentation-layer-network-configuration)
+
+One key point of this lesson is a **location within the cloud network makes a difference in latency**.
+
+In general, there's a direct tradeoff: the more distributed elements are in your design, the more tolerant the system will be of outages. However, there are real performance limitations because the round trip time is much slower between distant elements. And there are expense considerations for egress traffic. The critical technology to implementing Intelligent Traffic Management in the design is **load balancing**. Fortunately, the platform offers a very robust set of load balancing services that are optimized for different circumstances
+
+So, network configuration for data transfer within the service, all is going to focus on:
+
+- **location**,
+- **load balancing**, 
+- and **caching**.
+
+##### Impact of Location
+
+<img src="../images/Presentation_layer_Network_location.png"
+     alt="Presentation_layer_Network_location.png"
      style="float: left; margin-right: 10px;" />
+
+So the location of resources within the cloud is, within the cloud network, I should say, is very significant. So, when you take a look here at you know a million nanoseconds is one millisecond, depending on what network you choose, if you're going to choose say a two kilobyte packet over one gig network, you can do this in 2000 of a second. Now, what about a roundtrip within the same data center? Google's data centers are pretty fast, you can get away with half a millisecond, sometimes even faster, depending on the design. Now,what if you wanted to send something across the world, from say California to the Netherlands and back. Well, that could be upwards of 150 milliseconds. Yes, even that is considerably fast due to Google's global fiber network. However, these are design considerations you need to take place. Especially, if you're looking at the perspective of the user or your specific application. So remember, no more than six to seven round trips between Europe and US per second are possible but approximately 2000 per second can be achieved within a data center. And these are important generalizations, understand whether it's time to push data closer to the user or actually locate your application in multiple different data centers themselves. So the technology that allows you to control the network location of resources used by your service is going to be called Load balancing.
+
+##### Impact of Load Balancing
+
+So the technology that allows you to control the network location of resources used by your service is going to be called Load balancing. Now load balancing in our world is a little bit different. So, basically what it does, it's getting user traffic to the application servers with capacity in the closest region to that customer. Unless you know if you have no load balancing sometimes it's going to be internal distribution of traffic across a multiple servers inside of your application infrastructure. It can also trigger auto scaling, but we also provide global load balancers. And that gives you a single external IP address that can locate, or I should say, that can send traffic to any geographical location that's closest to your individual user. We offer many different kinds of load balancing services and they're each optimized for each different use case
+
+<img src="../images/Presentation_layer_Network_load_balancing.png"
+     alt="Presentation_layer_Network_load_balancing.png"
+     style="float: left; margin-right: 10px;" />
+
+**Global Load Balancers**
+
+<img src="../images/Presentation_layer_Network_global_load_balancers.png"
+     alt="Presentation_layer_Network_global_load_balancers.png"
+     style="float: left; margin-right: 10px;" />
+
+##### Choosing your type of load balancer
+
+<img src="../images/Presentation_layer_Network_choosing_your_load_balancers.png"
+     alt="Presentation_layer_Network_choosing_your_load_balancers.png"
+     style="float: left; margin-right: 10px;" />
+
+
+#### Integration with other Environments
+
+[video](https://www.coursera.org/learn/cloud-infrastructure-design-process/lecture/oiQOu/presentation-layer-integration-with-other-environments)
+
+
+
+##### Network edge configuration for users and clients
+
+<img src="../images/Presentation_layer_Network_global_IP_adresses.png"
+     alt="Presentation_layer_Network_global_IP_adresses.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/Presentation_layer_Network_Cloud_CDN.png"
+     alt="Presentation_layer_Network_Cloud_CDN.png"
+     style="float: left; margin-right: 10px;" />
+
+https://peering.google.com/#/infrastructure
+
+<img src="../images/Presentation_layer_Network_Edge_infrastructure.png"
+     alt="Presentation_layer_Network_Edge_infrastructure.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/Presentation_layer_Network_Edge_infrastructure_datacenters.png"
+     alt="Presentation_layer_Network_Edge_infrastructure_datacenters.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/Presentation_layer_Network_Edge_infrastructure_PoPs.png"
+     alt="Presentation_layer_Network_Edge_infrastructure_PoPs.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/Presentation_layer_Network_Edge_infrastructure_edge_nodes.png"
+     alt="Presentation_layer_Network_Edge_infrastructure_edge_nodes.png"
+     style="float: left; margin-right: 10px;" />
+
+In order to use the CDN, you have to turn on HTTP(S) load balancing or other network load balancing. But in this case here, you can actually push and publish content directly from Google Cloud stores to the CDN. But if you want to use it from the network layer, we can automatically start to cache any data that goes through our HTTP(S) load balancer. So that's a kind of a huge benefit
+
+
+##### Network connections to other networks (e.g. data center, another cloud)
+
+###### Dedicated interconnects
+
+<img src="../images/Presentation_layer_Network_interaction_with_other_cloud_providers.png"
+     alt="Presentation_layer_Network_interaction_with_other_cloud_providers.png"
+     style="float: left; margin-right: 10px;" />
+
+The big thing in the middle is you need to have some kind of dedicated interconnect. So, we have what's called a cloud partner interconnect or even dedicated connections which can connect us to other providers. So in this case here, we can actually have private bandwidth between both cloud providers. And of course, if you have the proper routing between the two, we can route those networks equally between the two different locations. 
+
+###### VPN configurations
+
+<img src="../images/Presentation_layer_Network_interaction_with_other_cloud_providers_VPNs.png"
+     alt="Presentation_layer_Network_interaction_with_other_cloud_providers_VPNs.png"
+     style="float: left; margin-right: 10px;" />
+
+ There's a couple of ways to do that by **taking advantage of VPNs**:
+ 
+ - you can **aggregate multiple VPN gateways** to try to aggregate the bandwidth to the other provider.
+ - you can also **do this in reverse**. And in this case, we usually allow about 1.5Gb per VPN tunnel. So this way you can aggregate these together or create a fully mesh network. So this way, you have fell over in case the remote VPN gateway fails, you have backup links et cetera, just standard networking redundancy built in.
+ 
+ And so, all of this is really available through **Cloud Router**. Again either setting static routes or dynamic routes. So if you're making network changes at the cloud provider and spinning up new subnets that might be custom, you want to make sure that the Google Cloud platform also knows about that, and you take advantage of our cloud routing service to make sure that notifications are possible. 
+
+**VPN Performances**
+
+<img src="../images/Presentation_layer_Network_interaction_with_other_cloud_providers_VPNs_performances.png"
+     alt="Presentation_layer_Network_interaction_with_other_cloud_providers_VPNs_performances.png"
+     style="float: left; margin-right: 10px;" />
+
+### Application: Photo service... Periodic Slowdowns
+
+[video](https://www.coursera.org/learn/cloud-infrastructure-design-process/lecture/YMh4S/period-slowness-in-application)
+
+#### Business problem
+
+The photo services working fine, however, recently there have been periodic slowdowns, users are experiencing delays, it's taking an increasingly long time for the system to respond with a thumbnail image. Then, after some time, it appears to speed up again.
+
+<img src="../images/app_photo_service_periodic_slowdown.png"
+     alt="app_photo_service_periodic_slowdown.png"
+     style="float: left; margin-right: 10px;" />
+
+What could possibly be the cause of the slowdown?
+
+what can you do to change the design to overcome this problem?
+
+#### Systematic logical troubleshooting
+
+
+<img src="../images/app_photo_service_periodic_slowdown_troubleshooting_miscommunication.png"
+     alt="app_photo_service_periodic_slowdown_troubleshooting_miscommunication.png"
+     style="float: left; margin-right: 10px;" />
+
+#### Collaboration & communication: Report, Document, build policy
+
+<img src="../images/app_photo_service_periodic_slowdown_build_process_to_learn_from_mistakes.png"
+     alt="app_photo_service_periodic_slowdown_build_process_to_learn_from_mistakes.png"
+     style="float: left; margin-right: 10px;" />
+
+you have to document it, while it might be viewed as a really boring process and most people complain about having to do it you always want to create reports, but under what conditions. Well, for starters, anytime an SLO is breached, any incident that requires emergency on-call, also if there's a need for follow-up communications for example, if legal need to explain an outage without revealing the impact or something competitive. There needs to be a clear policy that defines the writing of these reports. Timelines must be specified in terms of how soon after an incident a draft is going to be published, as well as a timeline for completing the report. So, writing these reports creates a record of what happened and what was done to fix it. This will be a helpful source of reference in the future if a similar event happens again, so **doing these postmortems should be a mandatory part of your recovery processes**.
+
+<img src="../images/app_photo_service_periodic_slowdown_report_document_write_policy.png"
+     alt="app_photo_service_periodic_slowdown_report_document_write_policy.png"
+     style="float: left; margin-right: 10px;" />
+
+
+#### Break down business logic on the photo service
+
+<img src="../images/app_photo_service_periodic_slowdown_business_logic_refresher.png"
+     alt="app_photo_service_periodic_slowdown_business_logic_refresher.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/app_photo_service_periodic_slowdown_business_logic_refresher_issue.png"
+     alt="app_photo_service_periodic_slowdown_business_logic_refresher_issue.png"
+     style="float: left; margin-right: 10px;" />
+
+ It's taking minutes to generate thumbnails. So, the system is definitely slow. A systematic and logical troubleshooting process has been followed in the "five why's" have been asked and answered. The conclusion is that the issue is definitely tied to the capacity of the system to generate thumbnails. It's also been established that it isn't the front-end web server is causing the delays, but the back-end thumbnail generating service, which is failing to keep up with demand. When we say capacity, it's the capacity to actually perform the service in a timely manner. So, what happens, **the thumbnail is running out of CPU**. We could watch CPU utilization, but CPU utilization isn't linear and during busy utilization times, it can go to 100%. This is sure to impact the end-to-end response time for the user.
+ 
+ - How do you monitor it?
+ - How do you alert on this? You need to be able to look at specific windows.
+ - Depending on how long it should be for the average thumbnail to respond instead of looking over five minutes, maybe need to look over a minute.
+ - But keep in mind, CPU utilization is not actually to be used as a service level indicator.
+
+**Solution**: Scale out the backend processing of thumbnails.
+
+<img src="../images/app_photo_service_periodic_slowdown_business_logic_solution.png"
+     alt="app_photo_service_periodic_slowdown_business_logic_solution.png"
+     style="float: left; margin-right: 10px;" />
+
+Here's our decision, we decided that if we need to handle more thumbnail processing, it's got to become more scalable. However, we didn't choose to simply throw more CPU and network at it because it was more of a single point of failure. Instead we decided to add a load balancer and scale out the number of thumbnail servers. The great thing is that it's like micro servers in itself now, because storage has been isolated to Google Cloud Storage, the same code can be distributed and it doesn't keep track of a queue or anything else. The Upload Server basically pulls whatever is on the Data Storage Server and it load balances it as they come in. Technically, this is probably an internal load balancer, but we'll get into that a little bit later.
+
+In this case, to help us with our greater than 80 percent CPU utilization, **we want to distribute traffic request from our business logic to the Application Servers in a cluster**.
+
+
+#### What about our Service Level Objectives (SLOs) and Indicators (SLIs)
+
+Even though we've added a cluster of servers, we haven't changed anything that our users can measure. The performance is still a measure of the end-to-end latency and the accuracy of the service is still based on the error logs.
+
+<img src="../images/app_photo_service_periodic_slowdown_business_logic_SLIs_SLOs_unchanged.png"
+     alt="app_photo_service_periodic_slowdown_business_logic_SLIs_SLOs_unchanged.png"
+     style="float: left; margin-right: 10px;" />
+
+### Design challenge #3: Growth
+
+[video](https://www.coursera.org/learn/cloud-infrastructure-design-process/lecture/k6rt9/design-challenge-3-growth)
+
+In the application lesson, you overcame the periodic slow downs by increasing capacity of the thumbnail application component, replacing the single server with a group of load balanced auto scaling servers.
+
+That means instead of a single app server log, you now have logs coming from each server in the pool. **How can you evolve the design of the log aggregation system to accommodate the new scalable service?** Watch the lesson that describes the problem, then come up with your own solution. When you're ready, continue the lesson to see a sample solution. Remember that the sample solution is not the best possible solution, it's just an example and your design might be better.
+
+<img src="../images/app_photo_service_periodic_slowdown_design_challenge_logs_of_a cluster.png"
+     alt="app_photo_service_periodic_slowdown_design_challenge_logs_of_a cluster.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/app_photo_service_periodic_slowdown_design_challenge_logs_of_a cluster_problem.png"
+     alt="app_photo_service_periodic_slowdown_design_challenge_logs_of_a cluster_problem.png"
+     style="float: left; margin-right: 10px;" />
+
+Let's define the problem. So in our case autoscaling of the application servers has produced logs that are outgrowing the processing capacity of the aggregation logging server. So in this case we want to design a solution. Now always remember, there are multiple designs that you can take, right? Your solution may be better, and that's okay. But let's at least work through the different solutions, decide what we want to take advantage of next. And what we hear too, hey, now do we move to data flow? Well, maybe. But let's think about what that might do, and these are dialogues I've had with students in class. This is a Python script, and well, data flow does support Python. So that didn't work because, but maybe to do what we want to do, it requires the Java version of the SDK. And that would mean that our programmer who designed this and just threw this together, is going to have to learn a new language. Now you could say, hey that's expected, but these are potential limitations. So if you look at a new service, what are the requirements of that new service to make it happen? Even though on paper it may sound good, you can just swap it out. But in order to rewrite the code and there might be a learning curve, etc. So in this case, our guy is, you know, this would be a lot easier if all we did was design this so it could scale. So one simple solution, and iteratively was let's go ahead and **put an internal load balancer here, so this way, our logging server can run on multiple instances**. So here we have an auto scaling instance group. It can take logs as they're ingested and it can put them directly inside of Big Table. All right, so now we can run our queries, get our session IDs, and we don't have to really worry about this failing. So really, this scales rather nicely, because we will have a daily cron job that will take all the local data storage and process that in.
+
+<img src="../images/app_photo_service_periodic_slowdown_design_challenge_logs_of_a cluster_solution_load_balancer_on_logs_servers.png"
+     alt="app_photo_service_periodic_slowdown_design_challenge_logs_of_a cluster_solution_load_balancer_on_logs_servers.png"
+     style="float: left; margin-right: 10px;" />
+
+### lab: Autoscaling
 
 <img src="../images/dummy.png"
      alt="dummy.png"
@@ -1130,33 +1331,6 @@ The **presentation layer** has to do with the **flow of data through the system*
      alt="dummy.png"
      style="float: left; margin-right: 10px;" />
 
-<img src="../images/dummy.png"
-     alt="dummy.png"
-     style="float: left; margin-right: 10px;" />
-
-<img src="../images/dummy.png"
-     alt="dummy.png"
-     style="float: left; margin-right: 10px;" />
-
-<img src="../images/dummy.png"
-     alt="dummy.png"
-     style="float: left; margin-right: 10px;" />
-
-<img src="../images/dummy.png"
-     alt="dummy.png"
-     style="float: left; margin-right: 10px;" />
-
-<img src="../images/dummy.png"
-     alt="dummy.png"
-     style="float: left; margin-right: 10px;" />
-
-<img src="../images/dummy.png"
-     alt="dummy.png"
-     style="float: left; margin-right: 10px;" />
-
-<img src="../images/dummy.png"
-     alt="dummy.png"
-     style="float: left; margin-right: 10px;" />
 
 
 
