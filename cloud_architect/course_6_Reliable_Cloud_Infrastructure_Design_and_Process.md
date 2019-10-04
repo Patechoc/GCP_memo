@@ -2,6 +2,7 @@
 
 ## Content
 
+* [Detailled Content](#detailled-content)
 * [Course Intro](#course-intro)
 * [Objectives](#objectives)
 * [Modules covered](#modules-covered)
@@ -23,12 +24,8 @@
    * [Classifying and Characterizing Data](#classifying-and-characterizing-data)
    * [Data Ingest and Data Migration](#data-ingest-and-data-migration)
    * [Identification of Storage Needs and Mapping to Storage Systems](#identification-of-storage-needs-and-mapping-to-storage-systems)
-* [Application: The photo service experiences Intermittent Outages](#application-the-photo-service-experiences-intermittent-outages)
-   * [Business problem](#business-problem-1)
-   * [Systematic logical troubleshooting](#systematic-logical-troubleshooting-1)
-   * [Break down business logic on the photo service](#break-down-business-logic-on-the-photo-service-1)
-   * [New Service Level Objectives (SLOs) and Indicators (SLIs)](#new-service-level-objectives-slos-and-indicators-slis)
-* [Design challenge #2: Complication](#design-challenge-2-complication)
+   * [Application: The photo service experiences Intermittent Outages](#application-the-photo-service-experiences-intermittent-outages)
+   * [Design challenge #2: Complication](#design-challenge-2-complication)
 * [Presentation Layer Design](#presentation-layer-design)
    * [Overview](#overview)
    * [Application: Photo service... Periodic Slowdowns](#application-photo-service-periodic-slowdowns)
@@ -36,8 +33,10 @@
    * [lab: Autoscaling](#lab-autoscaling)
 * [Resources/Articles](#resourcesarticles)
 
+
 ## Detailled Content
 
+* [Detailled Content](#detailled-content)
 * [Course Intro](#course-intro)
 * [Objectives](#objectives)
 * [Modules covered](#modules-covered)
@@ -110,12 +109,12 @@
       * [Choose a storage solution for SQL (scalable or not): Clud SQL or Spanner](#choose-a-storage-solution-for-sql-scalable-or-not-clud-sql-or-spanner)
       * [Choose a storage solution for NoSQL: Cloud Datastore](#choose-a-storage-solution-for-nosql-cloud-datastore)
       * [Choose a storage solution: decision tree &amp; summary table](#choose-a-storage-solution-decision-tree--summary-table)
-* [Application: The photo service experiences Intermittent Outages](#application-the-photo-service-experiences-intermittent-outages)
-   * [Business problem](#business-problem-1)
-   * [Systematic logical troubleshooting](#systematic-logical-troubleshooting-1)
-   * [Break down business logic on the photo service](#break-down-business-logic-on-the-photo-service-1)
-   * [New Service Level Objectives (SLOs) and Indicators (SLIs)](#new-service-level-objectives-slos-and-indicators-slis)
-* [Design challenge #2: Complication](#design-challenge-2-complication)
+   * [Application: The photo service experiences Intermittent Outages](#application-the-photo-service-experiences-intermittent-outages)
+      * [Business problem](#business-problem-1)
+      * [Systematic logical troubleshooting](#systematic-logical-troubleshooting-1)
+      * [Break down business logic on the photo service](#break-down-business-logic-on-the-photo-service-1)
+      * [New Service Level Objectives (SLOs) and Indicators (SLIs)](#new-service-level-objectives-slos-and-indicators-slis)
+   * [Design challenge #2: Complication](#design-challenge-2-complication)
 * [Presentation Layer Design](#presentation-layer-design)
    * [Overview](#overview)
       * [Network Configuration](#network-configuration)
@@ -136,6 +135,7 @@
    * [Design challenge #3: Growth](#design-challenge-3-growth)
    * [lab: Autoscaling](#lab-autoscaling)
 * [Resources/Articles](#resourcesarticles)
+
 
 
 ## Course Intro
@@ -1064,7 +1064,7 @@ This lesson provides a general **method to narrow down the list of candidates st
      style="float: left; margin-right: 10px;" />
 
 
-## Application: The photo service experiences Intermittent Outages
+### Application: The photo service experiences Intermittent Outages
 
 [video](https://www.coursera.org/learn/cloud-infrastructure-design-process/lecture/1NbrK/intermittent-outages)
 
@@ -1075,7 +1075,7 @@ Occasionally, the service simply fails to produce the smaller preview image. Thi
 - What's happening?
 - and how can you change the design to fix this problem? 
 
-### Business problem
+#### Business problem
 
 <img src="../images/app_photo_service_intermittent_outages.png"
      alt="app_photo_service_intermittent_outages.png"
@@ -1083,7 +1083,7 @@ Occasionally, the service simply fails to produce the smaller preview image. Thi
 
 
 
-### Systematic logical troubleshooting
+#### Systematic logical troubleshooting
 
 <img src="../images/app_photo_service_intermittent_outages_analysis.png"
      alt="app_photo_service_intermittent_outages_analysis.png"
@@ -1095,7 +1095,7 @@ Occasionally, the service simply fails to produce the smaller preview image. Thi
 
 The team has determined that the root problem, is the persistent disk on the application server cannot keep up with the scale of demands being placed on it. All right. So, that's the thing. You can scale up CPU, but sometimes your underlying disk IO performance cannot keep up. As well as something that most people don't think about, is disk IO also does need some CPU? So, that could be a problem. But in this case, we're focusing strictly on that. There's not enough virtual machine disc IO power to handle this kind of scale that we're looking at.
 
-### Break down business logic on the photo service
+#### Break down business logic on the photo service
 
 <img src="../images/app_photo_service_refreshed_business_logic.png"
      alt="app_photo_service_refreshed_business_logic.png"
@@ -1107,7 +1107,7 @@ The team has determined that the root problem, is the persistent disk on the app
 
 with 1 millions pictures per day, we need to move from our local file system to Cloud Storage for scalability.
 
-### New Service Level Objectives (SLOs) and Indicators (SLIs)
+#### New Service Level Objectives (SLOs) and Indicators (SLIs)
 
 we're going to introduce some **new service level objectives**.
 
@@ -1121,7 +1121,7 @@ Now, one of the things that our IOs do, is they are allocated an error budget. A
      alt="app_photo_service_outages_new_service_levels.png"
      style="float: left; margin-right: 10px;" />
 
-## Design challenge #2: Complication
+### Design challenge #2: Complication
 
 [video](https://www.coursera.org/learn/cloud-infrastructure-design-process/lecture/XVrs7/design-challenge-2-complication)
 
