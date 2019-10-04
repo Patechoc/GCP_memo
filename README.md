@@ -56,7 +56,6 @@ The courses are:
 
 
 * [Video SUMMARY of all GCP tools](https://www.coursera.org/learn/building-resilient-streaming-systems-gcp/lecture/YUGGw/summary-of-data-engineering-on-gcp-specialization)
-
 * [GCP Cheatsheets](./GCP_cheatsheets.md)
 
 
@@ -99,7 +98,7 @@ The courses are:
 1. [course 5](https://www.coursera.org/learn/gcp-infrastructure-containers-services): **Elastic Cloud infrastructure: [containers/services](./cloud_architect/course_5_Elastic_Cloud_Infrastructure_Containers_and_Services.md)**
 1. [course 6](https://www.coursera.org/learn/cloud-infrastructure-design-process):
    * **[Reliable Cloud infrastructure: design & process](./cloud_architect/course_6_Reliable_Cloud_Infrastructure_Design_and_Process.md)**
-   * **[Reliable Cloud infrastructure: Design for Resiliency, Scalability, and Disaster Recovery](course_6_Reliable_Cloud_Infrastructure_Design_for_Resiliency_Scalability_and_Disaster_Recovery.md)**
+   * **[Reliable Cloud infrastructure: Design for Resiliency, Scalability, and Disaster Recovery](./cloud_architect/course_6_Reliable_Cloud_Infrastructure_Design_for_Resiliency_Scalability_and_Disaster_Recovery.md)**
 
 ## Codelabs
 
