@@ -82,12 +82,24 @@
 * [Design challenge #2: Complication](#design-challenge-2-complication)
 * [Presentation Layer Design](#presentation-layer-design)
    * [Overview](#overview)
+      * [Network Configuration](#network-configuration)
+         * [Impact of Location](#impact-of-location)
+         * [Impact of Load Balancing](#impact-of-load-balancing)
+         * [Choosing your type of load balancer](#choosing-your-type-of-load-balancer)
+      * [Integration with other Environments](#integration-with-other-environments)
+         * [Network edge configuration for users and clients](#network-edge-configuration-for-users-and-clients)
+         * [Network connections to other networks (e.g. data center, another cloud)](#network-connections-to-other-networks-eg-data-center-another-cloud)
+            * [Dedicated interconnects](#dedicated-interconnects)
+            * [VPN configurations](#vpn-configurations)
+   * [Application: Photo service... Periodic Slowdowns](#application-photo-service-periodic-slowdowns)
+      * [Business problem](#business-problem-2)
+      * [Systematic logical troubleshooting](#systematic-logical-troubleshooting-2)
+      * [Collaboration &amp; communication: Report, Document, build policy](#collaboration--communication-report-document-build-policy)
+      * [Break down business logic on the photo service](#break-down-business-logic-on-the-photo-service-2)
+      * [What about our Service Level Objectives (SLOs) and Indicators (SLIs)](#what-about-our-service-level-objectives-slos-and-indicators-slis-1)
+   * [Design challenge #3: Growth](#design-challenge-3-growth)
+   * [lab: Autoscaling](#lab-autoscaling)
 * [Resources/Articles](#resourcesarticles)
-
-
-
-
-
 
 
 ## Course Intro
@@ -1323,14 +1335,15 @@ Let's define the problem. So in our case autoscaling of the application servers 
 
 ### lab: Autoscaling
 
-<img src="../images/dummy.png"
-     alt="dummy.png"
-     style="float: left; margin-right: 10px;" />
+- [video](https://www.coursera.org/learn/cloud-infrastructure-design-process/lecture/55yny/lab-intro-autoscaling)
+- [lab notes](../labs/lab_deployment_manager_Adding_load_balancing_for_autoscaling.md)
 
-<img src="../images/dummy.png"
-     alt="dummy.png"
-     style="float: left; margin-right: 10px;" />
 
+The photo application that was promised by the development team is late. You decide that you don't want to wait any longer to develop the infrastructure. When the photo app does become available, you don't want to add to the schedule delay, so you decide to make the infrastructure auto-scaling and reliable by building on a previous deployment. This way, when the photo app is available you can just drop it in to the deployment framework that you've built. The deployment manager templates from the previous lab will be provided to you in a TAR file, so you'll just be creating the additional files.
+
+<img src="../images/lab_deployment_autoscaling_app.png"
+     alt="lab_deployment_autoscaling_app.png"
+     style="float: left; margin-right: 10px;" />
 
 
 
