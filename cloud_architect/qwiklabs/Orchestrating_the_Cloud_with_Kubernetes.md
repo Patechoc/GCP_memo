@@ -6,6 +6,28 @@ In this lab you will learn how to: Provision a complete Kubernetes cluster using
 
 ~ 1 hour 15 minutes
 
+## Content
+
+* [Overview](#overview)
+* [Setup and Requirements](#setup-and-requirements)
+   * [Activate Google Cloud Shell](#activate-google-cloud-shell)
+   * [Google Kubernetes Engine](#google-kubernetes-engine)
+* [Get the sample code](#get-the-sample-code)
+* [Quick Kubernetes Demo](#quick-kubernetes-demo)
+* [Pods](#pods)
+* [Creating Pods](#creating-pods)
+* [Interacting with Pods](#interacting-with-pods)
+* [Services](#services)
+* [Creating a Service](#creating-a-service)
+* [Adding Labels to Pods](#adding-labels-to-pods)
+* [Deploying Applications with Kubernetes](#deploying-applications-with-kubernetes)
+* [Creating Deployments](#creating-deployments)
+* [Conclusion](#conclusion)
+   * [Finish Your Quest](#finish-your-quest)
+   * [Take Your Next Lab](#take-your-next-lab)
+   * [Next Steps / Learn More](#next-steps--learn-more)
+   * [Google Cloud Training &amp; Certification](#google-cloud-training--certification)
+
 ## Overview
 
 In this lab you will learn how to:

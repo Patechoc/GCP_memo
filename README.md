@@ -100,6 +100,11 @@ The courses are:
    * **[Reliable Cloud infrastructure: design & process](./cloud_architect/course_6_Reliable_Cloud_Infrastructure_Design_and_Process.md)**
    * **[Reliable Cloud infrastructure: Design for Resiliency, Scalability, and Disaster Recovery](./cloud_architect/course_6_Reliable_Cloud_Infrastructure_Design_for_Resiliency_Scalability_and_Disaster_Recovery.md)**
 
+
+[**Extra Qwiklabs** for Cloud Architecture](./cloud_architect/qwiklabs/README.md):
+
+* [Orchestrating the Cloud with Kubernetes](cloud_architect/qwiklabs/Orchestrating_the_Cloud_with_Kubernetes.md)
+
 ## Codelabs
 
 https://codelabs.developers.google.com/devoxx
