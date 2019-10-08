@@ -88,7 +88,10 @@
 
 Implement technologies and processes that assure business continuity in the event of a disaster.
 
+[video](https://www.coursera.org/learn/cloud-infrastructure-design-process/lecture/pWlcV/design-for-resiliency-scalability-and-disaster-recovery-overview)
+
 ### Overview
+
 
 <img src="../images/dummy.png"
      alt="dummy.png"
