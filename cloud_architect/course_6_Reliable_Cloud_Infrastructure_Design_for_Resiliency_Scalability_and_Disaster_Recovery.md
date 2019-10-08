@@ -552,27 +552,333 @@ Instead of having a cronjob, we have not converted it to Stream Processing with 
 
 ## Design for Security
 
+[video](https://www.coursera.org/learn/cloud-infrastructure-design-process/lecture/bNzDv/design-for-security-overview)
+
 Implement policies that minimize security risks, such as auditing, separation of duties and least privilege.
 
 ### Overview
 
+There are **3 kinds of security services** built into the Google Cloud platform: 
+1. services that are **transparent and automatic**, such as encryption of data that occurs automatically when data's transported and when it's at rest.
+2. services that have **defaults but that offer methods for customizations**, such as using your own encryption keys rather than those provided.
+3. services that can be used as part of your security design, but only contribute to security if you choose to use them in your design.
+
+<img src="../images/security_overview.png"
+     alt="security_overview.png"
+     style="float: left; margin-right: 10px;" />
+
 ### Cloud Security
+
+[video](https://www.coursera.org/learn/cloud-infrastructure-design-process/lecture/wMJ6H/design-for-security-cloud-security)
+
+When you migrate an application to the cloud or develop an application in the cloud, there are security benefits that the application inherits simply because of the host environment. Google already has to protect its applications, and many of the benefits of that security effort are built into the infrastructure itself. You need to know about them so you don't accidentally spend effort duplicating them. You also need to know where those services end and your security design begins so that you don't accidentally leave gaps in your security strategy.
+
+#### Google's strategy for cloud security: "Pervasive efense in depth"
+
+<img src="../images/security_Google_strategy.png"
+     alt="security_Google_strategy.png"
+     style="float: left; margin-right: 10px;" />
+
+#### Cloud Networking Security: Defense in Depth
+
+"So the least that we can actually expose to the Internet, all the better"
+
+<img src="../images/security_Google_defense_in_depth.png"
+     alt="security_Google_defense_in_depth.png"
+     style="float: left; margin-right: 10px;" />
 
 ### Network Access Control & Firewalls
 
+[video](https://www.coursera.org/learn/cloud-infrastructure-design-process/lecture/tx88k/design-for-security-network-access-control-and-firewalls)
+
+The first level of security where your design can have a significant impact is on network level access control. For example, if you remove the external IP from an instance in a bastion hosts design, you'll eliminate one target that could be attacked. Locking down network access to only what's required is one way to reduce the potential attack surface. 
+
+#### Firewall configuration: 1st line of defense for access
+
+<img src="../images/security_firewalls.png"
+     alt="security_firewalls.png"
+     style="float: left; margin-right: 10px;" />
+
+#### Design for securely accessing VMs
+
+<img src="../images/security_secure_VMs.png"
+     alt="security_secure_VMs.png"
+     style="float: left; margin-right: 10px;" />
+
+#### API access control with Cloud Endpoints
+
+<img src="../images/security_API_control_with_Cloud_Endpoint.png"
+     alt="security_API_control_with_Cloud_Endpoint.png"
+     style="float: left; margin-right: 10px;" />
+
 ### Protections Against Denial of Service
 
-### Resource Sharing & Isolation
+[video](https://www.coursera.org/learn/cloud-infrastructure-design-process/lecture/9I9iK/design-for-security-protections-against-denial-of-service)
+
+Part of the protections against denial of service attacks are built into the cloud infrastructure. The network, for example, uses software defined networking or SDN. Since there are no physical routers and no physical load balancers, there are no actual hardware interfaces that could be overloaded. There are also services that adapt to demand in intelligent ways, and you can use these in your design to afford further protection against overload attacks
+
+<img src="../images/security_DDOS.png"
+     alt="security_DDOS.png"
+     style="float: left; margin-right: 10px;" />
+
+#### Edge protections agaisnt DDoS
+
+<img src="../images/security_protection_vs_DDOS.png"
+     alt="security_protection_vs_DDOS.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/security_protection_vs_DDOS_with_network.png"
+     alt="security_protection_vs_DDOS_with_network.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/security_infrastructure_protection_vs_DDOS.png"
+     alt="security_infrastructure_protection_vs_DDOS.png"
+     style="float: left; margin-right: 10px;" />
+
+### Resource Sharing & Isolation... a compromise
+
+[video](https://www.coursera.org/learn/cloud-infrastructure-design-process/lecture/vUZeS/design-for-security-resource-sharing-and-isolation)
+
+Google Cloud Platform provides a rich array of network topology features, that provide different blends of separation isolation, and communication, and sharing. The least secure design is where everything is in a single failure domain, and all the parts communicate and depend directly on one another. There are many ways of separating those parts and providing more private, or tolerant communication channels between them, creating multiple failure domains and therefore better isolation. In submarine design, the parts of the submarine are divided into compartments that can be sealed off from one another. This helps with reliability, because one compartment can flood and be sealed off from the rest. But it also helps with security, because if an attacker gains entry to one compartment, it can be sealed off to limit the damage.
+
+<img src="../images/security_resource_sharing_def.png"
+     alt="security_resource_sharing_def.png"
+     style="float: left; margin-right: 10px;" />
+
+#### VPC isolation through public IPs
+
+<img src="../images/security_resource_sharing_VPC_isolations_through_public_IPs.png"
+     alt="security_resource_sharing_VPC_isolations_through_public_IPs.png"
+     style="float: left; margin-right: 10px;" />
+
+#### IP address isolation using VPN tunneling
+
+<img src="../images/security_resource_sharing_IP_isolations_through_VPN.png"
+     alt="security_resource_sharing_IP_isolations_through_VPN.png"
+     style="float: left; margin-right: 10px;" />
+
+#### Cross-project VPC network peering
+
+<img src="../images/security_resource_cross_project.png"
+     alt="security_resource_cross_project.png"
+     style="float: left; margin-right: 10px;" />
+
+#### Cross-organization VPC network peering
+
+<img src="../images/security_resource_cross_organization_sharing.png"
+     alt="security_resource_cross_organization_sharing.png"
+     style="float: left; margin-right: 10px;" />
+
+#### Shared VPC
+
+<img src="../images/security_resource_VPC_sharing.png"
+     alt="security_resource_VPC_sharing.png"
+     style="float: left; margin-right: 10px;" />
+
+#### Isolation through multiple network interface
+
+<img src="../images/security_resource_multi_NIC.png"
+     alt="security_resource_multi_NIC.png"
+     style="float: left; margin-right: 10px;" />
+
+#### Access GCP services over internal IP
+
+<img src="../images/security_resource_GCP_over_internal_IP.png"
+     alt="security_resource_GCP_over_internal_IP.png"
+     style="float: left; margin-right: 10px;" />
+
 
 ### Data Encryption & Key Management
 
+[video](https://www.coursera.org/learn/cloud-infrastructure-design-process/lecture/m1739/design-for-security-data-encryption-and-key-management)
+
+You probably already know that Google automatically encrypts data in motion and data at rest, but that description generalizes some of the details that will help you make design decisions. For example, you can use Google's built-in key management, or you can provide your own keys. Also for particularly sensitive data, you can add your own encryption methods in addition to those provided
+
+
+<img src="../images/security_encryption_all_data_in_motion_at_rest_encrypted.png"
+     alt="security_encryption_all_data_in_motion_at_rest_encrypted.png"
+     style="float: left; margin-right: 10px;" />
+
+#### Server-side encryption
+
+<img src="../images/security_encryption.png"
+     alt="security_encryption.png"
+     style="float: left; margin-right: 10px;" />
+
+#### Customer manager encryption keys (CMEK)
+
+<img src="../images/security_custom_encryption_keys.png"
+     alt="security_custom_encryption_keys.png"
+     style="float: left; margin-right: 10px;" />
+
+#### Customer Supplied encryption keys (CSEK)
+
+<img src="../images/security_custom_supplied_encryption_keys.png"
+     alt="security_custom_supplied_encryption_keys.png"
+     style="float: left; margin-right: 10px;" />
+
+#### Persistent Disk Encrytion with CSEK
+
+<img src="../images/security_persistent_disk_CSEK.png"
+     alt="security_persistent_disk_CSEK.png"
+     style="float: left; margin-right: 10px;" />
+
+#### Moore control over encryption
+
+<img src="../images/security_encryption_more_control.png"
+     alt="security_encryption_more_control.png"
+     style="float: left; margin-right: 10px;" />
+
 ### Design for Security: Identity Access & Auditing
+
+[video](https://www.coursera.org/learn/cloud-infrastructure-design-process/lecture/k0FDO/design-for-security-identity-access-and-auditing)
+
+Authorization, access to resources is controlled by Google's Identity and Access Management or IAM system. You're already using this service to control authorized access. By using the auditing tools available, you can also check for unwanted actions like attempts at unauthorized access. That can tell you where the attackers interest is focused. So you can add security measures in those areas. 
+
+#### Identity Access Management
+
+<img src="../images/security_IAM.png"
+     alt="security_IAM.png"
+     style="float: left; margin-right: 10px;" />
+
+#### Service Accounts
+
+<img src="../images/security_Service_Account.png"
+     alt="security_Service_Account.png"
+     style="float: left; margin-right: 10px;" />
+
+#### GCP security auditing with Forseti-security (Open Source)
+
+<img src="../images/security_GCP_Security_Auditing_wth_Forseti.png"
+     alt="security_GCP_Security_Auditing_wth_Forseti.png"
+     style="float: left; margin-right: 10px;" />
+
+#### Cloud Audit Logging
+
+<img src="../images/security_Cloud_Audit_Logging.png"
+     alt="security_Cloud_Audit_Logging.png"
+     style="float: left; margin-right: 10px;" />
+
+#### External audits & GCP Standards Compliance
+
+
+<img src="../images/security_Standard_Compliance.png"
+     alt="security_Standard_Compliance.png"
+     style="float: left; margin-right: 10px;" />
+
+This module covered security from several perspectives, including identity and access management, data encryption and key management, resource sharing and isolation for compartmentalization, protections against denial of service attacks, network access control, and the automatic protections built into the platform and services. You learn that there are some security that's inherited from the environment. Some is configured with default options that you might want to change, and some security features are optional and can be included in your design, if it makes sense with your security strategy.
 
 ### Application: Photo Service - Intentional Attack
 
+[video](https://www.coursera.org/learn/cloud-infrastructure-design-process/lecture/dwTwf/photo-service-intentional-attack)
+
+There's evidence that hackers are trying to compromise the private information of system users, and maybe try to bring down the service.
+
+That brings up 2 important issues:
+1. How does the system keep users data private?
+2. How does the system protect against a denial-of-service attack?
+
+Identify the protections already in place that are provided by the platform by default, then consider additional design changes that could provide additional protections.
+
+<img src="../images/application_photo_Service_intentional_attack.png"
+     alt="application_photo_Service_intentional_attack.png"
+     style="float: left; margin-right: 10px;" />
+
+#### Business problem
+
+<img src="../images/application_photo_Service_intentional_attack_business_problem.png"
+     alt="application_photo_Service_intentional_attack_business_problem.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/application_photo_Service_intentional_attack_business_problem_architecture.png"
+     alt="application_photo_Service_intentional_attack_business_problem_architecture.png"
+     style="float: left; margin-right: 10px;" />
+
+
+
+#### Break down business logic on the photo service
+
+**Lock down the frontend**
+
+<img src="../images/application_photo_Service_intentional_attack_business_problem_solution.png"
+     alt="application_photo_Service_intentional_attack_business_problem_solution.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/application_photo_Service_intentional_attack_business_process_if_DDoS.png"
+     alt="application_photo_Service_intentional_attack_business_process_if_DDoS.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/application_photo_Service_intentional_attack_business_actions_vs_DDoS.png"
+     alt="application_photo_Service_intentional_attack_business_actions_vs_DDoS.png"
+     style="float: left; margin-right: 10px;" />
+
+1. use Cloud CDN to cache our thumbnails accross the world
+2. use Cloud DNS 
+3. Implement auto-scaling (instance group)
+
+**Can we protect the backend?**
+
+<img src="../images/application_photo_Service_intentional_attack_backend.png"
+     alt="application_photo_Service_intentional_attack_backend.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/application_photo_Service_intentional_attack_backend_lockdown_VPC.png"
+     alt="application_photo_Service_intentional_attack_backend_lockdown_VPC.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/application_photo_Service_intentional_attack_backend_lockdown_Private_network.png"
+     alt="application_photo_Service_intentional_attack_backend_lockdown_Private_network.png"
+     style="float: left; margin-right: 10px;" />
+
+#### Security checklist
+
+<img src="../images/application_photo_Service_intentional_attack_security_checklist.png"
+     alt="application_photo_Service_intentional_attack_security_checklist.png"
+     style="float: left; margin-right: 10px;" />
+
+
 ### Design Challenge #5: Defense in Depth
 
+[video](https://www.coursera.org/learn/cloud-infrastructure-design-process/lecture/vVI8A/design-challenge-5-defense-in-depth)
 
+The security measures you're considering implementing in the photo service will make the system much more secure. But wait a moment, the user information and event information may be contained in the logs. If the log system isn't secure, none of the rest of the system is secure. Watch the lesson that describes the problem, then come up with your own solution. When you're ready, continue the lesson to see a sample solution, and remember that the sample solution is not the best possible solution. It's just an example.
+
+
+<img src="../images/design_challenge_security_log_files.png"
+     alt="design_challenge_security_log_files.png"
+     style="float: left; margin-right: 10px;" />
+
+**Problem**
+
+<img src="../images/design_challenge_security_log_files_problem.png"
+     alt="design_challenge_security_log_files_problem.png"
+     style="float: left; margin-right: 10px;" />
+
+**Possible solution**
+
+<img src="../images/design_challenge_security_log_files_solution.png"
+     alt="design_challenge_security_log_files_solution.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
 
 <img src="../images/dummy.png"
      alt="dummy.png"
