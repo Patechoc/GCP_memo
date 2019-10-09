@@ -1069,39 +1069,59 @@ We first need to **check cost effectiveness**.
      alt="application_photo_Service_check_cost_effectiveness.png"
      style="float: left; margin-right: 10px;" />
 
-<img src="../images/dummy.png"
-     alt="dummy.png"
-     style="float: left; margin-right: 10px;" />
 
-<img src="../images/dummy.png"
-     alt="dummy.png"
-     style="float: left; margin-right: 10px;" />
-
-<img src="../images/dummy.png"
-     alt="dummy.png"
-     style="float: left; margin-right: 10px;" />
 ### Design Challenge #6: Dimensioning
 
+[video](https://www.coursera.org/learn/cloud-infrastructure-design-process/lecture/MyV6T/design-challenge-6-dimensioning)
 
-<img src="../images/dummy.png"
-     alt="dummy.png"
+The photo application service design is now set to auto scale and grow for the projected doubling of demand in the coming year.
+
+**However, that means the log information will also double**. The current storage service is Bigtable.
+
+* Will the additional demand both data and traffic put stresses on Bigtable?
+* Will the system need an additional Bigtable node to handle the demand in the coming year?
+
+Watch the lesson that describes the problem then come up with your own solution, and when you're ready, continue the lesson to see a sample solution.
+
+Current layout of our log service:
+
+<img src="../images/design_challenge_capacity_planning_growth_logs.png"
+     alt="design_challenge_capacity_planning_growth_logs.png"
      style="float: left; margin-right: 10px;" />
 
-<img src="../images/dummy.png"
-     alt="dummy.png"
+#### Growth status for BigTable
+
+<img src="../images/design_challenge_capacity_planning_growth_logs_BigTable.png"
+     alt="design_challenge_capacity_planning_growth_logs_BigTable.png"
      style="float: left; margin-right: 10px;" />
 
-<img src="../images/dummy.png"
-     alt="dummy.png"
+What can handle a BigTable node, in nb. of queries (qps), in throughput (MB/s)?
+
+Our current use of BigTable:
+
+
+<img src="../images/design_challenge_capacity_planning_BigTable_current_use.png"
+     alt="design_challenge_capacity_planning_BigTable_current_use.png"
      style="float: left; margin-right: 10px;" />
 
-<img src="../images/dummy.png"
-     alt="dummy.png"
+- the size of the log payload for each of our workloads (web, app, data): ~552 B
+- estimation of log entries per day: ~300 millions entries per day
+
+Our system handles **~154.2 GB/day**, i.e. **~55TB/year**.
+
+
+**What our service would look like if the usage double inthe coming year?**
+
+<img src="../images/design_challenge_capacity_planning_BigTable_challenge.png"
+     alt="design_challenge_capacity_planning_BigTable_challenge.png"
      style="float: left; margin-right: 10px;" />
 
-<img src="../images/dummy.png"
-     alt="dummy.png"
+<img src="../images/design_challenge_capacity_planning_BigTable_estimate_growing_capacity.png"
+     alt="design_challenge_capacity_planning_BigTable_estimate_growing_capacity.png"
      style="float: left; margin-right: 10px;" />
+
+BigTable can handle up to 10 000 qps and 10MB/s of throughput. So doubling the usage of our app can be handled by a single BigTable node, but we need to consider our **storage capacity** reaching 110TB by the end of the 2nd year.
+
 
 <img src="../images/dummy.png"
      alt="dummy.png"
