@@ -60,16 +60,39 @@ The courses are:
 
 
 
-## Cloud Architect on GCP Specialization
+## Cloud Architect on GCP
 
+A Professional Cloud Architect enables organizations to leverage Google Cloud technologies. With a thorough understanding of cloud architecture and Google Cloud Platform, this individual can design, develop, and manage robust, secure, scalable, highly available, and dynamic solutions to drive business objectives.
+
+The Google Cloud Certified - Professional Cloud Architect exam assesses your ability to:
+
+* Design and plan a cloud solution architecture
+* Manage and provision the cloud solution infrastructure
+* Design for security and compliance
+* Analyze and optimize technical and business processes
+* Manage implementations of cloud architecture
+* Ensure solution and operations reliability
 
 - The [Cloud Architect certification](https://cloud.google.com/certification/cloud-architect) (training, exam's guide, hands-on, ...)
-- [Preparing for the Professional Cloud Architect Examination](https://google.qwiklabs.com/courses/879&utm_source=cloud-dot-google&utm_medium=website)
-- [Flashcards #1](https://www.brainscape.com/flashcards/reliable-cloud-infrastructure-design-and-6610349/packs/10478211) 
-(A set of [courses](https://www.coursera.org/specializations/gcp-architecture) by COURSERA)
+- [Preparing for the Professional Cloud Architect Examination](https://google.qwiklabs.com/courses/879&utm_source=cloud-dot-google&utm_medium=website) & [**[Notes]**](./cloud_architect/Preparing_for_the_Professional_Cloud_Architect_Examination.md)
+- Training:
+   - a set of courses  by COURSERA: [Architecting with Google Compute Engine Specialization](https://www.coursera.org/specializations/gcp-architecture)
+   - [Preparing for the Professional Cloud Architect Examination](https://google.qwiklabs.com/courses/879&utm_source=cloud-dot-google&utm_medium=website)
+- Hands-on practice:
+   - [**Extra Qwiklabs** for Cloud Architecture](./cloud_architect/qwiklabs/README.md):
+      - [Cloud architecture quest](https://google.qwiklabs.com/quests/24?utm_source=gcp&utm_medium=site&utm_campaign=certification)
+         1. [Orchestrating the Cloud with Kubernetes](cloud_architect/qwiklabs/Orchestrating_the_Cloud_with_Kubernetes.md)
+         1. Deployment Manager - Full Production
+         1. Continuous Delivery with Jenkins in Kubernetes Engine
+         1. Continuous Delivery Pipelines with Spinnaker and Kubernetes Engine
+         1. Managing Deployments Using Kubernetes Engine
+         1. Multiple VPC Networks
+         1. Site Reliability Troubleshooting with Stackdriver APM
+      - [Challenge: GCP Architecture](https://google.qwiklabs.com/quests/47?utm_source=gcp&utm_medium=site&utm_campaign=certification)
+- [**Practice exam**](https://cloud.google.com/certification/practice-exam/cloud-architect)
 
 
-### Objectives
+### Architecting with Google Compute Engine Specialization
 
 This course is aimed at IT professionals who are tasked with building and managing solutions in the cloud. If you are a system administrator, system operator, cloud solution architect, or software developer (or want to become one), this course is a great place for you to start.
 
@@ -85,7 +108,7 @@ The Professional Cloud Architect certification demonstrates your mastery of deve
 * Ensure solution and operations reliability
 
 
-### Lectures & labs
+#### Lectures & labs
 
 [**Cloud Services in a table**](./cloud_architect/cloud_services_in_a_table.md)
 
@@ -101,9 +124,6 @@ The courses are:
    * **[Reliable Cloud infrastructure: Design for Resiliency, Scalability, and Disaster Recovery](./cloud_architect/course_6_Reliable_Cloud_Infrastructure_Design_for_Resiliency_Scalability_and_Disaster_Recovery.md)**
 
 
-[**Extra Qwiklabs** for Cloud Architecture](./cloud_architect/qwiklabs/README.md):
-
-* [Orchestrating the Cloud with Kubernetes](cloud_architect/qwiklabs/Orchestrating_the_Cloud_with_Kubernetes.md)
 
 ## Codelabs
 
