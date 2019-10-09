@@ -1,8 +1,5 @@
 # (Ultimate) lab on Deployment Manager: Full Production + (Stackdriver)
 
-
-
-
 ~1 hour 30 minutes
 
 ## Overview
@@ -14,6 +11,40 @@ In this lab you will...
 3. Configure Stackdriver Uptime Checks and Notifications.
 4. Configure a Stackdriver Dashboard with two charts, showing CPU and ingress traffic.
 5. Perform a load test and simulate a service outage.
+
+## Content
+
+* [Overview](#overview)
+* [Objectives](#objectives)
+* [Full Production](#full-production)
+* [Clone the Deployment Manager sample templates](#clone-the-deployment-manager-sample-templates)
+   * [Clone the repo.](#clone-the-repo)
+   * [About the tutorials](#about-the-tutorials)
+* [Explore the sample files](#explore-the-sample-files)
+   * [List the example templates.](#list-the-example-templates)
+* [Customize the deployment](#customize-the-deployment)
+   * [Specify the zone and secondary zone.](#specify-the-zone-and-secondary-zone)
+* [Run the application](#run-the-application)
+   * [Deploy the application](#deploy-the-application)
+   * [Verify that the application is open for traffic](#verify-that-the-application-is-open-for-traffic)
+* [Verify that the application is operational](#verify-that-the-application-is-operational)
+   * [Find the global load balancer forwarding rule IP address](#find-the-global-load-balancer-forwarding-rule-ip-address)
+* [Enable monitoring for the project](#enable-monitoring-for-the-project)
+   * [Configure Stackdriver services for your GCP project](#configure-stackdriver-services-for-your-gcp-project)
+* [Configure an uptime check and alert policy for the application.](#configure-an-uptime-check-and-alert-policy-for-the-application)
+   * [Configure an Uptime Check](#configure-an-uptime-check)
+   * [Configure an Alerting Policy and Notification](#configure-an-alerting-policy-and-notification)
+   * [Configure notifications and finish the alerting policy](#configure-notifications-and-finish-the-alerting-policy)
+* [Configure a dashboard with a couple of useful charts.](#configure-a-dashboard-with-a-couple-of-useful-charts)
+   * [Configure a Dashboard](#configure-a-dashboard)
+* [Place a test load on the application.](#place-a-test-load-on-the-application)
+   * [Create a test application in Cloud Shell.](#create-a-test-application-in-cloud-shell)
+* [Create a test VM with Apache Bench](#create-a-test-vm-with-apache-bench)
+   * [Install Apache Bench on Cloud Shell](#install-apache-bench-on-cloud-shell)
+* [Simulate a service outage.](#simulate-a-service-outage)
+   * [Remove the firewall to simulate an outage.](#remove-the-firewall-to-simulate-an-outage)
+* [Full Production](#full-production-1)
+
 
 ## Objectives
 
