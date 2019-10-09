@@ -989,45 +989,84 @@ First: Test, test, test...
 
 [video](https://www.coursera.org/learn/cloud-infrastructure-design-process/lecture/cwllj/capacity-planning-and-cost-optimization-pricing)
 
-<img src="../images/dummy.png"
-     alt="dummy.png"
+Pricing is commonly used in:
+
+* **cost optimization**,
+* **reducing cost**, 
+* and also for **budgeting**.
+
+One feature of Google Cloud Platform is that bulk use discounting is built in an automatic for many services. In this lesson, you'll learn about how design choices can influence price.
+
+For example, you may have distributed an element of your solution over multiple regions to improve reliability. However, that distribution design might result in additional network charges for egress traffic. Is the cost of the reliability worthy additional network charges? Pricing estimation, and pricing that follows capacity planning can help you decide.
+
+#### Optimize VMs cost
+
+<img src="../images/pricing_optimize_VM_cost.png"
+     alt="pricing_optimize_VM_cost.png"
      style="float: left; margin-right: 10px;" />
 
-<img src="../images/dummy.png"
-     alt="dummy.png"
+#### Optimize Disks cost
+
+<img src="../images/pricing_optimize_disks_cost.png"
+     alt="pricing_optimize_disks_cost.png"
      style="float: left; margin-right: 10px;" />
 
-<img src="../images/dummy.png"
-     alt="dummy.png"
+#### Optimize Network cost
+
+<img src="../images/pricing_optimize_network_cost.png"
+     alt="pricing_optimize_network_cost.png"
      style="float: left; margin-right: 10px;" />
 
-<img src="../images/dummy.png"
-     alt="dummy.png"
+VM to VM in the same zone:
+
+<img src="../images/pricing_optimize_network_cost_same_zone_VM-to-VM.png"
+     alt="pricing_optimize_network_cost_same_zone_VM-to-VM.png"
      style="float: left; margin-right: 10px;" />
 
-<img src="../images/dummy.png"
-     alt="dummy.png"
-     style="float: left; margin-right: 10px;" />
+In this module, you learned about capacity planning, including the planning cycle, and you learned about pricing. The two of them together, capacity and pricing, provide another perspective on design options. You can modify the design for cost optimization or to limit resource usage. One important point is to apply dimensioning to your design after you've considered other functional aspects of the design.
+
+
 ### Application: Photo Service - Cost & Capacity
 
-<img src="../images/dummy.png"
-     alt="dummy.png"
+[video](https://www.coursera.org/learn/cloud-infrastructure-design-process/lecture/E42DE/photo-service-cost-and-capacity)
+
+Capacity planning for the coming year's completed.
+
+As a final step, you'll look at the VM options and perform non-abstract **cost optimization analysis**.
+
+Given the growing capacity requirements, what makes sense financially to choose for the most cost-effective?:
+
+* a **bigger capacity VM**, 
+* or is **sticking with the current size VM**
+
+Can we offer the same service with less money?
+
+<img src="../images/application_photo_Servicecost_optimization.png"
+     alt="application_photo_Servicecost_optimization.png"
      style="float: left; margin-right: 10px;" />
 
-<img src="../images/dummy.png"
-     alt="dummy.png"
+#### Business problem
+
+<img src="../images/application_photo_Service_budget.png"
+     alt="application_photo_Service_budget.png"
      style="float: left; margin-right: 10px;" />
 
-<img src="../images/dummy.png"
-     alt="dummy.png"
+Reviewing the current architecture:
+
+<img src="../images/application_photo_Service_review_archtecture.png"
+     alt="application_photo_Service_review_archtecture.png"
      style="float: left; margin-right: 10px;" />
 
-<img src="../images/dummy.png"
-     alt="dummy.png"
+<img src="../images/application_photo_Service_cost_optimization_problem.png"
+     alt="application_photo_Service_cost_optimization_problem.png"
      style="float: left; margin-right: 10px;" />
 
-<img src="../images/dummy.png"
-     alt="dummy.png"
+We want to make a recommendation: **Should we move to higher cores CPUs?**.7
+
+We first need to **check cost effectiveness**.
+
+<img src="../images/application_photo_Service_check_cost_effectiveness.png"
+     alt="application_photo_Service_check_cost_effectiveness.png"
      style="float: left; margin-right: 10px;" />
 
 <img src="../images/dummy.png"
@@ -1106,3 +1145,4 @@ First: Test, test, test...
 ## Resources/Articles
 
 - [**Perfkit Benchmarker**](https://github.com/GoogleCloudPlatform/PerfKitBenchmarker): PerfKit Benchmarker is an open effort to define a canonical set of benchmarks to measure and compare cloud offerings.
+- **Price calculator**: [cloud.google.com/products/calculator/](https://cloud.google.com/products/calculator/)
