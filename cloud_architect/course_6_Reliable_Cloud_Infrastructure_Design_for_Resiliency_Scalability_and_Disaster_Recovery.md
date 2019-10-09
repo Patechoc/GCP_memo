@@ -1321,95 +1321,128 @@ It includes:
      alt="incident_response_structure_SRE_pyramid.png"
      style="float: left; margin-right: 10px;" />
 
-### List of SRE processes
+#### List of SRE processes
 
 <img src="../images/list_processes.png"
      alt="list_processes.png"
      style="float: left; margin-right: 10px;" />
 
-<img src="../images/dummy.png"
-     alt="dummy.png"
+
+#### 12-factor guidelines on administration and management tasks 
+
+<img src="../images/incident_response_12-factor_Admin_Mgmt_guidelines.png"
+     alt="incident_response_12-factor_Admin_Mgmt_guidelines.png"
      style="float: left; margin-right: 10px;" />
+
+#### Build a playbook based on alerts
+
+<img src="../images/incident_response_alerts_and_processes.png"
+     alt="incident_response_alerts_and_processes.png"
+     style="float: left; margin-right: 10px;" />
+
+##### Create "easy buttons" for quick fix
+
+<img src="../images/incident_response_use_microservices_and_APIs.png"
+     alt="incident_response_use_microservices_and_APIs.png"
+     style="float: left; margin-right: 10px;" />
+
+##### Balance interrupt-driven work and Incident Response
+
+Controlled burns vs Fire fighters again.
+
+<img src="../images/incident_response_balance_project_driven_incident_response.png"
+     alt="incident_response_balance_project_driven_incident_response.png"
+     style="float: left; margin-right: 10px;" />
+
+This module covered deploying, operating, and maintaining your design. Much of the groundwork needed for successful deployment monitoring and incident response was established earlier in the course in the context of the design process. This module points out how to integrate all those elements together to promote the behaviors that will lead to a stable service.
 
 ### Application: Stabilization & Operation
 
+[video](https://www.coursera.org/learn/cloud-infrastructure-design-process/lecture/0c9fQ/stabilization-and-operation)
 
-<img src="../images/dummy.png"
-     alt="dummy.png"
+The photo service has evolved into a sophisticated scalable, reliable, secure system.
+
+The goal is to **stabilize the system** and **make it maintainable** and **operable**.
+
+* What elements of the service should be monitored?
+* What kinds of alerts and notifications would you set up?
+
+<img src="../images/application_photo_Service_stabilization_operation.png"
+     alt="application_photo_Service_stabilization_operation.png"
      style="float: left; margin-right: 10px;" />
 
-<img src="../images/dummy.png"
-     alt="dummy.png"
+<img src="../images/application_photo_Service_current_architecture.png"
+     alt="application_photo_Service_current_architecture.png"
      style="float: left; margin-right: 10px;" />
      
-<img src="../images/dummy.png"
-     alt="dummy.png"
+<img src="../images/application_photo_Service_what_to_monitor.png"
+     alt="application_photo_Service_what_to_monitor.png"
      style="float: left; margin-right: 10px;" />
 
-<img src="../images/dummy.png"
-     alt="dummy.png"
-     style="float: left; margin-right: 10px;" />
-
-<img src="../images/dummy.png"
-     alt="dummy.png"
-     style="float: left; margin-right: 10px;" />
-
-<img src="../images/dummy.png"
-     alt="dummy.png"
-     style="float: left; margin-right: 10px;" />
 
 ### Design Challenge #7: Monitoring & Alerting
 
+[video](https://www.coursera.org/learn/cloud-infrastructure-design-process/lecture/9SKko/design-challenge-7-monitoring-and-alerting)
 
-<img src="../images/dummy.png"
-     alt="dummy.png"
+
+Monitoring & Alerting are **what you add to the log system to stabilize a solution**.
+
+
+<img src="../images/application_photo_Service_logging_current_architecture.png"
+     alt="application_photo_Service_logging_current_architecture.png"
      style="float: left; margin-right: 10px;" />
 
-<img src="../images/dummy.png"
-     alt="dummy.png"
+#### Business Challenge
+
+What you think might be important to monitor, and under what conditions alerts and notifications should be sent?
+
+<img src="../images/application_photo_Service_logging_business_challenge.png"
+     alt="application_photo_Service_logging_business_challenge.png"
      style="float: left; margin-right: 10px;" />
+
+So in this case, make a list of three monitoring and alerting items that you would put into place to support stabilizing this particular solution. 
+
+#### What monitoring and alerting to set up for the logs
      
-<img src="../images/dummy.png"
-     alt="dummy.png"
+<img src="../images/application_photo_Service_logging_solution_logs_watchdogs.png"
+     alt="application_photo_Service_logging_solution_logs_watchdogs.png"
      style="float: left; margin-right: 10px;" />
 
-<img src="../images/dummy.png"
-     alt="dummy.png"
+- monitor that latest data in BigTable isn't older than few minutes > **white box**
+- monitor the queue mechanisms in Pub/Sub for all 3 feeds (web, app, data) > **black box**
+- monitor network latency, network uptime for all 3 feeds > **black box**
+
+#### Google's reference architectures online
+
+<img src="../images/application_photo_Service_logging_solution_logs_Google_tutorials.png"
+     alt="application_photo_Service_logging_solution_logs_Google_tutorials.png"
      style="float: left; margin-right: 10px;" />
 
-<img src="../images/dummy.png"
-     alt="dummy.png"
-     style="float: left; margin-right: 10px;" />
-
-<img src="../images/dummy.png"
-     alt="dummy.png"
-     style="float: left; margin-right: 10px;" />
 
 ### Lab: Deployment Manager - Full Production
 
-<img src="../images/dummy.png"
-     alt="dummy.png"
+- [video](https://www.coursera.org/learn/cloud-infrastructure-design-process/lecture/UERcn/deployment-manager-full-production)
+- [lab notes](../labs/lab_Deployment_Manager_Full_Production.md)
+
+In this final lab, you'll clone a public repository of deployment manager templates. The public repo is a library of templates that are provided for a variety of purposes.
+
+They provide a flexible base of templates that you can build on to create your own deployment solutions. There are several tutorials available in the online documentation that use the templates in the repo. This lab is based on one of the advanced tutorials. It employs many of the **best practices** and **design principles** you've learned in this class. It creates a scalable, resilient full production service **around a simple logbook application**.
+
+The lab goes beyond the tutorial, by adding monitoring and testing. You'll use stac driver to configure monitoring, alert notifications and to set up graphical dashboards.
+
+- You'll use [Apache Bench](https://httpd.apache.org/docs/2.4/programs/ab.html) to generate load traffic to test the system and trigger auto scaling. 
+- You'll also simulate a service outage to test notifications and resiliency features.
+
+During the previous labs in this course you learned a lot about the basic use of deployment manager. In this final lab, you'll clone a public repo of example Deployment Manager templates that you can use as reference for developing advanced deployments. The previous labs all used YAML templates and Jinja2 templates. This final lab uses Python templates. You'll deploy a full production application that implements many of the principles that were discussed and applied during the class.
+
+<img src="../images/lab_full_production.png"
+     alt="lab_full_production.png"
      style="float: left; margin-right: 10px;" />
 
-<img src="../images/dummy.png"
-     alt="dummy.png"
-     style="float: left; margin-right: 10px;" />
-     
-<img src="../images/dummy.png"
-     alt="dummy.png"
+<img src="../images/lab_full_production_architecture.png"
+     alt="lab_full_production_architecture.png"
      style="float: left; margin-right: 10px;" />
 
-<img src="../images/dummy.png"
-     alt="dummy.png"
-     style="float: left; margin-right: 10px;" />
-
-<img src="../images/dummy.png"
-     alt="dummy.png"
-     style="float: left; margin-right: 10px;" />
-
-<img src="../images/dummy.png"
-     alt="dummy.png"
-     style="float: left; margin-right: 10px;" />
 
 
 ## Resources/Articles
@@ -1419,3 +1452,6 @@ It includes:
 - Google's **Site Reliability Engineering**: https://landing.google.com/sre/books/
 - Google's **The Site Reliability Workbook**: https://landing.google.com/sre/books/
 - [**GCP podcast about Pokémon GO**](https://www.gcppodcast.com/post/episode-57-pokemon-go-with-edward-wu/) with Edward Wu, Director of Software Engineering at Niantic
+- GCP solutions: https://cloud.google.com/solutions
+- **GCP tutorials & solutions**: https://cloud.google.com/docs/tutorials
+- [Apache Bench](https://httpd.apache.org/docs/2.4/programs/ab.html) to generate load traffic to test the system and trigger auto scaling. 
