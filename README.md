@@ -73,6 +73,8 @@ The Google Cloud Certified - Professional Cloud Architect exam assesses your abi
 * Manage implementations of cloud architecture
 * Ensure solution and operations reliability
 
+### Useful links and learning pathways
+
 - The [Cloud Architect certification](https://cloud.google.com/certification/cloud-architect) (training, exam's guide, hands-on, ...)
 - [Preparing for the Professional Cloud Architect Examination](https://google.qwiklabs.com/courses/879&utm_source=cloud-dot-google&utm_medium=website) & [**[Notes]**](./cloud_architect/Preparing_for_the_Professional_Cloud_Architect_Examination.md)
 - Training:
