@@ -1120,22 +1120,33 @@ Our system handles **~154.2 GB/day**, i.e. **~55TB/year**.
      alt="design_challenge_capacity_planning_BigTable_estimate_growing_capacity.png"
      style="float: left; margin-right: 10px;" />
 
-BigTable can handle up to 10 000 qps and 10MB/s of throughput. So doubling the usage of our app can be handled by a single BigTable node, but we need to consider our **storage capacity** reaching 110TB by the end of the 2nd year.
+a BigTable node can handle up to 10 000 qps and 10MB/s of throughput. So doubling the usage of our app can be handled by a single BigTable node, but we need to consider our **storage capacity** reaching 110TB by the end of the 2nd year.
 
+Doing the math, 22 BigTable servers using SSD drives won't be sufficient for the double growth forecasted for the coming year.
 
-<img src="../images/dummy.png"
-     alt="dummy.png"
+<img src="../images/design_challenge_capacity_planning_BigTable_estimate_growing_pricing.png"
+     alt="design_challenge_capacity_planning_BigTable_estimate_growing_pricing.png"
      style="float: left; margin-right: 10px;" />
 
-<img src="../images/dummy.png"
-     alt="dummy.png"
-     style="float: left; margin-right: 10px;" />
-
-<img src="../images/dummy.png"
-     alt="dummy.png"
-     style="float: left; margin-right: 10px;" />
 
 ## Deployment, Monitoring and Alerting, and Incident Response
+
+[video](https://www.coursera.org/learn/cloud-infrastructure-design-process/lecture/OFVf0/deployment-monitoring-and-alerting-and-incident-response-overview)
+
+This module discusses **deploying, operating and maintaining your design**.
+
+One of the things that's been visited repeatedly during this course, is that for a system to stabilize after implementation, it needs to be surrounded by properly prepared and designed behaviors.
+
+What people do while operating and maintaining the system matters. The SLOs and SLIs you've been evolving through the design process, provide an objective method to manage the solution, to keep it running and on track. However, these same measures and the discipline of iteratively reviewing them, will also help determine when the circumstances have changed, when the assumptions of the original design are no longer true or accurate, and it's time to revisit the design and evolve the system.
+
+> This module focuses on the behavioral part of your design.
+
+<img src="../images/design_behavior_design_operations.png"
+     alt="design_behavior_design_operations.png"
+     style="float: left; margin-right: 10px;" />
+
+
+
 
 ### Learning Objectives
 
@@ -1148,21 +1159,263 @@ BigTable can handle up to 10 000 qps and 10MB/s of throughput. So doubling the u
 * Test the monitoring and alerting regimen by applying a load to the service.
 * Test the monitoring and alerting regimen by simulating a service outage.
 
-### Overview
-
 ### Deployment
+
+[video](https://www.coursera.org/learn/cloud-infrastructure-design-process/lecture/5imlo/deployment-monitoring-and-alerting-and-incident-response-deployment)
+
+In this lesson, you'll learn some tips about how to deploy your solution. The advice seems like common sense. Make:
+
+* a checklist,
+* automate processes,
+* use an infrastructure orchestration framework.
+
+But don't underestimate the importance of these activities. They're at the core of deploying a stable solution.
+
+1. Plan your checklist of dependencies for deployment
+
+<img src="../images/design_behavior_deployment_plan.png"
+     alt="design_behavior_deployment_plan.png"
+     style="float: left; margin-right: 10px;" />
+
+2. Launch automation with resilience in mind
+
+<img src="../images/design_behavior_deployment_implement_automation.png"
+     alt="design_behavior_deployment_implement_automation.png"
+     style="float: left; margin-right: 10px;" />
+
+Tool of choice: **Deployment Manager**
+
+* configuration
+* Resources
+* Templates
+
+<img src="../images/design_behavior_deployment_implement_automation_tool.png"
+     alt="design_behavior_deployment_implement_automation_tool.png"
+     style="float: left; margin-right: 10px;" />
 
 ### Monitoring & Alerting
 
+[video](https://www.coursera.org/learn/cloud-infrastructure-design-process/lecture/WBkXI/deployment-monitoring-and-alerting-and-incident-response-monitoring-and-alerting)
+
+
+This lesson covers:
+
+* **monitoring and alerting** its concepts.
+* It then **illustrates the application of these concepts with a stack driver service** including the kinds of monitoring that can be configured.
+* **How to set up an alert and notification?**
+* and **how to create a dashboard with charts to help visualize the running system?**
+
+#### SRE pyramid: Monitoring is measuring
+
+(https://landing.google.com/sre/books/)
+
+<img src="../images/design_behavior_monitoring_is_measuring.png"
+     alt="design_behavior_monitoring_is_measuring.png"
+     style="float: left; margin-right: 10px;" />
+
+#### Push-based and Pull-based metrics
+
+<img src="../images/design_behavior_monitoring_push-based_pull-based_metrics.png"
+     alt="design_behavior_monitoring_push-based_pull-based_metrics.png"
+     style="float: left; margin-right: 10px;" />
+
+#### Black box monitoring (affecting user experience)
+
+<img src="../images/design_behavior_monitoring_blackbox.png"
+     alt="design_behavior_monitoring_blackbox.png"
+     style="float: left; margin-right: 10px;" />
+
+#### White box monitoring (monitoring services)
+
+<img src="../images/design_behavior_monitoring_whitebox.png"
+     alt="design_behavior_monitoring_whitebox.png"
+     style="float: left; margin-right: 10px;" />
+
+#### Carefully output of monitoring systems: alerts, 
+
+* **Alerts**: a human must take action immediately
+* **Tickets**: a human must take action, but the situation isn't yet urgent
+* **Logging**: diagnostic information only
+
+<img src="../images/design_behavior_monitoring_output_carefuly.png"
+     alt="design_behavior_monitoring_output_carefuly.png"
+     style="float: left; margin-right: 10px;" />
+
+#### 12-factor administration & operation in GCP: Stack driver
+
+<img src="../images/design_behavior_monitoring_on_GCP.png"
+     alt="design_behavior_monitoring_on_GCP.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/design_behavior_Stackdriver_unified_tool.png"
+     alt="design_behavior_Stackdriver_unified_tool.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/design_behavior_Stackdriver_built_for_AWS.png"
+     alt="design_behavior_Stackdriver_built_for_AWS.png"
+     style="float: left; margin-right: 10px;" />
+
+> Specify a specific Stackdriver account to make use of its services!
+
+#### Some features of Stack driver
+
+**Uptime (health) check details**
+
+<img src="../images/design_behavior_Stackdriver_uptime_check.png"
+     alt="design_behavior_Stackdriver_uptime_check.png"
+     style="float: left; margin-right: 10px;" />
+
+**Create alerts** (conditions, notifications, documentation)
+
+<img src="../images/design_behavior_Stackdriver_create_alerts.png"
+     alt="design_behavior_Stackdriver_create_alerts.png"
+     style="float: left; margin-right: 10px;" />
+
+**Dashboards**
+
+<img src="../images/design_behavior_Stackdriver_create_dashboards.png"
+     alt="design_behavior_Stackdriver_create_dashboards.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/design_behavior_Stackdriver_create_dashboards_dynamic.png"
+     alt="design_behavior_Stackdriver_create_dashboards_dynamic.png"
+     style="float: left; margin-right: 10px;" />
+
+**Logging Agents** can be installed to capture all types of logs from other tiers too.
+
+<img src="../images/design_behavior_Stackdriver_install_log_agents_also_for_tiers_products.png"
+     alt="design_behavior_Stackdriver_install_log_agents_also_for_tiers_products.png"
+     style="float: left; margin-right: 10px;" />
+
+
 ### Incident Response
+
+[video](https://www.coursera.org/learn/cloud-infrastructure-design-process/lecture/7BevS/deployment-monitoring-and-alerting-and-incident-response-incident-response)
+
+Incident response is **the human behavior that results in system stability when things don't go as planned**.
+
+The Site Reliability Engineering or SRE model is introduced (see [references section](#resourcesarticles)). You've actually been learning best practices throughout this course that relate directly to the layers of the SRE model. By developing your design with reliability in mind you've established processes for operating, maintaining, and recovering system in the event that things start to go sideways. In this lesson you'll review the items that were discussed in detail earlier in the class to prepare for successful incident response. Now, we'll discuss a few final steps such as developing playbooks to implement the response strategy.
+
+
+<img src="../images/incident_response_user_trust.png"
+     alt="incident_response_user_trust.png"
+     style="float: left; margin-right: 10px;" />
+
+#### Structured incident response
+
+<img src="../images/incident_response_structure.png"
+     alt="incident_response_structure.png"
+     style="float: left; margin-right: 10px;" />
+     
+It includes:
+
+* Monitoring dashboards
+* Alterting regimen
+* Plans & Tools for responding to issues
+
+<img src="../images/incident_response_structure_details.png"
+     alt="incident_response_structure_details.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/incident_response_structure_SRE_pyramid.png"
+     alt="incident_response_structure_SRE_pyramid.png"
+     style="float: left; margin-right: 10px;" />
+
+### List of SRE processes
+
+<img src="../images/list_processes.png"
+     alt="list_processes.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
 
 ### Application: Stabilization & Operation
 
+
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+     
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+
 ### Design Challenge #7: Monitoring & Alerting
 
+
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+     
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+
 ### Lab: Deployment Manager - Full Production
+
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+     
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+
 
 ## Resources/Articles
 
 - [**Perfkit Benchmarker**](https://github.com/GoogleCloudPlatform/PerfKitBenchmarker): PerfKit Benchmarker is an open effort to define a canonical set of benchmarks to measure and compare cloud offerings.
 - **Price calculator**: [cloud.google.com/products/calculator/](https://cloud.google.com/products/calculator/)
+- Google's **Site Reliability Engineering**: https://landing.google.com/sre/books/
+- Google's **The Site Reliability Workbook**: https://landing.google.com/sre/books/
+- [**GCP podcast about Pokémon GO**](https://www.gcppodcast.com/post/episode-57-pokemon-go-with-edward-wu/) with Edward Wu, Director of Software Engineering at Niantic
