@@ -860,56 +860,221 @@ The security measures you're considering implementing in the photo service will 
      alt="design_challenge_security_log_files_solution.png"
      style="float: left; margin-right: 10px;" />
 
-<img src="../images/dummy.png"
-     alt="dummy.png"
-     style="float: left; margin-right: 10px;" />
-
-<img src="../images/dummy.png"
-     alt="dummy.png"
-     style="float: left; margin-right: 10px;" />
-
-<img src="../images/dummy.png"
-     alt="dummy.png"
-     style="float: left; margin-right: 10px;" />
-
-<img src="../images/dummy.png"
-     alt="dummy.png"
-     style="float: left; margin-right: 10px;" />
-
-<img src="../images/dummy.png"
-     alt="dummy.png"
-     style="float: left; margin-right: 10px;" />
-
-<img src="../images/dummy.png"
-     alt="dummy.png"
-     style="float: left; margin-right: 10px;" />
-
-<img src="../images/dummy.png"
-     alt="dummy.png"
-     style="float: left; margin-right: 10px;" />
-
-<img src="../images/dummy.png"
-     alt="dummy.png"
-     style="float: left; margin-right: 10px;" />
-
-
-
-
 ## Capacity Planning & Cost Optimization
+
+[video](https://www.coursera.org/learn/cloud-infrastructure-design-process/lecture/SsEgy/capacity-planning-and-cost-optimization-overview)
 
 Identify ways to optimize resources and minimize cost.
 
 ### Overview
 
+Both forecasting for future demand on a system, and planning the resources for a system, depend on non-abstract large-scale design sometimes called dimensioning.
+
+When you optimize for one factor by changing a resource, there may be other consequences. For example, if you change the VM size to optimize CPU capacity, it's possible that network throughput memory and disk capacity could change as a consequence. So, you really need to think through all the dimensions that are affected by your design and perform the calculations to ensure there's sufficient capacity for your purposes.
+
+A common mistake is to optimize away resiliency. Remember that overcapacity is sometimes included by design to handle bursty periods, growth, or intentional attacks. Failing to recognize the purpose of excess capacity, and then reducing it to save money, can create opportunities for cascade failures.
+
+<img src="../images/dimensioning_capacity_planning_pricing.png"
+     alt="dimensioning_capacity_planning_pricing.png"
+     style="float: left; margin-right: 10px;" />
+
 ### Capacity Planning
+
+[video](https://www.coursera.org/learn/cloud-infrastructure-design-process/lecture/0h7MF/capacity-planning-and-cost-optimization-capacity-planning)
+
+Capacity planning is **an ongoing cyclical process**.
+
+There are various common measures such as:
+
+* VM instance capacity,
+* disk performance,
+* network throughput,
+* and workload estimations.
+
+Ultimately, you need to be able to answer the question, **is there sufficient resource with reasonable certainty?** One of the key design principles in this course is to allow other factors to influence your design first, and then come back and dimension the design later. You might have to change some of the design for capacity or for better pricing, but at least, you'll make these adjustments knowing what benefits you're trading for reduced cost or better capacity management.
+
+**Capacity planning cycle:**
+
+<img src="../images/dimensioning_cycle.png"
+     alt="dimensioning_cycle.png"
+     style="float: left; margin-right: 10px;" />
+
+#### 1. Forecast
+
+<img src="../images/dimensioning_cycle_forecast.png"
+     alt="dimensioning_cycle_forecast.png"
+     style="float: left; margin-right: 10px;" />
+
+##### Forecast estimation
+
+<img src="../images/dimensioning_cycle_forecast_estimation.png"
+     alt="dimensioning_cycle_forecast_estimation.png"
+     style="float: left; margin-right: 10px;" />
+
+
+##### Instance overhead estimation
+
+How to NOT overestimate:
+
+<img src="../images/dimensioning_cycle_forecast_instance_overhead_estimation.png"
+     alt="dimensioning_cycle_forecast_instance_overhead_estimation.png"
+     style="float: left; margin-right: 10px;" />
+
+##### Persistent disks estimation
+
+<img src="../images/dimensioning_cycle_forecast_presistence_disks_estimation.png"
+     alt="dimensioning_cycle_forecast_presistence_disks_estimation.png"
+     style="float: left; margin-right: 10px;" />
+
+
+##### Network capacity estimation
+
+<img src="../images/dimensioning_cycle_forecast_network_estimation.png"
+     alt="dimensioning_cycle_forecast_network_estimation.png"
+     style="float: left; margin-right: 10px;" />
+
+##### Workload estimation
+
+<img src="../images/dimensioning_cycle_forecast_workload_estimation.png"
+     alt="dimensioning_cycle_forecast_workload_estimation.png"
+     style="float: left; margin-right: 10px;" />
+
+[**Perfkit Benchmarker**](https://github.com/GoogleCloudPlatform/PerfKitBenchmarker) (Open source tool by Google)
+
+
+
+<img src="../images/dimensioning_cycle_forecast_workload_estimation_PerfkitBEnchmarker.png"
+     alt="dimensioning_cycle_forecast_workload_estimation_PerfkitBEnchmarker.png"
+     style="float: left; margin-right: 10px;" />
+
+#### Allocate
+
+<img src="../images/dimensioning_cycle_allocate.png"
+     alt="dimensioning_cycle_allocate.png"
+     style="float: left; margin-right: 10px;" />
+
+Example with rough estimation:
+
+<img src="../images/dimensioning_cycle_allocate_example.png"
+     alt="dimensioning_cycle_allocate_example.png"
+     style="float: left; margin-right: 10px;" />
+
+Opportunity for optimization before allocating more resources?
+
+<img src="../images/dimensioning_cycle_allocate_opportunity_for_optimization.png"
+     alt="dimensioning_cycle_allocate_opportunity_for_optimization.png"
+     style="float: left; margin-right: 10px;" />
+
+#### Approve
+
+<img src="../images/dimensioning_cycle_approve.png"
+     alt="dimensioning_cycle_approve.png"
+     style="float: left; margin-right: 10px;" />
+
+#### Deploy
+
+First: Test, test, test...
+
+<img src="../images/dimensioning_cycle_deploy.png"
+     alt="dimensioning_cycle_deploy.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/dimensioning_balanced_approach_to_dimensioning.png"
+     alt="dimensioning_balanced_approach_to_dimensioning.png"
+     style="float: left; margin-right: 10px;" />
+
+
 
 ### Pricing
 
+[video](https://www.coursera.org/learn/cloud-infrastructure-design-process/lecture/cwllj/capacity-planning-and-cost-optimization-pricing)
+
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
 ### Application: Photo Service - Cost & Capacity
 
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
 ### Design Challenge #6: Dimensioning
 
 
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
 
 ## Deployment, Monitoring and Alerting, and Incident Response
 
@@ -939,3 +1104,5 @@ Identify ways to optimize resources and minimize cost.
 ### Lab: Deployment Manager - Full Production
 
 ## Resources/Articles
+
+- [**Perfkit Benchmarker**](https://github.com/GoogleCloudPlatform/PerfKitBenchmarker): PerfKit Benchmarker is an open effort to define a canonical set of benchmarks to measure and compare cloud offerings.
