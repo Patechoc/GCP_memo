@@ -70,8 +70,12 @@ The course includes presentations, demonstrations, and hands-on labs.
 
 [video](https://www.coursera.org/learn/preparing-cloud-professional-cloud-architect-exam/lecture/qMLHZ/introduction)
 
-Details of the exam/certification is available in French, but not in English (weird!): https://cloud.google.com/certification/guides/professional-cloud-architect/?hl=fr
+Details of the exam/certification is available [in English](https://cloud.google.com/certification/guides/professional-cloud-architect) or [in French](https://cloud.google.com/certification/guides/professional-cloud-architect/?hl=fr): 
 
+
+## Examinaton guide
+
+Use the Exam Guide outline to help identify what to study.
 
 > **Guide de l'examen de certification**
 > 
@@ -216,4 +220,111 @@ Details of the exam/certification is available in French, but not in English (we
 > * Mountkirk Games
 > * Dress4Win
 > * TerramEarth
-> 
+
+
+<img src="../../images/prepare_exam_operation_secure.png"
+     alt="prepare_exam_operation_secure.png"
+     style="float: left; margin-right: 10px;" />
+
+* **Design and implement** (make something function... more about **products**)
+* **optimize and operate** (make something secure and cost effective)
+* **manage implementation and operate reliability** (make something continue reliably and adapt over time... more about **procedures**)
+
+Have you heard of the the four P's? That's **product**, **people**, **policy**, and **process**.
+
+## Meaning of  the Professional Cloud Architect Certification
+
+([video](https://www.coursera.org/learn/preparing-cloud-professional-cloud-architect-exam/lecture/NbDJr/understanding-the-professional-cloud-architect-certification))
+
+### Different roles & certifications
+
+<img src="../../images/prepare_exam_different_roles_and_certifications.png"
+     alt="prepare_exam_different_roles_and_certifications.png"
+     style="float: left; margin-right: 10px;" />
+
+ I just want to caution you that the associate cloud engineer is not a simpler and easier cloud architect exam. All of these certifications are based on real-world practical job skills required and used by practitioners in the industry.
+ 
+ A cloud engineer uses the same technology as the cloud architect. However, their job focuses different and so the skills are different. For example:
+ 
+ * a **cloud architect** might consider how to design a Kubernetes cluster to meet customer requirements.
+ * A **cloud engineer** might run jobs on the cluster and be more focused on monitoring the cluster and measuring and maintaining its performance.
+ * A **cloud architect** designs the solution and implements it.
+ * A **cloud engineer** operates a solution, monitors it maintains it, and evolves it as business circumstances change.
+ 
+ So, which certification or certifications you might want depends on your job role, the job you have or the job you want to have. 
+
+### Difference between "associate" vs "professional" level of certifications
+
+= difference on "designing" and "business requirements"
+
+**Professional**:
+
+* designing
+* planning
+* PoC
+* Identifying the business needs
+
+**Associate**:
+
+* implementing
+* operating & technical requirements
+
+<img src="../../images/prepare_exam_difference_associate_vs_professional.png"
+     alt="prepare_exam_difference_associate_vs_professional.png"
+     style="float: left; margin-right: 10px;" />
+
+### Tips for methods of study
+
+<img src="../../images/prepare_exam_tips_for_methods_of_study.png"
+     alt="prepare_exam_tips_for_methods_of_study.png"
+     style="float: left; margin-right: 10px;" />
+
+### Tips for the day of the exam
+
+<img src="../../images/prepare_exam_tips_for_exam_day.png"
+     alt="prepare_exam_tips_for_exam_day.png"
+     style="float: left; margin-right: 10px;" />
+
+### Build your own case study summaries
+
+<img src="../../images/prepare_exam_case_studies_summaries.png"
+     alt="prepare_exam_case_studies_summaries.png"
+     style="float: left; margin-right: 10px;" />
+
+
+* [Mountkirk Games Case Study](https://cloud.google.com/certification/guides/cloud-architect/casestudy-mountkirkgames-rev2) [[video](https://www.coursera.org/learn/preparing-cloud-professional-cloud-architect-exam/lecture/UKteT/mountkirk-games-case-study-analysis)]
+* 
+* 
+
+<img src="../../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+
