@@ -222,7 +222,7 @@ Use the Exam Guide outline to help identify what to study.
 > * TerramEarth
 
 
-<img src="../../images/prepare_exam_operation_secure.png"
+<img src="../images/prepare_exam_operation_secure.png"
      alt="prepare_exam_operation_secure.png"
      style="float: left; margin-right: 10px;" />
 
@@ -238,7 +238,7 @@ Have you heard of the the four P's? That's **product**, **people**, **policy**, 
 
 ### Different roles & certifications
 
-<img src="../../images/prepare_exam_different_roles_and_certifications.png"
+<img src="../images/prepare_exam_different_roles_and_certifications.png"
      alt="prepare_exam_different_roles_and_certifications.png"
      style="float: left; margin-right: 10px;" />
 
@@ -269,25 +269,25 @@ Have you heard of the the four P's? That's **product**, **people**, **policy**, 
 * implementing
 * operating & technical requirements
 
-<img src="../../images/prepare_exam_difference_associate_vs_professional.png"
+<img src="../images/prepare_exam_difference_associate_vs_professional.png"
      alt="prepare_exam_difference_associate_vs_professional.png"
      style="float: left; margin-right: 10px;" />
 
 ### Tips for methods of study
 
-<img src="../../images/prepare_exam_tips_for_methods_of_study.png"
+<img src="../images/prepare_exam_tips_for_methods_of_study.png"
      alt="prepare_exam_tips_for_methods_of_study.png"
      style="float: left; margin-right: 10px;" />
 
 ### Tips for the day of the exam
 
-<img src="../../images/prepare_exam_tips_for_exam_day.png"
+<img src="../images/prepare_exam_tips_for_exam_day.png"
      alt="prepare_exam_tips_for_exam_day.png"
      style="float: left; margin-right: 10px;" />
 
 ### Build your own case study summaries
 
-<img src="../../images/prepare_exam_case_studies_summaries.png"
+<img src="../images/prepare_exam_case_studies_summaries.png"
      alt="prepare_exam_case_studies_summaries.png"
      style="float: left; margin-right: 10px;" />
 
@@ -296,35 +296,35 @@ Have you heard of the the four P's? That's **product**, **people**, **policy**, 
 * 
 * 
 
-<img src="../../images/dummy.png"
+<img src="../images/dummy.png"
      alt="dummy.png"
      style="float: left; margin-right: 10px;" />
 
-<img src="../../images/dummy.png"
+<img src="../images/dummy.png"
      alt="dummy.png"
      style="float: left; margin-right: 10px;" />
 
-<img src="../../images/dummy.png"
+<img src="../images/dummy.png"
      alt="dummy.png"
      style="float: left; margin-right: 10px;" />
 
-<img src="../../images/dummy.png"
+<img src="../images/dummy.png"
      alt="dummy.png"
      style="float: left; margin-right: 10px;" />
 
-<img src="../../images/dummy.png"
+<img src="../images/dummy.png"
      alt="dummy.png"
      style="float: left; margin-right: 10px;" />
 
-<img src="../../images/dummy.png"
+<img src="../images/dummy.png"
      alt="dummy.png"
      style="float: left; margin-right: 10px;" />
 
-<img src="../../images/dummy.png"
+<img src="../images/dummy.png"
      alt="dummy.png"
      style="float: left; margin-right: 10px;" />
 
-<img src="../../images/dummy.png"
+<img src="../images/dummy.png"
      alt="dummy.png"
      style="float: left; margin-right: 10px;" />
 
