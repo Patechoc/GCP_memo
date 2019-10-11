@@ -285,6 +285,29 @@ Have you heard of the the four P's? That's **product**, **people**, **policy**, 
      alt="prepare_exam_tips_for_exam_day.png"
      style="float: left; margin-right: 10px;" />
 
+
+### Product and technology knowledge
+
+ou need to know the basic information about each product that might be covered on the exam.
+
+#### You need to know...
+
+* What it does, why it exists.
+* What is special about its design, for what purpose or purposes was it optimized?
+* When do you use it, and what are the limits or bounds when it is time to consider an alternative?
+* What are the key features of this product or technology?
+* Is there an Open Source alternative? If so, what are the key benefits of the cloud-based service over the Open Source software?
+
+#### Which products and technologies
+
+Training and Certification meet at the JTA -- the Job Task Analysis -- the skills required of the job.
+
+The scope of the exam matches the learning track and specialization in training. So a great place to derive a list of the technologies and products that might be on the exam is to look at all the products and technologies that are covered in the related training. The training might not cover everything. But it is a good place to start.
+
+#### Study methods
+
+Training is great. Digging into the online documentation can be very instructive and covers more detail than can be covered in a class, so documentation tends to have more equal coverage of features, whereas training has to prioritize its time. Getting hands on experience can help you understand a product or technology much better than reading and is the kind of experience a professional in the job would have. So labs can be a great way to prepare.
+
 ### Build your own case study summaries
 
 <img src="../images/prepare_exam_case_studies_summaries.png"
@@ -292,9 +315,179 @@ Have you heard of the the four P's? That's **product**, **people**, **policy**, 
      style="float: left; margin-right: 10px;" />
 
 
-* [Mountkirk Games Case Study](https://cloud.google.com/certification/guides/cloud-architect/casestudy-mountkirkgames-rev2) [[video](https://www.coursera.org/learn/preparing-cloud-professional-cloud-architect-exam/lecture/UKteT/mountkirk-games-case-study-analysis)]
-* 
-* 
+
+####  Mountkirk Games Case Study: a game app
+
+[Mountkirk Games Case Study](https://cloud.google.com/certification/guides/cloud-architect/casestudy-mountkirkgames-rev2) [[video](https://www.coursera.org/learn/preparing-cloud-professional-cloud-architect-exam/lecture/UKteT/mountkirk-games-case-study-analysis)]
+
+##### Key business points
+
+<img src="../images/prepare_exam_key_business_points_game_app.png"
+     alt="prepare_exam_key_business_points_game_app.png"
+     style="float: left; margin-right: 10px;" />
+
+
+##### Technical evaluation
+
+<img src="../images/prepare_exam_technical_evaluation_game_app.png"
+     alt="prepare_exam_technical_evaluation_game_app.png"
+     style="float: left; margin-right: 10px;" />
+
+##### Sample solution
+
+<img src="../images/prepare_examsamle_solution_game_app.png"
+     alt="prepare_examsamle_solution_game_app.png"
+     style="float: left; margin-right: 10px;" />
+
+#### Dress4Win Case Study: social network app around garderobe
+
+[Dress4Win Case Study](https://cloud.google.com/certification/guides/cloud-architect/casestudy-dress4win-rev2) [[video](https://www.coursera.org/learn/preparing-cloud-professional-cloud-architect-exam/lecture/JfG2y/dress4win-case-study-analysis)]
+
+##### Key business points
+
+<img src="../images/prepare_exam_key_business_points_soc-net_app.png"
+     alt="prepare_exam_key_business_points_soc-net_app.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/prepare_exam_tech_approach_soc-net_app.png"
+     alt="prepare_exam_tech_approach_soc-net_app.png"
+     style="float: left; margin-right: 10px;" />
+
+##### Technical evaluation
+
+<img src="../images/prepare_exam_technical_evaluation_soc-net_app.png"
+     alt="prepare_exam_technical_evaluation_soc-net_app.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/prepare_exam_technical_evaluation_2_soc-net_app.png"
+     alt="prepare_exam_technical_evaluation_2_soc-net_app.png"
+     style="float: left; margin-right: 10px;" />
+
+##### Sample solution
+
+<img src="../images/prepare_exam_sample_solution_soc-net_app.png"
+     alt="prepare_exam_sample_solution_soc-net_app.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/prepare_exam_sample_solution_2_soc-net_app.png  "
+     alt="prepare_exam_sample_solution_2_soc-net_app.png"
+     style="float: left; margin-right: 10px;" />
+
+#### TerramEarth Case Study: IoT  sensors for agriculture & mining 
+
+[TerramEarth Case Study](https://cloud.google.com/certification/guides/cloud-architect/casestudy-terramearth-rev2) [[video](https://www.coursera.org/learn/preparing-cloud-professional-cloud-architect-exam/lecture/3z8sv/terramearth-case-study-analysis)]
+
+##### Key business points
+
+<img src="../images/prepare_exam_key_business_points_IoT_app.png"
+     alt="prepare_exam_key_business_points_IoT_app.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/prepare_exam_key_business_points_2_IoT_app.png"
+     alt="prepare_exam_key_business_points_2_IoT_app.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/prepare_exam_key_business_points_4_IoT_app.png"
+     alt="prepare_exam_key_business_points_4_IoT_app.png"
+     style="float: left; margin-right: 10px;" />
+
+##### Technical evaluation
+
+<img src="../images/prepare_exam_key_business_points_3_IoT_app.png"
+     alt="prepare_exam_key_business_points_3_IoT_app.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/prepare_exam_technical_evaluation_IoT_app.png"
+     alt="prepare_exam_technical_evaluation_IoT_app.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/prepare_exam_technical_evaluation_2_IoT_app.png"
+     alt="prepare_exam_technical_evaluation_2_IoT_app.png"
+     style="float: left; margin-right: 10px;" />
+
+##### Sample solution
+
+<img src="../images/prepare_exam_sample_solution_IoT_app.png"
+     alt="prepare_exam_sample_solution_IoT_app.png"
+     style="float: left; margin-right: 10px;" />
+
+
+### Touchstone concepts
+
+**A touchstone concept is a complex or key idea** -- something that you would learn in a class AFTER you have learned all the basic dependent concepts. They are used in this course because they are a very efficient way for you to learn where you have confidence and where more preparation might be needed.
+
+This approach is based on the **Deeper Learning method** of **adult** learning.
+
+#### Example
+
+People seem to be able to relate well to this example.
+
+**Touchstone**: "Unlike other vendor clouds, a subnet spans zones, enabling VMs with adjacent IPs to exist in separate zones, making design for availability easier to accomplish since the VMs can share tagged firewall rules."
+
+To understand the above statement, the basic dependent knowledge that must already be understood includes, Regions, Zones, Subnets, IP Addresses, and Firewall Rules.
+
+These basic concepts are not taught or reviewed in this course. They are taught in the training courses in this specialization and in the corresponding learning track in instructor led training.
+
+#### Advice: Evaluate the dependent basic concepts
+
+> Assess your confidence with each touchstone concept as it is presented. Don't expect to be taught the basic concept. If you don't understand the touchstone at all, or if you don't feel confident in your knowledge of it, or if you feel there are specific elements of it that you don't understand or are not confident about -- take note!
+
+This is an area where more preparation can be of benefit for you.
+
+Also -- note where you are confident, know the material, and the dependent concepts on which the touchstone is based. These areas require less preparation for you. So noting what you know well can help make your preparation activities more efficient.
+
+### Designing and Implementing
+
+[video](https://www.coursera.org/learn/preparing-cloud-professional-cloud-architect-exam/lecture/7zmPi/designing-and-implementing)
+
+This module covers designing and implementing infrastructure solutions. Design can get complicated. Do you have an approach to design? It's easy to confuse elements if you don't use an organized method. Do you have favorite design elements? For example, do you find most of your designs start with VMs? You'll want to overcome these biases by understanding the infrastructure services available and when to select them.
+
+Today you'll be learning about and preparing for the Professional Cloud Architect exam. 
+
+A lot of that has to do with design. Before you can design a solution, you need to understand the building blocks, the underlying services, and technologies that make up solutions in Google Cloud. Here's a tip, use a layered model like this one. It'll help you organize your thinking about each exam question, so that you'll more easily recognize and focus on what's important. Professional Cloud Architects often use layered models to organize or separate solution designs. It makes it much easier to deal with the complexity and to make sure there are no dropouts in the design. This model comes from our design and process class.
+
+<img src="../images/Design_methods.png"
+     alt="Design_methods.png"
+     style="float: left; margin-right: 10px;" />
+
+#### Designing a solution infrastructure that meets business requirements
+
+This class follows the exam guide. So whenever you see a slide like this, a blue column contains items directly from the exam guide.and the white column contains tips and advice directly relevant to each outlined item. You can read through these yourself.
+
+I'm going to highlight and discuss one or two of these per slide. When we speak about business requirements, we're asking the question, "What are the customer's needs and expectations?" Questions on the exam are realistic, so on a job, these discussions would likely be with a business stakeholder, and you'd need to be prepared to answer these questions and their concerns.
+
+You'll notice that the first and last items in the list have to do with determining the criteria for success and deciding how to measure that. It's very important to be explicit about exactly what you're trying to achieve. **These items are often stated qualitatively at the beginning and are measurable and quantitative at the end**.
+
+<img src="../images/touchstones.png"
+     alt="touchstones.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/solutions_depends_on_context.png"
+     alt="solutions_depends_on_context.png"
+     style="float: left; margin-right: 10px;" />
+
+#### Context are often tradeoffs solutions: Good vs Fast vs Cost
+
+<img src="../images/build_buy_modify.png"
+     alt="build_buy_modify.png"
+     style="float: left; margin-right: 10px;" />
+
+## Practice Case Study analysis
+
+### Case Study #1
+
+<img src="../images/case_study_01-design_plan.png"
+     alt="case_study_01-design_plan.png"
+     style="float: left; margin-right: 10px;" />
+
+Context = need to gain in speed and ease of use thanks to cloud solutions
+
+#### Identify technical watchpoints
+
+<img src="../images/case_study_01-watchpoints.png"
+     alt="case_study_01-watchpoints.png"
+     style="float: left; margin-right: 10px;" />
+
 
 <img src="../images/dummy.png"
      alt="dummy.png"
@@ -307,7 +500,6 @@ Have you heard of the the four P's? That's **product**, **people**, **policy**, 
 <img src="../images/dummy.png"
      alt="dummy.png"
      style="float: left; margin-right: 10px;" />
-
 <img src="../images/dummy.png"
      alt="dummy.png"
      style="float: left; margin-right: 10px;" />
@@ -319,7 +511,6 @@ Have you heard of the the four P's? That's **product**, **people**, **policy**, 
 <img src="../images/dummy.png"
      alt="dummy.png"
      style="float: left; margin-right: 10px;" />
-
 <img src="../images/dummy.png"
      alt="dummy.png"
      style="float: left; margin-right: 10px;" />
@@ -328,3 +519,17 @@ Have you heard of the the four P's? That's **product**, **people**, **policy**, 
      alt="dummy.png"
      style="float: left; margin-right: 10px;" />
 
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
