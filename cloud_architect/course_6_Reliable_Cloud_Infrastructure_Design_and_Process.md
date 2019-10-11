@@ -1387,3 +1387,4 @@ The photo application that was promised by the development team is late. You dec
 ## Resources/Articles
 
 - https://cloud.google.com/compute/docs/reference/rest/v1/instances
+- Common design patterns: https://cloud.google.com/apis/design/design_patterns

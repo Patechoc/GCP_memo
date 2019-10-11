@@ -472,9 +472,9 @@ You'll notice that the first and last items in the list have to do with determin
      alt="build_buy_modify.png"
      style="float: left; margin-right: 10px;" />
 
-## Practice Case Study analysis
+#### Practice Case Study analysis
 
-### Case Study #1
+###### Case Study #1
 
 <img src="../images/case_study_01-design_plan.png"
      alt="case_study_01-design_plan.png"
@@ -482,12 +482,101 @@ You'll notice that the first and last items in the list have to do with determin
 
 Context = need to gain in speed and ease of use thanks to cloud solutions
 
-#### Identify technical watchpoints
+##### Identify technical watchpoints
 
 <img src="../images/case_study_01-watchpoints.png"
      alt="case_study_01-watchpoints.png"
      style="float: left; margin-right: 10px;" />
 
+[video](https://www.coursera.org/learn/preparing-cloud-professional-cloud-architect-exam/lecture/VQtJ1/designing-a-solution-infrastructure-that-meets-technical-requirements)
+
+<img src="../images/case_study_01-technical_solution.png"
+     alt="case_study_01-technical_solution.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/case_study_01-design_plan_requirements.png"
+     alt="case_study_01-design_plan_requirements.png"
+     style="float: left; margin-right: 10px;" />
+
+#### Designing a solution infrastructure that meets technical requirements
+
+<img src="../images/Design_solution_meeting_requirements.png"
+     alt="Design_solution_meeting_requirements.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/Design_solution_meeting_requirements_what_to_measure.png"
+     alt="Design_solution_meeting_requirements_what_to_measure.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/Design_solution_meeting_requirements_time_value_deadline_requirements.png"
+     alt="Design_solution_meeting_requirements_time_value_deadline_requirements.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/Design_solution_chains_of_microservices.png"
+     alt="Design_solution_chains_of_microservices.png"
+     style="float: left; margin-right: 10px;" />
+
+##### Common design patterns
+
+Common design patterns: https://cloud.google.com/apis/design/design_patterns
+
+<img src="../images/Design_solution_common_design_patterns.png"
+     alt="Design_solution_common_design_patterns.png"
+     style="float: left; margin-right: 10px;" />
+
+##### Narrow down technology 
+
+Narrow down technology to what could work, then what would work best given a particular context:
+
+<img src="../images/Design_solution_narrow_down_to_what_could_work_then_whats_best.png"
+     alt="Design_solution_narrow_down_to_what_could_work_then_whats_best.png"
+     style="float: left; margin-right: 10px;" />
+
+##### Identifying bottlenecks
+
+Identifying bottlenecks is especially useful for questions involving building out from existing solutions. For example, the current system can support X number of users, and the goal is to support Y number of users. What's the bottleneck in the current design? Is it bandwidths, gigabytes, queries per second? Where will the application hit its limits? This is often the factor that determines which solution is best in the circumstance. 
+
+<img src="../images/Design_solution_identifying_bottlenecks.png"
+     alt="Design_solution_identifying_bottlenecks.png"
+     style="float: left; margin-right: 10px;" />
+
+##### Read/Build dataflow diagrams
+
+<img src="../images/Design_solution_read_buikd_dataflow_diagrams.png"
+     alt="Design_solution_read_buikd_dataflow_diagrams.png"
+     style="float: left; margin-right: 10px;" />
+
+##### ACID (consistency) vs BASE (availability)
+
+<img src="../images/Design_solution_assets_vs_base.png"
+     alt="Design_solution_assets_vs_base.png"
+     style="float: left; margin-right: 10px;" />
+
+
+significance of **atomicity**, **consistency**, **isolation**, and **durability**.
+
+* **Atomicity**: Transactions are often composed of multiple statements. Atomicity guarantees that each transaction is treated as a single **"unit", which either succeeds completely, or fails completely**: if any of the statements constituting a transaction fails to complete, the entire transaction fails and the database is left unchanged. 
+* **Consistency**: Consistency ensures that **a transaction can only bring the database from one valid state to another**, maintaining database invariants: any data written to the database must be valid according to all defined rules, including constraints, cascades, triggers, and any combination thereof.
+* **Isolation**: Transactions are often executed concurrently (e.g., multiple transactions reading and writing to a table at the same time). **Isolation ensures that concurrent execution of transactions** leaves the database in the same state that would have been obtained **if the transactions were executed sequentially**. 
+* **Durability**: Durability guarantees that once a **transaction** has been committed, it will **remain committed even in the case of a system failure** (e.g., power outage or crash)
+
+
+#### Creating a Migration Plan
+
+[video](https://www.coursera.org/learn/preparing-cloud-professional-cloud-architect-exam/lecture/wZINm/creating-a-migration-plan)
+
+
+<img src="../images/Design_solution_migration_plan.png"
+     alt="Design_solution_migration_plan.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/Design_solution_migration_plan_think_practically.png"
+     alt="Design_solution_migration_plan_think_practically.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/Design_solution_envision_furture_requirements.png"
+     alt="Design_solution_envision_furture_requirements.png"
+     style="float: left; margin-right: 10px;" />
 
 <img src="../images/dummy.png"
      alt="dummy.png"
@@ -500,6 +589,11 @@ Context = need to gain in speed and ease of use thanks to cloud solutions
 <img src="../images/dummy.png"
      alt="dummy.png"
      style="float: left; margin-right: 10px;" />
+
+<img src="../images/dummy.png"
+     alt="dummy.png"
+     style="float: left; margin-right: 10px;" />
+
 <img src="../images/dummy.png"
      alt="dummy.png"
      style="float: left; margin-right: 10px;" />
@@ -511,17 +605,7 @@ Context = need to gain in speed and ease of use thanks to cloud solutions
 <img src="../images/dummy.png"
      alt="dummy.png"
      style="float: left; margin-right: 10px;" />
-<img src="../images/dummy.png"
-     alt="dummy.png"
-     style="float: left; margin-right: 10px;" />
 
-<img src="../images/dummy.png"
-     alt="dummy.png"
-     style="float: left; margin-right: 10px;" />
-
-<img src="../images/dummy.png"
-     alt="dummy.png"
-     style="float: left; margin-right: 10px;" />
 <img src="../images/dummy.png"
      alt="dummy.png"
      style="float: left; margin-right: 10px;" />
@@ -533,3 +617,4 @@ Context = need to gain in speed and ease of use thanks to cloud solutions
 <img src="../images/dummy.png"
      alt="dummy.png"
      style="float: left; margin-right: 10px;" />
+
