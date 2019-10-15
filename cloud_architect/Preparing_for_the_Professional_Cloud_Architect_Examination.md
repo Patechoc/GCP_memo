@@ -1092,47 +1092,79 @@ Another key to security, is to **craft security permissions**. The standard role
      alt="security_best_practices.png"
      style="float: left; margin-right: 10px;" />
 
- A policy is set on a resorts, and each policy contains a set of rules enroll members. Resources inherit policies from parents. So, a policy can be set on a resource for example, a service, and another policy can be set on a parents such as a project that contains that service. The final policy is the union of the parent policy and the resource policy. What happens when these two policies are in conflict? What if the policy on the resource only gives access to a single cloud storage bucket, and restricts access to all other buckets? However, at the project level, a rule exists that grants access to all buckets in the project. Which rule wins? The more restrictive rule on the resource or the moral general role on the project? If the parent policy is less restrictive, it overrides a more restrictive resource policy. So, in this case, the project policy wins. Folders map well to organization structure. It's a way to isolate organizations or users or products while still having them share billing and corporate resources. Commit a security checklist to memory. Sometimes just running down a list will rapidly identify a solution.
+ A **policy** is set on a **Resource**, and each policy contains a **set of rules and role members**.
+ 
+ Resources inherit policies from parents. So, a policy can be set on a resource for example, a service, and another policy can be set on a parents such as a project that contains that service. The final policy is the union of the parent policy and the resource policy.
+ 
+ **What happens when these two policies are in conflict?**
+ 
+ What if the policy on the resource only gives access to a single cloud storage bucket, and restricts access to all other buckets? However, at the project level, a rule exists that grants access to all buckets in the project. Which rule wins? The more restrictive rule on the resource or the moral general role on the project?
+ 
+ > If the parent policy is less restrictive, it overrides a more restrictive resource policy.
+ 
+ So, in this case, the project policy wins. Folders map well to organization structure. It's a way to isolate organizations or users or products while still having them share billing and corporate resources. 
+
+
+Commit a security checklist to memory. Sometimes just running down a list will rapidly identify a solution.
+
 
 <img src="../images/security_policies.png"
      alt="security_policies.png"
      style="float: left; margin-right: 10px;" />
 
 
-<img src="../images/dummy.png"
-     alt="dummy.png"
+<img src="../images/security_IAM_list.png"
+     alt="security_IAM_list.png"
      style="float: left; margin-right: 10px;" />
 
 
-<img src="../images/dummy.png"
-     alt="dummy.png"
+### Network & Security reading
+
+<a href="../images/Reading-7---Network-and-Security.pdf">Network & Security reading</a>:
+
+- why do you bother locking doors?
+- Share VPC: keep others out by locking you in!
+
+<img src="../images/security_shareVPC_example.png"
+     alt="security_shareVPC_example.png"
      style="float: left; margin-right: 10px;" />
 
+- VPC peering keeps communications private and on topic
 
-<img src="../images/dummy.png"
-     alt="dummy.png"
+<img src="../images/security_VPCpeering_example.png"
+     alt="security_VPCpeering_example.png"
      style="float: left; margin-right: 10px;" />
 
+- Should you use Shared VPC or VPC peering?
 
-<img src="../images/dummy.png"
-     alt="dummy.png"
+<img src="../images/security_VPCpeering_or_sharedVPC.png"
+     alt="security_VPCpeering_or_sharedVPC.png"
      style="float: left; margin-right: 10px;" />
 
+- remove external IPs using Private Google Access
 
-<img src="../images/dummy.png"
-     alt="dummy.png"
+<img src="../images/security_remove_externalIP.png"
+     alt="security_remove_externalIP.png"
      style="float: left; margin-right: 10px;" />
 
+- Cloud NAT provides internet access to private instances
 
-<img src="../images/dummy.png"
-     alt="dummy.png"
+<img src="../images/security_cloudNAT.png"
+     alt="security_cloudNAT.png"
      style="float: left; margin-right: 10px;" />
 
+- Cloud Armor works with HTTP(S) load balancing
 
-<img src="../images/dummy.png"
-     alt="dummy.png"
+<img src="../images/security_cloudArmor.png"
+     alt="security_cloudArmor.png"
      style="float: left; margin-right: 10px;" />
 
+### Designing for Legal Compliance
+
+- [video](https://www.coursera.org/learn/preparing-cloud-professional-cloud-architect-exam/lecture/H9tVO/designing-for-legal-compliance)
+
+
+What are the two most common compliance areas? Privacy regulations such as HIPAA and GPDR, and commercial and live business standards such as PCI DSS. Google Network has layers of protection. Each layer protects and compliments the next internal layer. The main thing to know is that Google handles security up to a point, after that, the security is up to you. So, you need to know where your responsibilities begin.
 
 <img src="../images/dummy.png"
      alt="dummy.png"
