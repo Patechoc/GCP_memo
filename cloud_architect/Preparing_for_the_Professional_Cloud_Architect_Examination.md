@@ -472,7 +472,7 @@ You'll notice that the first and last items in the list have to do with determin
      alt="build_buy_modify.png"
      style="float: left; margin-right: 10px;" />
 
-#### Practice Case Study analysis
+#### Practice Case Study analysis #1
 
 ###### Case Study #1
 
@@ -941,7 +941,7 @@ One of the advanced things that Kubernetes deployments allow you to do is roll o
 <a href="../images/Reading-6---BigQuery.pdf">BigQuery</a>:
 
 
-## Practice
+## Practice Exam #2
 
 [video](https://www.coursera.org/learn/preparing-cloud-professional-cloud-architect-exam/lecture/iKLkP/practice-exam-questions-2)
 
@@ -1019,7 +1019,7 @@ This module covered the sections of the exams outline on optimizing and operatin
 
 **Compliance** is about meeting some external guideline or standard
 
-### Practice Case Study #3
+#### Practice Case Study Analysis #3
 
 [video](https://www.coursera.org/learn/preparing-cloud-professional-cloud-architect-exam/lecture/vy2g2/case-study-3)
 
@@ -1163,42 +1163,507 @@ Commit a security checklist to memory. Sometimes just running down a list will r
 
 - [video](https://www.coursera.org/learn/preparing-cloud-professional-cloud-architect-exam/lecture/H9tVO/designing-for-legal-compliance)
 
+<img src="../images/types_legal_compliance.png"
+     alt="types_legal_compliance.png"
+     style="float: left; margin-right: 10px;" />
 
 What are the two most common compliance areas? Privacy regulations such as HIPAA and GPDR, and commercial and live business standards such as PCI DSS. Google Network has layers of protection. Each layer protects and compliments the next internal layer. The main thing to know is that Google handles security up to a point, after that, the security is up to you. So, you need to know where your responsibilities begin.
 
+<img src="../images/Google_security_up_to_a_point.png"
+     alt="Google_security_up_to_a_point.png"
+     style="float: left; margin-right: 10px;" />
+
+- secure VPC
+- Cloud Interconnect
+- 3rd-party Virtual Appliances
+- Google Cloud load balancing
+- Google Network
+- 3rd-party DDoS defense
+
+
+<img src="../images/MAP_Google_security.png"
+     alt="MAP_Google_security.png"
+     style="float: left; margin-right: 10px;" />
+
+Here's some key concepts:
+
+* **Cloud Armor**,
+* **Cloud Load Balancing**,
+* **Cloud Firewall Rules**,
+* **Service Accounts**,
+* **separation into front-end and back-end**,
+* **isolation of resources using separate service accounts between devices**. 
+
+Because of **pervasive availability of firewall rules**, you don't have to install a router in the network at a particular location to get firewall protection. That means you can layer the firewalls as shown in this example.
+
+Because of **pervasive support for Service Accounts** you can lock down connections between components.
+
+When faced with a security question on an exam or in practice, determine which of the specific technologies or services is being discussed: Authentication, encryption for example, then determine exactly what the goals are for sufficient security. Is it deterrence? Is it meeting a standard for compliance? Is the goal to eliminate a particular risk or vulnerability? This will help you define a scope of a solution whether it's on an exam or in a real-world application
+
 <img src="../images/dummy.png"
      alt="dummy.png"
      style="float: left; margin-right: 10px;" />
 
+GCP provides several encryption options. Customer Managed encryption keys CMEK, using Cloud KMS. When you use Cloud Dataproc, cluster and job data is stored on persistent disks associated with the Compute Engine VMs in your cluster, and in a Cloud Storage bucket. The persistent disk and bucket data is encrypted using a Google-generated data encryption key called a DEK and a key encryption key called a KEK. The CMEK feature allows you to create use and revoke the key encryption key, the KEK. Google still controls the data encryption key or the DEK. Default encryption, encryption at rest uses the key management system KMS to generate KEKs and DEKs. The Key Management Service KMS allows you to generate AES-256 keys. You can use these values off Cloud. The service also handles key rotation and when a file is destroyed there is a 24-hour delay before final deletion.
 
-<img src="../images/dummy.png"
-     alt="dummy.png"
+<img src="../images/MAP_Google_security_encryption.png"
+     alt="MAP_Google_security_encryption.png"
+     style="float: left; margin-right: 10px;" />
+
+## Practice Exam #3
+
+[video](https://www.coursera.org/learn/preparing-cloud-professional-cloud-architect-exam/lecture/rmv6D/practice-exam-questions-3)
+
+> Which Cloud IAM roles for security auditors requiring visibility across all projects?
+> * A. Org viewer, project owner.
+> * B. Org viewer, project viewer.
+> * C. Org admin, project browser.
+> * Or D, Project owner, network admin.
+
+And **the answer is B, Org viewer, project viewer**. This solution gives read-only access across the entire company. The other options allow changes that should not be permitted. Dress4Win security has decided to standardize on AES256 for storage device encryption. Which strategy should be used with Compute Engine instances?
+
+
+> Dress4Win security has decided to standardize on AES256 for storage device encryption. Which strategy should be used with Compute Engine instances?
+> 
+> - Select like SSDs rather than HDDs to ensure AES256 encryption.
+> - Use the linux dm-crypt tool for whole-disk encryption.
+> - Use the Customer Supplied Encryption Keys, CSEK.
+> - Use open SSL for AES256 file encryption.
+> 
+**The answer is A, Select SSDs rather than HDD to ensure AES256 encryption.** Selection of disk type determines the default method for whole-disk encryption. HDDs use AES128 and SDDs use AES256. In addition to the storage system level encryption described above, in most cases, data is also encrypted at the storage device level. With at least AES128 for hard disks HDD and AES256 for new solid state drives SSD. Using a separate device level key which is different than the key used to encrypt the data at the storage level. As older devices are replaced solely AES256 will be used for device level encryption.
+
+#### Practice Case Study Analysis #4
+
+[video](https://www.coursera.org/learn/preparing-cloud-professional-cloud-architect-exam/lecture/AMcgI/case-study-4)
+
+###### Case Study #4
+
+This section covers analyzing and optimizing technical and business processes in the exam guide outline. Let's start with a case that will illustrate business requirements.
+
+<img src="../images/analyze_business_requirements.png"
+     alt="analyze_business_requirements.png"
+     style="float: left; margin-right: 10px;" />
+
+##### Identify technical watchpoints
+
+<img src="../images/practice_identify_business_requirements.png"
+     alt="practice_identify_business_requirements.png"
      style="float: left; margin-right: 10px;" />
 
 
-<img src="../images/dummy.png"
-     alt="dummy.png"
+#### Designing a solution infrastructure that meets technical requirements
+
+<img src="../images/practice_identify_requirements_solution.png"
+     alt="practice_identify_requirements_solution.png"
      style="float: left; margin-right: 10px;" />
 
 
-<img src="../images/dummy.png"
-     alt="dummy.png"
+<img src="../images/practice_case_4.png"
+     alt="practice_case_4.png"
+     style="float: left; margin-right: 10px;" />
+
+## Preparing for Analyzing and defining technical processes
+
+[video](https://www.coursera.org/learn/preparing-cloud-professional-cloud-architect-exam/lecture/qVxeq/analyzing-and-defining-technical-processes)
+
+<img src="../images/analyze_tecnical_processes.png"
+     alt="analyze_tecnical_processes.png"
      style="float: left; margin-right: 10px;" />
 
 
-<img src="../images/dummy.png"
-     alt="dummy.png"
+<img src="../images/analyze_tecnical_processes_test_environment.png"
+     alt="analyze_tecnical_processes_test_environment.png"
      style="float: left; margin-right: 10px;" />
 
 
-<img src="../images/dummy.png"
-     alt="dummy.png"
+<img src="../images/analyze_tecnical_processes_pricing.png"
+     alt="analyze_tecnical_processes_pricing.png"
      style="float: left; margin-right: 10px;" />
 
 
-<img src="../images/dummy.png"
-     alt="dummy.png"
+<img src="../images/analyze_tecnical_processes_pricing_discounts.png"
+     alt="analyze_tecnical_processes_pricing_discounts.png"
      style="float: left; margin-right: 10px;" />
+
+
+<img src="../images/analyze_tecnical_processes_pricing_disk_costs.png"
+     alt="analyze_tecnical_processes_pricing_disk_costs.png"
+     style="float: left; margin-right: 10px;" />
+
+
+<img src="../images/analyze_tecnical_processes_pricing_network.png"
+     alt="analyze_tecnical_processes_pricing_network.png"
+     style="float: left; margin-right: 10px;" />
+
+
+### Network & Performance 
+
+<a href="../images/Reading-8---Network-and-Performance.pdf">Network & Performance</a>
+
+
+<img src="../images/network_performance.png"
+     alt="network_performance.png"
+     style="float: left; margin-right: 10px;" />
+
+
+### Analyzing and defining business processes
+
+[video](https://www.coursera.org/learn/preparing-cloud-professional-cloud-architect-exam/lecture/GAiVv/analyzing-and-defining-business-processes)
+
+<img src="../images/analyze_business.png"
+     alt="analyze_business.png"
+     style="float: left; margin-right: 10px;" />
+
+Analyzing and defining business processes is covered in our design and process courses.
+
+Let's expand on a couple of these issues. In the change management outline item, there's a tip that says, quality is a process not a product. As a working cloud architect, you'll almost never have a job where you design and implement the technical solution and then you're done. Instead, you'll be required to stay on the project for a period after implementation and launch, to make sure that solution continues to run and stabilizes. Anticipating that, you'll want to develop process checks, and operational knobs to ensure that the solution can be monitored and adjusted during the stabilization period. 
+
+
+
+- instance overhead estimation
+- persistent disk estimation
+- network capacity estimation
+- estimate workload (pipeline, batching, ...)
+
+### Developing (testing) procedures to test resilience
+
+[video](https://www.coursera.org/learn/preparing-cloud-professional-cloud-architect-exam/lecture/W0etp/developing-procedures-to-test-resilience)
+
+In this section, we'll discuss developing testing procedures. You can't test everything, so you need to consider what items can act as indicators. How do you prove that the solution is working properly? How do you know if the solution is highly available or scalable?
+
+<img src="../images/failover_Design.png"
+     alt="failover_Design.png"
+     style="float: left; margin-right: 10px;" />
+
+
+
+<img src="../images/scale_out_decision_process.png"
+     alt="scale_out_decision_process.png"
+     style="float: left; margin-right: 10px;" />
+
+Now, here's a tip. Consider using **Stackdriver custom metrics for auto-scaling**. The reason is that CPU utilization is rarely **a good measure of customer experience**. A **custom metric** can enable auto-scaling on a more meaningful value.
+
+For example, a game service might scale with the number of players, which might be more directly related to application performance than something like CPU utilization.
+
+## Practice Exam #4
+
+[video](https://www.coursera.org/learn/preparing-cloud-professional-cloud-architect-exam/lecture/eTlqG/practice-exam-questions-4)
+
+> Which of Dress4Win's requirements will Stackdriver dashboards, metrics, and reporting satisfy?
+> 
+> * Improve security by defining and adhering to a set of security and identity and access management IAM best practices for cloud.
+> * Encrypt data on the wire and at rest.
+> * Analyze and optimize architecture for performance in the cloud,
+> * or support multiple VPN connections between the production data center and cloud environment.
+
+ **C is the correct answer. Analyze and optimize architecture for performance in the cloud**. Stackdriver metrics will help to analyze and optimize performance for the cloud, because it can be used to gather metrics and custom metrics if needed, to get to specific behavior the applications being migrated. Stackdriver does not necessarily improve security.
+ 
+ 
+>  How can a company connect cloud applications to an Oracle database in its datacenter to meet its business requirement of up to 10 gigabytes of transactions with an SLA?
+>  * Implement a high-throughput cloud VPN connection.
+>  * Cloud Router with VPN.
+>  * Dedicated interconnect.
+>  * Or partner interconnect.
+  
+The correct answer is D, partner interconnect. Partner interconnect is good up to 10 gigabits per second and provides an SLA. To differentiate the options, consider their support for speed and volume of data. Cloud VPN is useful for low volume connections. Partner interconnect is useful for data up to 10 gigabits per second. Direct Interconnect is useful for data from 10 gigabits per second to 80 gigabits per second. The Cloud VPN SLA covers the availability of the VPN service not the availability of the public internet. Business Internet Service Level Agreements, SLAs from ISPs are commonly between 99 percent and 99.5 percent for a dedicated line. Therefore even though the Cloud VPN services available at 99.9 percent of the time, the communication it relies on will be down between one half percent, and one percent of the time. That doesn't meet availability requirements.
+
+#### Practice Case Study analysis #5
+
+[video](https://www.coursera.org/learn/preparing-cloud-professional-cloud-architect-exam/lecture/knXqC/case-study-5)
+
+This case involves Finserv, which is how people in the industry refer to financial services. There are two industries where security comes up as a priority in nearly every transaction. Can you guess them? Financial services is one because the transactions involved are both private and involve the exchange of value. The other is the healthcare industry, where a lot of the information is what they call PII or personally identifiable information. Let's see how security is handled in this financial services example.
+
+
+
+##### Case Study #5
+
+<img src="../images/case_study_04-fin-serv_industry.png"
+     alt="case_study_04-fin-serv_industry.png"
+     style="float: left; margin-right: 10px;" />
+
+A lot of customers we see are in the enterprise space, so their needs are very similar. This example comes from a financial services company. We often see similar requirements among Finserv companies. So, a Finserv customer had this interesting business requirement. Encryption in transit and at rest for all developer operations.
+
+**Follow Google Best Practices**:
+
+- All keys must be managed by the company. They wanted to own the keys. The real trick here is that the structure and solution had to be put into production at one time. It couldn't be built-in parts into production, it had to be all working when it went into production. That caused us to think about what parts were inherent and what parts we could automate.
+
+##### Identify technical watchpoints
+
+<img src="../images/case_study_04-fin-serv_tech_analysis.png"
+     alt="case_study_04-fin-serv_tech_analysis.png"
+     style="float: left; margin-right: 10px;" />
+
+So, we ended up using a Jenkins Pipeline and Deployment Manager Templates for parts of this automation.
+
+We mapped that to technical requirements like this:
+
+- Use **Google authentication**.
+- **No public IP access** unless through a **bastion host**.
+- No Operations team access to production environment, **that means NoOps. Everything is automated**.
+- **Minimize downloaded keys**. Keys accounted for via business logic application. All the Google APIs are encrypted in transit and authenticated. So, that requirement was inherited and automatic.
+- The production team needed operations access but without handing them the keys. So, what we did is **implemented all operations in deployment pipelines** using **Jenkins** and **Deployment Manager**. The business logic was implemented using Python in the **Deployment Manager Templates**.
+
+##### Designing a solution infrastructure that meets technical requirements
+
+<img src="../images/case_study_04-fin-serv_solution.png"
+     alt="case_study_04-fin-serv_solution.png"
+     style="float: left; margin-right: 10px;" />
+
+ This is how we implemented that technical requirement. All Google APIs are encrypted in transit and authenticated. Production has Operations team access. All deployment pipelines via Jenkins and Deployment Manager business logic and Python templates and Deployment Manager. CloudSDK was not installed in local machines. Cloud Shell ensures that no keys are downloaded. Service Account Keys when needed for off-GCP clients are managed via deployment pipelines. There are two kinds of operations actions: on-GCP actions and off-GCP actions. For on-GCP actions, we didn't install CloudSDK on local machines. Instead, we set them up to use Cloud Shell, that ensured that no keys were downloaded. For off-GCP actions, the Service Account Keys were managed via the deployment pipelines. Anytime there was a need for off-GCP access, the clients are managed via the deployment pipeline. So, that means there's a full audit control and records of those keys, and who had access to them, and when and where they were used.
+
+<img src="../images/case_udy_05.png"
+     alt="case_study_05.png"
+     style="float: left; margin-right: 10px;" />
+
+
+## Preparing for Advising
+
+Most of the items in the exam outline have been covered already in another context.
+
+### Advising development operation teams
+
+The first rule of testing is that you can't test everything so you need to make some decisions. Unit testing focuses on individual functional units, for example, exercising an API. In some development environments, it's common for the original software developer to provide a testing application that exercises the API and validates that it's working as expected. Integration testing has to do with putting parts together and testing them as an assembly. Sometimes the individual parts can pass unit test because each is working as designed, but when the units are assembled they may not be compatible. You can also discover timing issues called race conditions during integration testing. 
+
+<img src="../images/advising.png"
+     alt="advising.png"
+     style="float: left; margin-right: 10px;" />
+
+
+One good piece of advice is to create a launch checklist.
+
+In this example, there are:
+
+* dependencies
+* capacities
+* single points of failure
+* security and access
+* and a phased roll out plan.
+
+With all those items to be checked and some of them being very complex
+it's easy to see the value of using an organized approach to ensuring that everything's ready. General advice about release management? Well, automate everything you can. Also, instead of creating a process with a resource bottleneck which can slow down release, consider implementing a self-service approach. Let the lead developers or the product managers perform the release using the tools. Reliability and consistency are the keys to making release work well. Also, implement access control over critical release features and processes. For example, a team lead or a tech lead might be a member of the release group, and have special access.
+
+<img src="../images/launch_checklist.png"
+     alt="launch_checklist.png"
+     style="float: left; margin-right: 10px;" />
+
+When we think about capacity planning for launch, it's common to create a moon shot event where everything has to come together perfectly at a single moment for the launch to succeed. Consider instead using a phased approach, by launching first to a smaller market. The service can generate feedback and even warn of issues that might not scale in subsequent phases.
+
+<img src="../images/phased_launch_approach.png"
+     alt="phased_launch_approach.png"
+     style="float: left; margin-right: 10px;" />
+
+A classic example of this was when the first Pokemon Go game was launched. It was launched first in Japan. The game was so popular that it had scaling issues because the demand was much greater than the anticipated demand for which the service was designed. Fortunately, launches in Europe, the US and other locations were separated by a few days. Staging the launch gave the team the time needed to understand the scaling issue and redesign and reimplement the service before its second launch.
+
+I'm pretty sure you know this already. There are three ways to interact with Google Cloud, first is GCP Console. Second is the tiny virtual machine that's started up inside Console called Cloud Shell. One thing that makes Cloud Shell useful is it's authorized in the project, and it has the Cloud SDK tools including gcloud, gsutil and bq installed. You can also install the Cloud SDK outside of Google Cloud on a local computer or VM.
+
+## Practice Exam #5
+
+[video](https://www.coursera.org/learn/preparing-cloud-professional-cloud-architect-exam/lecture/3b1N7/practice-exam-questions-5)
+
+> Implement back-out/rollback for website with hundreds of VMs. Site has frequent critical updates.
+> 
+> * Create a nearline copy of static data in Cloud Storage.
+> * Create a snapshot of each VM prior to update in case of failure.
+> * Use managed instance groups with the `rolling-action start update` command when starting a rolling update.
+> * Only deploy changes using Deployment Manager templates.
+
+**The correct answer is C. Use managed instance groups with the "rolling-action start update"** command when starting a rolling update. Allows compute engine to handle updates, easy management of VMs. Website with hundreds of VMs, load-balanced likely already using a managed instance group. Now here's a tip. Did you know about this command? This is an example of the level of detail you should be familiar with. If you had studied managed instance groups features, you would have at least seen the "rolling-action start update" option and recognized it in the question. Nearline copy would have been unreliable because once the copy has overwritten, you can't roll it back. Creating VM snapshots could work but it's not an efficient way to backup big data. Also the bigger the data the longer the backup takes which could impact production. Using Deployment Manager templates runs the risk of version conflicts. So, managed instance group features are most efficient for this situation.
+
+> A car reservation system has long-running transactions, which one of the following deployment methods should be avoided?
+> 
+> * Execute canary releases,
+> * perform AB testing prior to release,
+> * introduce a blue-green deployment model,
+> * introduce a pipeline deployment model.
+
+**The answer is introduce a blue-green deployment model**. Switching the load balancer from pointing at the green, good environment to the blue new environment is a fast way to roll back if there's a problem during a release. However, long-running transactions would be disrupted by that switch. This question requires you to know a little about AB testing and a little about blue-green deployments and a little about canary releases. They're covered lightly in our courses but it would be advisable to study these separately since they are not Google specific methods. The second link discusses long-running connections and how to support them.
+
+## Preparing for Reliability
+
+### Ensuring solution and operations reliability
+
+[video](https://www.coursera.org/learn/preparing-cloud-professional-cloud-architect-exam/lecture/XHkNo/ensuring-solution-and-operations-reliability)
+
+Ensuring solution and operations reliability. How do you ensure that a solution is reliable? Part of it occurs in the design. Making sure that common changes like increased traffic are handled in elastic ways. However, part of it is also in planning to monitor the service and to notice and respond to unplanned events. Some of those activities require human intelligence. For this reason, operations reliability spans both the technical and the procedural domains.
+
+<img src="../images/SRE_google_approach_to_devops.png"
+     alt="SRE_google_approach_to_devops.png"
+     style="float: left; margin-right: 10px;" />
+
+
+
+Site reliability or SRE, is Google's approach to DevOps. It's a very comprehensive system that involves changing the culture about how maintenance occurs. One central idea is the division of aspects of operations into separate layers for clarity. Here's a tip, you ought to know something about each of these layers and most importantly, you should be able to distinguish between the layers. For example, monitoring is not incident response. They're related. Do you know what features relates them? It's alerts. A Stackdriver alert is triggered by monitoring and begins incident response, which is composed mainly of procedures.
+
+<img src="../images/evaluate_quality.png"
+     alt="evaluate_quality.png"
+     style="float: left; margin-right: 10px;" />
+
+Qualities are often where our goals start, but figuring out how to measure them quantitatively enables data-driven operations. It can be difficult to figure out exactly what to measure because sometimes what's easily measured is not a good indicator of customer interests.
+
+
+<img src="../images/types_monitoring.png"
+     alt="types_monitoring.png"
+     style="float: left; margin-right: 10px;" />
+
+Speaking of alerts, at Google, we have the concept of alerting for the right reason. Often, alerts are designed to signify some metric passing some limit. But the question is whether that metric or trigger is something the customer cares about or not. We need to alert on some technical measures. But if there's something that is directly causing the customer frustration and upset, that should also be an alert or perhaps replace a more technical alert. Make sure you know the difference between blackbox monitoring and whitebox monitoring. Blackbox monitoring and whitebox monitoring are frequently misunderstood. In the cloud architect contexts, the difference has to do with the assumptions you can make when designing your monitoring framework. In blackbox monitoring, you're not supposed to know or think about the inner workings of the application. All you can see is the user interface or the API interface. So, the only assumptions you're allowed to make have to do with these interactions. Blackbox monitoring is very good for validating user experience. You end up monitoring things like latency between request and response. In whitebox monitoring, the application is assumed to be known to you. The inner workings of the application are transparent. So, you can use that special knowledge when defining the test. A good example would be if you knew that under certain conditions a critical resource will get oversubscribed and you've designed the system from resiliency. In this case, you might flood the interface to trigger the state as if the service was under attack to see if the resiliency worked as expected. That's whitebox monitoring, where the tests can be focused on inner workings and not just the UI. In practice of course, you need both kinds.
+
+
+<img src="../images/example_metrics.png"
+     alt="example_metrics.png"
+     style="float: left; margin-right: 10px;" />
+
+Here's an example, CPU utilization may or may not indicate user satisfaction. Round-trip delay or frequency of request errors might be a better measure of the user's experience. What metrics are you using? Can you define metrics that relate directly to user experience and service objectives? What are the watermarks or alert levels at which human processes are engaged? How are you setting those values? When do they need to be revisited and updated? How do you know they're related to important events?
+
+<img src="../images/stackdriver_benefits.png"
+     alt="stackdriver_benefits.png"
+     style="float: left; margin-right: 10px;" />
+
+Know how to use trace and debug. Examples of other tools that Stackdriver replaces. Note that it's not just a collection of alternate tools that's the issue, but how you use them together. The individual tools are not integrated or designed to work together. So, a lot of manual procedures and translation massaging of data are required to use them together. With Stackdriver, the integration is by design. So, that work disappears. Stackdriver is also multi-cloud, able to manage projects across GCP and AWS.
+
+Another useful idea is that:
+
+> people don't plan to fail, they fail to plan.
+
+Another way of saying this is, the only time we have to prepare for emergencies is before they happen. Once the emergency is occurring, it's too late to prepare. You can design a great technical solution, but if it doesn't include human processes, then it might not be adaptive and resilient. Easy buttons are tools and processes that automate common actions. A playbook is a list of what to do when. So, here's a general rule; for every alert you should have a play in the playbook.
+
+<img src="../images/diff_dashboard_response.png"
+     alt="diff_dashboard_response.png"
+     style="float: left; margin-right: 10px;" />
+
+What are the differences between a dashboard, an alert, and incident response? A dashboard is a display for monitoring a system. It's commonly tailored to the application. An alert occurs when a condition is met such as a metric crossing above a particular value for a given duration. The alert is the notification and alert could just be a warning or it could be a notification of an incident that needs to be handled immediately. Incident response consists of the steps you would take when a problem occurs. This might be written up in a playbook.
+
+Find a lab such as Quick Labs lab that uses logging and trace and debug to identify and solve an application problem. This will give you a sense of the value and how these components work together. There's a lab like this in the architect in GCP infrastructure class.
+
+<img src="../images/blamelessness.png"
+     alt="blamelessness.png"
+     style="float: left; margin-right: 10px;" />
+
+Google's approach focuses on transparency, on involving the customer in the solution and blamelessness. Assigning blame establishes root cause with a person or an organization instead of getting to the real technical or procedural issue so that it can be fixed. If blame has been assigned, there's a high likelihood that the process has been prematurely suspended without really addressing the problem.
+
+<img src="../images/human_processes.png"
+     alt="human_processes.png"
+     style="float: left; margin-right: 10px;" />
+
+What are the people supposed to do? What decisions or actions are they supposed to make or take? Are these documented? As mentioned, the metrics are not sufficient without the meeting to review the metrics, to evaluate them and make decisions and take actions. In those cases where timing is critical, you'll want to playbook and easy buttons supporting automation to increase the speed and consistency of incident response. Here's another tip, when something goes wrong with the cloud resource, give yourself or your team a limited period of time to solve it. For example, if a VM starts behaving incorrectly, see if it's something that's easily fixed. Then spare the VM to the side and replace it. Perform your diagnostics and debugging after the instance is replaced.
+
+### Workflow Orchestration
+
+<a href="../images/Reading-9---Workflow-Orchestration.pdf">Workflow Orchestration reading</a>:
+
+- automate infrastructure or workflow
+
+<img src="../images/automate_infraucture.png"
+     alt="automate_infrastructure.png"
+     style="float: left; margin-right: 10px;" />
+
+- Create data infrastructure whe nthe workflow requires it
+
+<img src="../images/when_needed_infrastructure.png"
+     alt="when_needed_infrastructure.png"
+     style="float: left; margin-right: 10px;" />
+
+- Cloud COmposer: extensible workflow orchestration
+
+<img src="../images/composer.png"
+     alt="composer.png"
+     style="float: left; margin-right: 10px;" />
+
+### Monitoring, Alerting, and Uptime
+
+<a href="../images/Reading-10----Monitoring.pdf">Monitoring, Alerting, and Uptime reading</a>:
+
+<img src="../images/monitoring.png"
+     alt="monitoring.png"
+     style="float: left; margin-right: 10px;" />
+
+<img src="../images/alerting.png"
+     alt="alerting.png"
+     style="float: left; margin-right: 10px;" />
+
+
+<img src="../images/uptime_checks.png"
+     alt="uptime_checks.png"
+     style="float: left; margin-right: 10px;" />
+
+
+
+## Practice Case Study analysis #6
+
+[video](https://www.coursera.org/learn/preparing-cloud-professional-cloud-architect-exam/lecture/Uo5M2/case-study-6)
+
+### Case Study #6
+
+
+<img src="../images/case_study_6_system_update.png"
+     alt="case_study_6_system_update.png"
+     style="float: left; margin-right: 10px;" />
+
+A customer had this interesting business requirement. The back office system needs to support frequent updates. The back office system needs to be available especially between 6:00 AM and 06:00 PM. A failure in one part of the back office system shouldn't bring down the entire system, and the customer wants to re-architect the system. They don't want to bring down the entire system when doing an update.
+
+### Identify technical watchpoints
+
+So, we map that to technical requirements like this. **Microservices**, break apart the back office system into independent services, create a standard way for teams to publish logs and metrics for their services, and create a standard way for services to be rolled out. This use case was a natural fit for microservices. They knew that when they told development groups that they would be developing their own microservices, that they needed standards for reliability and scalability, and that they want common ways to monitor the applications.
+
+<img src="../images/case_study_6_tech_analysis_microservices.png"
+     alt="case_study_6_tech_analysis_microservices.png"
+     style="float: left; margin-right: 10px;" />
+
+
+
+### Designing a solution infrastructure that meets technical requirements
+
+<img src="../images/case_study_6_tech_analysis_microservices_impletation.png"
+     alt="case_study_6_tech_analysis_microservices_implementation.png"
+     style="float: left; margin-right: 10px;" />
+
+This is how we implemented that technical requirement. Google Kubernetes Engine, microservices deployed into a shared cluster. Surging rolling deployments with Kubernetes deployment resource, and Stackdriver, custom metrics, a wrapper library around Stackdriver client libraries and that enabled us to expose common metrics, and expose custom metrics. So, the solution was to use Stackdriver exposing the metrics that could be done through dashboards, exposed metrics through Prometheus standards scraped from API's and sent to Stackdriver, where it could be exposed through the dashboards. They use custom metrics and Stackdriver, so they were able to monitor and scale their microservices based on those metrics.
+
+
+<img src="../images/case_study_6.png"
+     alt="case_study_6.png"
+     style="float: left; margin-right: 10px;" />
+
+
+## Practice Exam #6
+
+[video](https://www.coursera.org/learn/preparing-cloud-professional-cloud-architect-exam/lecture/HiQG9/practice-exam-questions-6)
+
+
+> A microservice has intermittent problems that bursts logs. How can you trap it for live debugging?
+> 
+> * Log into machine with microservice and wait for the log messages.
+> * Look for error in Stackdriver Error Reporting dashboard.
+> * Configure microservice to send traces to Stackdriver Trace.
+> * Set a log metric in Stackdriver logging, alert on it past a threshold.
+
+**D is the correct answer. Set a log metric in Stackdriver logging, and alert on it past a threshold.** A Stackdriver metric can identify a burst of log lines. You can set an alert, then connect to the machine while the problem is happening. What's your tip from this? You should be familiar with basic Stackdriver features and operations. With distributed and scalable services, you need to debug from logs and centralized monitoring services. Error reporting is an instance whereas the a log is a history so you can see issues in context of time. Likewise, trace is a sampling system, so it might miss intermittent issues like this. Again, the tip here is to understand the differences and appropriate uses for the tools in Stack Driver.
+
+> Last week a region had a 1% failure rate in web tier VMs. How should you respond?
+> 
+> * Monitor the application for a 5% failure rate.
+> * Duplicate the application on prem to compensate for failures in the cloud.
+> * Perform a root cause analysis, reviewing cloud provider and deployment details to prevent similar future failures.
+> * Halt all development until the application issue can be found and fixed.
+
+**C is the correct answer.**
+
+## Challenge Labs #2
+
+A Challenge Lab has minimal instructions. It explains a circumstance and the expected results. You have to figure out how to implement them. This is a time lab. The lab will expire after one hour and 10 minutes. The lab can be completed in about 50 minutes.
+
+subject: PCA Prep -- **Update and Scale Out a Containerized Application on a Kubernetes Cluster**
+
+This lab is similar to a Challenge Lab in the "Challenge: GCP Architecture" Quest.
+
+For this Challenge Lab, you must complete a series of tasks within a limited time period. Instead of following step-by-step instructions, you'll be given a scenario and task - you figure out how to complete it on your own! An automated scoring system (shown on this page) will provide feedback on whether you have completed your tasks correctly.
+
+**Skills tested**:
+
+* Update a docker application and push a new version to a container repository.
+* Deploy the updated application version to a Kubernetes cluster.
+* Scale out the application so that it is running 2 replicas.
+
+[**lab notes**](./lab_graded_ScaleOut_containerized_app_on_GKE.md)
 
 
 <img src="../images/dummy.png"
