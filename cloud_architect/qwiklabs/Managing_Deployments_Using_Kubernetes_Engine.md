@@ -94,7 +94,7 @@ Set your working GCP zone by running the following command, substituting the loc
 Get the sample code for creating and running containers and deployments:
 
 ```
-git clone https://github.com/googlecodelabs/orchestrate-with-kubernetes.git
+git clone https://github.com/Patechoc/orchestrate-with-kubernetes
 cd orchestrate-with-kubernetes/kubernetes
 ```
 

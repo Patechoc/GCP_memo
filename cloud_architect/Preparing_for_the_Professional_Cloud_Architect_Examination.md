@@ -1653,7 +1653,7 @@ A Challenge Lab has minimal instructions. It explains a circumstance and the exp
 
 subject: PCA Prep -- **Update and Scale Out a Containerized Application on a Kubernetes Cluster**
 
-This lab is similar to a Challenge Lab in the "Challenge: GCP Architecture" Quest.
+This lab is similar to a Challenge Lab in the "Challenge: GCP Architecture" Quest: [Managing Deployments Using Kubernetes Engine](./qwiklabs/Managing_Deployments_Using_Kubernetes_Engine.md)
 
 For this Challenge Lab, you must complete a series of tasks within a limited time period. Instead of following step-by-step instructions, you'll be given a scenario and task - you figure out how to complete it on your own! An automated scoring system (shown on this page) will provide feedback on whether you have completed your tasks correctly.
 
@@ -1665,6 +1665,28 @@ For this Challenge Lab, you must complete a series of tasks within a limited tim
 
 [**lab notes**](./lab_graded_ScaleOut_containerized_app_on_GKE.md)
 
+## Challenge Labs #3
+
+This challenge lab is more difficult than the previous one. The lab will expire after one hour and 30 minutes. The lab can be completed in about one hour and 15 minutes.
+
+subject: PCA Prep -- **Deploy a Compute Instance with a Remote Startup Script**
+
+This lab is similar to a Challenge Lab in the "Challenge: GCP Architecture" Quest.
+
+In this Challenge Lab you must complete a series of tasks within a limited time period. Instead of following step-by-step instructions, you'll be given a scenario and task - you figure out how to complete it on your own! An automated scoring system (shown on this page) will provide feedback on whether you have completed your tasks correctly.
+
+To score 100% you must complete all tasks within the time period!
+
+> When you take a Challenge Lab, you will not be taught GCP concepts. You'll need to use your advanced Google Compute Engine (GCE) skills to assess how to build the solution to the challenge presented. This lab is only recommended for students who have GCE skills. Are you up for the challenge?
+
+**Skills tested**:
+
+* Create a storage bucket for startup scripts.
+* Create a virtual machine that runs a startup script from cloud storage.
+* Configure HTTP access for the virtual machine.
+* Deploy an application on an instance.
+
+[**lab notes**](./lab_graded_ScaleOut_containerized_app_on_GKE.md)
 
 <img src="../images/dummy.png"
      alt="dummy.png"
