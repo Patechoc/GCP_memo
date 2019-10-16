@@ -89,7 +89,14 @@ The Google Cloud Certified - Professional Cloud Architect exam assesses your abi
          1. [Managing Deployments Using Kubernetes Engine](./cloud_architect/qwiklabs/Managing_Deployments_Using_Kubernetes_Engine.md)
          1. Multiple VPC Networks
          1. Site Reliability Troubleshooting with Stackdriver APM
-      - [Challenge: GCP Architecture](https://google.qwiklabs.com/quests/47?utm_source=gcp&utm_medium=site&utm_campaign=certification)
+   - [**Extra Challenge for GCP Architecture**](./cloud_architect/challenge_GCP_Architecture/README.md)
+        1. Google Cloud Essential Skills: Challenge Lab
+        1. Deploy a Compute Instance with a Remote Startup Script
+        1. Configure a Firewall and a Startup Script with Deployment Manager
+        1. Configure Secure RDP using a Windows Bastion Host
+        1. Build and Deploy a Docker Image to a Kubernetes Cluster
+        1. Scale Out and Update a Containerized Application on a Kubernetes Cluster
+        1. Migrate a MySQL Database to Google Cloud SQL
 - [**Practice exam**](https://cloud.google.com/certification/practice-exam/cloud-architect)
 
 
