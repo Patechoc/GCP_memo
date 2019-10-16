@@ -1730,9 +1730,6 @@ To score 100% you must complete all tasks within the time period!
      style="float: left; margin-right: 10px;" />
 
 
-<img src="../images/dummy.png"
-     alt="dummy.png"
-     style="float: left; margin-right: 10px;" />
 
 
 <img src="../images/dummy.png"
