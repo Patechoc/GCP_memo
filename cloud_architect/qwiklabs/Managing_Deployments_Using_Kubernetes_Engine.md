@@ -47,6 +47,11 @@ You can list the project ID with this command:
 
 `gcloud config list project`
 
+
+`export PROJECT_ID=qwiklabs-gcp-335fcfeb6710e0d4`
+
+`gcloud config set project $PROJECT_ID`
+
 ### Set zone
 
 Set your working GCP zone by running the following command, substituting the local zone as us-central1-a:
