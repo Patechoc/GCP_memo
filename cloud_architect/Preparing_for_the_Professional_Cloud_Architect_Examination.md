@@ -1686,6 +1686,8 @@ To score 100% you must complete all tasks within the time period!
 * Configure HTTP access for the virtual machine.
 * Deploy an application on an instance.
 
+
+
 [**lab notes**](./lab_graded_ScaleOut_containerized_app_on_GKE.md)
 
 <img src="../images/dummy.png"
@@ -1742,3 +1744,6 @@ To score 100% you must complete all tasks within the time period!
      alt="dummy.png"
      style="float: left; margin-right: 10px;" />
 
+## References:
+
+- [kubernetes the hard way](https://github.com/kelseyhightower/kubernetes-the-hard-way)
