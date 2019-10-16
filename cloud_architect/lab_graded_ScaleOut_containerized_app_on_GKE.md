@@ -2,6 +2,25 @@
 
 ~ 1 hour 10 minutes
 
+## Content
+
+* [Overview](#overview)
+   * [Topics tested](#topics-tested)
+* [Challenge scenario](#challenge-scenario)
+   * [Your challenge](#your-challenge)
+      * [Build and deploy the updated application with a new tag](#build-and-deploy-the-updated-application-with-a-new-tag)
+         * [Setup GCP](#setup-gcp)
+         * [Download &amp; extract the 2nd version of the app](#download--extract-the-2nd-version-of-the-app)
+         * [Build the updated application in your local CloudShell](#build-the-updated-application-in-your-local-cloudshell)
+      * [Push the image to the Google Container Registry](#push-the-image-to-the-google-container-registry)
+         * [Tag your newly built image](#tag-your-newly-built-image)
+         * [Push the tagged image to Google Container Registry](#push-the-tagged-image-to-google-container-registry)
+         * [Deploy the updated application with its new tag](#deploy-the-updated-application-with-its-new-tag)
+         * [Scale out the application to 2 instances &amp; Confirm they are all running](#scale-out-the-application-to-2-instances--confirm-they-are-all-running)
+            * [Scale out the application](#scale-out-the-application)
+            * [Confirm both instances are running](#confirm-both-instances-are-running)
+   * [Troubleshooting](#troubleshooting)
+
 
 ## Overview
 
@@ -19,7 +38,7 @@ When you take a Challenge Lab, you will not be taught GCP concepts. You'll need 
 * Deploy the updated application version to a Kubernetes cluster.
 * Scale out the application so that it is running 2 replicas.
 
-## Challenge scenario7
+## Challenge scenario
 
 You are taking over ownership of a test environment and have been given an updated version of a containerized test application to deploy. Your systems architecture team has started adopting a containerized micro-service architecture. You are responsible for managing the containerized test web applications. An initial version of a test application, called `echo-app` and packaged as a Docker container image, has already been successfully deployed to a Kubernetes cluster called echo-cluster in a deployment called echo-web.
 

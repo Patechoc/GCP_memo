@@ -1,5 +1,36 @@
 # Managing Deployments Using Kubernetes Engine
 
+## Content
+
+* [Overview](#overview)
+   * [What you'll do](#what-youll-do)
+   * [Prerequisites](#prerequisites)
+* [Introduction to deployments](#introduction-to-deployments)
+* [Setup](#setup)
+   * [Set zone](#set-zone)
+   * [Get sample code for this lab](#get-sample-code-for-this-lab)
+* [Learn about the deployment object](#learn-about-the-deployment-object)
+* [Create a deployment](#create-a-deployment)
+   * [Scale a Deployment](#scale-a-deployment)
+* [Rolling update](#rolling-update)
+   * [Trigger a rolling update](#trigger-a-rolling-update)
+   * [Pause a rolling update](#pause-a-rolling-update)
+   * [Resume a rolling update](#resume-a-rolling-update)
+   * [Rollback an update](#rollback-an-update)
+* [Canary deployments](#canary-deployments)
+   * [Create a canary deployment](#create-a-canary-deployment)
+   * [Verify the canary deployment](#verify-the-canary-deployment)
+   * [Canary deployments in production - session affinity](#canary-deployments-in-production---session-affinity)
+* [Blue-green deployments](#blue-green-deployments)
+   * [The service](#the-service)
+   * [Updating using Blue-Green Deployment](#updating-using-blue-green-deployment)
+   * [Blue-Green Rollback](#blue-green-rollback)
+* [Congratulations!](#congratulations)
+* [Finish your Quest](#finish-your-quest)
+* [Take your next lab](#take-your-next-lab)
+* [Next steps / learn more](#next-steps--learn-more)
+
+
 ## Overview
 
 Dev Ops practices will regularly make use of multiple deployments to manage application deployment scenarios such as "Continuous Deployment", "Blue-Green Deployments," "Canary Deployments" and more. This lab is to provide practice in scaling and managing containers so you can accomplish these common scenarios where multiple heterogeneous deployments are being used.

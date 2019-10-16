@@ -3,6 +3,22 @@
 
 ~45 minutes
 
+## Content
+
+* [Overview](#overview)
+* [Setup](#setup)
+   * [Before you click the Start Lab button](#before-you-click-the-start-lab-button)
+   * [What you need](#what-you-need)
+* [Challenge scenario](#challenge-scenario)
+* [Your challenge](#your-challenge)
+   * [Running a Basic Apache Web Server](#running-a-basic-apache-web-server)
+      * [Create a Linux VM Instance](#create-a-linux-vm-instance)
+      * [Enable Public Access to VM Instance](#enable-public-access-to-vm-instance)
+      * [Running a Basic Apache Web Server](#running-a-basic-apache-web-server-1)
+      * [Test Your Server](#test-your-server)
+      * [Troubleshooting](#troubleshooting)
+* [Congratulations!](#congratulations)
+
 
 ## Overview
 
