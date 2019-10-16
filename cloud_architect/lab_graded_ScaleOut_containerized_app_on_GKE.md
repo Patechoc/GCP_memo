@@ -61,7 +61,7 @@ Your organization uses the Google Container Registry to host Docker images for d
 
 ##### Tag your newly built image
 
-You need to tag the image first before pushing it:
+You need to tag the image first before pushing it (see [Documentation: tag/push to GCR](https://cloud.google.com/container-registry/docs/pushing-and-pulling)):
 
 > Remember to replace the hostname (e.g. `gcr.io`) and/or Google Project ID (e.g. `qwiklabs-XXXYYY`) with your own information.
 
