@@ -83,7 +83,7 @@ The Google Cloud Certified - Professional Cloud Architect exam assesses your abi
    - [**Extra Qwiklabs** for Cloud Architecture](./cloud_architect/qwiklabs/README.md):
       - [Cloud architecture quest](https://google.qwiklabs.com/quests/24?utm_source=gcp&utm_medium=site&utm_campaign=certification)
          1. [Orchestrating the Cloud with Kubernetes](./cloud_architect/qwiklabs/Orchestrating_the_Cloud_with_Kubernetes.md)
-         1. Deployment Manager - Full Production
+         1. [Deployment Manager - Full Production](./cloud_architect/qwiklabs/Deployment_Manager_-_Full_Production.md)
          1. Continuous Delivery with Jenkins in Kubernetes Engine
          1. Continuous Delivery Pipelines with Spinnaker and Kubernetes Engine
          1. [Managing Deployments Using Kubernetes Engine](./cloud_architect/qwiklabs/Managing_Deployments_Using_Kubernetes_Engine.md)
