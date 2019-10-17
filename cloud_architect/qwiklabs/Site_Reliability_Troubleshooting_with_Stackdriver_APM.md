@@ -6,7 +6,8 @@ Rate Lab
 GSP425
 Google Cloud Self-Paced Labs
 
-Overview
+## Overview
+
 The objective of this lab is to familiarize yourself with the specific capabilities of Stackdriver to monitor GKE cluster infrastructure, Istio, and applications deployed on this infrastructure.
 
 What you'll do

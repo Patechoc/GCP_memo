@@ -88,7 +88,7 @@ The Google Cloud Certified - Professional Cloud Architect exam assesses your abi
          1. Continuous Delivery Pipelines with Spinnaker and Kubernetes Engine
          1. [Managing Deployments Using Kubernetes Engine](./cloud_architect/qwiklabs/Managing_Deployments_Using_Kubernetes_Engine.md)
          1. [Multiple VPC Networks](./cloud_architect/qwiklabs/Multiple_VPC_Networks.md)
-         1. Site Reliability Troubleshooting with Stackdriver APM
+         1. [Site Reliability Troubleshooting with Stackdriver APM](./Site_Reliability_Troubleshooting_with_Stackdriver_APM.md)
    - [**Extra Challenge for GCP Architecture**](./cloud_architect/challenge_GCP_Architecture/README.md)
         1. Google Cloud Essential Skills: Challenge Lab
         1. Deploy a Compute Instance with a Remote Startup Script
