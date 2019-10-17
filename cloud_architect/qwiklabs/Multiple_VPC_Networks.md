@@ -1,6 +1,34 @@
 # Multiple VPC Networks
 
+
+
 [URL](https://google.qwiklabs.com/focuses/1230?parent=catalog) 
+
+## Content
+
+* [Overview](#overview)
+   * [Objectives](#objectives)
+* [Setup and Requirements](#setup-and-requirements)
+* [Create custom mode VPC networks with firewall rules](#create-custom-mode-vpc-networks-with-firewall-rules)
+   * [Create the managementnet network](#create-the-managementnet-network)
+* [Create the <strong>privatenet</strong> network](#create-the-privatenet-network)
+   * [Create the firewall rules for managementnet](#create-the-firewall-rules-for-managementnet)
+   * [Create the firewall rules for privatenet](#create-the-firewall-rules-for-privatenet)
+* [Create VM instances](#create-vm-instances)
+   * [Create the managementnet-us-vm instance](#create-the-managementnet-us-vm-instance)
+   * [Create the privatenet-us-vm instance](#create-the-privatenet-us-vm-instance)
+* [Explore the connectivity between VM instances](#explore-the-connectivity-between-vm-instances)
+   * [Ping the external IP addresses](#ping-the-external-ip-addresses)
+   * [Ping the internal IP addresses](#ping-the-internal-ip-addresses)
+* [Create a VM instance with multiple network interfaces](#create-a-vm-instance-with-multiple-network-interfaces)
+   * [Create the VM instance with multiple network interfaces](#create-the-vm-instance-with-multiple-network-interfaces)
+   * [Explore the network interface details](#explore-the-network-interface-details)
+   * [Explore the network interface connectivity](#explore-the-network-interface-connectivity)
+* [Congratulations!](#congratulations)
+   * [Finish your Quest](#finish-your-quest)
+   * [Take your next lab](#take-your-next-lab)
+   * [Next Steps / Learn More](#next-steps--learn-more)
+
 
 ## Overview
 
