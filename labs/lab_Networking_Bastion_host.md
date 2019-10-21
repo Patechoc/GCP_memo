@@ -30,7 +30,7 @@ In this lab, you learn how to perform the following tasks:
 2. Click Create.
 3. Specify the following, and leave the remaining settings as their defaults:
 
-<img src="../../images/lab_network_bastion_host_architecture_VM1.png"
+<img src="../images/lab_network_bastion_host_architecture_VM1.png"
         alt="lab_network_bastion_host_architecture_VM1.png"
         style="float: left; margin-right: 10px;" />
 
