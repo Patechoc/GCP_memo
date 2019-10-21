@@ -30,12 +30,12 @@ resources:
         value: "apt-get update \napt-get install -y apache2 apache2-utils"
     tags:
       items:
-      - http-server
+      - http
 - name: default-allow-http
   type: compute.v1.firewall
   properties:
     targetTags: 
-    - http-server
+    - http
     allowed:
     - IPProtocol: tcp
       ports: 
