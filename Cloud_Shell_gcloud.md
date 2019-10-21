@@ -16,7 +16,7 @@ With Cloud Shell, the **Cloud SDK `gcloud` commands** and other utilities you ne
 gcloud auth list
 ```
 
-* Show active your project
+### Show & active your project
 
 ```
 gcloud config list project
@@ -27,6 +27,16 @@ if not, you can set it:
 ```
 gcloud config set project <PROJECT_ID>
 ```
+
+or 
+
+`export PROJECT_ID=$(gcloud info --format='value(config.project)')`
+
+If you already have selected your project before opening CloudShell.
+
+### Set up your zone
+
+`gcloud config set compute/zone us-west1-b`
 
 ## First command line
 
