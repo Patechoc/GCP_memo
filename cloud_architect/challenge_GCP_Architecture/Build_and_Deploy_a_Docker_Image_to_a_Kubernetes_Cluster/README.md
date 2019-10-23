@@ -372,3 +372,4 @@ kubectl run ${IMAGE_NAME} --image=${IMAGE_NAME}:${TAG_NAME} --port=80
 - [Qwiklabs: **Site Reliability Troubleshooting with Stackdriver APM**](https://github.com/Patechoc/GCP_memo/blob/master/cloud_architect/qwiklabs/Site_Reliability_Troubleshooting_with_Stackdriver_APM.md)
 - [Blog post](https://blog.container-solutions.com/using-google-container-registry-with-kubernetes) on how to use kubernetes in practice
 - [Migrating workloads to different machine types](https://cloud.google.com/kubernetes-engine/docs/tutorials/migrating-node-pool)
+- [Kubernetes tutorial: **Exposing an External IP Address to Access an Application in a Cluster**](https://kubernetes.io/docs/tutorials/stateless-application/expose-external-ip-address/)
