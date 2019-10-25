@@ -97,7 +97,7 @@ The Google Cloud Certified - Professional Cloud Architect exam assesses your abi
         1. Build and Deploy a Docker Image to a Kubernetes Cluster
         1. Scale Out and Update a Containerized Application on a Kubernetes Cluster
         1. Migrate a MySQL Database to Google Cloud SQL
-- [**Practice exam**](https://cloud.google.com/certification/practice-exam/cloud-architect)
+- [**Practice exam**](https://cloud.google.com/certification/practice-exam/cloud-architect) & [Exam's case studies](Exam_Case_Studies.md)
 
 
 ### Architecting with Google Compute Engine Specialization
