@@ -283,6 +283,7 @@ In this module, you'll be introduced to the concept of containers and you will l
 - [module overview video](https://www.coursera.org/learn/gcp-infrastructure-containers-services/lecture/WRIMr/module-overview-intro)
 - [module review video](https://www.coursera.org/learn/gcp-infrastructure-containers-services/lecture/gLy3G/module-3-review)
 
+<a href="https://www.youtube.com/watch?v=4ht22ReBjno" title="The Illustrated Children's Guide to Kubernetes"><img src="../images/k8s_children_book.jpeg" alt="The Illustrated Children's Guide to Kubernetes" /></a>
 
 ### Introduction to Containers.
 

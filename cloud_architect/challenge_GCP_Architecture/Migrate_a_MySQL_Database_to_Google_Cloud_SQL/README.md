@@ -2,9 +2,6 @@
 
 [url](https://google.qwiklabs.com/focuses/1740?parent=catalog)
 
-
-
-
 ## Topics tested
 
 Create a Google Cloud SQL Instance and create a Database

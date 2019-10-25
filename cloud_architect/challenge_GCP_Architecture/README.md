@@ -32,3 +32,4 @@ This Quest expects solid hands-on proficiency with Google Cloud workflows and pr
 
 * [**Migrate a MySQL Database to Google Cloud SQL**](https://google.qwiklabs.com/focuses/1740?parent=catalog)
    Your challenge is to migrate the database to Google Cloud SQL and then reconfigure the application so that it no longer relies on the local MySQL database.
+
