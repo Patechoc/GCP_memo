@@ -1,4 +1,4 @@
-# Google CLoud Platform (GCP) Data Engineering & Cloud architect
+# Google Cloud Platform (GCP) Data Engineering & Cloud architect
 
 ## Content
 
