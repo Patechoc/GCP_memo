@@ -15,9 +15,12 @@
      alt="TerramEarth_equipment_manufacturing_organization.png"
      style="float: left; margin-right: 10px;" />
 
+[drawing](https://docs.google.com/drawings/d/1oinvJYcDzr8Y7Lp5tHWLmsB6NNBlvGpu44TmXTtMlS4/edit)
 
 ## Mountkirk Games
 
 <img src="../images/MountkirkGames_gaming_company.png"
      alt="MountkirkGames_gaming_company.png"
      style="float: left; margin-right: 10px;" />
+
+[drawing](https://docs.google.com/drawings/d/1k7EYc3LvVphAOdBLAN-vdwW6vxvqQh5bZi2NMzG4D6k/edit)
