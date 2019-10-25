@@ -286,7 +286,7 @@ In this module, you'll be introduced to the concept of containers and you will l
 <a href="https://www.youtube.com/watch?v=4ht22ReBjno" title="The Illustrated Children's Guide to Kubernetes"><img src="../images/k8s_children_book.jpeg" alt="The Illustrated Children's Guide to Kubernetes" /></a>
 
 
-<a href="https://www.youtube.com/watch?v=O1pv70lPlNc" title="Phippy Goes to the Zoo: A Kubernetes Story - Matt Butcher & Karen Chu"><img src="../images/k8s_children_book.jpeg" alt="Phippy Goes to the Zoo: A Kubernetes Story - Matt Butcher & Karen Chu" /></a>
+<a href="https://www.youtube.com/watch?v=O1pv70lPlNc" title="Phippy Goes to the Zoo: A Kubernetes Story - Matt Butcher & Karen Chu"><img src="../images/Phippy-Goes-to-the-Zoo.jpg" alt="Phippy Goes to the Zoo: A Kubernetes Story - Matt Butcher & Karen Chu" /></a>
 
 
 ### Introduction to Containers.
