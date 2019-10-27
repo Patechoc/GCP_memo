@@ -1686,60 +1686,59 @@ To score 100% you must complete all tasks within the time period!
 * Configure HTTP access for the virtual machine.
 * Deploy an application on an instance.
 
+[**lab notes**](./not_made_notes)
 
 
-[**lab notes**](./lab_graded_ScaleOut_containerized_app_on_GKE.md)
+## Review 
 
-<img src="../images/dummy.png"
-     alt="dummy.png"
-     style="float: left; margin-right: 10px;" />
+Don't expect to be taught the touchstone concepts here. The purpose of them in this course is to help you evaluate your preparedness. Seek training in the technical training courses, documentation, labs, and so forth.
 
+### Practice the case evaluation method on cases and on sample questions
 
-<img src="../images/dummy.png"
-     alt="dummy.png"
-     style="float: left; margin-right: 10px;" />
+1. Business Requirements
+2. Technical Requirements
+3. Technical Watchpoints (requirements or facts that indicate elements of a solution)
+4. Proposed Solution
 
+This is not just a test-taking skill. This is a skill used in practice by consultants on the job. It is how they think about their customer engagements and talk about it with other professionals.
 
-<img src="../images/dummy.png"
-     alt="dummy.png"
-     style="float: left; margin-right: 10px;" />
+## What questions would you want to ask a client?
 
+You can make reasonable assumptions about a case. But if you seem to be missing information, especially technical information, that may be useful. It may help constrain the degree of freedom and limit the number of potentially correct answers. It might indicate that an answer is incorrect. In other words, use what you don't know or what is missing in the case to help you evaluate the intent of the question.
 
-<img src="../images/dummy.png"
-     alt="dummy.png"
-     style="float: left; margin-right: 10px;" />
+### Make sure you know what is being asked.
 
+If you find yourself speculating and trying to add information to the case beyond reasonable assumptions, then you might be drifting off of the intent of the question.
 
-<img src="../images/dummy.png"
-     alt="dummy.png"
-     style="float: left; margin-right: 10px;" />
+### Hands-on
 
+It is a good idea to review and run through basic labs so that the hands-on details are fresh in mind. You might want to review steps of labs you performed before. Or you might want to do some of them again.
 
-<img src="../images/dummy.png"
-     alt="dummy.png"
-     style="float: left; margin-right: 10px;" />
+There are resources available on the [Qwiklabs Google Cloud Catalog](https://www.qwiklabs.com/catalog?keywords=&cloud%5B%5D=GCP&format%5B%5D=any&level%5B%5D=any&duration%5B%5D=any&price%5B%5D=any&modality%5B%5D=any&language%5B%5D=any).
 
 
-<img src="../images/dummy.png"
-     alt="dummy.png"
-     style="float: left; margin-right: 10px;" />
+## Instructions for GRADED & UNGRADED Practice Exam Quiz
+
+There are two versions of the Practice Exam Quiz. The first version is UNGRADED Practice Exam Quiz and provides information about the answers you select and feedback to help you understand what you might need to study. You can try the ungraded version multiple times until you get everything right.
+
+A good way to study is to look up every correct and incorrect answer and make sure you not only know which answer is correct, but also why it is correct.
+
+The second version is the GRADED Practice Exam Quiz. This version is more like the actual exam. Because it offers limited feedback -- just a total score at the end. When you are ready, proceed to the GRADED Practice Exam Quiz which will give you credit towards completing this course. You may only attempt the GRADED Practice Exam Quiz three times in 8 hours.
 
 
-<img src="../images/dummy.png"
-     alt="dummy.png"
-     style="float: left; margin-right: 10px;" />
+## Review of tips
 
+* TIP 1: Create your own custom preparation plan using the resources in this course.
+* TIP 2: Use the Exam Guide outline to help identify what to study.
+* TIP 3: Product and technology knowledge.
+* TIP 4: This course has touchstone concepts for self-evaluation, not technical training. Seek training if needed.
+* TIP 5: Problem solving is the key skill.
+* TIP 6: Practice evaluating your confidence in your answers.
+* TIP 7: Practice case evaluation and creating proposed solutions.
+* Tip 8: Use what you know and what you don't know to identify correct and incorrect answers.
+* Tip 9: Review or rehearse labs to refresh your experience
+* Tip 10: Prepare!
 
-
-
-<img src="../images/dummy.png"
-     alt="dummy.png"
-     style="float: left; margin-right: 10px;" />
-
-
-<img src="../images/dummy.png"
-     alt="dummy.png"
-     style="float: left; margin-right: 10px;" />
 
 ## References:
 
